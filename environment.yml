@@ -1,0 +1,29 @@
+name: megan-sc
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy>=1.26
+  - scipy>=1.11
+  - pandas>=2.1
+  - xarray>=2024.1
+  - netcdf4>=1.6
+  - rioxarray>=0.15
+  - rasterio>=1.3
+  - geopandas>=1.0
+  - shapely>=2.0
+  - pyproj>=3.6
+  - geographiclib>=2.0
+  - pyyaml>=6.0
+  - click>=8.1
+  - pytest>=8.0
+  - matplotlib>=3.8
+  - cartopy>=0.22
+  - tqdm>=4.66
+  - statsmodels>=0.14
+  - pillow>=10
+  - pip
+  - pip:
+      - earthengine-api>=1.1
+      - geemap>=0.32
+      - pymannkendall>=1.4

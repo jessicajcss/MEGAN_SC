@@ -1,0 +1,296 @@
+CD_MUN,NM_MUN,mesorregiao,majority_fraction
+4200051,Abdon Batista,Serrana,1.0
+4200101,Abelardo Luz,Oeste Catarinense,0.9982
+4200200,Agrolândia,Vale do Itajaí,0.9977
+4200309,Agronômica,Vale do Itajaí,1.0
+4200408,Água Doce,Oeste Catarinense,0.9929
+4200507,Águas de Chapecó,Oeste Catarinense,0.9907
+4200556,Águas Frias,Oeste Catarinense,1.0
+4200606,Águas Mornas,Grande Florianópolis,1.0
+4200705,Alfredo Wagner,Grande Florianópolis,0.9982
+4200754,Alto Bela Vista,Oeste Catarinense,0.9848
+4200804,Anchieta,Oeste Catarinense,1.0
+4200903,Angelina,Grande Florianópolis,1.0
+4201000,Anita Garibaldi,Serrana,0.9984
+4201109,Anitápolis,Grande Florianópolis,0.9984
+4201208,Antônio Carlos,Grande Florianópolis,1.0
+4201257,Apiúna,Vale do Itajaí,1.0
+4201273,Arabutã,Oeste Catarinense,1.0
+4201307,Araquari,Norte Catarinense,0.9606
+4201406,Araranguá,Sul Catarinense,0.999
+4201505,Armazém,Sul Catarinense,1.0
+4201604,Arroio Trinta,Oeste Catarinense,1.0
+4201653,Arvoredo,Oeste Catarinense,1.0
+4201703,Ascurra,Vale do Itajaí,1.0
+4201802,Atalanta,Vale do Itajaí,1.0
+4201901,Aurora,Vale do Itajaí,1.0
+4201950,Balneário Arroio do Silva,Sul Catarinense,0.9874
+4202008,Balneário Camboriú,Vale do Itajaí,0.997
+4202057,Balneário Barra do Sul,Norte Catarinense,0.9388
+4202073,Balneário Gaivota,Sul Catarinense,0.9993
+4202081,Bandeirante,Oeste Catarinense,0.9899
+4202099,Barra Bonita,Oeste Catarinense,1.0
+4202107,Barra Velha,Vale do Itajaí,0.9966
+4202131,Bela Vista do Toldo,Norte Catarinense,1.0
+4202156,Belmonte,Oeste Catarinense,0.993
+4202206,Benedito Novo,Vale do Itajaí,1.0
+4202305,Biguaçu,Grande Florianópolis,0.8636
+4202404,Blumenau,Vale do Itajaí,0.9984
+4202438,Bocaina do Sul,Serrana,1.0
+4202453,Bombinhas,Vale do Itajaí,0.9673
+4202503,Bom Jardim da Serra,Serrana,0.9941
+4202537,Bom Jesus,Oeste Catarinense,1.0
+4202578,Bom Jesus do Oeste,Oeste Catarinense,1.0
+4202602,Bom Retiro,Serrana,0.9967
+4202701,Botuverá,Vale do Itajaí,0.9953
+4202800,Braço do Norte,Sul Catarinense,1.0
+4202859,Braço do Trombudo,Vale do Itajaí,0.9986
+4202875,Brunópolis,Serrana,1.0
+4202909,Brusque,Vale do Itajaí,0.9927
+4203006,Caçador,Oeste Catarinense,0.9997
+4203105,Caibi,Oeste Catarinense,0.9918
+4203154,Calmon,Oeste Catarinense,0.9967
+4203204,Camboriú,Vale do Itajaí,0.9988
+4203253,Capão Alto,Serrana,0.9985
+4203303,Campo Alegre,Norte Catarinense,0.9947
+4203402,Campo Belo do Sul,Serrana,0.9995
+4203501,Campo Erê,Oeste Catarinense,0.9991
+4203600,Campos Novos,Serrana,0.9975
+4203709,Canelinha,Grande Florianópolis,0.9974
+4203808,Canoinhas,Norte Catarinense,0.9985
+4203907,Capinzal,Oeste Catarinense,0.997
+4203956,Capivari de Baixo,Sul Catarinense,1.0
+4204004,Catanduvas,Oeste Catarinense,1.0
+4204103,Caxambu do Sul,Oeste Catarinense,0.9878
+4204152,Celso Ramos,Serrana,0.9946
+4204178,Cerro Negro,Serrana,0.9975
+4204194,Chapadão do Lageado,Vale do Itajaí,0.9969
+4204202,Chapecó,Oeste Catarinense,0.9972
+4204251,Cocal do Sul,Sul Catarinense,1.0
+4204301,Concórdia,Oeste Catarinense,0.998
+4204350,Cordilheira Alta,Oeste Catarinense,1.0
+4204400,Coronel Freitas,Oeste Catarinense,1.0
+4204459,Coronel Martins,Oeste Catarinense,1.0
+4204509,Corupá,Norte Catarinense,0.9988
+4204558,Correia Pinto,Serrana,1.0
+4204608,Criciúma,Sul Catarinense,1.0
+4204707,Cunha Porã,Oeste Catarinense,1.0
+4204756,Cunhataí,Oeste Catarinense,1.0
+4204806,Curitibanos,Serrana,0.9997
+4204905,Descanso,Oeste Catarinense,1.0
+4205001,Dionísio Cerqueira,Oeste Catarinense,0.9927
+4205100,Dona Emma,Vale do Itajaí,1.0
+4205159,Doutor Pedrinho,Vale do Itajaí,0.9997
+4205175,Entre Rios,Oeste Catarinense,1.0
+4205191,Ermo,Sul Catarinense,1.0
+4205209,Erval Velho,Oeste Catarinense,0.9915
+4205308,Faxinal dos Guedes,Oeste Catarinense,1.0
+4205357,Flor do Sertão,Oeste Catarinense,1.0
+4205407,Florianópolis,Grande Florianópolis,0.6414
+4205431,Formosa do Sul,Oeste Catarinense,1.0
+4205456,Forquilhinha,Sul Catarinense,1.0
+4205506,Fraiburgo,Oeste Catarinense,0.9954
+4205555,Frei Rogério,Serrana,0.9989
+4205605,Galvão,Oeste Catarinense,0.9989
+4205704,Garopaba,Sul Catarinense,0.984
+4205803,Garuva,Norte Catarinense,0.9875
+4205902,Gaspar,Vale do Itajaí,1.0
+4206009,Governador Celso Ramos,Grande Florianópolis,0.7322
+4206108,Grão-Pará,Sul Catarinense,0.9992
+4206207,Gravatal,Sul Catarinense,1.0
+4206306,Guabiruba,Vale do Itajaí,1.0
+4206405,Guaraciaba,Oeste Catarinense,0.9966
+4206504,Guaramirim,Norte Catarinense,0.9996
+4206603,Guarujá do Sul,Oeste Catarinense,1.0
+4206652,Guatambú,Oeste Catarinense,0.9963
+4206702,Herval d'Oeste,Oeste Catarinense,0.9987
+4206751,Ibiam,Oeste Catarinense,0.9937
+4206801,Ibicaré,Oeste Catarinense,1.0
+4206900,Ibirama,Vale do Itajaí,1.0
+4207007,Içara,Sul Catarinense,1.0
+4207106,Ilhota,Vale do Itajaí,1.0
+4207205,Imaruí,Sul Catarinense,0.9994
+4207304,Imbituba,Sul Catarinense,0.9849
+4207403,Imbuia,Vale do Itajaí,0.9985
+4207502,Indaial,Vale do Itajaí,1.0
+4207577,Iomerê,Oeste Catarinense,1.0
+4207601,Ipira,Oeste Catarinense,1.0
+4207650,Iporã do Oeste,Oeste Catarinense,1.0
+4207684,Ipuaçu,Oeste Catarinense,1.0
+4207700,Ipumirim,Oeste Catarinense,1.0
+4207759,Iraceminha,Oeste Catarinense,1.0
+4207809,Irani,Oeste Catarinense,1.0
+4207858,Irati,Oeste Catarinense,1.0
+4207908,Irineópolis,Norte Catarinense,0.9994
+4208005,Itá,Oeste Catarinense,0.9932
+4208104,Itaiópolis,Norte Catarinense,0.9988
+4208203,Itajaí,Vale do Itajaí,0.9999
+4208302,Itapema,Vale do Itajaí,0.9989
+4208401,Itapiranga,Oeste Catarinense,0.9859
+4208450,Itapoá,Norte Catarinense,0.9641
+4208500,Ituporanga,Vale do Itajaí,0.9995
+4208609,Jaborá,Oeste Catarinense,1.0
+4208708,Jacinto Machado,Sul Catarinense,0.9964
+4208807,Jaguaruna,Sul Catarinense,0.9966
+4208906,Jaraguá do Sul,Norte Catarinense,0.9988
+4208955,Jardinópolis,Oeste Catarinense,1.0
+4209003,Joaçaba,Oeste Catarinense,1.0
+4209102,Joinville,Norte Catarinense,0.9754
+4209151,José Boiteux,Vale do Itajaí,0.9999
+4209177,Jupiá,Oeste Catarinense,0.9993
+4209201,Lacerdópolis,Oeste Catarinense,0.9978
+4209300,Lages,Serrana,0.9989
+4209409,Laguna,Sul Catarinense,0.9937
+4209458,Lajeado Grande,Oeste Catarinense,1.0
+4209508,Laurentino,Vale do Itajaí,1.0
+4209607,Lauro Müller,Sul Catarinense,0.9985
+4209706,Lebon Régis,Oeste Catarinense,0.9898
+4209805,Leoberto Leal,Grande Florianópolis,0.997
+4209854,Lindóia do Sul,Oeste Catarinense,1.0
+4209904,Lontras,Vale do Itajaí,1.0
+4210001,Luiz Alves,Vale do Itajaí,0.9987
+4210035,Luzerna,Oeste Catarinense,1.0
+4210050,Macieira,Oeste Catarinense,1.0
+4210100,Mafra,Norte Catarinense,0.9981
+4210209,Major Gercino,Grande Florianópolis,1.0
+4210308,Major Vieira,Norte Catarinense,0.9996
+4210407,Maracajá,Sul Catarinense,1.0
+4210506,Maravilha,Oeste Catarinense,1.0
+4210555,Marema,Oeste Catarinense,1.0
+4210605,Massaranduba,Norte Catarinense,0.9946
+4210704,Matos Costa,Oeste Catarinense,0.9938
+4210803,Meleiro,Sul Catarinense,1.0
+4210852,Mirim Doce,Vale do Itajaí,0.9903
+4210902,Modelo,Oeste Catarinense,1.0
+4211009,Mondaí,Oeste Catarinense,0.9913
+4211058,Monte Carlo,Serrana,0.9969
+4211108,Monte Castelo,Norte Catarinense,0.9939
+4211207,Morro da Fumaça,Sul Catarinense,1.0
+4211256,Morro Grande,Sul Catarinense,0.9961
+4211306,Navegantes,Vale do Itajaí,0.9973
+4211405,Nova Erechim,Oeste Catarinense,1.0
+4211454,Nova Itaberaba,Oeste Catarinense,1.0
+4211504,Nova Trento,Grande Florianópolis,0.9972
+4211603,Nova Veneza,Sul Catarinense,0.9999
+4211652,Novo Horizonte,Oeste Catarinense,1.0
+4211702,Orleans,Sul Catarinense,0.9981
+4211751,Otacílio Costa,Serrana,0.9921
+4211801,Ouro,Oeste Catarinense,0.9999
+4211850,Ouro Verde,Oeste Catarinense,1.0
+4211876,Paial,Oeste Catarinense,0.9944
+4211892,Painel,Serrana,1.0
+4211900,Palhoça,Grande Florianópolis,0.8242
+4212007,Palma Sola,Oeste Catarinense,0.9953
+4212056,Palmeira,Serrana,1.0
+4212106,Palmitos,Oeste Catarinense,0.9892
+4212205,Papanduva,Norte Catarinense,0.9988
+4212239,Paraíso,Oeste Catarinense,0.9838
+4212254,Passo de Torres,Sul Catarinense,0.9873
+4212270,Passos Maia,Oeste Catarinense,0.997
+4212304,Paulo Lopes,Grande Florianópolis,0.998
+4212403,Pedras Grandes,Sul Catarinense,1.0
+4212502,Penha,Vale do Itajaí,0.9958
+4212601,Peritiba,Oeste Catarinense,1.0
+4212650,Pescaria Brava,Sul Catarinense,1.0
+4212700,Petrolândia,Vale do Itajaí,0.9991
+4212809,Balneário Piçarras,Vale do Itajaí,0.9998
+4212908,Pinhalzinho,Oeste Catarinense,1.0
+4213005,Pinheiro Preto,Oeste Catarinense,1.0
+4213104,Piratuba,Oeste Catarinense,0.989
+4213153,Planalto Alegre,Oeste Catarinense,1.0
+4213203,Pomerode,Vale do Itajaí,0.998
+4213302,Ponte Alta,Serrana,0.9981
+4213351,Ponte Alta do Norte,Serrana,0.9957
+4213401,Ponte Serrada,Oeste Catarinense,1.0
+4213500,Porto Belo,Vale do Itajaí,0.9852
+4213609,Porto União,Norte Catarinense,0.9957
+4213708,Pouso Redondo,Vale do Itajaí,0.998
+4213807,Praia Grande,Sul Catarinense,0.9786
+4213906,Presidente Castello Branco,Oeste Catarinense,1.0
+4214003,Presidente Getúlio,Vale do Itajaí,1.0
+4214102,Presidente Nereu,Vale do Itajaí,1.0
+4214151,Princesa,Oeste Catarinense,0.9977
+4214201,Quilombo,Oeste Catarinense,1.0
+4214300,Rancho Queimado,Grande Florianópolis,1.0
+4214409,Rio das Antas,Oeste Catarinense,1.0
+4214508,Rio do Campo,Vale do Itajaí,0.9955
+4214607,Rio do Oeste,Vale do Itajaí,1.0
+4214706,Rio dos Cedros,Vale do Itajaí,0.9963
+4214805,Rio do Sul,Vale do Itajaí,1.0
+4214904,Rio Fortuna,Sul Catarinense,1.0
+4215000,Rio Negrinho,Norte Catarinense,0.996
+4215059,Rio Rufino,Serrana,1.0
+4215075,Riqueza,Oeste Catarinense,1.0
+4215109,Rodeio,Vale do Itajaí,1.0
+4215208,Romelândia,Oeste Catarinense,1.0
+4215307,Salete,Vale do Itajaí,1.0
+4215356,Saltinho,Oeste Catarinense,1.0
+4215406,Salto Veloso,Oeste Catarinense,1.0
+4215455,Sangão,Sul Catarinense,1.0
+4215505,Santa Cecília,Serrana,0.9938
+4215554,Santa Helena,Oeste Catarinense,0.9951
+4215604,Santa Rosa de Lima,Sul Catarinense,0.9889
+4215653,Santa Rosa do Sul,Sul Catarinense,1.0
+4215679,Santa Terezinha,Norte Catarinense,0.9978
+4215687,Santa Terezinha do Progresso,Oeste Catarinense,1.0
+4215695,Santiago do Sul,Oeste Catarinense,1.0
+4215703,Santo Amaro da Imperatriz,Grande Florianópolis,1.0
+4215752,São Bernardino,Oeste Catarinense,1.0
+4215802,São Bento do Sul,Norte Catarinense,0.9999
+4215901,São Bonifácio,Grande Florianópolis,0.9995
+4216008,São Carlos,Oeste Catarinense,0.9871
+4216057,São Cristóvão do Sul,Serrana,0.9968
+4216107,São Domingos,Oeste Catarinense,0.9992
+4216206,São Francisco do Sul,Norte Catarinense,0.7702
+4216255,São João do Oeste,Oeste Catarinense,1.0
+4216305,São João Batista,Grande Florianópolis,1.0
+4216354,São João do Itaperiú,Vale do Itajaí,0.995
+4216404,São João do Sul,Sul Catarinense,0.9953
+4216503,São Joaquim,Serrana,0.9977
+4216602,São José,Grande Florianópolis,0.7544
+4216701,São José do Cedro,Oeste Catarinense,0.9942
+4216800,São José do Cerrito,Serrana,1.0
+4216909,São Lourenço do Oeste,Oeste Catarinense,0.9993
+4217006,São Ludgero,Sul Catarinense,1.0
+4217105,São Martinho,Sul Catarinense,0.9931
+4217154,São Miguel da Boa Vista,Oeste Catarinense,1.0
+4217204,São Miguel do Oeste,Oeste Catarinense,1.0
+4217253,São Pedro de Alcântara,Grande Florianópolis,1.0
+4217303,Saudades,Oeste Catarinense,1.0
+4217402,Schroeder,Norte Catarinense,1.0
+4217501,Seara,Oeste Catarinense,1.0
+4217550,Serra Alta,Oeste Catarinense,1.0
+4217600,Siderópolis,Sul Catarinense,0.995
+4217709,Sombrio,Sul Catarinense,1.0
+4217758,Sul Brasil,Oeste Catarinense,1.0
+4217808,Taió,Vale do Itajaí,0.9981
+4217907,Tangará,Oeste Catarinense,0.992
+4217956,Tigrinhos,Oeste Catarinense,1.0
+4218004,Tijucas,Grande Florianópolis,0.9924
+4218103,Timbé do Sul,Sul Catarinense,0.9887
+4218202,Timbó,Vale do Itajaí,1.0
+4218251,Timbó Grande,Norte Catarinense,0.9929
+4218301,Três Barras,Norte Catarinense,0.9981
+4218350,Treviso,Sul Catarinense,0.9963
+4218400,Treze de Maio,Sul Catarinense,1.0
+4218509,Treze Tílias,Oeste Catarinense,1.0
+4218608,Trombudo Central,Vale do Itajaí,1.0
+4218707,Tubarão,Sul Catarinense,1.0
+4218756,Tunápolis,Oeste Catarinense,0.9932
+4218806,Turvo,Sul Catarinense,1.0
+4218855,União do Oeste,Oeste Catarinense,1.0
+4218905,Urubici,Serrana,0.9962
+4218954,Urupema,Serrana,1.0
+4219002,Urussanga,Sul Catarinense,1.0
+4219101,Vargeão,Oeste Catarinense,1.0
+4219150,Vargem,Serrana,1.0
+4219176,Vargem Bonita,Oeste Catarinense,1.0
+4219200,Vidal Ramos,Vale do Itajaí,0.9955
+4219309,Videira,Oeste Catarinense,1.0
+4219358,Vitor Meireles,Vale do Itajaí,0.9995
+4219408,Witmarsum,Vale do Itajaí,1.0
+4219507,Xanxerê,Oeste Catarinense,1.0
+4219606,Xavantina,Oeste Catarinense,1.0
+4219705,Xaxim,Oeste Catarinense,1.0
+4219853,Zortéa,Serrana,0.9956
+4220000,Balneário Rincão,Sul Catarinense,0.9923

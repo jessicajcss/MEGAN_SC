@@ -1,0 +1,109 @@
+/* Style of the illustrated tutorial of MEGAN_SC (same layout as the FINN_SC tutorial of the series). */
+@page { size: A4; margin: 16mm 17mm 18mm 17mm; }
+:root {
+  --ink: #1d2433; --muted: #5b6475; --line: #dfe3ea; --bg: #ffffff;
+  --green: #1f7a3a; --green-l: #e8f4ec; --blue: #1f5fa8; --blue-l: #e8f0fb;
+  --amber: #b26b00; --amber-l: #fff4e0; --red: #b3261e; --red-l: #fdecea;
+  --violet: #6a3fb5; --violet-l: #f1ebfb; --teal: #0f7c80; --teal-l: #e4f5f5;
+  --code-bg: #f4f6f9;
+}
+* { box-sizing: border-box; }
+html { font-size: 10.6pt; }
+body { font-family: "Inter", "DejaVu Sans", sans-serif; color: var(--ink); background: var(--bg);
+       line-height: 1.55; margin: 0; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+p { margin: 0 0 0.62em 0; max-width: 168mm; }
+a { color: var(--blue); text-decoration: none; }
+strong { font-weight: 650; }
+code, .mono { font-family: "DejaVu Sans Mono", monospace; font-size: 0.86em; background: var(--code-bg);
+       padding: 0.05em 0.3em; border-radius: 3px; overflow-wrap: anywhere; }
+pre { font-family: "DejaVu Sans Mono", monospace; font-size: 8.4pt; line-height: 1.5; background: #18202c; color: #e9eef5;
+      padding: 9px 12px; border-radius: 8px; margin: 0.4em 0 0.8em 0; white-space: pre-wrap; break-inside: avoid; }
+pre .c { color: #8fd19e; } pre .p { color: #7fb4ff; } pre .o { color: #ffd479; }
+h1, h2, h3 { font-family: "Inter Display", "Inter", sans-serif; line-height: 1.2; }
+h1.chap { font-size: 23pt; font-weight: 800; margin: 0 0 4mm 0; color: var(--ink); }
+.chapnum { display: inline-block; font-size: 10pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+           color: #fff; background: var(--accent, var(--green)); padding: 2px 10px; border-radius: 99px; margin-bottom: 3mm; }
+h2 { font-size: 14.5pt; font-weight: 750; margin: 6mm 0 2.2mm 0; color: var(--accent, var(--green)); break-after: avoid; }
+h3 { font-size: 11.6pt; font-weight: 700; margin: 4mm 0 1.6mm 0; break-after: avoid; }
+.chapter { break-before: page; }
+.progress { display: flex; gap: 3px; margin: 0 0 5mm 0; }
+.progress span { flex: 1; height: 5px; border-radius: 3px; background: #e6e9ef; }
+.progress span.done { background: var(--accent, var(--green)); opacity: 0.45; }
+.progress span.now { background: var(--accent, var(--green)); }
+.box { border-radius: 9px; padding: 7px 12px 5px 12px; margin: 2.5mm 0 3.2mm 0; break-inside: avoid; border-left: 5px solid; }
+.box .t { font-weight: 750; display: block; margin-bottom: 1.5mm; font-size: 10.4pt; }
+.box p:last-child, .box ul:last-child, .box ol:last-child { margin-bottom: 1mm; }
+.goal { background: var(--blue-l); border-color: var(--blue); }
+.idea { background: var(--green-l); border-color: var(--green); }
+.warn { background: var(--amber-l); border-color: var(--amber); }
+.stop { background: var(--red-l); border-color: var(--red); }
+.expert { background: var(--violet-l); border-color: var(--violet); }
+.check { background: var(--teal-l); border-color: var(--teal); }
+.lay { background: #f7f7f2; border-color: #9a9a7a; }
+ul, ol { margin: 0 0 0.7em 0; padding-left: 1.3em; max-width: 168mm; }
+li { margin: 0.15em 0; }
+ul.tick { list-style: none; padding-left: 0; }
+ul.tick li::before { content: "☐  "; color: var(--teal); font-weight: 700; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin: 2mm 0 4mm 0; }
+.grid4 { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; margin: 2mm 0 4mm 0; }
+.grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3.5mm; margin: 2mm 0 4mm 0; }
+.card { border: 1px solid var(--line); border-radius: 10px; padding: 8px 11px; break-inside: avoid; background: #fff; }
+.card h4 { margin: 0 0 1.5mm 0; font-size: 10.6pt; }
+.card p, .card li { font-size: 9.6pt; }
+.card p { margin-bottom: 0.4em; }
+.card ul { margin-bottom: 0.3em; }
+.card .tag { font-size: 8.4pt; color: var(--muted); }
+.kpi { display: grid; grid-template-columns: repeat(4, 1fr); gap: 3mm; margin: 2mm 0 4mm 0; }
+.kpi div { border-radius: 10px; background: var(--green-l); padding: 7px 9px; break-inside: avoid; }
+.kpi b { display: block; font-size: 15pt; font-weight: 800; color: var(--green); line-height: 1.15; }
+.kpi span { font-size: 8.6pt; color: var(--muted); }
+.kpi div.flag { background: var(--amber-l); }
+.kpi div.flag b { color: var(--amber); }
+.step { display: grid; grid-template-columns: 9mm 1fr; gap: 3mm; margin: 1.8mm 0; break-inside: avoid; }
+.step .n { width: 8mm; height: 8mm; border-radius: 50%; background: var(--accent, var(--green)); color: #fff;
+           font-weight: 800; display: flex; align-items: center; justify-content: center; font-size: 10pt; }
+.step h4 { margin: 0.6mm 0 1mm 0; font-size: 10.8pt; }
+table { border-collapse: collapse; width: 100%; font-size: 9pt; margin: 2mm 0 4mm 0; break-inside: auto; }
+th { background: #eef1f5; text-align: left; font-weight: 700; }
+th, td { border-bottom: 1px solid var(--line); padding: 4px 6px; vertical-align: top; }
+tr { break-inside: avoid; }
+figure { margin: 3mm 0 4mm 0; break-inside: avoid; text-align: center; }
+figure img { max-width: 100%; border-radius: 6px; border: 1px solid var(--line); }
+figure.w80 img { width: 80%; } figure.w70 img { width: 70%; } figure.w60 img { width: 60%; } figure.w50 img { width: 50%; }
+figcaption { font-size: 8.8pt; color: var(--muted); margin-top: 1.5mm; text-align: left; }
+.muted { color: var(--muted); }
+.small { font-size: 9pt; }
+.cover { height: 258mm; display: flex; flex-direction: column; justify-content: space-between;
+         background: linear-gradient(160deg, #0b3a2a 0%, #1d6b45 52%, #4a8f3a 100%); color: #fff;
+         border-radius: 14px; padding: 18mm 15mm 12mm 15mm; }
+.cover h1 { font-size: 36pt; font-weight: 850; margin: 0; letter-spacing: -0.01em; }
+.cover .sub { font-size: 15pt; font-weight: 500; opacity: 0.95; margin-top: 4mm; max-width: 150mm; line-height: 1.35; }
+.cover .pill { display: inline-block; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.35);
+               border-radius: 99px; padding: 3px 12px; font-size: 9.5pt; margin: 0 2mm 2mm 0; }
+.cover .foot { font-size: 9.5pt; opacity: 0.92; line-height: 1.5; }
+.legend { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm 6mm; font-size: 9.4pt; }
+.legend div { padding: 3px 8px; border-radius: 6px; border-left: 4px solid; }
+.toc { columns: 2; column-gap: 8mm; font-size: 10pt; }
+.toc a { color: var(--ink); display: block; padding: 2px 0; border-bottom: 1px dotted #c9ced8; break-inside: avoid; }
+.toc a b { color: var(--green); display: inline-block; width: 8mm; }
+.trail { border-radius: 12px; padding: 9px 12px; color: #fff; break-inside: avoid; }
+.trail h4 { margin: 0 0 1mm 0; font-size: 11pt; }
+.trail p { font-size: 9.4pt; margin: 0; }
+.formula { font-family: "Latin Modern Roman", "DejaVu Serif", serif; font-size: 15pt; text-align: center; margin: 3mm 0; }
+.svgwrap { margin: 2mm 0 4mm 0; break-inside: avoid; }
+.glossary { columns: 2; column-gap: 8mm; }
+.glossary dt { font-weight: 700; margin-top: 2mm; color: var(--green); break-after: avoid; }
+.glossary dd { margin: 0 0 1mm 0; max-width: 168mm; font-size: 9.6pt; break-before: avoid; }
+.refs p { font-size: 8.9pt; text-indent: -6mm; padding-left: 6mm; margin-bottom: 1.6mm; }
+.pb { break-before: page; }
+.pill { display: inline-block; font-size: 8.2pt; font-weight: 700; border-radius: 99px; padding: 1px 8px; margin-left: 1.5mm;
+        vertical-align: 1px; }
+.pill.ran { background: var(--green-l); color: var(--green); border: 1px solid var(--green); }
+.pill.notrun { background: var(--amber-l); color: var(--amber); border: 1px solid var(--amber); }
+.pill.part { background: var(--blue-l); color: var(--blue); border: 1px solid var(--blue); }
+.nbcard { border: 1px solid var(--line); border-left: 6px solid var(--accent, var(--green)); border-radius: 10px;
+          padding: 7px 11px 4px 11px; margin: 2.2mm 0; break-inside: avoid; }
+.nbcard h4 { margin: 0 0 1.2mm 0; font-size: 10.8pt; }
+.nbcard p, .nbcard li { font-size: 9.5pt; }
+.nbcard p { margin-bottom: 0.35em; }
+.nbcard ul { margin-bottom: 0.3em; }

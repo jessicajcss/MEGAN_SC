@@ -1,0 +1,49 @@
+notebook 14 (Earth Engine batch exports) | TAG cf0.3_sza70_fire120
+model months: 84 | SC isoprene 2019-2025 mean (t/month): 19411
+months already cached: 84 of 84
+    year  month     ISOP_t    T2_C       HCHO_SC            BG      dHCHO_SC  frac_removed_screening  orbits
+0   2019      1  53021.612  23.623  7.406113e+15  5.598853e+15  1.807260e+15                   0.209   440.0
+1   2019      2  30800.233  21.310  6.306042e+15  5.255421e+15  1.050621e+15                   0.213   396.0
+2   2019      3  23445.150  20.220  6.122032e+15  4.163395e+15  1.958637e+15                   0.220   437.0
+3   2019      4  15990.061  19.365  5.093422e+15  3.589186e+15  1.504235e+15                   0.244   417.0
+4   2019      5   8548.143  17.284  5.103852e+15  3.646992e+15  1.456860e+15                   0.344   440.0
+5   2019      6   7939.616  15.953  5.422285e+15  3.648745e+15  1.773540e+15                   0.290   425.0
+6   2019      7   5252.353  13.075  5.629140e+15  3.188796e+15  2.440344e+15                   0.245   437.0
+7   2019      8   7783.505  14.124  6.955069e+15  3.474186e+15  3.480883e+15                   0.407   440.0
+8   2019      9  14169.816  16.983  8.438141e+15  4.278516e+15  4.159625e+15                   0.290   425.0
+9   2019     10  25302.221  19.667  7.325007e+15  4.277637e+15  3.047370e+15                   0.228   439.0
+10  2019     11  24433.378  20.029  5.081526e+15  3.013581e+15  2.067945e+15                   0.172   425.0
+11  2019     12  35698.502  21.057  5.568311e+15  3.589191e+15  1.979119e+15                   0.129   442.0
+12  2020      1  37437.513  21.821  4.708350e+15  3.819784e+15  8.885660e+14                   0.174   440.0
+D1 split-half r of DJF dHCHO pattern, 0.1 deg blocks (n=879): 0.76
+D1 Spearman-Brown reliability of the 7-year mean, 0.1 deg: 0.863
+D1 split-half r of DJF dHCHO pattern, 0.2 deg blocks (n=214): 0.858
+D1 Spearman-Brown reliability of the 7-year mean, 0.2 deg: 0.924
+D2 SC-mean model isoprene at overpass, DJF (atoms C cm-2 s-1): 1.78e+12
+D2 SC-mean TROPOMI dHCHO, DJF (molec cm-2): 2.19e+15
+D2 mean-based S = dHCHO/E (s); implied lifetime h for Y 0.29 / 0.43: 1235; 1.18 / 0.80
+D2 expected dHCHO for Y=0.29, tau=1.5 h (molec cm-2): 2.78e+15
+D2 expected dHCHO for Y=0.29, tau=3 h (molec cm-2): 5.57e+15
+D2 expected dHCHO for Y=0.29, tau=4 h (molec cm-2): 7.42e+15
+D2 expected dHCHO for Y=0.43, tau=1.5 h (molec cm-2): 4.13e+15
+D2 expected dHCHO for Y=0.43, tau=3 h (molec cm-2): 8.25e+15
+D2 expected dHCHO for Y=0.43, tau=4 h (molec cm-2): 1.1e+16
+D2 with BIAS_CORRECT (Vigouroux et al., 2020): dHCHO; implied lifetime h, Y 0.29 / 0.43: 3.43e+15; 1.85 / 1.25
+D2 kept observations per native pixel per DJF month, SC median: 11.7
+D3 climatology r: model isoprene vs raw SC HCHO (no background): 0.373
+D3 climatology r: model isoprene vs Atlantic background: 0.673
+D3 climatology r: dHCHO vs fraction screened (fire + cloud + SZA): 0.8
+D3 climatology r, Nov-Apr only (n=6): model isoprene vs dHCHO: -0.098
+D4 anomaly r without Aug-Oct (n=63), r; N_eff; p: 0.414; 58.280; 0.001
+D4 anomaly r, Aug-Oct only (n=21): 0.556
+           n r_dHCHO_pressure r_dHCHO_isoprene r_isoprene_pressure partial_r_dHCHO_isoprene_given_pressure beta_pressure_per_sd beta_isoprene_per_sd
+0.1 deg  879            0.821            0.123               0.048                                   0.147              7.4e+14             7.61e+13
+0.2 deg  214            0.876             0.18               0.096                                     0.2             7.38e+14             8.25e+13
+D6 0.2 deg: SD of E 6.3e+11 atoms C cm-2 s-1 -> expected SD of dHCHO with Y=0.29, tau=3 h: 1.97e+15
+D6 0.2 deg: SD of E 6.3e+11 atoms C cm-2 s-1 -> expected SD of dHCHO with Y=0.43, tau=3 h: 2.93e+15
+D6 0.2 deg: observed SD of dHCHO 8.51e+14; observed dHCHO per 1 SD of E given pressure: 8.25e+13
+D7 smoothing   0 km: r(dHCHO,E) +0.180 | partial r given pressure +0.200
+D7 smoothing  20 km: r(dHCHO,E) +0.094 | partial r given pressure +0.211
+D7 smoothing  40 km: r(dHCHO,E) -0.105 | partial r given pressure +0.168
+D7 smoothing  60 km: r(dHCHO,E) -0.246 | partial r given pressure +0.095
+D7 smoothing 100 km: r(dHCHO,E) -0.315 | partial r given pressure -0.010

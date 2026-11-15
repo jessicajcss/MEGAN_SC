@@ -1,0 +1,22 @@
+,value
+"D1 split-half r of DJF dHCHO pattern, 0.1 deg blocks (n=879)",0.76
+"D1 Spearman-Brown reliability of the 7-year mean, 0.1 deg",0.863
+"D1 split-half r of DJF dHCHO pattern, 0.2 deg blocks (n=214)",0.858
+"D1 Spearman-Brown reliability of the 7-year mean, 0.2 deg",0.924
+"D2 SC-mean model isoprene at overpass, DJF (atoms C cm-2 s-1)",1.78e+12
+"D2 SC-mean TROPOMI dHCHO, DJF (molec cm-2)",2.19e+15
+D2 mean-based S = dHCHO/E (s); implied lifetime h for Y 0.29 / 0.43,1235; 1.18 / 0.80
+"D2 expected dHCHO for Y=0.29, tau=1.5 h (molec cm-2)",2.78e+15
+"D2 expected dHCHO for Y=0.29, tau=3 h (molec cm-2)",5.57e+15
+"D2 expected dHCHO for Y=0.29, tau=4 h (molec cm-2)",7.42e+15
+"D2 expected dHCHO for Y=0.43, tau=1.5 h (molec cm-2)",4.13e+15
+"D2 expected dHCHO for Y=0.43, tau=3 h (molec cm-2)",8.25e+15
+"D2 expected dHCHO for Y=0.43, tau=4 h (molec cm-2)",1.1e+16
+"D2 with BIAS_CORRECT (Vigouroux et al., 2020): dHCHO; implied lifetime h, Y 0.29 / 0.43",3.43e+15; 1.85 / 1.25
+"D2 kept observations per native pixel per DJF month, SC median",11.7
+D3 climatology r: model isoprene vs raw SC HCHO (no background),0.373
+D3 climatology r: model isoprene vs Atlantic background,0.673
+D3 climatology r: dHCHO vs fraction screened (fire + cloud + SZA),0.8
+"D3 climatology r, Nov-Apr only (n=6): model isoprene vs dHCHO",-0.098
+"D4 anomaly r without Aug-Oct (n=63), r; N_eff; p",0.414; 58.280; 0.001
+"D4 anomaly r, Aug-Oct only (n=21)",0.556

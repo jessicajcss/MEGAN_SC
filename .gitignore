@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+.pytest_cache/
+*.egg-info/
+.venv/
+env/.venv/
+
+# Large data, distributed as release archives (tools/data_release.py fetch); checksums in data/DATA_SHA256SUMS.txt
+data/run_v10/
+data/tropomi_hcho_v10/
+data/lai_viirs_v10/
+data/s1_test/
+data/run_v10_modis_lai_2024_2025/
+data/run_v10_modis_view/
+data/_download/
+
+# Outputs of reproduce.py and of local runs of the notebooks
+reproduced/
+megan_sc_outputs/
+megan_sc_outputs_v10*/
+megan_sc_benchmark_results/
+*.nc.tmp
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# written at run time next to data/sc_ecotype.nc (FIX-5)
+data/sc_ecotype_filled.nc

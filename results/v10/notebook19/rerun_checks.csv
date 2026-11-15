@@ -1,0 +1,13 @@
+check,ok,detail
+2024: 12 monthly + annual files,True,13
+2024: provenance,True,"variant lai_viirs, fixes a933b29602929a82, laicorr cec9cc7cff9a3f96 (repository cec9cc7cff9a3f96)"
+2024: meteorology identical to the MODIS-LAI run,True,max abs difference 0
+2024: 340 K signature cells,True,0
+2024: fix logs,True,12
+2025: 12 monthly + annual files,True,13
+2025: provenance,True,"variant lai_viirs, fixes a933b29602929a82, laicorr cec9cc7cff9a3f96 (repository cec9cc7cff9a3f96)"
+2025: meteorology identical to the MODIS-LAI run,True,max abs difference 0
+2025: 340 K signature cells,True,0
+2025: fix logs,True,12
+corrected LAI recomputed vs published fields (cell 7a of notebook 17),True,max abs difference 2.38e-07
+corrected LAI vs the LAI used by the rerun (vegetated cells),True,max abs difference 2.38e-07

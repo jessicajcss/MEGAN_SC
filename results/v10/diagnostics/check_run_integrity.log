@@ -1,0 +1,2 @@
+(a) months with steps != ndays*8: none (276 months checked)
+(b) max relative |annual - sum of monthly| over years and classes: 6.2e-10

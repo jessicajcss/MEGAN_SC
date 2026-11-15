@@ -1,0 +1,88 @@
+{
+ "rule": "first of: 2019 daytime, 2019 all hours, normals, with n >= 15 and a bootstrap 95 % interval excluding 0; else 6.5",
+ "chosen": "2019 daytime (12-21 UTC)",
+ "gamma_for_notebook20_K_per_km": 10.780127607207168,
+ "fits": [
+  {
+   "label": "2019 daytime (12-21 UTC)",
+   "n": 55,
+   "gamma_ols_K_per_km": 10.780127607207168,
+   "se_hc3": 2.820148410143717,
+   "p_hc3": 0.0001320845182006318,
+   "intercept_K": -0.1625507297482242,
+   "r2": 0.7241248278378842,
+   "gamma_theil_sen": 9.462662078672102,
+   "ts_lo": 7.056672000138941,
+   "ts_hi": 12.364987668430729,
+   "boot_lo": 7.2088621698000575,
+   "boot_hi": 13.600111774185542
+  },
+  {
+   "label": "2019 all hours",
+   "n": 55,
+   "gamma_ols_K_per_km": 7.562320101177217,
+   "se_hc3": 2.422401881844693,
+   "p_hc3": 0.0017973239534262613,
+   "intercept_K": -0.06988474497347484,
+   "r2": 0.5729477304331243,
+   "gamma_theil_sen": 5.978615676723723,
+   "ts_lo": 3.7114304834575753,
+   "ts_hi": 9.003041674050086,
+   "boot_lo": 4.118317274451311,
+   "boot_hi": 9.891373020858623
+  },
+  {
+   "label": "normals 1991-2020, annual",
+   "n": 12,
+   "gamma_ols_K_per_km": 12.277343511727523,
+   "se_hc3": 4.489837216779063,
+   "p_hc3": 0.006248001353952466,
+   "intercept_K": -0.29609330070489004,
+   "r2": 0.5913054543482458,
+   "gamma_theil_sen": 12.388773173174702,
+   "ts_lo": 4.7642770964633945,
+   "ts_hi": 20.671187262077456,
+   "boot_lo": 5.044301532618287,
+   "boot_hi": 19.077633165576895
+  },
+  {
+   "label": "2019 daytime, SC stations only",
+   "n": 21,
+   "gamma_ols_K_per_km": 12.273752984848572,
+   "se_hc3": 3.1624334173279203,
+   "p_hc3": 0.00010398065529629313,
+   "intercept_K": -0.12436763470580266,
+   "r2": 0.8854630735665248,
+   "gamma_theil_sen": 10.206772628015457,
+   "ts_lo": 7.445495193163007,
+   "ts_hi": 13.28538708226781,
+   "boot_lo": 7.662883844681668,
+   "boot_hi": 14.28086282370863
+  }
+ ],
+ "year": 2019,
+ "day_hours_utc": [
+  12,
+  13,
+  14,
+  15,
+  16,
+  17,
+  18,
+  19,
+  20,
+  21
+ ],
+ "box": {
+  "lat_min": -30.5,
+  "lat_max": -25.0,
+  "lon_min": -54.5,
+  "lon_max": -47.5
+ },
+ "normals_file": "https://portal.inmet.gov.br/uploads/normais/Normal-Climatologica-TMEDSECA.xlsx",
+ "normals_title": "Normal Climatologica do Brasil 1991-2020 | Temperatura Media Compensada Mensal e Anual (C) | Codigo | Nome da Estacao | UF | Janeiro | Fevereiro | Marco | Abril | Maio | Junho | Julho | Agosto | Setembro | Outubro | Novembro | Dezembro | Ano",
+ "hourly_file": "https://portal.inmet.gov.br/uploads/dadoshistoricos/2019.zip",
+ "stations_hourly": 59,
+ "stations_normals": 13,
+ "run_utc": "2026-11-02T00:31:25Z"
+}

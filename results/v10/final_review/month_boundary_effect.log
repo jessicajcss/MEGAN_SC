@@ -1,0 +1,8 @@
+months counted from 03 UTC (local midnight at UTC-3) instead of 00 UTC; run folder run_v10
+monthly effects: 275 months with a following month; annual: 22 years
+                 months  share_00utc_mean  share_00utc_max  abs_effect_p95_pct  abs_effect_max_pct  annual_abs_effect_max_pct
+group                                                                                                                        
+all VOC classes     275            0.0549           0.0758              0.1049              0.1729                     0.0073
+isoprene            275            0.0000           0.0000              0.0000              0.0000                     0.0000
+monoterpenes        275            0.0751           0.0932              0.1416              0.2538                     0.0102
+soil NO             275            0.1195           0.1222              0.2051              0.2751                     0.0039

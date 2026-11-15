@@ -1,0 +1,122 @@
+file,status,info
+boundaries/sc_mesoregions_2024.gpkg,EQUAL,0.00e+00
+boundaries/sc_municipios_2024_mesorregiao.csv,IDENTICAL,0.00e+00
+diagnostics/c3/c3_filled_cells_2003_2025.csv,IDENTICAL,0.00e+00
+diagnostics/c3/c3_lai_adjusted.csv,IDENTICAL,0.00e+00
+diagnostics/c3/filled_cells_share.csv,IDENTICAL,0.00e+00
+diagnostics/nb14/nb14_D5_terrain.csv,IDENTICAL,0.00e+00
+diagnostics/nb14/nb14_diagnostics.csv,IDENTICAL,0.00e+00
+figures/en/fig5.png,PNG DIFF,2.64e-05
+figures/en/fig7.png,PNG SIZE,"(3361, 2304, 3) vs (3361, 2305, 3)"
+figures/en/fig8.png,PNG DIFF,8.46e-06
+figures/en/fig9.png,PNG DIFF,1.73e-01
+figures/en/fig_study_area.png,PNG DIFF,1.39e-03
+figures/en/fig_verification.png,PIXEL-IDENTICAL,0.00e+00
+figures/ijest/Fig1.png,PNG DIFF,1.34e-03
+figures/ijest/Fig10.png,PNG DIFF,6.12e-07
+figures/ijest/Fig11.png,PNG DIFF,2.79e-06
+figures/ijest/Fig12.png,PNG DIFF,4.49e-03
+figures/ijest/Fig13.png,PIXEL-IDENTICAL,0.00e+00
+figures/ijest/Fig2.png,PIXEL-IDENTICAL,0.00e+00
+figures/ijest/Fig3.png,PIXEL-IDENTICAL,0.00e+00
+figures/ijest/Fig4.png,PIXEL-IDENTICAL,0.00e+00
+figures/ijest/Fig5.png,PIXEL-IDENTICAL,0.00e+00
+figures/ijest/Fig6.png,PIXEL-IDENTICAL,0.00e+00
+figures/ijest/Fig7.png,PIXEL-IDENTICAL,0.00e+00
+figures/ijest/Fig8.png,PNG DIFF,1.36e-05
+figures/ijest/Fig9.png,PIXEL-IDENTICAL,0.00e+00
+figures/maps_class_limits.csv,IDENTICAL,0.00e+00
+figures/pt/fig5.png,PNG DIFF,3.16e-05
+figures/pt/fig7.png,PNG SIZE,"(3361, 2301, 3) vs (3361, 2302, 3)"
+figures/pt/fig8.png,PNG DIFF,8.69e-06
+figures/pt/fig9.png,PNG DIFF,1.74e-01
+figures/pt/fig_study_area.png,PNG DIFF,1.39e-03
+figures/pt/fig_verification.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/fig10.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/fig12.png,PNG SIZE,"(3351, 2528, 3) vs (3350, 2533, 3)"
+figures/pt_report/fig9.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA2.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA3.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA4.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA5.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA6.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA7.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA8.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA9.png,PIXEL-IDENTICAL,0.00e+00
+figures/study_area_shares.csv,IDENTICAL,0.00e+00
+final_review/filled_cells_area.csv,IDENTICAL,0.00e+00
+final_review/final_review.log,PRESENT,
+final_review/final_review_numbers.csv,IDENTICAL,0.00e+00
+final_review/lai_monthly_SC.csv,IDENTICAL,0.00e+00
+final_review/lai_monthly_SC_zscores.csv,IDENTICAL,0.00e+00
+final_review/landcover_ef_potential_SC.csv,IDENTICAL,0.00e+00
+final_review/partial_correlations_detrended.csv,IDENTICAL,0.00e+00
+final_review/trends_fdr_hr.csv,IDENTICAL,0.00e+00
+final_review/tropomi_magnitude_grid.csv,IDENTICAL,0.00e+00
+ijest_review/ijest_review.log,PRESENT,
+ijest_review/ijest_review_numbers.csv,IDENTICAL,0.00e+00
+ijest_review/lai_annual_by_growth_form.csv,IDENTICAL,0.00e+00
+ijest_review/lai_monthly_state_z.csv,IDENTICAL,0.00e+00
+ijest_review/plantation_ef_sensitivity_2019.csv,IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction.png,PIXEL-IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction_2024_2025_monthly.csv,IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction_annual_groups.csv,EQUAL,0.00e+00
+lai_viirs_check/lai_correction_hindcast_2013_2023.csv,IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction_hindcast_annual.csv,IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction_map_2025.png,PIXEL-IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction_settings.json,PRESENT,
+lai_viirs_check/lai_viirs_corrected_2024_2025.npz,PRESENT,
+notebook11/annual_totals_SC_v10_all_classes.csv,IDENTICAL,0.00e+00
+notebook11/verify_v10_report.csv,IDENTICAL,0.00e+00
+notebook11/verify_v10_totals.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/annual_grids_cache.npz,NEW,
+notebook13_meso2024/annual_totals_SC_by_class.csv,IDENTICAL,0.00e+00
+notebook13_meso2024/correlations_emissions_drivers.csv,EQUAL,0.00e+00
+notebook13_meso2024/drivers_annual_SC.csv,IDENTICAL,0.00e+00
+notebook13_meso2024/figures/en/fig1.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/en/fig2.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/en/fig3.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/en/fig4.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/en/fig5.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/en/fig6.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/en/fig7.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/en/fig8.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/en/fig_detrend.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/pt/fig1.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/pt/fig2.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/pt/fig3.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/pt/fig4.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/pt/fig5.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/pt/fig6.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/pt/fig7.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/pt/fig8.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/figures/pt/fig_detrend.png,PIXEL-IDENTICAL,0.00e+00
+notebook13_meso2024/manuscript_numbers.csv,EQUAL,0.00e+00
+notebook13_meso2024/municipalities_2019.csv,IDENTICAL,0.00e+00
+notebook13_meso2024/seasonal_climatology.csv,EQUAL,0.00e+00
+notebook13_meso2024/seasonal_cycle_monthly.csv,EQUAL,0.00e+00
+notebook13_meso2024/table2_annual_totals_SC_groups.csv,IDENTICAL,0.00e+00
+notebook13_meso2024/table3_mesoregions_soa.csv,IDENTICAL,0.00e+00
+notebook13_meso2024/table4_municipalities_2025.csv,IDENTICAL,0.00e+00
+notebook13_meso2024/trends.csv,IDENTICAL,0.00e+00
+notebook14/hcho_evaluation_cf0.3_sza70_fire120.png,PIXEL-IDENTICAL,0.00e+00
+notebook14/monthly_series_cf0.3_sza70_fire120.csv,IDENTICAL,0.00e+00
+notebook14/tier1_spatial_cf0.3_sza70_fire120.csv,IDENTICAL,0.00e+00
+notebook14/tier2_seasonal_cf0.3_sza70_fire120.csv,IDENTICAL,0.00e+00
+notebook14/tier3_anomalies_cf0.3_sza70_fire120.csv,IDENTICAL,0.00e+00
+notebook14/tier4_slope_cf0.3_sza70_fire120.csv,IDENTICAL,0.00e+00
+notebook15/S3_fixlog_annual.csv,IDENTICAL,0.00e+00
+notebook15/S3_fixlog_monthly.csv,IDENTICAL,0.00e+00
+notebook15/s1/S1_isoprene_ratio_2019_28d.png,PIXEL-IDENTICAL,0.00e+00
+notebook15/s1/s1_cell_ratios.csv,IDENTICAL,0.00e+00
+notebook15/s1/s1_class_totals.csv,IDENTICAL,0.00e+00
+notebook15/s1/s1_compare.log,PRESENT,
+notebook15/s1/s1_diurnal_check.csv,IDENTICAL,0.00e+00
+notebook15/s1/s1_groups.csv,IDENTICAL,0.00e+00
+report/driver_correlations_v10.csv,EQUAL,0.00e+00
+report/isop_monthly_v10.csv,IDENTICAL,0.00e+00
+report/meso_2025_v10.csv,IDENTICAL,0.00e+00
+report/muni_2025_ranked_v10.csv,IDENTICAL,0.00e+00
+report/report_numbers_v10.csv,IDENTICAL,0.00e+00
+report/std_regression_v10.csv,IDENTICAL,0.00e+00
+report/temp_sensitivity_v10.csv,IDENTICAL,0.00e+00

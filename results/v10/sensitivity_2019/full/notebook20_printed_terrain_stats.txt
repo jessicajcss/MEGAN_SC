@@ -1,0 +1,6 @@
+Printed output of notebook 20 (20_sensitivity_2019_inputs.ipynb), cell 6, in the authors' Colab run of the full year
+(executed copy dated 2 November 2026). Copied verbatim on 8 November 2026 because the notebook prints these values without
+writing them to a file. dz = elevation of the 0.025-degree cell minus that of its ERA5-Land cell; dT = -GAMMA * dz / 1000
+(the temperature change applied in the run "lapse"). Quoted in Online Resource 1, Section S8.
+
+lapse rate 10.78 K/km (notebook 21); state cells: dz mean -0.8 m, SD 85.6 m; dT percentiles 1-5-25-50-75-95-99: [-2.69 -1.37 -0.39  0.03  0.42  1.36  2.65] K

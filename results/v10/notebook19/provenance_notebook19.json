@@ -1,0 +1,23 @@
+{
+ "notebook": "19_install_and_reproduce",
+ "run_utc": "2026-11-01T23:41:39Z",
+ "checks_ok": true,
+ "installed": {
+  "2024": "already installed (checked)",
+  "2025": "already installed (checked)"
+ },
+ "noaa_url": "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_gl.txt",
+ "noaa_retrieved": "2026-11-01T23:17:37Z",
+ "noaa_sha256": "9872655642690b069cf68e2faabf7842d3dded7e9b586bedce71997f3230a26a",
+ "noaa_creation_lines": [
+  "# File Creation: Fri Oct  9 13:08:02 2026"
+ ],
+ "passA_exit": 0,
+ "passA_csv_different": 0,
+ "passA2_exit": 0,
+ "passB_exit_analysis_steps": 0,
+ "passB_compare_exit": 1,
+ "passB_compare_finished": true,
+ "laicorr_sha256_16": "cec9cc7cff9a3f96",
+ "fixes_sha256_16": "a933b29602929a82"
+}

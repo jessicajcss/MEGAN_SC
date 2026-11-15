@@ -1,0 +1,3 @@
+2015 MEOH 4 cells; emission t [2.3 1.9 1.7 0.6] share 0.01476% change if neighbour-median activity +0.00273%
+2015 MT_PINE 2 cells; emission t [0.8 0.9] share 0.00290% change if neighbour-median activity +0.00073%
+all LAI-matched filled cells at neighbour-median activity: change in state totals +0.000% to +0.021%

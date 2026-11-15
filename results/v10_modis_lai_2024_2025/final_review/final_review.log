@@ -1,0 +1,132 @@
+
+== 1. Trends (Mann-Kendall), Hamed-Rao, Benjamini-Hochberg, start year, 2025 excluded
+group   MK_p   HR_p  max_abs_rank_acf  lag1_rank_acf  p_from_2005  pct_yr_2003_2024  p_2003_2024   BH_q
+ BVOC 0.0265 0.0265            0.2813        -0.2813       0.0655            0.6277       0.0095 0.0623
+ ISOP 0.0071 0.0071            0.2996        -0.2996       0.0235            0.9634       0.0057 0.0318
+   MT 0.0346 0.0346            0.2612        -0.2224       0.0748            0.5355       0.0095 0.0623
+  SQT 0.0303 0.0303            0.2684        -0.2684       0.0655            0.7835       0.0112 0.0623
+ OVOC 0.0572 0.0572            0.2907        -0.2907       0.1095            0.4499       0.0153 0.0858
+ LVOC 0.2673 0.2673            0.2803        -0.2308       0.3492            0.3412       0.0804 0.2673
+  MBO 0.1696 0.1696            0.3272        -0.3272       0.2157            0.5621       0.1143 0.1909
+   NO 0.0031 0.0031            0.3371         0.3371       0.0275           -0.3599       0.0057 0.0279
+   CO 0.1538 0.1538            0.3159        -0.3159       0.1941            0.4990       0.0907 0.1909
+hr_threshold: 0.409   [pymannkendall keeps lags with |rank acf| > 1.96/sqrt(n)]
+hr_max_abs_acf: 0.337   [largest |rank acf| of the detrended series, any lag, any group]
+hr_changes_p: False
+NO_p_with_lag1: 0.0188   [lag-1 rank acf 0.337; n/n* = 1.586 (POST HOC)]
+trend_ISOP: MK p 0.0071; BH q 0.0318; p from 2005 0.0235; 2003-2024 +0.96 %/yr (p 0.0057)
+trend_NO: MK p 0.0031; BH q 0.0279; p from 2005 0.0275; 2003-2024 -0.36 %/yr (p 0.0057)
+trend_BVOC: MK p 0.0265; BH q 0.0623; p from 2005 0.0655; 2003-2024 +0.63 %/yr (p 0.0095)
+trend_MT: MK p 0.0346; BH q 0.0623; p from 2005 0.0748; 2003-2024 +0.54 %/yr (p 0.0095)
+trend_SQT: MK p 0.0303; BH q 0.0623; p from 2005 0.0655; 2003-2024 +0.78 %/yr (p 0.0112)
+
+== 2. Drivers: LAI in 2024-2025, partial correlations (detrended), residual year term (POST HOC)
+lai_2024: 3.138 (-4.8 %; -2.4 SD of 2003-2023)   [2003-2023 mean 3.296 +- 0.066]
+lai_2025: 2.930 (-11.1 %; -5.5 SD of 2003-2023)   [2003-2023 mean 3.296 +- 0.066]
+driver_interannual: PAR CV 3.2 %; T SD 0.48 K; detrended r(PAR, SOILM) -0.89; detrended r(T, SOILM) -0.19   [annual state means 2003-2025 of drivers_annual_SC.csv (SD with ddof = 1)]
+    cls  r_LAI_given_T  r_T_given_LAI
+   ISOP          0.507          0.892
+    MBO          0.366          0.899
+MT_PINE          0.778          0.902
+MT_ACYC          0.581          0.900
+MT_CAMP          0.832          0.892
+MT_SABI          0.813          0.899
+MT_AROM          0.822          0.918
+ SQT_HR          0.615          0.886
+ SQT_LR          0.623          0.887
+   MEOH          0.646          0.889
+   ACTO          0.854          0.923
+   ETOH          0.496          0.917
+   ACID          0.624          0.901
+   LVOC          0.848          0.930
+ OXPROD          0.841          0.932
+ STRESS          0.648          0.919
+  OTHER          0.850          0.933
+     CO          0.413          0.901
+     NO         -0.489          0.861
+partial_LAI_given_T_BVOC: 0.37 to 0.85   [top: ACTO 0.85, OTHER 0.85, LVOC 0.85, OXPROD 0.84, MT_CAMP 0.83, MT_AROM 0.82, MT_SABI 0.81]
+r_detrended_T_LAI: 0.32
+residual_year_term_ISOP: +0.49 +- 0.13 %/yr   [OLS of ln(annual emission) on T, ln(LAI), year (n = 23); coefficient of T 0.148 K-1]
+residual_year_term_NO: -0.50 +- 0.05 %/yr   [OLS of ln(annual emission) on T, ln(LAI), year (n = 23); coefficient of T 0.054 K-1]
+T_trend: 0.0328 K/yr (MK p 0.091)
+
+== 3. TROPOMI: Atlantic-background control, seasons, annual means, magnitude (POST HOC except the annual mean)
+anom_r_isop_background: 0.427 (N_eff 68, p 2.9e-04)
+anom_partial_r_isop_dHCHO_given_background: 0.616 (N_eff 74, p 5.0e-09)
+anom_partial_r_isop_dHCHO_given_T2: 0.435 (N_eff 72, p 1.3e-04)
+anom_r_dHCHO_background: -0.257
+anom_r_isop_dHCHO_neff_minus12: N_eff 61.8, p 5.3e-04   [the 12 monthly means removed by deseasonalising taken out of N]
+anom_DJF: n 21; r(isop, dHCHO) 0.51; r(isop, background) 0.25
+anom_MAM: n 21; r(isop, dHCHO) 0.43; r(isop, background) 0.27
+anom_JJA: n 21; r(isop, dHCHO) -0.21; r(isop, background) 0.71
+anom_SON: n 21; r(isop, dHCHO) 0.65; r(isop, background) 0.75
+annual_r_isop_dHCHO: -0.485   [n = 7; written by notebook 14 as descriptive]
+annual_r_isop_background: 0.881   [n = 7]
+clim_min_month_isop_2019_2025: 7
+clim_min_month_dHCHO_2019_2025: 6
+tier1_r_smoothed_10_40km: -0.11 to 0.16
+ tau_h  yield_perC  ratio_obs_expected_raw  ratio_obs_expected_biascorr
+  1.00        0.29                   1.192                        1.867
+  1.00        0.43                   0.804                        1.259
+  1.48        0.29                   0.805                        1.261
+  1.48        0.43                   0.543                        0.851
+  1.50        0.29                   0.795                        1.244
+  1.50        0.43                   0.536                        0.839
+  1.76        0.29                   0.677                        1.061
+  1.76        0.43                   0.457                        0.715
+  2.00        0.29                   0.596                        0.933
+  2.00        0.43                   0.402                        0.629
+  3.00        0.29                   0.397                        0.622
+  3.00        0.43                   0.268                        0.420
+  4.00        0.29                   0.298                        0.467
+  4.00        0.43                   0.201                        0.315
+implied_tau_h_Y0.29: raw 1.192; bias-corrected 1.867
+implied_tau_h_Y0.43: raw 0.804; bias-corrected 1.259
+ratio_obs_expected_palmer_tau: raw 0.457 to 0.805; bias-corrected 0.715 to 1.261   [tau 1.48-1.76 h (Palmer et al., 2003, Table 3), Y 0.29-0.43 per C]
+overpass_local_solar_time: 16:30 UTC = 12.91 h to 13.28 h local mean solar time across SC
+
+== 4. Mesoregions (Table 3) and municipalities (Table 4)
+meso_r_fisher: r 0.9683 (95% CI 0.7322 to 0.9967; p 0.0015)
+meso_spearman_exact: rho 0.9429; exact two-sided p 0.0167 (asymptotic 0.0048)
+mun_area_ratio: 0.9988 to 1.0061 (median 1.0017)   [area attributed by area weighting (sum of the cell fractions times the cell areas on the authalic sphere) / IBGE area]
+meso_area_ratio: 1.0014 to 1.0019   [mesoregions: area attributed by area weighting / sum of the IBGE areas of the municipalities]
+
+== 5. Check C3 pooled over 2003-2025 (descriptive: the same cells recur every year)
+c3_pooled_all: 46 of 4782 above the valid-cell p99.5 (expected 23.9; binomial p 3.7e-05)
+c3_pooled_ISOP: 6 of 1594 above the valid-cell p99.5 (expected 8.0; binomial p 8.1e-01)
+c3_pooled_MEOH: 24 of 1594 above the valid-cell p99.5 (expected 8.0; binomial p 3.2e-06)
+c3_pooled_MT_PINE: 16 of 1594 above the valid-cell p99.5 (expected 8.0; binomial p 7.8e-03)
+c3_distinct_cells: 95
+
+== 6. Cell areas: authalic sphere (megan_sc.domain) vs WGS 84 ellipsoid
+cell_area_sphere_minus_ellipsoid_pct: 0.123 to 0.193 % at 29.5-25.9 S
+
+== 7. Model inputs: monthly state-mean LAI (MODIS, as used) and filled coastal cells
+lai_months_below_1sd_nov2024_dec2025: 12 of 14   [state-mean LAI of vegetated cells vs the same month in 2003-2023]
+lai_months_below_2sd_by_year: 2003 0; 2004 0; 2005 0; 2006 0; 2007 1; 2008 2; 2009 0; 2010 0; 2011 1; 2012 0; 2013 0; 2014 0; 2015 2; 2016 0; 2017 0; 2018 0; 2019 0; 2020 0; 2021 0; 2022 0; 2023 1; 2024 3; 2025 7
+lai_max_cell_value: 6.67   [MODIS fill values (24.9-25.5 after scaling) would show here]
+filled_cells_area: 190 cells = 1301.0 km2; 191 cells = 1307.9 km2
+
+== 8. CO2 inhibition of isoprene applied to the annual totals (gamma_CO2 is spatially uniform, so this is exact)
+isop_trend_with_co2_inhibition: +0.63 %/yr (MK p 0.0346); without: +0.82 %/yr   [CO2 375.1 ppm (2003) to 425.6 ppm (2025); gamma_CO2 1.026 to 0.979]
+bvoc_trend_with_co2_inhibition: +0.46 %/yr (MK p 0.0507); without: +0.52 %/yr   [isoprene of every year multiplied by gamma_CO2]
+isop_mean_with_co2_inhibition: +0.30 % of the 2003-2025 mean isoprene
+fdr_with_co2_inhibition: BH q: isoprene 0.0779, BVOC 0.0858, soil NO 0.0279   [MK p of the nine groups, with the isoprene and BVOC series multiplied by gamma_CO2]
+
+== 9. Trends: decomposition of the OLS log trend (temperature, LAI, year term) and land cover as seen by the model
+ols_trend_decomposition_ISOP: +0.85 %/yr = T +0.40 + LAI -0.03 + year term +0.49   [OLS slope of ln(annual emission) on year; coefficients of the regression of section 2 (T 0.148 K-1, ln LAI 0.610); OLS trends of T 0.0268 K/yr and ln LAI -0.056 %/yr]
+ols_trend_decomposition_BVOC: +0.53 %/yr = T +0.32 + LAI -0.04 + year term +0.25   [OLS slope of ln(annual emission) on year; coefficients of the regression of section 2 (T 0.121 K-1, ln LAI 0.732); OLS trends of T 0.0268 K/yr and ln LAI -0.056 %/yr]
+ols_trend_decomposition_MT: +0.46 %/yr = T +0.28 + LAI -0.05 + year term +0.23   [OLS slope of ln(annual emission) on year; coefficients of the regression of section 2 (T 0.103 K-1, ln LAI 0.842); OLS trends of T 0.0268 K/yr and ln LAI -0.056 %/yr]
+ols_trend_decomposition_SQT: +0.70 %/yr = T +0.44 + LAI -0.05 + year term +0.31   [OLS slope of ln(annual emission) on year; coefficients of the regression of section 2 (T 0.164 K-1, ln LAI 0.922); OLS trends of T 0.0268 K/yr and ln LAI -0.056 %/yr]
+ols_trend_decomposition_NO: -0.34 %/yr = T +0.14 + LAI +0.01 + year term -0.50   [OLS slope of ln(annual emission) on year; coefficients of the regression of section 2 (T 0.054 K-1, ln LAI -0.241); OLS trends of T 0.0268 K/yr and ln LAI -0.056 %/yr]
+lai_gap_cell_months: 12 in 2003-2025: 2003-12 4; 2015-10 7; 2023-10 1   [vegetated grid cells without a valid MODIS pixel in the month, filled from the adjacent months (fixlog lai_gap_cells)]
+lai_max_cell_all_months: 6.67   [largest monthly cell LAI of the 276 months (MODIS fill values, 24.9-25.5 after scaling, would show here)]
+growthform_area_tree: 44,011 km2 (2003) to 48,176 km2 (2024), +9.5 %; Theil-Sen +0.44 %/yr (MK p 1.2e-06)   [state area of the MEGAN growth form (MapBiomas 2003-2024; 2025 uses 2024)]
+growthform_area_herb: 27,609 km2 (2003) to 22,431 km2 (2024), -18.8 %; Theil-Sen -0.88 %/yr (MK p 4.5e-09)   [state area of the MEGAN growth form (MapBiomas 2003-2024; 2025 uses 2024)]
+growthform_area_crop: 21,170 km2 (2003) to 21,125 km2 (2024), -0.2 %; Theil-Sen -0.06 %/yr (MK p 1.6e-01)   [state area of the MEGAN growth form (MapBiomas 2003-2024; 2025 uses 2024)]
+growthform_area_veg: 92,790 km2 (2003) to 91,732 km2 (2024), -1.1 %; Theil-Sen -0.05 %/yr (MK p 8.8e-11)   [state area of the MEGAN growth form (MapBiomas 2003-2024; 2025 uses 2024)]
+ef_potential_ISOP: +8.1 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.38 %/yr   [state sum of EF x cell area: change of the emission potential carried by land cover alone]
+ef_potential_MT: +4.4 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.21 %/yr   [state sum of EF x cell area: change of the emission potential carried by land cover alone]
+ef_potential_SQT: +6.1 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.29 %/yr   [state sum of EF x cell area: change of the emission potential carried by land cover alone]
+ef_potential_BVOC: +4.9 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.23 %/yr   [state sum of EF x cell area: change of the emission potential carried by land cover alone]
+ef_potential_NO: -9.0 % from 2003 to 2024; OLS trend of ln over 2003-2025 -0.45 %/yr   [state sum of EF x cell area: change of the emission potential carried by land cover alone]

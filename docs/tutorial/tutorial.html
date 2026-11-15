@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>MEGAN_SC: tutorial ilustrado</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================================ CAPA -->
+<section class="cover">
+  <div>
+    <span class="pill">Repositório MEGAN_SC</span><span class="pill">Primeira versão pública</span><span class="pill">Novembro de 2026</span>
+    <h1 style="margin-top:14mm">MEGAN_SC<br>da folha ao inventário</h1>
+    <div class="sub">Tutorial ilustrado para entender, reproduzir e adaptar o inventário de emissões biogênicas de Santa Catarina (2003 a 2025)</div>
+  </div>
+  <div class="svgwrap" style="margin:0">
+    <svg viewBox="0 0 600 150" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Inter" font-size="13">
+      <g fill="none" stroke="#ffffff" stroke-opacity="0.55" stroke-width="2">
+        <path d="M122 75 H158"/><path d="M282 75 H318"/><path d="M442 75 H478"/>
+      </g>
+      <g fill="#ffffff" fill-opacity="0.14" stroke="#ffffff" stroke-opacity="0.6">
+        <rect x="2" y="35" width="120" height="80" rx="14"/><rect x="160" y="35" width="120" height="80" rx="14"/>
+        <rect x="320" y="35" width="120" height="80" rx="14"/><rect x="478" y="35" width="120" height="80" rx="14"/>
+      </g>
+      <g fill="#fff" text-anchor="middle">
+        <text x="62" y="70" font-size="26">🛰️</text><text x="62" y="100">satélites</text>
+        <text x="220" y="70" font-size="26">🌳</text><text x="220" y="100">folhas e clima</text>
+        <text x="380" y="70" font-size="26">🧮</text><text x="380" y="100">MEGANv3.21</text>
+        <text x="538" y="70" font-size="26">🗺️</text><text x="538" y="100">inventário</text>
+      </g>
+    </svg>
+  </div>
+  <div class="foot">
+    Endereço do código: <b>https://github.com/jessicajcss/MEGAN_SC</b> (o DOI do Zenodo será acrescentado depois do depósito)<br>
+    Código sob a licença MIT; textos, tabelas e figuras sob CC-BY-4.0<br>
+    Base científica: MEGANv3.21 (Guenther, 2024) e o modelo MEGAN (Guenther et al., 2006, 2012)
+  </div>
+</section>
+
+<!-- ============================================================ COMO USAR -->
+<section class="chapter" style="--accent:#1f5fa8">
+  <span class="chapnum">Antes de começar</span>
+  <h1 class="chap">Como usar este tutorial</h1>
+  <p>Este material foi escrito para dois públicos ao mesmo tempo. Quem chega agora ao tema encontra explicações em linguagem simples, com exemplos e desenhos. Quem já trabalha com inventários de emissões encontra, nos quadros roxos, as equações, os arquivos e as funções do código.</p>
+  <p>Escolha uma trilha. Cada uma leva a um resultado concreto, e você pode parar no fim de qualquer capítulo sem perder o fio. Os 13 capítulos técnicos de <code>docs/tutorial/</code> (em inglês) aprofundam cada parte com as equações e os arquivos de origem.</p>
+
+  <div class="grid4">
+    <div class="trail" style="background:#1f7a3a"><h4>🚀 Trilha rápida</h4><p><b>leitura de cerca de 30 min</b><br>Capítulos 1, 4 e 5. Você instala, recalcula os resultados publicados e confere as somas de verificação.</p></div>
+    <div class="trail" style="background:#1f5fa8"><h4>🔬 Trilha do método</h4><p><b>leitura de cerca de 1,5 h</b><br>Capítulos 2, 3, 6 e 8. Você entende de onde vem cada número e como ele foi testado.</p></div>
+    <div class="trail" style="background:#0f7c80"><h4>☁️ Trilha da nuvem</h4><p><b>leitura de cerca de 1 h, mais horas de execução</b><br>Capítulos 6 e 7. Você roda os cadernos no Google Colab, com o Earth Engine.</p></div>
+    <div class="trail" style="background:#6a3fb5"><h4>🌎 Trilha da sua região</h4><p><b>leitura de cerca de 1 h, mais a execução</b><br>Capítulos 7 e 9. Você monta o mesmo inventário para outra região.</p></div>
+  </div>
+
+  <h2>O que significa cada quadro</h2>
+  <div class="legend">
+    <div style="background:var(--blue-l);border-color:var(--blue)">🎯 <b>Neste capítulo</b>: o que você vai aprender e quanto tempo leva</div>
+    <div style="background:var(--green-l);border-color:var(--green)">💡 <b>Ideia-chave</b>: o ponto que vale guardar</div>
+    <div style="background:#f7f7f2;border-color:#9a9a7a">🗣️ <b>Em palavras simples</b>: a mesma ideia, sem jargão</div>
+    <div style="background:var(--violet-l);border-color:var(--violet)">🧠 <b>Para especialistas</b>: detalhe técnico e arquivo do código</div>
+    <div style="background:var(--amber-l);border-color:var(--amber)">⚠️ <b>Atenção</b>: erro comum, limite do método ou número em revisão</div>
+    <div style="background:var(--teal-l);border-color:var(--teal)">✅ <b>Checkpoint</b>: confira antes de seguir</div>
+  </div>
+
+  <h2>Sumário</h2>
+  <div class="toc">
+    <a href="#c1"><b>1</b> O inventário em uma página</a>
+    <a href="#c2"><b>2</b> O MEGANv3.21 em palavras simples</a>
+    <a href="#c3"><b>3</b> Os dados de entrada</a>
+    <a href="#c4"><b>4</b> O repositório por dentro</a>
+    <a href="#c5"><b>5</b> Mão na massa: reproduzir os resultados</a>
+    <a href="#c6"><b>6</b> Os cadernos, do 10 ao 23</a>
+    <a href="#c7"><b>7</b> Google Colab com o Earth Engine</a>
+    <a href="#c8"><b>8</b> Ler e conferir os resultados</a>
+    <a href="#c9"><b>9</b> O inventário da sua região</a>
+    <a href="#c10"><b>10</b> Limitações</a>
+    <a href="#c11"><b>11</b> Quando algo dá errado</a>
+    <a href="#c12"><b>12</b> Glossário</a>
+    <a href="#c13"><b>13</b> Referências</a>
+    <a href="#final"><b>✓</b> Lista final de conferência</a>
+  </div>
+  <div class="box warn"><span class="t">⚠️ Uma regra para todo o tutorial</span>
+  <p>Os comandos supõem que o terminal está aberto na pasta principal do repositório, <code>MEGAN_SC/</code>. Quase todo erro de "arquivo não encontrado" vem de rodar o comando em outra pasta.</p></div>
+</section>
+
+<!-- ============================================================ CAP 1 -->
+<section class="chapter" id="c1" style="--accent:#1f7a3a">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 1</span>
+  <h1 class="chap">O inventário em uma página</h1>
+  <div class="box goal"><span class="t">🎯 Neste capítulo · 5 min</span>
+  <ul><li>o que o repositório calcula e para quem serve;</li><li>por que as emissões biogênicas importam para o ozônio e o MP<sub>2,5</sub>;</li><li>os principais números e a correção do IAF de 2024 e 2025.</li></ul></div>
+
+  <p>O <b>MEGAN_SC</b> estima quanto a vegetação e o solo de Santa Catarina lançam no ar de <b>compostos orgânicos voláteis biogênicos (COVB)</b>, de NO do solo e de CO. O cálculo usa o código do MEGANv3.21 (Guenther, 2024b), reescrito em Python, numa grade de 0,025° (cerca de 2,8 km) com 13.970 células dentro do Estado. A conta é feita a cada 3 horas, de 2003 a 2025. Os mesmos arquivos alimentam o artigo científico e o relatório estadual do inventário, com ano-base 2025.</p>
+
+  <div class="box lay"><span class="t">🗣️ Em palavras simples</span>
+  <p>Árvores, campos e lavouras soltam no ar gases leves, como o isopreno e os terpenos que dão o cheiro do pinheiro. O MEGAN estima quanto sai em cada pedacinho do mapa, hora a hora, a partir do tipo de vegetação, da quantidade de folhas, da temperatura e da luz.</p></div>
+
+  <h2>Por que os COVB importam para a qualidade do ar</h2>
+  <div class="svgwrap">
+  <svg viewBox="0 0 640 196" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Inter" font-size="11.5">
+    <defs><marker id="ar1" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8a94a6"/></marker></defs>
+    <g text-anchor="middle">
+      <rect x="4" y="58" width="160" height="80" rx="10" fill="#e8f4ec" stroke="#1f7a3a"/>
+      <text x="84" y="84" font-weight="700" fill="#1f7a3a">🌳 Vegetação e solo</text><text x="84" y="103">emitem COVB, NO e CO</text><text x="84" y="121">isopreno, terpenos</text>
+      <rect x="226" y="8" width="196" height="80" rx="10" fill="#e8f0fb" stroke="#1f5fa8"/>
+      <text x="324" y="34" font-weight="700" fill="#1f5fa8">COVB + NOx + luz solar</text><text x="324" y="53">reações com OH, O₃ e NO₃</text><text x="324" y="72">na atmosfera</text>
+      <rect x="226" y="108" width="196" height="80" rx="10" fill="#f1ebfb" stroke="#6a3fb5"/>
+      <text x="324" y="134" font-weight="700" fill="#6a3fb5">Oxidação dos COVB</text><text x="324" y="153">produtos pouco voláteis</text><text x="324" y="172">condensam em partículas</text>
+      <rect x="484" y="8" width="152" height="80" rx="10" fill="#fdecea" stroke="#b3261e"/>
+      <text x="560" y="40" font-weight="700" fill="#b3261e">Ozônio (O₃)</text><text x="560" y="60">poluente secundário</text>
+      <rect x="484" y="108" width="152" height="80" rx="10" fill="#fff4e0" stroke="#b26b00"/>
+      <text x="560" y="134" font-weight="700" fill="#b26b00">Aerossol orgânico</text><text x="560" y="152" font-weight="700" fill="#b26b00">secundário (AOS)</text><text x="560" y="172">parte do MP₂,₅</text>
+    </g>
+    <g stroke="#8a94a6" stroke-width="2" fill="none" marker-end="url(#ar1)">
+      <path d="M165 84 C190 70 200 52 223 50"/><path d="M165 112 C190 126 200 146 223 146"/>
+      <path d="M423 48 H481"/><path d="M423 148 H481"/>
+    </g>
+  </svg></div>
+  <p>Na atmosfera, os COVB reagem com o radical OH, com o ozônio e com o radical nitrato (Atkinson; Arey, 2003). Na presença de óxidos de nitrogênio (NOx) e de luz solar, essas reações participam da formação de ozônio (Sillman, 1999). Parte dos produtos da oxidação condensa e forma aerossol orgânico secundário, um componente do material particulado fino (Hallquist et al., 2009; Carlton; Wiedinmyer; Kroll, 2009). Ozônio e MP<sub>2,5</sub> têm valores-guia da Organização Mundial da Saúde (WHO, 2021).</p>
+
+  <h2>Os números de 2003 a 2025</h2>
+  <p class="small">Os anos de 2024 e 2025 usam o IAF corrigido com o VIIRS (capítulo 3). Os quadros em âmbar são valores de 2025.</p>
+  <div class="kpi">
+    <div><b>657 kt ano⁻¹</b><span>emissão média de COVB no Estado</span></div>
+    <div><b>33,2%</b><span>do total médio de COVB é isopreno; 25,8% são monoterpenos</span></div>
+    <div><b>183 kt ano⁻¹</b><span>de precursores de AOS (monoterpenos e sesquiterpenos)</span></div>
+    <div><b>+0,88% ano⁻¹</b><span>tendência do isopreno (Theil-Sen); NO do solo: −0,37% ano⁻¹</span></div>
+  </div>
+  <div class="kpi">
+    <div class="flag"><b>672,9 mil t</b><span>de COVB em 2025, o ano-base do relatório</span></div>
+    <div class="flag"><b>228,6 mil t</b><span>de isopreno em 2025</span></div>
+    <div><b>7,9%</b><span>coeficiente de variação entre anos; picos em 2019 e 2024 (739 kt)</span></div>
+    <div><b>13.970</b><span>células de 0,025° com centro dentro do Estado</span></div>
+  </div>
+  <p class="small muted">Fontes: <code>results/v10/notebook13_meso2024/manuscript_numbers.csv</code> (chaves <code>bvoc_mean_kt</code>, <code>mean_ISOP</code>, <code>mean_MT</code>, <code>soa_total_kt</code>, <code>trend_ISOP</code>, <code>trend_NO</code>, <code>y2025_text</code>, <code>bvoc_cv_pct</code>, <code>bvoc_max</code>, <code>grid_facts</code>). O isopreno inclui o fator ρ = 0,96 (capítulo 2).</p>
+
+  <div class="box warn"><span class="t">⚠️ O IAF de 2024 e 2025 foi corrigido</span>
+  <p>O IAF (índice de área foliar) do MODIS ficou 12,1% abaixo da média de 2013 a 2023 em 2025, e o IAF do VIIRS ficou 1,8% abaixo no mesmo ano (caderno 16). A queda do MODIS foi tratada como defeito do registro recente desse sensor. A correção pela anomalia do VIIRS eleva o IAF médio do Estado em 5,0% (2024) e 11,6% (2025). O caderno 17 refez 2024 e 2025 com o IAF corrigido, e o caderno 19 instalou os dois anos na execução. Em 2025, o COVB total subiu 7,1% e o isopreno 4,3% (Material Suplementar do artigo, Tabela S6).</p>
+  <p>Os anos de 2003 a 2023 não mudaram. O primeiro cálculo de 2024 e 2025, com o IAF do MODIS, fica em <code>data/run_v10_modis_lai_2024_2025/</code>, e os resultados dele em <code>results/v10_modis_lai_2024_2025/</code> (capítulos 3 e 6).</p></div>
+
+  <div class="box idea"><span class="t">💡 Ideia-chave</span>
+  <p>O inventário mede emissão, ou seja, a massa que sai da vegetação e do solo. A concentração de ozônio ou de MP<sub>2,5</sub> no ar depende também da química, do transporte e das outras fontes. Para chegar a ela, as emissões daqui entram como dado de um modelo de qualidade do ar.</p></div>
+</section>
+
+<!-- ============================================================ CAP 2 -->
+<section class="chapter" id="c2" style="--accent:#1f5fa8">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 2</span>
+  <h1 class="chap">O MEGANv3.21 em palavras simples</h1>
+  <div class="box goal"><span class="t">🎯 Neste capítulo · 20 min</span>
+  <ul><li>a ideia de fator de emissão e de fatores de atividade;</li><li>como a copa das árvores entra na conta;</li><li>NO do solo, especiação e o fator ρ do isopreno;</li><li>os oito procedimentos FIX-1 a FIX-8 e um exemplo que roda no seu computador.</li></ul></div>
+
+  <p>O MEGAN (<i>Model of Emissions of Gases and Aerosols from Nature</i>) parte de uma emissão de referência, válida em condições padrão, e a ajusta pelo que acontece em cada hora: luz, temperatura, quantidade de folhas, idade das folhas e água no solo (Guenther et al., 2006, 2012). O MEGAN_SC reproduz em Python o código Fortran do MEGANv3.21 (Guenther, 2024).</p>
+
+  <div class="formula">fluxo = EF × ER &nbsp;&nbsp;&nbsp; ER = IAF × γ<sub>TP</sub> × γ<sub>idade</sub> × γ<sub>SM</sub></div>
+  <div class="svgwrap">
+  <svg viewBox="0 0 640 196" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Inter" font-size="11.5">
+    <defs><marker id="ar2" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8a94a6"/></marker></defs>
+    <g text-anchor="middle">
+      <rect x="2" y="8" width="150" height="86" rx="10" fill="#e8f4ec" stroke="#1f7a3a"/>
+      <text x="77" y="32" font-weight="700" fill="#1f7a3a" font-size="13">EF</text><text x="77" y="52">fator de emissão</text><text x="77" y="70">ecótipo do MEGAN e</text><text x="77" y="86">formas do MapBiomas</text>
+      <text x="164" y="56" font-size="20" fill="#5b6475">×</text>
+      <rect x="176" y="8" width="138" height="40" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/>
+      <text x="245" y="24" font-weight="700" fill="#1f5fa8">IAF</text><text x="245" y="40">folhas, do MODIS</text>
+      <rect x="320" y="8" width="138" height="40" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/>
+      <text x="389" y="24" font-weight="700" fill="#1f5fa8">γTP</text><text x="389" y="40">luz e temperatura</text>
+      <rect x="176" y="54" width="138" height="40" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/>
+      <text x="245" y="70" font-weight="700" fill="#1f5fa8">γidade</text><text x="245" y="86">idade das folhas</text>
+      <rect x="320" y="54" width="138" height="40" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/>
+      <text x="389" y="70" font-weight="700" fill="#1f5fa8">γSM</text><text x="389" y="86">água no solo</text>
+      <text x="472" y="56" font-size="20" fill="#5b6475">=</text>
+      <rect x="486" y="8" width="150" height="86" rx="10" fill="#fff4e0" stroke="#b26b00"/>
+      <text x="561" y="32" font-weight="700" fill="#b26b00" font-size="13">Fluxo</text><text x="561" y="52">nmol m⁻² s⁻¹</text><text x="561" y="70">por classe, célula</text><text x="561" y="86">e passo de 3 h</text>
+      <rect x="2" y="128" width="150" height="56" rx="10" fill="#f1ebfb" stroke="#6a3fb5"/>
+      <text x="77" y="151" font-weight="700" fill="#6a3fb5">19 classes</text><text x="77" y="170">divididas em 201</text>
+      <rect x="176" y="128" width="460" height="56" rx="10" fill="#f4f6f9" stroke="#8a94a6"/>
+      <text x="406" y="151">× área da célula × 3 h × massa molar de cada composto</text><text x="406" y="170" font-weight="700">= toneladas por célula e passo, somadas por mês e ano</text>
+    </g>
+    <g stroke="#8a94a6" stroke-width="2" fill="none" marker-end="url(#ar2)"><path d="M561 95 V125"/><path d="M153 156 H173"/></g>
+  </svg></div>
+  <p>No isopreno entra também o fator γ<sub>CO2</sub>, e na classe do etanol e acetaldeído entra o fator de troca bidirecional γ<sub>BD</sub>. Os fatores de estresse do Fortran valem 1 nesta execução.</p>
+
+  <div class="box lay"><span class="t">🗣️ Em palavras simples</span>
+  <p>Pense numa receita. O EF é a receita padrão de cada tipo de vegetação. Os fatores γ dizem se, naquela hora, está mais quente ou mais frio, se há mais ou menos luz, se as folhas são novas ou maduras e se falta água. Quanto mais folhas, maior a emissão, por isso o IAF multiplica tudo.</p></div>
+
+  <h2>2.1 Luz e temperatura (γ<sub>TP</sub>)</h2>
+  <p>Cada classe de compostos tem uma parte ligada à luz, emitida assim que é produzida na folha, e uma parte guardada em reservatórios, que responde só à temperatura. A fração ligada à luz se chama LDF. No isopreno ela vale 1,0. Na classe dos pinenos (<code>MT_PINE</code>) vale 0,6 e no metanol, 0,8. A parte guardada cresce de forma exponencial com a temperatura da folha, exp[β(T − 303,15)], com β de 0,08 a 0,17 K⁻¹ conforme a classe.</p>
+
+  <h2>2.2 A copa em camadas (MEGCAN)</h2>
+  <div class="svgwrap">
+  <svg viewBox="0 0 640 160" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Inter" font-size="11.5">
+    <text x="22" y="30" font-size="24">☀️</text>
+    <g text-anchor="middle">
+      <rect x="60" y="8" width="262" height="26" rx="5" fill="#c9e6d1" stroke="#1f7a3a"/><text x="191" y="25">camada 1 (topo) · peso 0,1185</text>
+      <rect x="60" y="37" width="262" height="26" rx="5" fill="#d8eddd" stroke="#1f7a3a"/><text x="191" y="54">camada 2 · peso 0,2393</text>
+      <rect x="60" y="66" width="262" height="26" rx="5" fill="#e3f2e7" stroke="#1f7a3a"/><text x="191" y="83">camada 3 · peso 0,2844</text>
+      <rect x="60" y="95" width="262" height="26" rx="5" fill="#edf6ef" stroke="#1f7a3a"/><text x="191" y="112">camada 4 · peso 0,2393</text>
+      <rect x="60" y="124" width="262" height="26" rx="5" fill="#f5faf6" stroke="#1f7a3a"/><text x="191" y="141">camada 5 (base) · peso 0,1185</text>
+    </g>
+    <rect x="344" y="8" width="292" height="142" rx="10" fill="#e8f0fb" stroke="#1f5fa8"/>
+    <g font-size="11.5"><text x="356" y="30" font-weight="700" fill="#1f5fa8">Em cada camada, o MEGCAN calcula</text>
+      <text x="356" y="52">• a fração de folhas ao sol e à sombra</text>
+      <text x="356" y="72">• a luz que chega a cada grupo de folhas</text>
+      <text x="356" y="92">• a temperatura da folha pelo balanço</text>
+      <text x="366" y="110">de energia (10 iterações, ±10 K do ar)</text>
+      <text x="356" y="132">• à noite, só a parte guardada emite</text></g>
+  </svg></div>
+  <p>O código transforma o tempo acima da copa (temperatura, radiação, vento, umidade e pressão do ERA5-Land) na luz e na temperatura de cada folha. A radiação fotossinteticamente ativa vale 0,45 vez a radiação de onda curta. As cinco camadas ficam em pontos de Gauss do IAF acumulado, e a soma usa os pesos do desenho.</p>
+
+  <h2>2.3 Idade das folhas, água no solo e CO<sub>2</sub></h2>
+  <div class="grid3">
+    <div class="card"><h4>🍃 γ<sub>idade</sub></h4><p>Folhas novas emitem pouco isopreno e muito monoterpeno e metanol. O MEGAN reparte a folhagem em nova, em crescimento, madura e velha pela variação do IAF entre o mês anterior e o atual. Com IAF estável, γ<sub>idade</sub> do isopreno vale 0,95.</p></div>
+    <div class="card"><h4>💧 γ<sub>SM</sub></h4><p>Abaixo do ponto de murcha mais 0,04 m³ m⁻³, a emissão cai. A execução usou ponto de murcha constante de 0,12 m³ m⁻³. A média mensal do Estado ficou entre 0,992 e 1,000 (teste S3).</p></div>
+    <div class="card"><h4>🫧 γ<sub>CO2</sub></h4><p>O MEGANv3.21 fixa o CO<sub>2</sub> em 400 ppm, onde γ<sub>CO2</sub> = 1, e a execução manteve essa escolha. A mesma fórmula daria 1,025 a 376 ppm e 0,979 a 425 ppm (Heald et al., 2009, discutem essa resposta).</p></div>
+  </div>
+
+  <h2>2.4 NO do solo e especiação</h2>
+  <p>O NO do solo segue Yienger e Levy (1995), como codificado no MEGANv3.21, pelo caminho que usa só a temperatura do ar. Ao sul de 23° S, o código Fortran compara o dia do ano com constantes de mês e dia, o que torna a estação de cultivo degenerada. O MEGAN_SC usa a estação de novembro a maio e limita a zero o fator de fertilizante. Esse é um desvio documentado e intencional.</p>
+  <p>As 19 classes do MEGAN são divididas em 201 compostos, convertidas em massa e somadas de volta por classe. Os documentos agrupam as classes assim:</p>
+  <table>
+    <tr><th style="width:44mm">Grupo</th><th>Classes do MEGAN</th></tr>
+    <tr><td>Isopreno</td><td><code>ISOP</code></td></tr>
+    <tr><td>Monoterpenos</td><td><code>MT_PINE</code>, <code>MT_ACYC</code>, <code>MT_CAMP</code>, <code>MT_SABI</code>, <code>MT_AROM</code></td></tr>
+    <tr><td>Sesquiterpenos</td><td><code>SQT_HR</code>, <code>SQT_LR</code></td></tr>
+    <tr><td>COV oxigenados</td><td><code>MEOH</code>, <code>ACTO</code>, <code>ETOH</code>, <code>ACID</code>, <code>OXPROD</code></td></tr>
+    <tr><td>COV leves; estresse e outros; MBO</td><td><code>LVOC</code>; <code>STRESS</code>, <code>OTHER</code>; <code>MBO</code></td></tr>
+    <tr><td>Fora dos COVB</td><td><code>NO</code> (NO do solo) e <code>CO</code></td></tr>
+  </table>
+  <p>Os COVB somam as 17 classes que restam depois de separar NO e CO. Os precursores de AOS somam monoterpenos e sesquiterpenos.</p>
+
+  <div class="box expert"><span class="t">🧠 Para especialistas · o fator ρ do isopreno</span>
+  <p>A equação do MEGAN tem um fator de perda e produção no dossel, ρ. Para o isopreno, Guenther et al. (2006) recomendaram o valor constante 0,96. O código MEGANv3.21 aplica ρ = 1. Os arquivos de <code>data/run_v10</code> guardam o isopreno como o código calcula, e cada leitura da execução multiplica o isopreno por 0,96 (<code>RHO_ISOP</code> nos cadernos 11, 13, 14, 15 e 18; <code>RHO</code> em <code>analysis/v10/common.py</code>). Todos os números publicados incluem o fator.</p></div>
+
+  <h2>2.5 Os oito procedimentos FIX-1 a FIX-8</h2>
+  <p>O arquivo <code>src/megan_sc/fixes.py</code> reúne oito procedimentos que preparam as entradas e rodam o motor de modo fiel ao MEGANv3.21 e às convenções do ERA5-Land.</p>
+  <table>
+    <tr><th style="width:15mm">Id</th><th>O que faz</th><th style="width:66mm">Por que é preciso</th></tr>
+    <tr><td>FIX-1</td><td>Célula sem meteorologia do ERA5-Land recebe todas as variáveis da célula válida mais próxima.</td><td>O ERA5-Land cobre só o continente. O valor de preenchimento viraria 340 K e luz zero no motor.</td></tr>
+    <tr><td>FIX-2</td><td>Médias diárias de temperatura e de luz calculadas com as 24 horas do dia.</td><td>O MEGANv3.21 usa médias diárias na resposta à temperatura e para reconhecer a noite.</td></tr>
+    <tr><td>FIX-3</td><td>O IAF do mês anterior entra como IAF do período anterior.</td><td>A idade das folhas depende da variação do IAF.</td></tr>
+    <tr><td>FIX-4</td><td>Célula vegetada sem IAF válido no mês recebe o IAF dos meses vizinhos.</td><td>IAF zero numa célula vegetada daria emissão zero.</td></tr>
+    <tr><td>FIX-5</td><td>Pixel sem dado do mapa de ecótipos recebe o ecótipo válido mais próximo.</td><td>Uma faixa costeira sem dado daria EF zero.</td></tr>
+    <tr><td>FIX-6</td><td>Fator de profundidade da copa aplicado só às folhas ao sol.</td><td>É assim que o <code>megvea.f</code> calcula.</td></tr>
+    <tr><td>FIX-7</td><td>Teto de 303 K na temperatura do ar antes dos dois ramos do NO do solo.</td><td>É assim que o <code>soilnox.F</code> calcula.</td></tr>
+    <tr><td>FIX-8</td><td>Radiação desacumulada hora a hora, exceto às 01 UTC.</td><td>O campo das 00 UTC guarda o total das 24 h anteriores (ECMWF, 2025).</td></tr>
+  </table>
+  <div class="box idea"><span class="t">💡 Ideia-chave · o carimbo do código</span>
+  <p>O SHA-256 do <code>fixes.py</code> começa por <code>a933b29602929a82</code>. Esse prefixo fica gravado em cada arquivo de emissão, e a verificação C0 do caderno 11 confere o carimbo. Assim, cada saída aponta para o código exato que a produziu.</p></div>
+
+  <div class="box check"><span class="t">✅ Checkpoint · um exemplo que roda</span>
+  <p>Os fatores de atividade são funções de <code>src/megan_sc/engine/gamma.py</code>. Na pasta do repositório, com o ambiente instalado (capítulo 5), rode:</p>
+<pre>python - &lt;&lt;'EOF'
+import sys; sys.path.insert(0, 'src')
+from megan_sc.engine import gamma as g, species as sp
+isop, pine, sqt = sp.index_of('ISOP'), sp.index_of('MT_PINE'), sp.index_of('SQT_HR')
+print(g.gamtld(303.15, 297.0, isop))                 <span class="c"># folha a 30 °C depois de um dia a 24 °C</span>
+print(g.gamp(1500.0, 400.0))                         <span class="c"># luz forte, perto do platô</span>
+print(g.gamtli(340.0, pine), g.gamtli(340.0, sqt))   <span class="c"># o que aconteceria sem FIX-1</span>
+print(g.gamma_a(3.0, 3.0, 297.0, isop, 12))          <span class="c"># idade das folhas com IAF estável</span>
+print(g.gamma_co2(376.0), g.gamma_co2(425.0))        <span class="c"># CO2 (desligado na execução)</span>
+EOF</pre>
+  <p>Saída esperada, arredondada: <code>1.0543</code>, <code>1.0160</code>, <code>39.8 525.6</code>, <code>0.95</code>, <code>1.0250 0.9794</code>. A terceira linha mostra por que o FIX-1 existe. Uma célula a 340 K e sem luz emitiria cerca de 40 vezes mais α-pineno e 526 vezes mais cariofileno do que deveria.</p></div>
+  <div class="box expert"><span class="t">🧠 Para especialistas</span>
+  <p>As equações e as constantes estão transcritas do Fortran, com arquivo e linha, em <code>docs/ALGORITHM_SPEC.md</code>. O capítulo técnico 1 (<code>docs/tutorial/01_science.md</code>) segue a ordem em que cada valor é calculado. O motor está em <code>src/megan_sc/engine/</code> (<code>canopy.py</code>, <code>gamma.py</code>, <code>megvea.py</code>, <code>soil.py</code>, <code>daymet.py</code>, <code>speciation.py</code>).</p></div>
+</section>
+
+<!-- ============================================================ CAP 3 -->
+<section class="chapter" id="c3" style="--accent:#0f7c80">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 3</span>
+  <h1 class="chap">Os dados de entrada</h1>
+  <div class="box goal"><span class="t">🎯 Neste capítulo · 15 min</span>
+  <ul><li>de onde vem cada entrada e como o modelo a usa;</li><li>a grade de 0,025° e a máscara do Estado;</li><li>a conferência do IAF de 2024 e 2025 com o VIIRS e a correção aplicada.</li></ul></div>
+
+  <table>
+    <tr><th style="width:38mm">Entrada</th><th style="width:44mm">Produto</th><th>Como o modelo usa</th></tr>
+    <tr><td>Meteorologia</td><td>ERA5-Land horário (Muñoz-Sabater et al., 2021), 0,1°</td><td>temperatura a 2 m, radiação de onda curta, vento a 10 m, pressão, umidade e água do solo; amostrado a cada 3 h</td></tr>
+    <tr><td>Índice de área foliar (IAF)</td><td>MODIS MCD15A3H versão 6.1 (Myneni; Knyazikhin; Park, 2021), 500 m, 4 dias</td><td>média mensal das recuperações de boa qualidade em cada célula; multiplica todas as classes e define a idade das folhas</td></tr>
+    <tr><td>IAF independente</td><td>VIIRS versão 2 do Suomi NPP (VNP15A2H; Myneni, 2023b), do NOAA-20 (VJ115A2H; Myneni, 2023a) e do NOAA-21 (VJ215A2H; Myneni, 2026), 500 m, 8 dias</td><td>conferência do IAF de 2013 a 2025 (caderno 16, Suomi NPP), correção de 2024 e 2025 (caderno 17) e conferência da correção com os outros dois satélites (caderno 22)</td></tr>
+    <tr><td>Cobertura da terra</td><td>MapBiomas Coleção 10 (Souza Junior et al., 2020), 30 m, anual</td><td>frações de árvore, arbusto, herbácea e cultivo; 2025 usa o mapa de 2024</td></tr>
+    <tr><td>Fatores de emissão</td><td>arquivos de entrada do MEGAN 3.2: tabelas e mapa de ecótipos (Guenther, 2024a)</td><td>EF de cada classe por ecótipo e forma de crescimento; divisão em 201 compostos</td></tr>
+    <tr><td>Limites</td><td>IBGE, malha municipal 2024 (IBGE, 2025)</td><td>máscara do Estado e somas por município e mesorregião</td></tr>
+    <tr><td>HCHO (só avaliação)</td><td>TROPOMI L3 OFFL (De Smedt et al., 2018)</td><td>comparação com o isopreno modelado (caderno 14)</td></tr>
+  </table>
+  <p>Todas as entradas, exceto as tabelas do MEGAN, são lidas pelo Google Earth Engine (Gorelick et al., 2017), nos módulos de <code>src/megan_sc/gee/</code> e nos cadernos 10, 14, 16, 17, 20 e 21. A exceção é a conferência do caderno 22, que lê os arquivos do VIIRS no NASA Earthdata.</p>
+
+  <h2>3.1 A grade e a máscara do Estado</h2>
+  <div class="grid2">
+    <div class="card"><h4>📐 A grade</h4><p>144 linhas × 224 colunas de 0,025°. Centros de 29,4875° S a 25,9125° S e de 53,8875° O a 48,3125° O. Dentro do Estado ficam 13.970 células (43,3% da caixa), com 95.969 km² de área de grade.</p></div>
+    <div class="card"><h4>🗺️ A máscara</h4><p>A célula pertence ao Estado quando o centro dela está dentro do polígono do IBGE. Os totais por município e por mesorregião repartem cada célula pela área que ela tem dentro de cada polígono.</p></div>
+  </div>
+  <div class="box warn"><span class="t">⚠️ Atenção · a orientação das grades</span>
+  <p>Nos arquivos NetCDF e nos vetores NumPy, a linha 0 fica ao <b>sul</b>. Nos GeoTIFF, a linha 0 fica ao <b>norte</b>. Use <code>numpy.flipud</code> num campo GeoTIFF antes de combiná-lo com um campo NetCDF. Os programas de SIG leem os dois corretamente.</p></div>
+  <figure class="w60"><img src="img/study_area_pt.jpg" alt="Área de estudo"><figcaption>Uso e cobertura da terra do MapBiomas em 2019 (a) e fração de árvore na grade do modelo (b). Arquivo <code>results/v10/figures/pt/fig_study_area.png</code>, gerado por <code>analysis/v10/maps/study_area_map.py</code>.</figcaption></figure>
+
+  <h2>3.2 Duas particularidades do ERA5-Land</h2>
+  <ul>
+    <li><b>Só continente.</b> Células no litoral, em lagoas e em ilhas ficam sem dado em algumas variáveis. Na execução, 190 células vegetadas do Estado (1.301 km²; 191 em 2021 e 2022) recebem a meteorologia da célula válida mais próxima (FIX-1).</li>
+    <li><b>Radiação acumulada.</b> A radiação de onda curta é acumulada desde 00 UTC, e o campo das 00 UTC guarda as 24 h anteriores (ECMWF, 2025). O fluxo horário é a diferença entre horas consecutivas, exceto às 01 UTC (FIX-8).</li>
+  </ul>
+
+  <h2>3.3 O IAF de 2024 e 2025: conferência com o VIIRS</h2>
+  <p>O caderno 16 comparou o IAF mensal do VIIRS, a bordo do Suomi NPP, com o IAF do MODIS usado na primeira execução, na mesma grade, de 2013 a 2025. O VIIRS foi desenvolvido para dar continuidade ao registro do MODIS (Román et al., 2024). A comparação usou a média de 2013 a 2023 como referência e separou as células dominadas (fração ≥ 60%) por árvores, por herbáceas ou por cultivos. De 2013 a 2023, os desvios anuais dos dois sensores tiveram correlação de 0,84 a 0,91 nesses grupos e no Estado.</p>
+  <table>
+    <tr><th>Desvio em relação a 2013-2023</th><th>MODIS 2024</th><th>VIIRS 2024</th><th>MODIS 2025</th><th>VIIRS 2025</th></tr>
+    <tr><td>Todas as células</td><td>−5,8%</td><td>−1,2%</td><td>−12,1%</td><td>−1,8%</td></tr>
+    <tr><td>Dominadas por árvores</td><td>−4,7%</td><td>−0,8%</td><td>−11,4%</td><td>−2,3%</td></tr>
+    <tr><td>Dominadas por herbáceas</td><td>−5,2%</td><td>+1,0%</td><td>−12,0%</td><td>−0,2%</td></tr>
+    <tr><td>Dominadas por cultivos</td><td>−5,2%</td><td>−0,2%</td><td>−8,7%</td><td>+1,9%</td></tr>
+  </table>
+  <p class="small muted">Fonte: <code>results/v10/lai_viirs_check/lai_viirs_modis_summary.csv</code>; correlações calculadas de <code>lai_viirs_modis_annual.csv</code>.</p>
+  <figure class="w70"><img src="img/lai_viirs_modis.jpg" alt="IAF do MODIS e do VIIRS"><figcaption>IAF mensal do Estado em relação à média do mês (a), desvio de 2025 por grupo (b) e fração de recuperações pelo algoritmo principal (c). Rótulos em inglês. Arquivo <code>results/v10/lai_viirs_check/lai_viirs_modis.png</code>, caderno 16.</figcaption></figure>
+  <p>A causa da queda do MODIS não foi estabelecida. As órbitas dos satélites Terra e Aqua derivam desde o fim da manutenção orbital, em 2020 e 2021 (NASA MODIS Land Team, 2025). A queda foi tratada como defeito do registro recente do MODIS.</p>
+
+  <h3>A correção</h3>
+  <div class="formula" style="font-size:13pt">IAF*(célula, ano, mês) = média MODIS 2013-2023 (célula, mês) × razão VIIRS (zona, ano, mês)</div>
+  <p>A razão VIIRS é o IAF do VIIRS no mês do ano corrigido dividido pela média de 2013 a 2023 do mesmo mês, numa de quatro zonas: células dominadas por árvores, por herbáceas, por cultivos e o restante do Estado. A forma da correção foi escolhida por um teste retrospectivo. Cada ano de 2013 a 2023 foi previsto a partir dos outros dez, e onze candidatas foram comparadas. A correção por zonas de forma de crescimento teve o menor erro quadrático médio, 0,362 m² m⁻², contra 0,386 m² m⁻² da média do MODIS sozinha. O IAF corrigido fica 5,0% (2024) e 11,6% (2025) acima do IAF do MODIS usado na primeira execução. O caderno 22 refez a correção com o VIIRS do NOAA-20 e do NOAA-21, com 2023 como referência. Em 2025, os três registros do VIIRS deram IAF estadual de fevereiro a dezembro de 3,24 a 3,31 m² m⁻², contra 3,22 m² m⁻² da correção publicada, que foi mantida (Material Suplementar do artigo, Tabela S7).</p>
+  <figure class="w70"><img src="img/lai_correction.jpg" alt="Correção do IAF"><figcaption>Anomalia mensal do IAF de 2022 a 2025 (a), desvio anual de 2024 e 2025 por grupo (b) e teste retrospectivo das candidatas (c). Rótulos em inglês. Arquivo <code>results/v10/lai_viirs_check/lai_correction.png</code>, etapa <code>laicorr</code> do <code>reproduce.py</code>.</figcaption></figure>
+  <div class="box expert"><span class="t">🧠 Para especialistas</span>
+  <ul><li>Fórmula e escolhas em <code>src/megan_sc/laicorr.py</code> (<code>DEFAULT = dict(method='zone', k=0, clip=None)</code>, zonas de <code>growth_form_zones()</code>, limiar de dominância 0,6).</li>
+  <li>Teste retrospectivo em <code>analysis/v10/review/lai_viirs_correction.py</code>; tabela em <code>results/v10/lai_viirs_check/lai_correction_hindcast_2013_2023.csv</code>; IAF corrigido em <code>lai_viirs_corrected_2024_2025.npz</code>.</li>
+  <li>O cache do caderno 16 guarda o IAF do VIIRS dividido por 10, porque a banda foi multiplicada por 0,1 quando ele foi gravado. Todo uso desses valores é uma razão, que não muda. O caderno distribuído lê a banda sem esse fator (<code>data/README.md</code>).</li></ul></div>
+</section>
+
+<!-- ============================================================ CAP 4 -->
+<section class="chapter" id="c4" style="--accent:#b26b00">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 4</span>
+  <h1 class="chap">O repositório por dentro</h1>
+  <div class="box goal"><span class="t">🎯 Neste capítulo · 10 min</span>
+  <ul><li>o que há em cada pasta;</li><li>os três níveis de uso: reproduzir, replicar e estender;</li><li>onde ficam os dados grandes.</li></ul></div>
+
+<pre>MEGAN_SC/
+├── README.md, README.pt-BR.md     <span class="c"># visão geral em inglês e em português</span>
+├── TUTORIAL_MEGAN_SC_pt.pdf, _en.pdf  <span class="c"># este tutorial</span>
+├── REPRODUCE.md, DATA_AVAILABILITY.md, VALIDATION.md, CHANGELOG.md, CITATION.cff
+├── reproduce.py                   <span class="c"># nível A num comando</span>
+├── src/megan_sc/                  <span class="c"># motor, camada do Earth Engine, fixes.py, laicorr.py</span>
+├── notebooks/                     <span class="c"># cadernos 10 a 23 (.ipynb) e notebooks/src (fontes .py)</span>
+├── analysis/v10/                  <span class="c"># scripts que leem a execução: números, mapas, diagnósticos</span>
+├── results/v10/                   <span class="c"># tabelas, números e figuras publicados</span>
+├── results/MANIFEST.sha256        <span class="c"># SHA-256 de cada arquivo publicado</span>
+├── data/                          <span class="c"># entradas pequenas; as grandes chegam pela versão publicada</span>
+├── tests/                         <span class="c"># 127 testes de unidade</span>
+├── tools/                         <span class="c"># executor de cadernos, comparação, dados, manifesto</span>
+├── benchmark/                     <span class="c"># comparação com os executáveis Fortran</span>
+├── run_your_region/               <span class="c"># assistente para outra região</span>
+└── docs/                          <span class="c"># ALGORITHM_SPEC.md e os 13 capítulos técnicos</span></pre>
+
+  <h2>4.1 Três níveis de uso</h2>
+  <div class="grid3">
+    <div class="card" style="border-color:#1f7a3a"><h4>A · Reproduzir</h4><p>Recalcula cada número, tabela e figura a partir da execução distribuída e compara com as cópias publicadas.</p><p class="tag">Python 3.10 ou mais recente, cerca de 1,2 GB em disco, sem contas. Cerca de 5 min de cálculo.</p></div>
+    <div class="card" style="border-color:#1f5fa8"><h4>B · Replicar</h4><p>Roda o modelo de novo a partir dos dados brutos, as verificações, a comparação com o Fortran e a avaliação com o TROPOMI.</p><p class="tag">Conta Google com Earth Engine e Google Colab. Horas de requisições por ano simulado; 41,2 EECU-horas no caderno do TROPOMI.</p></div>
+    <div class="card" style="border-color:#6a3fb5"><h4>C · Estender</h4><p>Monta o mesmo inventário para outro estado, província ou país.</p><p class="tag">Como em B, mais um arquivo com o contorno da região.</p></div>
+  </div>
+
+  <h2>4.2 Dados no git e dados da versão publicada</h2>
+  <p>As entradas pequenas ficam no repositório: limites do IBGE, tabelas do MEGAN, recorte do mapa de ecótipos e os arquivos de <code>data/external/</code>. Os dados grandes vão ser distribuídos em cinco arquivos zip, anexados à versão (<i>release</i>) do GitHub e depositados no Zenodo quando o repositório for publicado.</p>
+  <table>
+    <tr><th>Arquivo zip</th><th>Pasta</th><th>Conteúdo</th></tr>
+    <tr><td><code>megan_sc_run_v10_2003-2025.zip</code> (723 MB)</td><td><code>data/run_v10/</code></td><td>a execução de produção do caderno 10, 2003 a 2025, com 2024 e 2025 do caderno 17</td></tr>
+    <tr><td><code>tropomi_hcho_v10_2019-2025.zip</code> (18 MB)</td><td><code>data/tropomi_hcho_v10/</code></td><td>84 campos mensais do TROPOMI na grade do modelo</td></tr>
+    <tr><td><code>megan_sc_s1_test_2019.zip</code> (39 MB)</td><td><code>data/s1_test/</code></td><td>as duas execuções de teste do passo de tempo (teste S1)</td></tr>
+    <tr><td><code>lai_viirs_v10_2013-2025.zip</code> (59 MB)</td><td><code>data/lai_viirs_v10/</code></td><td>IAF mensal do VIIRS e do MODIS, 2013 a 2025 (caderno 16)</td></tr>
+    <tr><td><code>megan_sc_run_v10_modis_lai_2024_2025.zip</code> (63 MB)</td><td><code>data/run_v10_modis_lai_2024_2025/</code></td><td>2024 e 2025 calculados com o IAF do MODIS</td></tr>
+  </table>
+  <p>O SHA-256 de cada arquivo de dados está em <code>data/DATA_SHA256SUMS.txt</code> (2.435 arquivos). As fontes, as licenças e os identificadores de cada item estão em <code>DATA_AVAILABILITY.md</code>.</p>
+  <div class="box warn"><span class="t">⚠️ Atenção · a versão publicada ainda não existe</span>
+  <p>O endereço <code>https://github.com/jessicajcss/MEGAN_SC/releases/download/v1.0.0</code> vai receber os arquivos zip quando o repositório for publicado. Enquanto isso, uma pasta local com os arquivos zip funciona do mesmo modo (capítulo 5). O DOI do Zenodo será acrescentado ao <code>CITATION.cff</code> depois do depósito.</p></div>
+  <div class="box expert"><span class="t">🧠 Para especialistas · onde mora cada parte do código</span>
+  <ul><li><code>src/megan_sc/engine/</code>: o MEGANv3.21 em Python (copa, fatores de atividade, NO do solo, médias diárias, especiação).</li>
+  <li><code>src/megan_sc/gee/</code>: leitura do ERA5-Land, do IAF, do MapBiomas, da cobertura MODIS e da textura do solo no Earth Engine.</li>
+  <li><code>src/megan_sc/fixes.py</code> (FIX-1 a FIX-8) e <code>src/megan_sc/laicorr.py</code> (correção do IAF).</li>
+  <li><code>analysis/v10/_paths.py</code>: as pastas usadas, que as variáveis de ambiente <code>MEGAN_SC_*</code> substituem.</li></ul></div>
+</section>
+
+<!-- ============================================================ CAP 5 -->
+<section class="chapter" id="c5" style="--accent:#1f7a3a">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 5</span>
+  <h1 class="chap">Mão na massa: reproduzir os resultados</h1>
+  <div class="box goal"><span class="t">🎯 Neste capítulo · 30 min de leitura, alguns minutos de cálculo</span>
+  <ul><li>instalar o ambiente e rodar os testes;</li><li>conferir os arquivos publicados com o manifesto;</li><li>baixar os dados e recalcular tudo com o <code>reproduce.py</code>.</li></ul></div>
+  <div class="box lay"><span class="t">🗣️ Em palavras simples</span>
+  <p>Reproduzir é refazer a conta com os mesmos dados e o mesmo código e chegar ao mesmo resultado. O manifesto confere se você tem os arquivos certos. O <code>reproduce.py</code> confere se o código chega a eles.</p></div>
+
+  <div class="step"><div class="n">1</div><div><h4>Obtenha o repositório</h4>
+<pre>git clone https://github.com/jessicajcss/MEGAN_SC megan-sc &amp;&amp; cd megan-sc   <span class="c"># depois da publicação</span>
+<span class="c"># ou: descompacte MEGAN_SC.zip e entre na pasta MEGAN_SC/</span></pre></div></div>
+  <div class="step"><div class="n">2</div><div><h4>Instale o ambiente</h4>
+<pre>pip install -r requirements-reproduce.txt        <span class="c"># só o nível A</span>
+<span class="c"># ou o ambiente completo (Earth Engine, cadernos, mapas):</span>
+conda env create -f environment.yml &amp;&amp; conda activate megan-sc</pre>
+  <p><code>requirements-lock.txt</code> instala um conjunto testado de versões (Python 3.10.12).</p></div></div>
+  <div class="step"><div class="n">3</div><div><h4>Rode os testes de unidade</h4>
+<pre>pytest -q                                        <span class="c"># esperado: 127 passed</span></pre>
+  <p>Os testes conferem a transcrição do Fortran e os procedimentos FIX-1 a FIX-8. Eles não comparam o modelo com observações.</p></div></div>
+  <div class="step"><div class="n">4</div><div><h4>Confira os resultados publicados</h4>
+<pre>python tools/verify_manifest.py
+<span class="o">363 files listed: OK 363, CHANGED 0, MISSING 0, EXTRA 0</span></pre>
+  <p>O manifesto <code>results/MANIFEST.sha256</code> lista o SHA-256 de cada arquivo de <code>results/</code>. Ele responde à pergunta "estes são os arquivos publicados?".</p></div></div>
+  <div class="step"><div class="n">5</div><div><h4>Baixe e confira os dados</h4>
+<pre>python tools/data_release.py fetch &lt;endereço-ou-pasta-com-os-zips&gt;
+python reproduce.py check-data
+<span class="o">2435 data files checked, 0 missing or different</span></pre>
+  <p>Antes do download, o <code>check-data</code> acusa 2.416 arquivos ausentes e confere os 19 arquivos de dados que vêm no git.</p></div></div>
+  <div class="step"><div class="n">6</div><div><h4>Recalcule tudo</h4>
+<pre>python reproduce.py list        <span class="c"># as 16 etapas e o que cada uma grava</span>
+python reproduce.py all         <span class="c"># tudo, e no fim a comparação com results/v10</span>
+python reproduce.py nb13 maps   <span class="c"># ou só algumas etapas, na ordem dada</span></pre></div></div>
+
+  <div class="box check"><span class="t">✅ Checkpoint · o que esperar</span>
+  <p>Na execução de 15 de novembro de 2026 (16 etapas numa única passada, numa máquina Linux com versões mais novas das bibliotecas), a última etapa imprimiu:</p>
+<pre>CSV files: 58 compared, 26 identical, 32 equal within tolerance, 0 different, 0 without a published copy
+PNG files: 59 compared, 17 pixel-identical</pre>
+  <p>As 17 figuras idênticas e quatro das tabelas idênticas foram feitas nessa máquina e copiadas para <code>results/v10</code>, por isso a comparação não as testa de forma independente. As outras figuras vêm do Colab e diferem na renderização, com os mesmos dados por trás. O registro completo, arquivo por arquivo, está em <code>docs/tutorial/reproduction_log.txt</code>.</p></div>
+
+  <h2>5.1 As etapas</h2>
+  <table>
+    <tr><th style="width:24mm">Etapa</th><th>O que recalcula</th></tr>
+    <tr><td><code>integrity</code></td><td>oito passos por dia em cada mês; arquivo anual igual à soma dos mensais</td></tr>
+    <tr><td><code>nb11</code></td><td>caderno 11: verificações C0 a C5 de cada ano</td></tr>
+    <tr><td><code>nb13</code></td><td>caderno 13: tabelas, tendências, correlações, ciclo sazonal, <code>manuscript_numbers.csv</code> e figuras</td></tr>
+    <tr><td><code>nb14</code>, <code>nb14diag</code></td><td>caderno 14 a partir do cache do TROPOMI (sem Earth Engine) e os diagnósticos posteriores</td></tr>
+    <tr><td><code>nb15</code>, <code>s1</code></td><td>testes S3 (umidade do solo) e S1 (passo de tempo)</td></tr>
+    <tr><td><code>c3</code></td><td>a falha C3 de 2015 em detalhe e o efeito dela nos totais</td></tr>
+    <tr><td><code>report</code>, <code>maps</code></td><td>números do relatório e todos os mapas</td></tr>
+    <tr><td><code>meso2024</code>, <code>final</code>, <code>extra</code></td><td>mesorregiões de 2024, diagnósticos adicionais, mapa da área de estudo e fluxograma</td></tr>
+    <tr><td><code>ijest</code>, <code>laicorr</code></td><td>figuras do manuscrito em inglês; conferência e correção do IAF de 2024 e 2025</td></tr>
+    <tr><td><code>compare</code></td><td>cada arquivo recalculado contra a cópia publicada</td></tr>
+  </table>
+  <p>Tudo é gravado em <code>reproduced/</code> (ou em <code>$MEGAN_SC_OUT</code>), com um registro por etapa em <code>reproduced/logs/</code>. As pastas <code>data/</code> e <code>results/</code> ficam intactas.</p>
+  <div class="box warn"><span class="t">⚠️ Atenção · figuras e fontes</span>
+  <p>Arquivos PNG dependem das fontes e das versões das bibliotecas. Em outra máquina, algumas figuras podem diferir em poucos pixels, e os números continuam os mesmos. Rodar o caderno 13 duas vezes na mesma pasta faz a segunda leitura usar um cache em precisão simples, e a comparação passa a mostrar alguns arquivos como iguais dentro da tolerância.</p></div>
+</section>
+
+<!-- ============================================================ CAP 6 -->
+<section class="chapter" id="c6" style="--accent:#6a3fb5">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 6</span>
+  <h1 class="chap">Os cadernos, do 10 ao 23</h1>
+  <div class="box goal"><span class="t">🎯 Neste capítulo · 25 min</span>
+  <ul><li>o que cada caderno faz, o que precisa e o que grava;</li><li>em que ordem rodar e qual já foi executado;</li><li>a observação sobre a área nominal das células do BRAIN.</li></ul></div>
+
+  <div class="svgwrap">
+  <svg viewBox="0 0 640 266" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Inter" font-size="11.5">
+    <defs><marker id="ar6" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8a94a6"/></marker></defs>
+    <g text-anchor="middle">
+      <rect x="4" y="117" width="128" height="38" rx="9" fill="#e8f4ec" stroke="#1f7a3a"/><text x="68" y="140" font-weight="700" fill="#1f7a3a">10 · produção</text>
+      <rect x="168" y="6" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="27">11 · verificações</text>
+      <rect x="168" y="50" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="71">14 · TROPOMI</text>
+      <rect x="168" y="94" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="115">15 · sensibilidade</text>
+      <rect x="168" y="138" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="159">16 · IAF do VIIRS</text>
+      <rect x="168" y="182" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="203">18 · BRAIN 2019</text>
+      <rect x="168" y="226" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="247">20 · entradas de 2019</text>
+      <rect x="346" y="6" width="150" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="421" y="27">13 · números e figuras</text>
+      <rect x="346" y="94" width="150" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="421" y="115">22 · IAF NOAA-20/21</text>
+      <rect x="346" y="138" width="150" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="421" y="159">17 · 2024-2025 de novo</text>
+      <rect x="346" y="182" width="150" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="421" y="203">23 · diferenças BRAIN</text>
+      <rect x="346" y="226" width="150" height="34" rx="8" fill="#f4f6f9" stroke="#8a94a6" stroke-dasharray="4 3"/><text x="421" y="247">21 · ERA5-Land, INMET</text>
+      <rect x="528" y="138" width="108" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="582" y="159">19 · instalação</text>
+      <rect x="528" y="6" width="108" height="40" rx="8" fill="#f4f6f9" stroke="#8a94a6" stroke-dasharray="4 3"/><text x="582" y="23" font-weight="700">12 · Fortran</text><text x="582" y="39">independente</text>
+    </g>
+    <g stroke="#8a94a6" stroke-width="1.8" fill="none" marker-end="url(#ar6)">
+      <path d="M133 125 C150 108 150 30 165 23"/><path d="M133 129 C150 116 150 72 165 67"/><path d="M133 133 C150 126 152 112 165 111"/>
+      <path d="M133 139 C150 143 152 154 165 155"/><path d="M133 145 C150 158 150 194 165 199"/><path d="M133 149 C150 172 150 236 165 243"/>
+      <path d="M315 23 H343"/><path d="M315 155 H343"/><path d="M315 151 C328 140 330 116 343 111"/><path d="M497 155 H525"/>
+      <path d="M315 199 H343"/><path d="M345 243 H318"/>
+    </g>
+  </svg></div>
+  <p>Os autores rodaram o 12, o 10, o 11, o 13, o 14 e o 15 em outubro de 2026, o 16 em 31 de outubro, o 17 e o 18 até 1º de novembro e do 19 ao 23 entre 1º e 8 de novembro de 2026. Os cadernos 12 e 21 (tracejados) não leem a execução, e o 21 passa o seu gradiente térmico vertical ao 20. Cada caderno nasce de uma fonte em formato de células de texto, em <code>notebooks/src/</code>, convertida por <code>notebooks/src/build_ipynb.py</code>. O <code>.py</code> e o <code>.ipynb</code> têm o mesmo código. Todos têm uma única célula de configurações, a primeira célula de código, com as pastas do Google Drive.</p>
+
+  <div class="nbcard" style="--accent:#1f7a3a"><h4>10 · Execução de produção <span class="pill ran">executado (Colab, outubro de 2026)</span></h4>
+  <p>Para cada mês de <code>YEARS</code>, amostra o ERA5-Land, o IAF do MODIS e o MapBiomas no Earth Engine, roda o motor a cada <code>SAMPLE_HOURS</code> horas e grava as grades mensais e anuais, as entradas amostradas e os registros de cada procedimento.</p>
+  <ul><li>Células: 1 configuração e Drive · 2 grava <code>fixes.py</code> e confere o hash · 3 Earth Engine (<code>EE_PROJECT</code>) · 4 parâmetros (<code>YEARS</code>, <code>SAMPLE_HOURS = 3</code>, <code>VARIANT = 'base'</code>) · 5 motor e FIX-5 · 6 máscara e municípios · 7 amostradores do Earth Engine · 8 um mês e um ano · 9 execução · 10 autoconferência.</li>
+  <li>Grava em <code>megan_sc_outputs_v10/&lt;ano&gt;/</code>, com o mesmo formato de <code>data/run_v10/</code>. Salva um ponto de retomada a cada passo. Depois de uma desconexão, rode tudo de novo e ele continua de onde parou.</li></ul></div>
+
+  <div class="nbcard"><h4>11 · Verificações automáticas C0 a C5 <span class="pill ran">executado</span></h4>
+  <p>Seis verificações por ano: C0 procedência (todos os procedimentos ativos), C1 células florestais sem isopreno, C2 células atípicas, C3 coerência das células preenchidas com as vizinhas, C4 completude, C5 PAR média mensal do Estado entre 20 e 200 W m⁻². Na execução de produção, 137 de 138 resultados passaram. A falha foi C3 em 2015, para o metanol, explicada em <code>results/v10/diagnostics/c3/</code>.</p></div>
+
+  <div class="nbcard"><h4>12 · Comparação com os executáveis Fortran <span class="pill ran">executado (Colab)</span></h4>
+  <p>Roda os binários oficiais do MEGANv3.21 e o motor em Python com as mesmas entradas e compara etapa por etapa. Com os procedimentos do <code>fixes.py</code>, como na produção, todas as etapas passam. Precisa do arquivo <code>MEGANv3.21.tar.gz</code> (Guenther, 2024b) e de Linux x86-64; leva de 15 a 25 min. Os resultados ficam em <code>benchmark/results_colab/</code> e em <code>VALIDATION.md</code>.</p></div>
+
+  <div class="nbcard"><h4>13 · Números, tabelas e figuras <span class="pill ran">executado</span></h4>
+  <p>Lê a execução e grava as tabelas, as tendências, as correlações, o ciclo sazonal, <code>manuscript_numbers.csv</code> e as figuras em português e inglês. Deve rodar depois que o caderno 11 não tiver falhas, ou depois que cada falha estiver explicada.</p></div>
+
+  <div class="nbcard"><h4>14 · Avaliação com o formaldeído do TROPOMI <span class="pill ran">executado</span></h4>
+  <p>Exporta do Earth Engine, mês a mês, o HCHO filtrado na grade do modelo e aplica quatro testes definidos antes da comparação. Usou 41,2 EECU-horas e cerca de 6 h para os 84 meses. Com o cache de <code>data/tropomi_hcho_v10/</code>, roda sem Earth Engine.</p></div>
+
+  <div class="nbcard"><h4>15 · Testes de sensibilidade <span class="pill part">S1 e S3 executados; S2 previsto</span></h4>
+  <p>S1 compara passo de 3 h com passo de 1 h em 28 dias de 2019. S3 mede o efeito do fator de umidade do solo a partir dos registros da execução. S2, sobre a agregação do IAF, foi previsto e não executado.</p></div>
+</section>
+
+<section class="chapter" style="--accent:#6a3fb5">
+  <div class="nbcard"><h4>16 · Conferência do IAF com o VIIRS <span class="pill ran">executado pelos autores em 31/10/2026</span></h4>
+  <p>Compara o IAF mensal do VIIRS (<code>NASA/VIIRS/002/VNP15A2H</code>, recuperações do algoritmo principal) com o IAF do MODIS da execução, na grade do inventário, de 2013 a 2025. Faz 312 requisições ao Earth Engine (duas por mês e produto). Grava tabelas e figura em <code>analysis_v10/lai_viirs_check/</code>; as cópias publicadas estão em <code>results/v10/lai_viirs_check/</code> (capítulo 3).</p></div>
+
+  <div class="nbcard"><h4>17 · Nova execução de 2024 e 2025 com o IAF corrigido <span class="pill ran">executado</span></h4>
+  <p>É o caderno 10 para 2024 e 2025, com o IAF corrigido por <code>laicorr.corrected_run_lai</code> (célula 7a). O código comum foi copiado linha a linha do caderno 10.</p>
+  <ul><li>Grava em <code>megan_sc_outputs_v10_lai_viirs/</code> e não toca na execução de produção.</li>
+  <li>A célula 11 compara as entradas com a produção e confere que só o IAF muda. Na execução dos autores, a meteorologia ficou idêntica.</li>
+  <li>A célula 12 instala os anos corrigidos na execução de produção só com <code>INSTALL = True</code>. Leia a célula 11 antes.</li></ul>
+  <p>Em 2025, o COVB total subiu 7,1%, o isopreno 4,3% e os monoterpenos 7,9%, e o NO do solo caiu 0,2% (Material Suplementar do artigo, Tabela S6). O caderno 19 confere e instala os dois anos.</p></div>
+
+  <div class="nbcard"><h4>18 · Comparação com o BRAIN de 2019 <span class="pill ran">executado</span></h4>
+  <p>Compara as emissões de 2019 com as emissões do MEGAN no BRAIN, domínio d02 de 4 km (Hoinaski; Will; Ribeiro, 2024). Usa a mesma região (o polígono do IBGE, com pesos por área nas duas grades), as mesmas espécies (as 19 classes convertidas nas 34 espécies CB6X com as tabelas do MEGANv3.21), as mesmas unidades e o mesmo período. Baixa os 364 arquivos diários de 2019 do Science Data Bank. O dia 31 de dezembro falta, e o total de dezembro foi multiplicado por 31/30. Dispensa o Earth Engine.</p>
+  <p>Com as áreas verdadeiras das células, o isopreno de 2019 deste inventário ficou em 0,79 vez o do BRAIN, e a soma das classes de COV em 0,87 vez. Os ciclos mensais do isopreno tiveram correlação de 0,96, e os valores por célula, de 0,63 (Material Suplementar do artigo, Seção S9 e Tabela S12).</p></div>
+  <div class="box expert"><span class="t">🧠 Para especialistas · a área nominal das células do BRAIN</span>
+  <p>O MGN2MECH do MEGANv3.21 transforma fluxos (nmol m⁻² s⁻¹) em taxas por célula com <code>garea = xcell3d * ycell3d</code>, a área nominal de 16 km². A grade do BRAIN é Mercator com escala verdadeira no equador. Nessa projeção, a área verdadeira de uma célula a latitude φ é de cerca de 16 cos²φ km², ou de 12,2 a 12,9 km² sobre Santa Catarina. As taxas entregues equivalem a fluxos do MEGAN vezes 16 km². O caderno confere essa linha no <code>mgn2mech.F</code> (célula 2) e relata os totais estaduais das duas formas, "BRAIN, área verdadeira" e "BRAIN, como entregue". Mapas e estatísticas por célula usam fluxos e independem dessa escolha. Sobre Santa Catarina, os totais estaduais com as taxas como entregues ficaram 1,26 a 1,27 vezes os totais com as áreas verdadeiras, e a comparação usa as áreas verdadeiras (Material Suplementar do artigo, Tabela S12).</p></div>
+  <div class="box warn"><span class="t">⚠️ Atenção · o que a comparação com o BRAIN pode mostrar</span>
+  <p>Os dois inventários usam o código MEGANv3.21 e diferem em meteorologia (WRF de 4 km contra ERA5-Land de 0,1°), entradas de vegetação, esquema do NO do solo, grade, passo de tempo e fator ρ. As razões medem o efeito somado dessas diferenças. Atribuir uma diferença a uma entrada pede execuções que mudem uma entrada de cada vez. Os cadernos 20 e 23 fizeram os testes que os dados permitem. A meteorologia do BRAIN não foi comparada com o ERA5-Land.</p></div>
+  <div class="nbcard"><h4>19 · Instalação e reprodução <span class="pill ran">executado</span></h4>
+  <p>Confere a execução do 17, instala os anos corrigidos na execução de produção e move os anos do MODIS para <code>megan_sc_outputs_v10_modis_lai_2024_2025/</code>. Baixa o arquivo oficial de CO<sub>2</sub> da NOAA e roda o <code>reproduce.py</code> com o IAF do MODIS, que devolve <code>results/v10_modis_lai_2024_2025</code>, e com o IAF corrigido. Dispensa o Earth Engine e leva de 30 a 60 min. Se pedido, grava o <code>results/v10</code> com o IAF corrigido, as somas de verificação e os cinco zips da versão. Foi executado uma vez pelos autores, a partir de pastas que não são distribuídas, e o <code>reproduce.py</code> repete as suas comparações.</p></div>
+
+  <div class="nbcard"><h4>20 · Sensibilidade de 2019 às entradas <span class="pill ran">executado</span></h4>
+  <p>Refaz 2019 mudando uma entrada de cada vez: temperatura na altitude do terreno de cada célula de 0,025°, PAR como 50% da radiação de onda curta, dossel tropical, dossel de coníferas nas florestas plantadas e ponto de murcha de solo argiloso. O ano inteiro leva cerca de 15 h (914 min na execução dos autores). Resultados na Tabela S10 do Material Suplementar do artigo.</p></div>
+
+  <div class="nbcard"><h4>21 · ERA5-Land contra as estações do INMET <span class="pill ran">executado</span></h4>
+  <p>Compara a temperatura e a radiação do ERA5-Land com as normais climatológicas do INMET e com os registros horários das estações em 2019, e ajusta o gradiente térmico vertical empírico que o caderno 20 lê, por isso roda antes do caderno 20. Leva cerca de 30 min. De dia, o ERA5-Land ficou 0,17 K mais quente que as estações (Material Suplementar do artigo, Seção S8 e Tabela S11).</p></div>
+
+  <div class="nbcard"><h4>22 · IAF com o VIIRS do NOAA-20 e do NOAA-21 <span class="pill ran">executado</span></h4>
+  <p>Lê o IAF do VIIRS do Suomi NPP, do NOAA-20 e do NOAA-21 nos arquivos HDF5 do NASA Earthdata e recalcula o IAF corrigido de 2024 e 2025 com cada registro. Precisa de uma conta Earthdata, dispensa o Earth Engine e leva de 1 a 2 h. A razão entre o IAF estadual do NOAA-20 e o do Suomi NPP subiu de 1,009 em 2018 para 1,042 em 2025 (Material Suplementar do artigo, Seção S2.5.6).</p>
+  <p class="small">A célula 2 imprime o nome de usuário do Earthdata. Apague a saída dela antes de compartilhar uma cópia executada.</p></div>
+
+  <div class="nbcard"><h4>23 · Por que este inventário difere do BRAIN <span class="pill ran">executado</span></h4>
+  <p>Testa as explicações candidatas com os dados disponíveis: as opções do MEGANv3.21 que diferem do padrão, a assinatura de cada classe, uma regressão sobre as células, uma decomposição sazonal, o relevo, as execuções de sensibilidade do 20, o TROPOMI em 2019 e o NO do solo. Leva cerca de 2 min. Resultados na Seção S9 do Material Suplementar do artigo.</p></div>
+  <div class="box check"><span class="t">✅ Checkpoint · onde está cada caderno</span>
+  <p>As fontes ficam em <code>notebooks/src/&lt;nome&gt;.py</code> e os cadernos em <code>notebooks/&lt;nome&gt;.ipynb</code>. O arquivo <code>notebooks/README.md</code> tem uma linha por caderno, com o que precisa, o que grava, onde roda e onde está a cópia publicada.</p></div>
+</section>
+
+<!-- ============================================================ CAP 7 -->
+<section class="chapter" id="c7" style="--accent:#0f7c80">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 7</span>
+  <h1 class="chap">Google Colab com o Earth Engine</h1>
+  <div class="box goal"><span class="t">🎯 Neste capítulo · cerca de 1 h de preparação</span>
+  <ul><li>registrar um projeto do Google Cloud para o Earth Engine;</li><li>levar o repositório ao Google Drive e abrir os cadernos no Colab;</li><li>autenticar, rodar e guardar os resultados.</li></ul></div>
+  <p>O <b>Google Colab</b> roda cadernos Jupyter numa máquina do Google, pelo navegador. O <b>Google Earth Engine</b> guarda e processa os dados de satélite e de reanálise (Gorelick et al., 2017). O caderno roda no Colab e pede ao Earth Engine os cálculos sobre os mapas.</p>
+  <div class="svgwrap">
+  <svg viewBox="0 0 640 112" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Inter" font-size="11.5">
+    <defs><marker id="ar7" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8a94a6"/></marker></defs>
+    <g text-anchor="middle">
+      <rect x="0" y="12" width="140" height="74" rx="10" fill="#e8f0fb" stroke="#1f5fa8"/>
+      <text x="70" y="38" font-weight="700" fill="#1f5fa8">1. Projeto Cloud</text><text x="70" y="56">registrado no</text><text x="70" y="72">Earth Engine</text>
+      <rect x="166" y="12" width="140" height="74" rx="10" fill="#fff4e0" stroke="#b26b00"/>
+      <text x="236" y="38" font-weight="700" fill="#b26b00">2. Repositório</text><text x="236" y="56">no Drive, em</text><text x="236" y="72">MyDrive/megan-sc</text>
+      <rect x="332" y="12" width="140" height="74" rx="10" fill="#e8f4ec" stroke="#1f7a3a"/>
+      <text x="402" y="38" font-weight="700" fill="#1f7a3a">3. Caderno</text><text x="402" y="56">no Colab, com</text><text x="402" y="72">EE_PROJECT</text>
+      <rect x="498" y="12" width="140" height="74" rx="10" fill="#f1ebfb" stroke="#6a3fb5"/>
+      <text x="568" y="38" font-weight="700" fill="#6a3fb5">4. Saídas</text><text x="568" y="56">gravadas no</text><text x="568" y="72">Google Drive</text>
+    </g>
+    <g stroke="#8a94a6" stroke-width="2" fill="none" marker-end="url(#ar7)"><path d="M141 49 H163"/><path d="M307 49 H329"/><path d="M473 49 H495"/></g>
+  </svg></div>
+
+  <h2>7.1 Registrar o projeto do Earth Engine (uma vez só)</h2>
+  <p>O Earth Engine trabalha dentro de um projeto do Google Cloud registrado para uso no Earth Engine, tanto no uso gratuito quanto no pago. Os projetos padrão do Cloud e do Colab vêm sem o Earth Engine ativado (Google, 2026a).</p>
+  <div class="step"><div class="n">1</div><div><h4>Abra a página de registro</h4><p>Acesse <code>console.cloud.google.com/earth-engine</code> com a sua conta Google. A página cria um projeto novo ou registra um projeto que você já tem, e o acesso fica liberado logo após o registro (Google, 2025).</p></div></div>
+  <div class="step"><div class="n">2</div><div><h4>Escolha o uso não comercial</h4><p>Responda ao questionário de elegibilidade para uso não comercial. Para projetos não comerciais, o Google dispensa a configuração de faturamento (Google, 2025).</p></div></div>
+  <div class="step"><div class="n">3</div><div><h4>Ative a API</h4><p>Na página da Earth Engine API do Cloud Console, com o seu projeto selecionado, clique em <b>Ativar</b> (<i>Enable</i>) se o botão aparecer (Google, 2025).</p></div></div>
+  <div class="step"><div class="n">4</div><div><h4>Anote o ID do projeto</h4><p>O ID aparece no seletor de projetos do console, por exemplo <code>ee-seunome</code>. Esse texto entra na variável <code>EE_PROJECT</code> dos cadernos 10, 14, 16, 17, 20 e 21.</p></div></div>
+  <div class="box warn"><span class="t">⚠️ Atenção</span>
+  <ul><li>Projetos registrados antes de 15 de abril de 2025 precisam confirmar a elegibilidade não comercial para manter o acesso, e todo projeto não comercial reconfirma a elegibilidade de tempos em tempos (Google, 2025).</li>
+  <li>Contas institucionais às vezes bloqueiam a criação de projetos. Peça ao administrador, ou crie o projeto com uma conta pessoal e acrescente a conta institucional como proprietária (Google, 2026a).</li>
+  <li>Projetos não comerciais usam por padrão a cota Community, de 150 EECU-horas por mês. Acima dela, o projeto entra em modo restrito, com menos processamento simultâneo (Google, 2026b). O caderno 14 usou 41,2 EECU-horas.</li></ul></div>
+
+  <h2>7.2 Levar o repositório ao Google Drive</h2>
+  <p>Os cadernos esperam o repositório em <code>/content/drive/MyDrive/megan-sc</code> e gravam a execução em <code>/content/drive/MyDrive/megan_sc_outputs_v10</code>. Abra <code>colab.research.google.com</code>, crie um caderno novo e rode uma das opções.</p>
+  <div class="grid2">
+    <div class="card"><h4>Opção 1 · GitHub (depois da publicação)</h4>
+<pre>from google.colab import drive
+drive.mount('/content/drive')
+!git clone https://github.com/jessicajcss/MEGAN_SC /content/drive/MyDrive/megan-sc</pre></div>
+    <div class="card"><h4>Opção 2 · arquivo zip no Drive</h4><p>Envie <code>MEGAN_SC.zip</code> para o <b>Meu Drive</b> e rode:</p>
+<pre>from google.colab import drive
+drive.mount('/content/drive')
+!unzip -q /content/drive/MyDrive/MEGAN_SC.zip -d /content/drive/MyDrive/
+!mv /content/drive/MyDrive/MEGAN_SC /content/drive/MyDrive/megan-sc</pre></div>
+  </div>
+
+  <h2>7.3 Abrir, configurar e rodar um caderno</h2>
+  <div class="step"><div class="n">1</div><div><h4>Abra o caderno</h4><p>No Drive, dê dois cliques em <code>megan-sc/notebooks/10_production_run.ipynb</code> e escolha <b>Google Colaboratory</b>. Depois da publicação, o endereço <code>colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/&lt;caderno&gt;.ipynb</code> também abre cada caderno.</p></div></div>
+  <div class="step"><div class="n">2</div><div><h4>Troque o projeto</h4><p>Escreva o ID do seu projeto em <code>EE_PROJECT = 'your-ee-project'</code>. Ele fica na célula "3 · Earth Engine" dos cadernos 10, 17 e 20 ("2 · Earth Engine" no caderno 21) e na célula de configurações dos cadernos 14 e 16.</p></div></div>
+  <div class="step"><div class="n">3</div><div><h4>Rode tudo</h4><p>Use <b>Ambiente de execução › Executar tudo</b>. A API do Earth Engine já vem instalada no Colab (Google, 2024). No Colab, <code>ee.Authenticate()</code> usa o modo <code>colab</code> e as credenciais do próprio Colab, e <code>ee.Initialize(project=EE_PROJECT)</code> liga a sessão ao seu projeto (Google, 2026a).</p></div></div>
+  <div class="step"><div class="n">4</div><div><h4>Acompanhe e retome</h4><p>Um ano de produção leva horas de requisições. A cada nova sessão, depois de reiniciar o kernel ou quando a máquina é reciclada por inatividade, a autenticação precisa ser refeita (Google, 2024). O caderno 10 retoma do último ponto salvo quando você roda tudo de novo.</p></div></div>
+  <div class="box check"><span class="t">✅ Checkpoint · fim do caderno 10</span>
+  <p>A autoconferência final (célula 10) deve relatar <code>signature_cells = 0</code> e 12 registros de procedimentos por ano. Em seguida, rode o caderno 11, que deve terminar sem falhas, ou com cada falha explicada, antes do caderno 13.</p></div>
+
+  <h2>7.4 Manter a cobertura da terra da execução publicada</h2>
+  <p>O recurso do MapBiomas no Earth Engine aponta para a coleção mais nova. Uma nova execução feita depois de outubro de 2026 pode ler uma coleção mais nova que a Coleção 10. O caderno 10 reaproveita as formas de crescimento de um ano quando <code>&lt;saída&gt;/&lt;ano&gt;/inputs/growthform_&lt;ano da cobertura&gt;.npz</code> existe. Para manter a cobertura publicada, copie esses arquivos de <code>data/run_v10/</code> antes de rodar (capítulo técnico 6, seção 6.3).</p>
+  <div class="box lay"><span class="t">🗣️ Em palavras simples</span>
+  <p>O Colab é o computador emprestado. O Earth Engine é a biblioteca de mapas de satélite. O Drive é a gaveta onde os resultados ficam guardados quando o computador emprestado é desligado.</p></div>
+</section>
+
+<!-- ============================================================ CAP 8 -->
+<section class="chapter" id="c8" style="--accent:#1f5fa8">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 8</span>
+  <h1 class="chap">Ler e conferir os resultados</h1>
+  <div class="box goal"><span class="t">🎯 Neste capítulo · 20 min</span>
+  <ul><li>onde está cada resultado publicado;</li><li>como rastrear um número até o arquivo e o código;</li><li>como o trabalho foi verificado e como ler a estatística.</li></ul></div>
+
+  <h2>8.1 O mapa de <code>results/v10/</code></h2>
+  <table>
+    <tr><th style="width:42mm">Pasta</th><th>Conteúdo</th></tr>
+    <tr><td><code>notebook13_meso2024/</code></td><td>a fonte dos documentos: <code>manuscript_numbers.csv</code>, tabelas 2 a 4, tendências, correlações, ciclo sazonal, figuras</td></tr>
+    <tr><td><code>notebook11/</code></td><td>verificações C0 a C5 e totais do Estado por classe</td></tr>
+    <tr><td><code>notebook14/</code>, <code>notebook15/</code></td><td>os quatro testes do TROPOMI; testes S1 e S3</td></tr>
+    <tr><td><code>diagnostics/</code>, <code>final_review/</code></td><td>diagnósticos definidos depois da inspeção, rotulados assim nos documentos</td></tr>
+    <tr><td><code>report/</code></td><td>números e tabelas do relatório estadual</td></tr>
+    <tr><td><code>lai_viirs_check/</code>, <code>ijest_review/</code></td><td>conferência e correção do IAF; diagnósticos post hoc do manuscrito em inglês</td></tr>
+    <tr><td><code>figures/</code></td><td>figuras em português, inglês, do relatório e do manuscrito em inglês</td></tr>
+  </table>
+
+  <h2>8.2 Do número publicado ao arquivo</h2>
+  <p>O capítulo técnico 8 (<code>docs/tutorial/08_number_map.md</code>) liga cada número do artigo e do relatório ao arquivo e à chave que o guardam. Exemplo com a média de COVB:</p>
+<pre>python - &lt;&lt;'EOF'
+import pandas as pd
+n = pd.read_csv('results/v10/notebook13_meso2024/manuscript_numbers.csv').set_index('key')
+print(n.loc['bvoc_mean_kt', 'pt'])          <span class="c"># 657</span>
+print(n.loc['trend_ISOP', 'pt'])            <span class="c"># 0,88% ano-1 (0,33 a 1,50; p = 0,004; MK p = 0,004)</span>
+f = 'results/v10/notebook13_meso2024/table2_annual_totals_SC_groups.csv'
+t = pd.read_csv(f).set_index('year')
+print(round(t.loc[2025, 'BVOC'] / 1e3, 1))  <span class="c"># 672.9 (mil t)</span>
+EOF</pre>
+  <div class="grid2">
+  <figure style="margin:0"><img src="img/series_pt.jpg" alt="Série anual"><figcaption>Emissões anuais do Estado, 2003 a 2025: COVB (a), isopreno (b), monoterpenos (c), sesquiterpenos (d) e NO do solo (e). Os anos de 2024 e 2025 usam o IAF corrigido com o VIIRS. Arquivo <code>results/v10/figures/pt/fig1.png</code>, caderno 13.</figcaption></figure>
+  <figure style="margin:0"><img src="img/composition_pt.jpg" alt="Composição e ciclo sazonal"><figcaption>Composição média dos COVB (a), ciclo sazonal (b) e ciclo normalizado pela média mensal (c), 2003 a 2025. Arquivo <code>results/v10/figures/pt/fig2.png</code>, caderno 13.</figcaption></figure>
+  </div>
+
+  <h2>8.3 Como o trabalho foi verificado</h2>
+  <div class="grid2">
+    <div class="card"><h4>🧩 Contra o código oficial</h4><p>Com o motor como usado na produção, a atividade de emissão difere da do Fortran em no máximo 3,8 × 10⁻⁶ (relativo) no caso de teste do código, quando os dois usam a copa do Fortran (<code>VALIDATION.md</code>).</p></div>
+    <div class="card"><h4>🔎 A própria execução</h4><p>Seis verificações por ano, 138 resultados, 137 aprovados. Cada um dos 276 meses tem oito passos por dia, e cada arquivo anual é a soma dos mensais.</p></div>
+    <div class="card"><h4>🛰️ Contra observações</h4><p>As anomalias mensais sem sazonalidade do HCHO do TROPOMI acompanham o isopreno modelado (r = 0,45; N<sub>ef</sub> = 72; p &lt; 0,001). O padrão espacial e o ciclo sazonal ficaram sem reprodução. A coluna observada ficou entre 45% e 125% da esperada, faixa que inclui 100%.</p></div>
+    <div class="card"><h4>⚙️ Sensibilidade</h4><p>Passo de 3 h contra 1 h: −0,06% nos COVB em 28 dias de 2019 (teste S1). Fator de umidade do solo: cerca de −0,05% nos COVB (teste S3).</p></div>
+  </div>
+  <figure class="w60"><img src="img/verification_pt.jpg" alt="Fluxograma de verificação"><figcaption>Fluxograma de verificação. Arquivo <code>results/v10/figures/pt/fig_verification.png</code>, gerado por <code>analysis/v10/schematics/verification_flowchart.py</code>.</figcaption></figure>
+
+  <h2>8.4 A estatística em poucas palavras</h2>
+  <ul>
+    <li><b>Theil-Sen</b> (Sen, 1968): a inclinação é a mediana das inclinações entre todos os pares de anos. Os documentos a dão em % da média de 2003 a 2025 por ano.</li>
+    <li><b>Mann-Kendall</b> (Mann, 1945; Kendall, 1975): testa a ausência de tendência monotônica. A correção de Hamed e Rao (1998) para autocorrelação deixou todos os valores de p iguais.</li>
+    <li><b>Benjamini-Hochberg</b> (Benjamini; Hochberg, 1995): nove tendências testadas juntas pedem controle da taxa de falsas descobertas. Ficam seis tendências (q = 0,017 a 0,023): COVB, isopreno, monoterpenos, sesquiterpenos, COV oxigenados e NO do solo. Hidrocarbonetos leves, MBO e CO (q = 0,081) ficam de fora.</li>
+  </ul>
+  <div class="box warn"><span class="t">⚠️ Atenção · tendências e 2024-2025</span>
+  <p>As séries de 2003 a 2025 terminam nos dois anos com o IAF corrigido. De 2003 a 2023, período que a correção não toca, ficam as mesmas seis tendências (q ≤ 0,048). O capítulo técnico 7 mostra a sensibilidade das tendências ao ano inicial, ao ano final e ao teste (<code>final_review/</code>).</p></div>
+</section>
+
+<!-- ============================================================ CAP 9 -->
+<section class="chapter" id="c9" style="--accent:#6a3fb5">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 9</span>
+  <h1 class="chap">O inventário da sua região</h1>
+  <div class="box goal"><span class="t">🎯 Neste capítulo · 20 min de leitura, horas de execução</span>
+  <ul><li>o assistente <code>run_your_region/</code>, sem programar;</li><li>o caderno 10 adaptado, com todos os recursos da produção;</li><li>as escolhas que pedem revisão em outra região.</li></ul></div>
+  <p>O motor serve para qualquer região. A grade, as entradas e a máscara saem de um arquivo de contorno. O guia <code>run_your_region/START_HERE.md</code> explica tudo passo a passo, e o caderno <code>run_your_region/region_setup.ipynb</code> roda no Colab.</p>
+  <h2>9.1 O assistente</h2>
+  <div class="step"><div class="n">1</div><div><h4>Preencha o passo 1</h4><p><code>REGION_NAME</code> (apelido curto), <code>SHAPEFILE_PATH</code> (contorno no Drive), <code>COUNTRY_IS_BRAZIL</code>, o primeiro e o último mês do período (<code>START_YEAR</code>, <code>START_MONTH</code>, <code>END_YEAR</code>, <code>END_MONTH</code>), <code>EE_PROJECT</code> e <code>RESOLUTION_DEG</code> (0,05° é o padrão sugerido).</p></div></div>
+  <div class="step"><div class="n">2</div><div><h4>Rode tudo e confira</h4><p>O assistente monta a grade e a máscara, lê a cobertura da terra (MapBiomas no Brasil, MODIS MCD12Q1 fora dele), escolhe o mapa de ecótipos e preenche os vazios (FIX-5), monta os EF, roda um teste de dois dias de um mês quente e desenha um mapa de isopreno.</p></div></div>
+  <div class="step"><div class="n">3</div><div><h4>Salve e rode o período</h4><p>O passo 8 grava <code>config/&lt;região&gt;_run.yaml</code>. No passo 9, <code>RUN_FULL = True</code> roda todos os meses do período, a cada 3 h. Comece com um mês e resolução grossa.</p></div></div>
+  <div class="box expert"><span class="t">🧠 Para especialistas · diferença do assistente</span>
+  <p>O assistente usa o motor do caderno 10, com FIX-1 a FIX-8, mas a temperatura média diária é a média dos passos amostrados, enquanto o caderno 10 usa as 24 horas (uma requisição a mais por dia). Para pontos de retomada, GeoTIFF de entrada, registros dos procedimentos e tabelas municipais, adapte o caderno 10 (capítulo técnico 11, seção 11.2).</p></div>
+  <h2>9.2 Escolhas a revisar em outra região</h2>
+  <table>
+    <tr><th style="width:44mm">Escolha</th><th>Em Santa Catarina</th><th>O que verificar</th></tr>
+    <tr><td>Tipo de copa das árvores</td><td>folhosa temperada (tipo 3)</td><td>o assistente usa folhosa tropical (tipo 2) a até 23,5° do equador</td></tr>
+    <tr><td>Ponto de murcha</td><td>0,12 m³ m⁻³ constante</td><td>derivar da textura do solo onde o solo seca</td></tr>
+    <tr><td>Estação do NO do solo</td><td>novembro a maio</td><td>se a estação combina com a agricultura local</td></tr>
+    <tr><td>Fator ρ do isopreno</td><td>0,96 aplicado na leitura</td><td>aplicar o mesmo fator ou declarar que não aplicou</td></tr>
+    <tr><td>Anos da cobertura</td><td>2025 usa 2024</td><td>o alcance do produto escolhido</td></tr>
+    <tr><td>Litoral e ilhas</td><td>FIX-1 preenche pela célula mais próxima</td><td><code>filled_met_steps</code> nos registros de cada mês</td></tr>
+    <tr><td>Resolução</td><td>0,025°</td><td>o ERA5-Land tem 0,1°; grade mais fina acrescenta detalhe só na vegetação</td></tr>
+  </table>
+  <div class="box idea"><span class="t">💡 O que relatar</span>
+  <p>Informe o hash do <code>fixes.py</code>, as escolhas acima, as verificações do caderno 11 e os limites que valem para a sua região. Enquanto faltar comparação com observações, apresente o inventário como estimativa de modelo.</p></div>
+</section>
+
+<!-- ============================================================ CAP 10 -->
+<section class="chapter" id="c10" style="--accent:#b3261e">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 10</span>
+  <h1 class="chap">Limitações</h1>
+  <div class="box goal"><span class="t">🎯 Neste capítulo · 10 min</span>
+  <ul><li>o que os resultados sustentam e o que deixam em aberto;</li><li>as escolhas de método que pesam nos números.</li></ul></div>
+  <div class="grid2">
+    <div class="card"><h4>📏 Falta medida local de fluxo</h4><p>O modelo ainda não foi comparado com fluxos ou concentrações medidos em Santa Catarina (<code>VALIDATION.md</code>).</p></div>
+    <div class="card"><h4>🛰️ O TROPOMI sustenta só uma parte</h4><p>A comparação apoia as anomalias temporais do isopreno modelado. O padrão espacial observado segue o relevo, e a faixa de tempos de vida, rendimentos e correções de viés deixa a magnitude em aberto (Palmer et al., 2003; Vigouroux et al., 2020).</p></div>
+    <div class="card"><h4>🍃 IAF de 2024 e 2025</h4><p>O IAF do MODIS desses dois anos foi trocado por uma correção que se apoia no registro do VIIRS do Suomi NPP. O NOAA-20 e o NOAA-21 usam o mesmo algoritmo e por isso não testam o método de recuperação. O NOAA-20 deriva em relação ao Suomi NPP, e o registro do NOAA-21 é curto demais para dizer se também deriva (capítulos 3 e 6).</p></div>
+    <div class="card"><h4>🌲 Silvicultura como árvore</h4><p>Pinus e eucalipto entram como árvore, sem separação. Com os fatores de emissão do pinus ou do eucalipto na área plantada de 2019, o isopreno de 2019 mudaria −18,7% ou +13,7% (<code>results/v10/ijest_review/</code>).</p></div>
+    <div class="card"><h4>🫧 CO<sub>2</sub> desligado</h4><p>Com a inibição pelo CO<sub>2</sub> (375 a 426 ppm), a tendência do isopreno seria de +0,65% ao ano (p = 0,018; q = 0,03), contra +0,88% sem ela (Heald et al., 2009; Lan; Tans; Thoning, 2026).</p></div>
+    <div class="card"><h4>🗺️ Cobertura e solo</h4><p>O MapBiomas termina em 2024, e 2025 usa o mapa de 2024. O ponto de murcha é constante (0,12 m³ m⁻³), e o fator de umidade do solo muda os COVB em cerca de −0,05%.</p></div>
+    <div class="card"><h4>⏱️ Uma única execução</h4><p>A execução de produção foi feita uma vez. O repositório não tem medida da dispersão entre duas execuções completas, e um reprocessamento das coleções de entrada pelo produtor pode mudar uma nova execução.</p></div>
+    <div class="card"><h4>📚 Comparar inventários</h4><p>Em 2019, isopreno, CO e NO do solo ficaram 7,6, 3,7 e 18,9 vezes acima do inventário estadual anterior (Hoinaski et al., 2022). Inventários com versões e entradas diferentes não isolam uma causa única.</p></div>
+  </div>
+  <div class="box idea"><span class="t">💡 Para lembrar</span>
+  <p>Reproduzir prova que o código chega aos números publicados. Interpretar bem pede lembrar destas premissas, da diferença entre emissão e concentração e da incerteza dos fatores de emissão e da vegetação.</p></div>
+</section>
+
+<!-- ============================================================ CAP 11 -->
+<section class="chapter" id="c11" style="--accent:#b26b00">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 11</span>
+  <h1 class="chap">Quando algo dá errado</h1>
+  <h2>11.1 Nível A (<code>reproduce.py</code>)</h2>
+  <table>
+    <tr><th style="width:56mm">O que aparece</th><th>Por quê</th><th style="width:56mm">O que fazer</th></tr>
+    <tr><td><code>missing run_v10/...</code> no <code>check-data</code></td><td>os arquivos zip não foram descompactados</td><td><code>python tools/data_release.py fetch &lt;endereço-ou-pasta&gt;</code></td></tr>
+    <tr><td><code>checksum differs ...</code></td><td>download interrompido ou arquivo alterado</td><td>apague a pasta em <code>data/</code> e baixe de novo</td></tr>
+    <tr><td><code>annual_grids_cache.npz not found</code></td><td>uma etapa que lê o caderno 13 rodou antes dele</td><td><code>python reproduce.py nb13</code> e repita a etapa</td></tr>
+    <tr><td><code>ModuleNotFoundError</code></td><td>pacote ausente</td><td><code>pip install -r requirements-reproduce.txt</code></td></tr>
+    <tr><td><code>AttributeError ... union_all</code></td><td>geopandas anterior à versão 1.0</td><td>atualize o geopandas ou use <code>requirements-lock.txt</code></td></tr>
+    <tr><td>CSV marcado <code>DIFFERENT</code></td><td>versões de bibliotecas ou entrada alterada</td><td>leia a primeira coluna que difere; confira <code>check-data</code> e <code>reproduce.py paths</code></td></tr>
+    <tr><td><code>No space left on device</code></td><td>as saídas pedem cerca de 160 MB, mais cópias do cache</td><td>aponte <code>MEGAN_SC_OUT</code> para um disco com espaço</td></tr>
+  </table>
+  <h2>11.2 Nível B (Colab e Earth Engine)</h2>
+  <table>
+    <tr><th style="width:56mm">O que aparece</th><th>Por quê</th><th style="width:56mm">O que fazer</th></tr>
+    <tr><td><code>Earth Engine API has not been used in project ... or it is disabled</code></td><td>projeto sem a API ativada</td><td>defina o projeto em <code>ee.Initialize()</code> e ative a API (Google, 2026a)</td></tr>
+    <tr><td><code>ee.Initialize</code> falha ou projeto não encontrado</td><td>ID errado ou projeto sem registro</td><td>confira <code>EE_PROJECT</code> e o registro (capítulo 7)</td></tr>
+    <tr><td>linhas <code>EE retry ...</code> no caderno 10</td><td>erros passageiros; cada pedido tem quatro tentativas</td><td>deixe seguir; se falhar quatro vezes, rode tudo de novo</td></tr>
+    <tr><td><code>Computation timed out</code> no caderno 14</td><td>pedido interativo grande demais</td><td>use o caderno distribuído aqui, que faz exportações em lote</td></tr>
+    <tr><td>caderno 13: <code>found 0</code></td><td><code>ROOT</code> errado ou Drive sem montar</td><td>confira <code>ROOT</code> na célula de configurações</td></tr>
+    <tr><td>caderno 12: <code>libiomp5.so not found</code></td><td>falta o OpenMP da Intel</td><td>a célula 2 o instala; rode em Linux x86-64 (Colab)</td></tr>
+  </table>
+  <div class="box check"><span class="t">✅ Para pedir ajuda</span>
+  <p>Abra uma <i>issue</i> no repositório com o comando, o fim do registro (<code>reproduced/logs/&lt;etapa&gt;.log</code>), a saída de <code>python reproduce.py paths</code> e as versões do Python e dos pacotes (<code>pip freeze</code>).</p></div>
+</section>
+
+<!-- ============================================================ CAP 12 -->
+<section class="chapter" id="c12" style="--accent:#1f7a3a">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 12</span>
+  <h1 class="chap">Glossário</h1>
+  <dl class="glossary">
+    <dt>AOS (aerossol orgânico secundário)</dt><dd>Partículas formadas no ar pela condensação de produtos da oxidação de compostos orgânicos. Fazem parte do MP<sub>2,5</sub>.</dd>
+    <dt>COVB</dt><dd>Compostos orgânicos voláteis biogênicos. Aqui, a soma das 17 classes do MEGAN que restam depois de separar NO do solo e CO.</dd>
+    <dt>C0 a C5</dt><dd>As seis verificações automáticas do caderno 11.</dd>
+    <dt>EECU-hora</dt><dd>Unidade de cálculo do Earth Engine usada para medir o processamento em lote e as cotas.</dd>
+    <dt>EF (fator de emissão)</dt><dd>Emissão de uma classe em condições padrão (nmol m⁻² s⁻¹), por ecótipo e forma de crescimento.</dd>
+    <dt>Ecótipo</dt><dd>Tipo de vegetação do MEGAN que define a composição de espécies e, com ela, os fatores de emissão.</dd>
+    <dt>ER (atividade de emissão)</dt><dd>Produto adimensional do IAF e dos fatores γ, calculado para cada classe, célula e passo.</dd>
+    <dt>FIX-1 a FIX-8</dt><dd>Os procedimentos de entrada e de execução de <code>src/megan_sc/fixes.py</code>.</dd>
+    <dt>Forma de crescimento</dt><dd>Árvore, arbusto, herbácea ou cultivo. As classes do MapBiomas são convertidas nessas quatro.</dd>
+    <dt>γ (gama)</dt><dd>Fator de atividade: γ<sub>TP</sub> (luz e temperatura na copa), γ<sub>idade</sub>, γ<sub>SM</sub> (umidade do solo), γ<sub>CO2</sub>, γ<sub>BD</sub>.</dd>
+    <dt>IAF (índice de área foliar)</dt><dd>Área de folhas por área de chão (m² m⁻²). Vem do MODIS e, para a conferência, do VIIRS.</dd>
+    <dt>LDF</dt><dd>Fração de uma classe que depende da luz.</dd>
+    <dt>MP<sub>2,5</sub></dt><dd>Material particulado com diâmetro de até 2,5 µm.</dd>
+    <dt>PAR e PPFD</dt><dd>Radiação fotossinteticamente ativa (W m⁻²) e densidade de fluxo de fótons fotossintéticos (µmol m⁻² s⁻¹). PPFD = 4,5 × PAR.</dd>
+    <dt>Reproduzir e replicar</dt><dd>Reproduzir é refazer as contas com os mesmos dados e código. Replicar é refazer o estudo a partir das fontes originais, aqui com o Earth Engine.</dd>
+    <dt>ρ (rô)</dt><dd>Fator de perda e produção no dossel. Vale 0,96 para o isopreno nos números publicados.</dd>
+    <dt>SHA-256</dt><dd>Impressão digital de um arquivo. Qualquer mudança no conteúdo muda a impressão.</dd>
+    <dt>S1, S2, S3</dt><dd>Testes de sensibilidade do caderno 15: passo de tempo, agregação do IAF (previsto) e umidade do solo.</dd>
+    <dt>ΔHCHO</dt><dd>Coluna de formaldeído do TROPOMI menos o fundo do Atlântico.</dd>
+  </dl>
+</section>
+
+<!-- ============================================================ CAP 13 -->
+<section class="chapter refs" id="c13" style="--accent:#1f7a3a">
+  <div class="progress"></div>
+  <span class="chapnum">Capítulo 13</span>
+  <h1 class="chap">Referências</h1>
+  <p class="small muted" style="text-indent:0;padding-left:0">Referências tomadas da lista do relatório estadual do inventário e páginas oficiais do Google Earth Engine consultadas em 1º de novembro de 2026.</p>
+  <p>ATKINSON, R.; AREY, J. Atmospheric degradation of volatile organic compounds. <i>Chemical Reviews</i>, v. 103, n. 12, p. 4605-4638, 2003. DOI: 10.1021/cr0206420.</p>
+  <p>BENJAMINI, Y.; HOCHBERG, Y. Controlling the false discovery rate: a practical and powerful approach to multiple testing. <i>Journal of the Royal Statistical Society: Series B (Methodological)</i>, v. 57, n. 1, p. 289-300, 1995. DOI: 10.1111/j.2517-6161.1995.tb02031.x.</p>
+  <p>CARLTON, A. G.; WIEDINMYER, C.; KROLL, J. H. A review of secondary organic aerosol (SOA) formation from isoprene. <i>Atmospheric Chemistry and Physics</i>, v. 9, n. 14, p. 4987-5005, 2009. DOI: 10.5194/acp-9-4987-2009.</p>
+  <p>DE SMEDT, I. et al. Algorithm theoretical baseline for formaldehyde retrievals from S5P TROPOMI and from the QA4ECV project. <i>Atmospheric Measurement Techniques</i>, v. 11, p. 2395-2426, 2018. DOI: 10.5194/amt-11-2395-2018.</p>
+  <p>EUROPEAN CENTRE FOR MEDIUM-RANGE WEATHER FORECASTS (ECMWF). <i>ERA5-Land</i>: data documentation. Reading: ECMWF, 2025. Disponível em: https://confluence.ecmwf.int/spaces/CKB/pages/140385202/ERA5-Land+data+documentation. Acesso em: 2 out. 2026.</p>
+  <p>GOOGLE. <i>Python installation</i>: Colab notebook. Google Earth Engine, 2024. Disponível em: https://developers.google.com/earth-engine/guides/python_install-colab. Acesso em: 1 nov. 2026.</p>
+  <p>GOOGLE. <i>Earth Engine access</i>. Google Earth Engine, 2025. Disponível em: https://developers.google.com/earth-engine/guides/access. Acesso em: 1 nov. 2026.</p>
+  <p>GOOGLE. <i>Authentication and initialization</i>. Google Earth Engine, 2026a. Disponível em: https://developers.google.com/earth-engine/guides/auth. Acesso em: 1 nov. 2026.</p>
+  <p>GOOGLE. <i>Earth Engine noncommercial tiers</i>. Google Earth Engine, 2026b. Disponível em: https://developers.google.com/earth-engine/guides/noncommercial_tiers. Acesso em: 1 nov. 2026.</p>
+  <p>GORELICK, N.; HANCHER, M.; DIXON, M.; ILYUSHCHENKO, S.; THAU, D.; MOORE, R. Google Earth Engine: planetary-scale geospatial analysis for everyone. <i>Remote Sensing of Environment</i>, v. 202, p. 18-27, 2017. DOI: 10.1016/j.rse.2017.06.031.</p>
+  <p>GUENTHER, A. et al. Estimates of global terrestrial isoprene emissions using MEGAN. <i>Atmospheric Chemistry and Physics</i>, v. 6, p. 3181-3210, 2006. DOI: 10.5194/acp-6-3181-2006.</p>
+  <p>GUENTHER, A. B. et al. The Model of Emissions of Gases and Aerosols from Nature version 2.1 (MEGAN2.1): an extended and updated framework for modeling biogenic emissions. <i>Geoscientific Model Development</i>, v. 5, n. 6, p. 1471-1492, 2012. DOI: 10.5194/gmd-5-1471-2012.</p>
+  <p>GUENTHER, A. <i>MEGAN 3.2 input files</i> [Dataset]. Zenodo, 2024a. DOI: 10.5281/zenodo.10939297.</p>
+  <p>GUENTHER, A. <i>MEGANv3.21.tar.gz emission calculator code</i> (3.21). Zenodo, 2024b. DOI: 10.5281/zenodo.10526206.</p>
+  <p>HALLQUIST, M. et al. The formation, properties and impact of secondary organic aerosol: current and emerging issues. <i>Atmospheric Chemistry and Physics</i>, v. 9, n. 14, p. 5155-5236, 2009. DOI: 10.5194/acp-9-5155-2009.</p>
+  <p>HAMED, K. H.; RAO, A. R. A modified Mann-Kendall trend test for autocorrelated data. <i>Journal of Hydrology</i>, v. 204, n. 1-4, p. 182-196, 1998. DOI: 10.1016/S0022-1694(97)00125-X.</p>
+  <p>HEALD, C. L. et al. Response of isoprene emission to ambient CO2 changes and implications for global budgets. <i>Global Change Biology</i>, v. 15, n. 5, p. 1127-1140, 2009. DOI: 10.1111/j.1365-2486.2008.01802.x.</p>
+  <p>HOINASKI, L. (coord.); MEOTTI, B.; RIBEIRO, C. B.; SANTOS, O. N. dos; RODELLA, F. H. C.; WILL, R.; MOORE, J. P.; VASQUES, T. V.; BORTH, R. C. <i>Avaliação do impacto das emissões veiculares, queimadas, industriais e naturais na qualidade do ar em Santa Catarina</i>: ano base 2021. Florianópolis: LCQAr/UFSC, Universidade Federal de Santa Catarina, 2022. ISBN 978-85-8328-156-6.</p>
+  <p>HOINASKI, L.; WILL, R.; RIBEIRO, C. B. Brazilian Atmospheric Inventories (BRAIN): a comprehensive database of air quality in Brazil. <i>Earth System Science Data</i>, v. 16, n. 5, p. 2385-2405, 2024. DOI: 10.5194/essd-16-2385-2024.</p>
+  <p>INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). <i>Malhas territoriais</i>: malha municipal 2024. Rio de Janeiro: IBGE, 2025. Disponível em: https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/15774-malhas.html. Acesso em: 2 out. 2026.</p>
+  <p>KENDALL, M. G. <i>Rank correlation methods</i>. 4. ed. London: Charles Griffin, 1975.</p>
+  <p>LAN, X.; TANS, P.; THONING, K. W. <i>Trends in globally-averaged CO₂ determined from NOAA Global Monitoring Laboratory measurements</i>. Boulder: NOAA Global Monitoring Laboratory, 2026. Disponível em: https://gml.noaa.gov/ccgg/trends/global.html. Acesso em: 13 out. 2026.</p>
+  <p>MANN, H. B. Nonparametric tests against trend. <i>Econometrica</i>, v. 13, n. 3, p. 245-259, 1945. DOI: 10.2307/1907187.</p>
+  <p>MUÑOZ-SABATER, J. et al. ERA5-Land: a state-of-the-art global reanalysis dataset for land applications. <i>Earth System Science Data</i>, v. 13, n. 9, p. 4349-4383, 2021. DOI: 10.5194/essd-13-4349-2021.</p>
+  <p>MYNENI, R. <i>VIIRS/JPSS1 Leaf Area Index/FPAR 8-Day L4 Global 500m SIN Grid V002</i>. Sioux Falls: NASA EOSDIS Land Processes Distributed Active Archive Center, 2023a. DOI: 10.5067/VIIRS/VJ115A2H.002.</p>
+  <p>MYNENI, R. <i>VIIRS/NPP Leaf Area Index/FPAR 8-Day L4 Global 500m SIN Grid V002</i>. NASA EOSDIS Land Processes DAAC, 2023b. DOI: 10.5067/VIIRS/VNP15A2H.002.</p>
+  <p>MYNENI, R. <i>VIIRS/JPSS2 Leaf Area Index/FPAR 8-Day L4 Global 500m SIN Grid V002</i>. NASA EOSDIS Land Processes DAAC, 2026. DOI: 10.5067/VIIRS/VJ215A2H.002.</p>
+  <p>MYNENI, R.; KNYAZIKHIN, Y.; PARK, T. <i>MODIS/Terra+Aqua Leaf Area Index/FPAR 4-Day L4 Global 500m SIN Grid V061</i>. NASA EOSDIS Land Processes DAAC, 2021. DOI: 10.5067/MODIS/MCD15A3H.061.</p>
+  <p>NASA MODIS LAND TEAM. <i>MODIS Land news</i>: Terra and Aqua orbital drift and end of mission. Greenbelt: NASA Goddard Space Flight Center, 2025. Disponível em: https://modis-land.gsfc.nasa.gov/news.html. Acesso em: 22 out. 2026.</p>
+  <p>PALMER, P. I. et al. Mapping isoprene emissions over North America using formaldehyde column observations from space. <i>Journal of Geophysical Research: Atmospheres</i>, v. 108, n. D6, art. 4180, 2003. DOI: 10.1029/2002JD002153.</p>
+  <p>ROMÁN, M. O. et al. Continuity between NASA MODIS Collection 6.1 and VIIRS Collection 2 land products. <i>Remote Sensing of Environment</i>, v. 302, art. 113963, 2024. DOI: 10.1016/j.rse.2023.113963.</p>
+  <p>SEN, P. K. Estimates of the regression coefficient based on Kendall's tau. <i>Journal of the American Statistical Association</i>, v. 63, n. 324, p. 1379-1389, 1968. DOI: 10.1080/01621459.1968.10480934.</p>
+  <p>SILLMAN, S. The relation between ozone, NOx and hydrocarbons in urban and polluted rural environments. <i>Atmospheric Environment</i>, v. 33, n. 12, p. 1821-1845, 1999. DOI: 10.1016/S1352-2310(98)00345-8.</p>
+  <p>SOUZA JUNIOR, C. M. et al. Reconstructing three decades of land use and land cover changes in Brazilian biomes with Landsat archive and Earth Engine. <i>Remote Sensing</i>, v. 12, n. 17, art. 2735, 2020. DOI: 10.3390/rs12172735.</p>
+  <p>VIGOUROUX, C. et al. TROPOMI-Sentinel-5 Precursor formaldehyde validation using an extensive network of ground-based Fourier-transform infrared stations. <i>Atmospheric Measurement Techniques</i>, v. 13, n. 7, p. 3751-3767, 2020. DOI: 10.5194/amt-13-3751-2020.</p>
+  <p>WORLD HEALTH ORGANIZATION (WHO). <i>WHO global air quality guidelines</i>: particulate matter (PM2.5 and PM10), ozone, nitrogen dioxide, sulfur dioxide and carbon monoxide. Geneva: WHO, 2021. ISBN 9789240034228. Disponível em: https://www.who.int/publications/i/item/9789240034228. Acesso em: 7 out. 2026.</p>
+  <p>YIENGER, J. J.; LEVY II, H. Empirical model of global soil-biogenic NOx emissions. <i>Journal of Geophysical Research</i>, v. 100, n. D6, p. 11447-11464, 1995. DOI: 10.1029/95JD00370.</p>
+</section>
+
+<!-- ============================================================ CHECKLIST -->
+<section class="chapter" id="final" style="--accent:#0f7c80">
+  <span class="chapnum">Para imprimir</span>
+  <h1 class="chap">Lista final de conferência</h1>
+  <div class="grid2">
+    <div class="card"><h4>Reproduzir (nível A)</h4>
+      <ul class="tick"><li>Terminal na pasta <code>MEGAN_SC/</code></li><li>Ambiente instalado e ativado</li><li><code>pytest -q</code>: 127 passed</li><li><code>verify_manifest.py</code>: OK 363</li><li>Dados baixados e <code>check-data</code> sem ausências</li><li><code>reproduce.py all</code> terminou e o <code>compare</code> foi lido</li></ul></div>
+    <div class="card"><h4>Entender</h4>
+      <ul class="tick"><li>Sei o que são EF, ER e os fatores γ</li><li>Sei para que serve cada FIX</li><li>Sei por que o isopreno leva ρ = 0,96</li><li>Rastreei um número até o arquivo e a chave</li><li>Sei quais números mudaram com a correção do IAF</li></ul></div>
+    <div class="card"><h4>Colab e Earth Engine (nível B)</h4>
+      <ul class="tick"><li>Projeto registrado e ID anotado</li><li>Repositório em <code>MyDrive/megan-sc</code></li><li><code>EE_PROJECT</code> trocado nos cadernos 10, 14, 16, 17, 20 e 21</li><li>Caderno 11 sem falhas sem explicação</li><li>Formas de crescimento publicadas copiadas, se for o caso</li></ul></div>
+    <div class="card"><h4>Cadernos 17 a 23</h4>
+      <ul class="tick"><li>Célula 11 do 17 lida: só o IAF mudou</li><li>Anos instalados e <code>reproduce.py</code> rodado pelo 19</li><li>Conta Earthdata pronta para o 22</li><li>Saída da célula 2 do 22 apagada antes de compartilhar</li></ul></div>
+    <div class="card"><h4>Citar</h4>
+      <ul class="tick"><li>Este repositório (<code>CITATION.cff</code>)</li><li>O artigo do inventário</li><li>O código MEGANv3.21 (Guenther, 2024b)</li><li>Os arquivos de entrada do MEGAN 3.2 (Guenther, 2024a)</li><li>Os produtos de dados de <code>DATA_AVAILABILITY.md</code></li></ul></div>
+    <div class="card"><h4>Sua região (nível C)</h4>
+      <ul class="tick"><li>Contorno no Drive e passo 1 preenchido</li><li>Mapa de teste conferido</li><li>Escolhas do capítulo 9 revistas</li><li>Hash do <code>fixes.py</code> relatado</li></ul></div>
+  </div>
+</section>
+<script>
+(function () {
+  var ch = Array.prototype.slice.call(document.querySelectorAll('section.chapter[id^="c"]')).filter(function (x) { return /^c\d+$/.test(x.id); });
+  ch.forEach(function (sec, i) {
+    var bar = sec.querySelector('.progress'); if (!bar) return;
+    for (var k = 0; k < ch.length; k++) { var sp = document.createElement('span'); if (k < i) sp.className = 'done'; if (k === i) sp.className = 'now'; bar.appendChild(sp); }
+  });
+})();
+</script>
+</body>
+</html>

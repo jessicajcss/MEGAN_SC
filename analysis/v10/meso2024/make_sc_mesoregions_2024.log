@@ -1,0 +1,24 @@
+compared with <FINN_SC repository>/data/external/sc_municipios_2024_atributos.csv: 0 disagreements
+mesorregiao
+Oeste Catarinense       118
+Vale do Itajaí           54
+Sul Catarinense          46
+Serrana                  30
+Norte Catarinense        26
+Grande Florianópolis     21
+lowest majority fractions:
+ CD_MUN                 NM_MUN          mesorregiao  majority_fraction
+4205407          Florianópolis Grande Florianópolis             0.6414
+4206009 Governador Celso Ramos Grande Florianópolis             0.7322
+4216602               São José Grande Florianópolis             0.7544
+4216206   São Francisco do Sul    Norte Catarinense             0.7702
+4211900                Palhoça Grande Florianópolis             0.8242
+4202305                Biguaçu Grande Florianópolis             0.8636
+interior rings filled (< 1 km2) per mesoregion: {'Grande Florianópolis': 337, 'Norte Catarinense': 693, 'Oeste Catarinense': 2681, 'Serrana': 1143, 'Sul Catarinense': 523, 'Vale do Itajaí': 762}
+           name_meso  n_mun  area_ibge_km2  polygon_km2  forest_pct
+Grande Florianópolis     21         7359.6       7359.8       62.07
+   Norte Catarinense     26        15930.6      15930.9       49.89
+   Oeste Catarinense    118        27314.5      27314.9       30.51
+             Serrana     30        22327.9      22328.4       32.32
+     Sul Catarinense     46         9709.0       9709.3       35.30
+      Vale do Itajaí     54        13089.0      13089.6       53.94

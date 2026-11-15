@@ -1,0 +1,13 @@
+item,this inventory,BRAIN d02,source
+Model code,"MEGANv3.21, Python port checked against the Fortran (notebook 12)",MEGAN 3.2 (article); MGN2MECH of MEGANv3.21 (FILEDESC: Input MEGAN file: /home/artaxo/CMAQ_REPO/PREP/emis/MEGAN/MEG...),article Sect. 2.2; BRAIN header and Hoinaski et al. 2024
+Grid,0.025 deg lon-lat (224 x 144 cells),"SC_2019_CROSS: Mercator, true at 0.0 deg, 4000 m projected cells (233 x 243); sphere R = 6370000 m",notebook 10; BRAIN header
+Cell area for per-cell rates,true area on the sphere (megan_sc.domain),nominal XCELL x YCELL = 16 km2 (mgn2mech.F: garea = xcell3d * ycell3d),notebook 10; mgn2mech.F of MEGANv3.21
+Meteorology,"ERA5-Land, 0.1 deg, hourly fields sampled every 3 h (00-21 UTC)","WRF ARW 4.0 via MCIP 5.1 (FILEDESC), 4 km; GFS 0.25 deg, 36-h runs, first 12 h discarded (article); PBL YSU; land surface NOAH Land-Surface Model; microphysics Morrison 2-moment",article Sect. 2.3.4; BRAIN header and Hoinaski et al. 2024
+Land use of the meteorology,not applicable (ERA5-Land),MODIFIED_IGBP_MODIS,BRAIN header
+Vegetation for MEGAN,MapBiomas Collection 10 (30 m) growth forms of the year; MEGAN v3 ecotype map and emission factors of the MEGAN 3.2 input files,not named in the article (MEGAN input data from bai.ess.uci.edu/megan/data-and-code),article Sect. 2.3.3; Hoinaski et al. 2024
+Leaf area index,"MODIS MCD15A3H C6.1, monthly means of main-algorithm retrievals on the 0.025 deg grid",not named in the article,article Sect. 2.3.2; Hoinaski et al. 2024
+Soil NO,"MEGANv3.21 default (activity factor GAMNO, Yienger and Levy 1995 type), growing season set for the Southern Hemisphere","BDSNP (Hudman et al. 2012), from the file name",notebook 10; BRAIN file name
+Chemical speciation,19 MEGAN classes in mass (converted here to CB6X with the MEGANv3.21 tables),34 CB6X species in mol/s,notebook 10; BRAIN header
+Isoprene canopy factor rho,1 in the code; 0.96 in the published numbers,1 (not applied by MEGANv3.21),article Sect. 2.2
+Time,UTC; monthly totals of 3-hourly steps,UTC; 25 hourly steps per daily file,notebook 10; BRAIN header
+Year,2019,2019,

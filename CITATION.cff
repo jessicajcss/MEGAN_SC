@@ -1,0 +1,55 @@
+cff-version: 1.2.0
+message: "If you use this software or its data, please cite the article below and this repository."
+title: "MEGAN_SC: a reproducible MEGANv3.21 biogenic-emissions pipeline for Santa Catarina, Brazil, 2003-2025"
+abstract: >-
+  Python implementation of the MEGANv3.21 emission code with a Google Earth Engine data layer, used to build a monthly
+  0.025-degree inventory of biogenic VOCs, soil NO and CO for Santa Catarina, Brazil (2003-2025). The repository holds
+  the engine and its input and run procedures (src/megan_sc/fixes.py), a stage-by-stage comparison with the official
+  Fortran executables, the notebooks of the production run, its automatic checks, the TROPOMI formaldehyde evaluation,
+  the sensitivity tests, the model output (as release archives) and a one-command reproduction of every number, table
+  and figure of the article and of the state inventory report (reproduce.py).
+type: software
+authors:
+  # Names withheld for double-blind review; the list with names, ORCID and affiliations is restored after
+  # acceptance.
+  - name: "MEGAN_SC authors (names withheld for double-blind review)"
+# date-released: set to the date of the GitHub release when it is made
+license: MIT
+# A Zenodo DOI will be added here (doi) after the archived version is deposited.
+repository-code: "https://github.com/jessicajcss/MEGAN_SC"
+keywords:
+  - MEGAN
+  - biogenic emissions
+  - isoprene
+  - monoterpenes
+  - Atlantic Forest
+  - MapBiomas
+  - emission inventory
+  - Santa Catarina
+preferred-citation:
+  type: article
+  title: "Biogenic emissions in Santa Catarina, Brazil, 2003-2025: a MEGANv3.21 inventory driven by MapBiomas, MODIS and ERA5-Land"
+  year: 2026
+  authors:
+    - name: "Authors withheld for double-blind review"
+references:
+  - type: data
+    title: "MEGAN 3.2 input files"
+    authors:
+      - family-names: "Guenther"
+        given-names: "Alex"
+    year: 2024
+    publisher:
+      name: "Zenodo"
+    doi: "10.5281/zenodo.10939297"
+    license: CC-BY-4.0
+  - type: software
+    title: "MEGANv3.21.tar.gz emission calculator code"
+    authors:
+      - family-names: "Guenther"
+        given-names: "Alex"
+    version: "3.21"
+    year: 2024
+    publisher:
+      name: "Zenodo"
+    doi: "10.5281/zenodo.10526206"

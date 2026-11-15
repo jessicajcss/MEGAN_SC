@@ -1,0 +1,6 @@
+Printed output of notebook 22 (22_lai_check_noaa20_viirs.ipynb), cell 10, in the authors' Colab run of 8 November 2026.
+Copied verbatim on 8 November 2026 because the notebook prints these checks without writing them to a file. Quoted in
+Online Resource 1, Section S2.5.6 (r = 0.999) and Table S7 context (NOAA-20 / Suomi NPP ratio by year).
+
+Suomi NPP, this pipeline vs Earth Engine (notebook 16), all SC cell-months: r = 0.999, median ratio 10.000 (about 10 expected: the Earth Engine cache is ten times too small)
+NOAA-20 / Suomi NPP, state annual mean, by year: {2018: 1.0085, 2019: 0.9999, 2020: 1.0094, 2021: 1.0212, 2022: 1.0114, 2023: 1.0362, 2024: 1.0116, 2025: 1.0416}

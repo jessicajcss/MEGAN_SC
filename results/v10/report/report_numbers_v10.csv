@@ -1,0 +1,105 @@
+key,value,source
+mean_BVOC_CO_kt,"681,5",table2
+mean_BVOC_kt,"656,5",table2
+mean_CO_kt,"25,0",table2
+mean_NO_kt,"10,71",table2
+y2025_BVOC_kt,"672,9",table2 (2025)
+y2025_ISOP_kt,"228,6",table2 (2025)
+y2025_MT_kt,"171,7",table2 (2025)
+y2025_SQT_kt,"14,9",table2 (2025)
+y2025_OVOC_kt,"128,3",table2 (2025)
+y2025_OTHERS_kt,"129,4",table2 (2025)
+y2025_NO_kt,"10,3",table2 (2025)
+y2025_CO_kt,"25,5",table2 (2025)
+check_2025_sum,"0,000",groups add up to BVOC (kt)
+cv_BVOC_pct,"7,9","table2, ddof = 1"
+peak,2019 (739 kt),table2
+trough,2008 (552 kt),table2
+isop_peak_year,2024,table2
+trend_ISOP,"0,88% ao ano (0,33 a 1,50; p = 0,004)",trends.csv
+trend_BVOC,"0,61% ao ano (0,17 a 1,09; p = 0,008)",trends.csv
+trend_MT,"0,56% ao ano (0,13 a 1,02; p = 0,011)",trends.csv
+trend_SQT,"0,76% ao ano (0,23 a 1,50; p = 0,008)",trends.csv
+trend_OVOC,"0,47% ao ano (0,04 a 0,89; p = 0,015)",trends.csv
+trend_LVOC,"0,36% ao ano (-0,03 a 0,79; p = 0,064)",trends.csv
+trend_MBO,"0,52% ao ano (-0,09 a 1,04; p = 0,081)",trends.csv
+trend_NO,"-0,37% ao ano (-0,58 a -0,12; p = 0,002)",trends.csv
+trend_CO,"0,45% ao ano (-0,07 a 0,88; p = 0,073)",trends.csv
+share_ISOP,"33,2",table2 means
+share_MT,"25,8",table2 means
+share_OVOC,"19,3",table2 means
+share_LVOC,"14,3",table2 means
+share_SQT,"2,2",table2 means
+share_STRESS_OTHER,"5,2",table2 means
+share_MBO,"0,1",table2 means
+isop_mt_ratio,"1,29",table2 means
+isop_clim_2015_2025,"jan 39,1 kt; jun 5,3 kt; jan/jun 7,3; max mês 1 (39,1); min mês 6 (5,3)",stats_<year>_<mm>.csv
+isop_clim_2003_2025,"jan 36,2 kt; jun 5,0 kt; jan/jun 7,2; max mês 1 (36,2); min mês 6 (5,0)",stats_<year>_<mm>.csv
+meso_top_isop_mass,"Oeste Catarinense 55,3 > Norte Catarinense 43,4 > Serrana 41,6",table3 (kt)
+meso_top_sqt_mass,"Oeste Catarinense 3,4 > Norte Catarinense 3,0 > Vale do Itajaí 2,7",table3 (kt)
+meso_top_no_mass,"Oeste Catarinense 3,6 > Serrana 2,6 > Norte Catarinense 1,4",table3 (kt)
+soa_total_kt,183 (soma das mesorregiões); estado 183,table3 / table2
+soa_share_top3,"Oeste Catarinense 23,9%; Norte Catarinense 20,1%; Vale do Itajaí 18,6%",table3
+soa_intensity_top3,"Grande Florianópolis 27,0; Vale do Itajaí 26,0; Norte Catarinense 23,1",table3 (kg/ha/yr)
+soa_intensity_min,"Serrana 13,8; Oeste Catarinense 16,0",table3 (kg/ha/yr)
+sqt_share_range,"7,2% a 8,1%",table3
+soa_forest_r,"r = 0,97 (IC 95% 0,73 a 1,00; p = 0,001); rho = 0,94 (p = 0,005); n = 6",table3
+meso2025_BVOC_intensity,Grande Florianópolis 91; Vale do Itajaí 88; Norte Catarinense 82; Sul Catarinense 66; Oeste Catarinense 63; Serrana 55,meso_2025_v10.csv (kg/ha/yr)
+meso2025_NO_intensity,"Oeste Catarinense 1,3; Sul Catarinense 1,2; Serrana 1,1; Vale do Itajaí 0,9; Norte Catarinense 0,9; Grande Florianópolis 0,7",meso_2025_v10.csv
+meso2025_CO_intensity,"Oeste Catarinense 2,9; Vale do Itajaí 2,9; Sul Catarinense 2,8; Norte Catarinense 2,8; Grande Florianópolis 2,7; Serrana 2,1",meso_2025_v10.csv
+meso2025_ISOP_intensity_max,Grande Florianópolis,meso_2025_v10.csv
+meso2025_mass_max,CO Oeste Catarinense; NO Oeste Catarinense; ISOP Oeste Catarinense; BVOC Oeste Catarinense,meso_2025_v10.csv
+rdet_BVOC_TEMP2_C,"0,87 a 0,92",correlations_emissions_drivers.csv
+rraw_BVOC_TEMP2_C,"0,88 a 0,93",correlations_emissions_drivers.csv
+rdet_BVOC_LAI,"0,62 a 0,76",correlations_emissions_drivers.csv
+rraw_BVOC_LAI,"0,68 a 0,80",correlations_emissions_drivers.csv
+rdet_BVOC_PAR,"0,08 a 0,29",correlations_emissions_drivers.csv
+rraw_BVOC_PAR,"0,17 a 0,34",correlations_emissions_drivers.csv
+rdet_BVOC_SOILM,"-0,33 a -0,15",correlations_emissions_drivers.csv
+rraw_BVOC_SOILM,"-0,35 a -0,19",correlations_emissions_drivers.csv
+r_NO_T,"bruto 0,30; sem tendência 0,82",correlations_emissions_drivers.csv
+rdet_SQT_HR_TEMP2_C,"0,89",correlations_emissions_drivers.csv
+rdet_SQT_HR_LAI,"0,68",correlations_emissions_drivers.csv
+rdet_SQT_LR_TEMP2_C,"0,89",correlations_emissions_drivers.csv
+rdet_SQT_LR_LAI,"0,68",correlations_emissions_drivers.csv
+VIF,"TEMP2_C 1,61; PAR 5,38; LAI 1,68; SOILM 5,38",drivers_annual_SC.csv
+driver_corr,"PAR-TEMP2_C 0,13 (p = 0,556); PAR-SOILM -0,90 (p = 0,000); LAI-TEMP2_C 0,58 (p = 0,003); LAI-PAR 0,33 (p = 0,130); LAI-SOILM -0,33 (p = 0,121); SOILM-TEMP2_C -0,22 (p = 0,305)",drivers_annual_SC.csv
+r_T_SOILM,"bruto -0,22 (p = 0,30); sem tendência -0,19 (p = 0,38)",drivers_annual_SC.csv
+beta_TEMP2_C_BVOC,"0,65 a 0,84 (máx. MBO; mín. MT_CAMP)",std_regression_v10.csv
+beta_PAR_BVOC,"0,15 a 0,42 (máx. MBO; mín. MT_CAMP)",std_regression_v10.csv
+beta_LAI_BVOC,"0,14 a 0,45 (máx. MT_CAMP; mín. MBO)",std_regression_v10.csv
+beta_SOILM_BVOC,"0,24 a 0,31 (máx. SQT_LR; mín. MT_CAMP)",std_regression_v10.csv
+R2_BVOC,"0,88 a 0,94",std_regression_v10.csv
+beta_T_is_max_in_all_BVOC,True,std_regression_v10.csv
+top3_beta_LAI,"MT_CAMP, MT_SABI, MT_PINE",std_regression_v10.csv
+SQT,"beta_T 0,75; beta_LAI 0,31; R2 0,90",std_regression_v10.csv
+MT,"beta_T 0,70; beta_LAI 0,39; R2 0,92",std_regression_v10.csv
+NO_R2,"0,28; betas T 0,59 PAR 0,17 LAI -0,55 SOILM -0,06",std_regression_v10.csv
+CO,"beta_T 0,83; R2 0,93",std_regression_v10.csv
+isop_pct_per_K,"20,6 ± 2,2% por K; sem tendência 17,5% por K",temp_sensitivity_v10.csv
+soilm_below_016,"3478 de 3793896 combinações de célula e mês (0,09%)","met_<year>_<mm>.tif, banda SOILM, células de SC com dado"
+gamsm_lt1,"24276 de 3855720 (0,63%); mínimo mensal por célula 0,036","fixlog_<year>_<mm>.npz, gamsm_mean"
+n_mun,295,table4
+mun_top5_BVOC,"Lages, Itaiópolis, Joinville, Mafra, Santa Cecília",table4
+mun_top5_ISOP,"Lages, Santa Cecília, Itaiópolis, Mafra, Joinville",table4
+mun_top5_same_set,True,table4
+mun_intensity,14 a 136 (mediana 70; máx. Itapoá; mín. Balneário Rincão),table4 (área IBGE)
+mun_top_quintile,"> 89: Itapoá (136; Joinville), Balneário Barra do Sul (126; Joinville), Luiz Alves (126; Blumenau), Nova Trento (125; Blumenau), Botuverá (121; Blumenau), Apiúna (120; Blumenau), Guabiruba (119; Blumenau), São Pedro de Alcântara (117; Florianópolis)",table4
+mun_top_quintile_regions,Blumenau 27; Criciúma 10; Joinville 10; Florianópolis 9; Chapecó 3,table4 + NM_RGINT
+mun_bottom_quintile_regions,< 51: Chapecó 22; Criciúma 20; Lages 7; Blumenau 6; Caçador 2; Florianópolis 2,table4 + NM_RGINT
+mun_bottom5,"Balneário Rincão (14; Criciúma), Laguna (16; Criciúma), Jaguaruna (20; Criciúma), Capivari de Baixo (23; Criciúma), Içara (24; Criciúma), Ermo (25; Criciúma)",table4
+mun_bottom_quintile_total_regions,Chapecó 29; Criciúma 16; Blumenau 11; Caçador 1; Florianópolis 1; Lages 1,table4 + NM_RGINT (20% menores totais)
+mun_top_quintile_total_regions,Joinville 15; Lages 14; Blumenau 12; Chapecó 7; Florianópolis 5; Caçador 4; Criciúma 2,table4 + NM_RGINT (20% maiores totais)
+mun_cells_min,17,table4 (células da grade que tocam cada município)
+isop_flux,"2,0 (mediana por célula 2,0; p99 4,5; máximo 6,1)",manuscript_numbers.csv
+cmp2019_ISOP,"252,4 Gg contra 33,3 Gg; razão 7,6",manuscript_numbers.csv
+cmp2019_CO,"27,8 Gg contra 7,50 Gg; razão 3,7",manuscript_numbers.csv
+cmp2019_NO,"10,8 Gg contra 0,571 Gg; razão 18,9",manuscript_numbers.csv
+cmp2019_range,4 a 19 vezes,manuscript_numbers.csv
+isop_mean_ratio,"218 Gg; 6,5; 6,9; pico 2024",manuscript_numbers.csv
+isop_mt_ratio,"1,29:1",manuscript_numbers.csv
+met_filled,190 to 191,manuscript_numbers.csv
+lai_gaps,0 to 7,manuscript_numbers.csv
+mun_cells,"17, 54, 485; 5,1, 34, 384 (célula de 6,87 km²)",manuscript_numbers.csv
+mun_area_check,"0,999 a 1,006; 99,83%",manuscript_numbers.csv
+meso_sum,"99,82%",manuscript_numbers.csv

@@ -1,0 +1,60 @@
+{
+ "notebook": "18_brain_comparison_2019",
+ "run_utc": "2026-11-01T05:56:32",
+ "year": 2019,
+ "url_file": "/content/drive/MyDrive/BRAIN/BRAIN_output_urls.txt",
+ "files_listed": 364,
+ "missing_days": [
+  365
+ ],
+ "duplicated_days": [],
+ "files_read": 364,
+ "files_failing": 0,
+ "months_compared": [
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  10,
+  11,
+  12
+ ],
+ "min_days": 25,
+ "megan_tables_sha256": {
+  "SPC_NOCONVER.EXT": "ff7aa570e0bdb0ff",
+  "MAP_CV2CB6X.EXT": "d1676a29fc397677",
+  "SPC_CB6X.EXT": "846d315ec0d86b8f",
+  "mgn2mech.F": "2be92af51910db59"
+ },
+ "megan_tgz": "/content/drive/MyDrive/MEGANv3.21.tar.gz",
+ "grid": {
+  "GDTYP": 7,
+  "P_ALP": 0.0,
+  "P_BET": 0.0,
+  "P_GAM": -54.856998443603516,
+  "XCENT": -54.856998443603516,
+  "YCENT": 0.0,
+  "XORIG": -105999.8125,
+  "YORIG": -3507558.25,
+  "XCELL": 4000.0,
+  "YCELL": 4000.0,
+  "NCOLS": 233,
+  "NROWS": 243
+ },
+ "earth_radius_m": 6370000.0,
+ "rho_isop": 0.96,
+ "dominant": 0.6,
+ "full_cell": 0.99,
+ "root": "/content/drive/MyDrive/megan_sc_outputs_v10",
+ "versions": {
+  "numpy": "2.1.3",
+  "pandas": "2.2.3",
+  "netCDF4": "1.7.5.1.post1",
+  "shapely": "2.2.0"
+ }
+}

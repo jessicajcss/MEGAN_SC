@@ -1,0 +1,5 @@
+co2_annmean_gl.txt: NOAA GML global annual mean CO2, downloaded by notebook 19 from https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_gl.txt
+retrieved: 2026-11-01T23:17:37Z
+file creation line(s): # File Creation: Fri Oct  9 13:08:02 2026
+sha256: 9872655642690b069cf68e2faabf7842d3dded7e9b586bedce71997f3230a26a
+replaces the copy taken on 13 October 2026 from the mirror https://github.com/datasets/co2-ppm

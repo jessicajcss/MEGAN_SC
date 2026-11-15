@@ -1,0 +1,48 @@
+key,value,note
+ef_rebuild_max_rel_dev,4.92e-08,EF grid rebuilt from the MEGAN tables vs inputs/ef_2019.npz (must be ~0)
+tree_frac_120m_vs_run_r,0.950,"tree fraction from the 120-m map vs the run (30 m, Earth Engine), state cells"
+tree_area_120m_over_run,0.994,state tree area ratio
+plantation_area_km2_2019,"9,960",class 9 area in state cells (capped at the tree fraction)
+plantation_share_of_tree_area,20.6,%
+base_ISOP_2019_t,"252,385","from plantation share: 47,296 t (18.7 %)"
+base_MT_2019_t,"188,511","from plantation share: 28,988 t (15.4 %)"
+base_SQT_2019_t,"16,751","from plantation share: 2,623 t (15.7 %)"
+base_MBO_2019_t,684,from plantation share: 65 t (9.5 %)
+base_OVOC_2019_t,"140,513","from plantation share: 18,211 t (13.0 %)"
+base_NO_2019_t,"10,800",from plantation share: 228 t (2.1 %)
+base_CO_2019_t,"27,798","from plantation share: 2,808 t (10.1 %)"
+base_BVOC_2019_t,"739,401","from plantation share: 113,729 t (15.4 %)"
+Pinus_ISOP_2019_change_pct,-18.7,"205,104 t"
+Pinus_MT_2019_change_pct,+7.3,"202,342 t"
+Pinus_SQT_2019_change_pct,+5.8,"17,724 t"
+Pinus_MBO_2019_change_pct,+1915.5,"13,783 t"
+Pinus_OVOC_2019_change_pct,+2.7,"144,281 t"
+Pinus_NO_2019_change_pct,+0.0,"10,800 t"
+Pinus_CO_2019_change_pct,+0.0,"27,798 t"
+Pinus_BVOC_2019_change_pct,-1.8,"726,223 t"
+Eucalyptus_ISOP_2019_change_pct,+13.7,"286,961 t"
+Eucalyptus_MT_2019_change_pct,+8.5,"204,521 t"
+Eucalyptus_SQT_2019_change_pct,-1.3,"16,525 t"
+Eucalyptus_MBO_2019_change_pct,-6.6,639 t
+Eucalyptus_OVOC_2019_change_pct,+2.7,"144,281 t"
+Eucalyptus_NO_2019_change_pct,+0.0,"10,800 t"
+Eucalyptus_CO_2019_change_pct,+0.0,"27,798 t"
+Eucalyptus_BVOC_2019_change_pct,+7.2,"792,927 t"
+EF_Pinus_ISOP_MT,0.003 / 1.43,"MEGAN v3 table, genus row: EF1 and EF3-EF7"
+EF_Eucalyptus_ISOP_MT,16.0 / 1.58,"MEGAN v3 table, genus row: EF1 and EF3-EF7"
+EF_ecotype_tree_on_plantations_ISOP_MT,9.34 / 1.06,area-weighted mean over the plantation share
+ISOP_MT_ratio_2019_baseline,1.34,
+lai_all_2024_vs_2003_2023_pct,-0.1,z = -0.0; n cells 13970
+lai_all_2025_vs_2003_2023_pct,-0.8,z = -0.4; n cells 13970
+lai_all_min_2003_2023_pct,-3.6,lowest year of 2003-2023 vs its mean
+lai_tree_2024_vs_2003_2023_pct,-0.5,z = -0.2; n cells 5145
+lai_tree_2025_vs_2003_2023_pct,-2.1,z = -1.1; n cells 5145
+lai_tree_min_2003_2023_pct,-3.1,lowest year of 2003-2023 vs its mean
+lai_herb_2024_vs_2003_2023_pct,+1.8,z = +0.6; n cells 740
+lai_herb_2025_vs_2003_2023_pct,+0.5,z = +0.2; n cells 740
+lai_herb_min_2003_2023_pct,-4.9,lowest year of 2003-2023 vs its mean
+lai_crop_2024_vs_2003_2023_pct,+2.6,z = +0.7; n cells 795
+lai_crop_2025_vs_2003_2023_pct,+4.7,z = +1.3; n cells 795
+lai_crop_min_2003_2023_pct,-5.6,lowest year of 2003-2023 vs its mean
+lai_months_z_below_-1_2024_2025,2024-01:-1.0 2024-11:-1.3 2025-10:-1.2 2025-11:-2.0,
+lai_months_z_below_-1_2003_2023,36,of 252 months

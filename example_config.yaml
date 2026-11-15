@@ -1,0 +1,121 @@
+# =====================================================================
+# MEGAN-SC configuration — the ONLY file most users need to edit.
+# Every run is fully described by this file (+ the code version).
+# Copy to `config/my_run.yaml` and edit. Comments explain every field.
+# =====================================================================
+
+run:
+  name: "sc_default_2019_2025"     # used in output filenames / provenance
+  description: "Santa Catarina biogenic inventory, ERA5-Land defaults"
+
+# --- WHEN -------------------------------------------------------------
+period:
+  start: "2019-01"                 # inclusive, YYYY-MM
+  end:   "2025-12"                 # inclusive, YYYY-MM
+  step:  "monthly"                 # monthly inventory (engine still runs sub-daily internally)
+  timestep_hours: 1                # internal integration step for diurnal light/temp
+  sample_hours: 3                  # sub-sample the diurnal cycle for the monthly run
+                                   #   (3 -> 8 steps/day; 1 -> full hourly, ~3x cost)
+
+# --- WHERE ------------------------------------------------------------
+# Choose EXACTLY ONE of `bbox` or `shapefile`.
+domain:
+  mode: "shapefile"                # "shapefile" | "bbox"
+  shapefile: "data/boundaries/sc_state_ibge.gpkg"   # auto-fetched if missing
+  bbox:                            # used only when mode == "bbox"
+    lon_min: -53.9
+    lon_max: -48.3
+    lat_min: -29.5
+    lat_max: -25.9
+  resolution_deg: 0.025            # analysis grid spacing (~2.8 km, 32k cells for SC).
+                                   # Chosen to keep vegetation/LAI detail sharp. Use 0.1 for
+                                   # fast demos; note EE export + runtime scale with cell count.
+  crs: "EPSG:4326"
+
+# --- INPUT DATASETS ---------------------------------------------------
+datasets:
+  meteorology:
+    source: "era5-land"            # "era5-land" | "era5" | "wrf"
+    ee_id: "ECMWF/ERA5_LAND/HOURLY"
+    # WRF path (source == "wrf"): read by src/megan_sc/io/wrf.py. Maps T2/SWDOWN/U10/V10/
+    # PSFC/Q2/SMOIS -> TEMP2/PAR/WINDSPD/PRES/QV/SOILM and interpolates the curvilinear WRF
+    # grid onto the analysis grid. Used for the model-vs-model validation against Hoinaski
+    # et al. 2024 (their daily wrfout_d01 files); see notebooks/validate_wrf_day.ipynb.
+    wrf_path: null                 # e.g. "references/data/wrfout_d01_2019-01-15_18:00:00"
+  lai:
+    source: "modis"               # "modis" | "megan-default"
+    ee_id: "MODIS/061/MCD15A3H"
+  # Vegetation structure (PFT / growth-form / canopy-type + veg mask).
+  # MapBiomas (30 m, Brazil) is the high-resolution option; it supplies the
+  # growth-form fractions that weight the ecotype emission factors and drive the
+  # canopy model. The ecotype->species->EF composition and the observed MODIS LAI
+  # are kept (see docs/ALGORITHM_SPEC.md "MapBiomas integration").
+  vegetation:
+    growth_form_source: "mapbiomas"   # "mapbiomas" (30 m, Brazil-specific) ★ | "modis" (500 m PFT) | "wrf-ivgtyp" | "tree-only"
+                                      #   MapBiomas is the production choice for SC: it carries ~0
+                                      #   Savanna Formation in SC, correctly mapping the Araucária/
+                                      #   seasonal FOREST that global MODIS/IGBP mislabels as savanna.
+    year: 2020                        # land-cover year (annual); match to the inventory year
+    modis_asset: "MODIS/061/MCD12Q1"                    # LC_Type5 PFT band, 500 m — samples cheaply
+    mapbiomas_asset: "projects/mapbiomas-public/assets/brazil/lulc/v1"  # 30 m, finer, Brazil-specific
+    tree_canopy_type: 3               # MEGCAN forest type (3=temperate broadleaf for subtropical SC; 2=tropical)
+    lai_mask: true                    # keep OBSERVED MODIS LAI, mask non-veg via land cover (protects data quality)
+  # Soil texture → wilting point for the soil-moisture activity factor GAMSM.
+  # OPTIONAL and OFF by default. When enabled, MapBiomas Soil (30 m sand/clay) is mapped
+  # through the USDA texture triangle to MEGAN's own WWLT wilting-point table (no fitted
+  # pedotransfer coefficients). Modest effect in humid SC; matters in dry spells / the west.
+  soil:
+    wilting_point_source: "constant"   # "constant" ★ | "mapbiomas-texture"
+    constant_wilt: 0.12                # used when source == constant (MEGAN default)
+    clay_asset: "projects/mapbiomas-public/assets/brazil/soil/collection3/mapbiomas_brazil_collection3_soil_clay_fraction_v1"
+    sand_asset: "projects/mapbiomas-public/assets/brazil/soil/collection3/mapbiomas_brazil_collection3_soil_sand_fraction_v1"
+    texture_band: null                 # depth/attribute band if the asset is multi-band; null = first
+  emission_factors:
+    source: "megan-default"        # ecotype/canopy + EF from MEGANv3.21 defaults
+    ef_table: "data/megan_inputs/EFP240120/EFv240120.csv"   # per-species EF1..19 + LDF
+    speciation_dir: "data/megan_inputs/EFP240120/"          # ecotype -> species fractions
+    ecotype: "data/sc_ecotype.nc"                           # EVT3d clipped to SC
+    growth_form: null              # GFv7nc growth-form fractions (stage when running EF gen)
+
+# --- EARTH ENGINE -----------------------------------------------------
+earth_engine:
+  project: "your-ee-project"       # your Earth Engine cloud project
+  # Authentication (see megan_sc.gee.initialize). You authenticate ONCE per machine;
+  # EE then caches a refresh token and later runs need no prompt.
+  auth_mode: "notebook"            # "notebook" (paste a code, no localhost) ★
+                                   #   | "localhost" (browser pop-up) | "gcloud"
+                                   #   | "service_account" (non-interactive, uses the key below)
+  service_account_key: null        # path to a Google Cloud service-account JSON key
+                                   #   (only for auth_mode: service_account). The account must
+                                   #   be granted Earth Engine access in the project.
+  service_account_email: null      # optional; read from the key file if omitted
+  export_target: "drive"           # "drive" | "gcs" | "local"
+  max_pixels: 1.0e13
+  tile_scale: 4                    # raise if you hit memory errors on exports
+  skip_existing: true              # idempotent: don't re-export months already present
+
+# --- SPECIES / CHEMISTRY ---------------------------------------------
+species:
+  # Output detail level(s). Fully user-defined; you can request several at once,
+  # run a small test, then keep whichever is affordable in GEE quota / compute.
+  levels: ["classes19", "compounds201", "mechanism"]
+    # "classes19"    -> the 19 MEGAN emission classes (ISOP, MT_*, SQT_*, MEOH, ...)
+    # "compounds201" -> full speciated compounds via MEGAN speciation table + molar weights
+    # "mechanism"    -> lumped to a chemical mechanism (below), model-ready
+    # "all"          -> shorthand for classes19 + compounds201 + mechanism
+  mechanism: "CB6X"                # used when "mechanism" in levels; CB6X|SAPRC07|RACM2|CB6|...
+  include_no_co: true              # keep soil NO (class 8) and CO (class 19) as labeled layers
+  report_families: true            # also output total MT / total SQT / total BVOC rollups
+  test_run:                        # optional short pilot before the full 2019-2025 run
+    enabled: true
+    months: ["2020-01", "2020-07"] # one summer + one winter month, all levels, to gauge cost
+
+# --- OUTPUTS ----------------------------------------------------------
+output:
+  dir: "outputs"
+  netcdf: true                     # CF-compliant, native units
+  tonnes_csv: true                 # species x month, tonnes
+  as_carbon: false                 # also emit "as carbon" mass
+  molar: false                     # also emit mol s-1 (for chemical mechanisms)
+  maps: true                       # quick-look Python maps (R makes publication maps)
+  overwrite: false

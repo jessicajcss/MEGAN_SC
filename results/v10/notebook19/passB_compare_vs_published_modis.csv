@@ -1,0 +1,122 @@
+file,status,info
+boundaries/sc_mesoregions_2024.gpkg,EQUAL,0.00e+00
+boundaries/sc_municipios_2024_mesorregiao.csv,IDENTICAL,0.00e+00
+diagnostics/c3/c3_filled_cells_2003_2025.csv,DIFFERENT,"shape/columns (4785, 17) ['year', 'cls', 'j', 'i'] vs (4782, 17) ['year', 'cls', 'j', 'i']"
+diagnostics/c3/c3_lai_adjusted.csv,DIFFERENT,column slope: 0.3265616191211746 vs 0.35511117436016265 (rel 8.0e-02)
+diagnostics/c3/filled_cells_share.csv,DIFFERENT,column share_ISOP: 0.009309074162095447 vs 0.009157014802801327 (rel 1.7e-02)
+diagnostics/nb14/nb14_D5_terrain.csv,DIFFERENT,column r_isoprene_pressure: 0.048 vs 0.049 (rel 2.0e-02)
+diagnostics/nb14/nb14_diagnostics.csv,DIFFERENT,column value: 1780000000000.0 vs 1760000000000.0 (rel 1.1e-02)
+figures/en/fig5.png,PNG DIFF,1.34e-01
+figures/en/fig7.png,PNG SIZE,"(3361, 2304, 3) vs (3361, 2305, 3)"
+figures/en/fig8.png,PNG DIFF,1.88e-02
+figures/en/fig9.png,PNG DIFF,1.73e-01
+figures/en/fig_study_area.png,PNG DIFF,1.39e-03
+figures/en/fig_verification.png,PNG DIFF,3.25e-04
+figures/ijest/Fig1.png,PNG DIFF,1.34e-03
+figures/ijest/Fig10.png,PNG DIFF,1.91e-02
+figures/ijest/Fig11.png,PNG DIFF,2.09e-02
+figures/ijest/Fig12.png,PNG DIFF,3.52e-02
+figures/ijest/Fig13.png,PNG DIFF,1.87e-02
+figures/ijest/Fig2.png,PNG DIFF,3.61e-03
+figures/ijest/Fig3.png,PNG DIFF,1.21e-04
+figures/ijest/Fig4.png,PNG DIFF,1.17e-03
+figures/ijest/Fig5.png,PNG DIFF,7.51e-03
+figures/ijest/Fig6.png,PNG DIFF,3.63e-01
+figures/ijest/Fig7.png,PNG DIFF,1.10e-02
+figures/ijest/Fig8.png,PNG DIFF,1.58e-01
+figures/ijest/Fig9.png,PNG DIFF,4.05e-02
+figures/maps_class_limits.csv,DIFFERENT,"column limits: '[12.0, 15.0, 18.0, 21.0, 24.0, 27.0, 30.0]' vs '[12.0, 15.0, 18.0, 21.0, 24.0, 27.0]'"
+figures/pt/fig5.png,PNG DIFF,1.33e-01
+figures/pt/fig7.png,PNG SIZE,"(3361, 2301, 3) vs (3361, 2302, 3)"
+figures/pt/fig8.png,PNG DIFF,1.92e-02
+figures/pt/fig9.png,PNG DIFF,1.74e-01
+figures/pt/fig_study_area.png,PNG DIFF,1.39e-03
+figures/pt/fig_verification.png,PNG DIFF,3.15e-04
+figures/pt_report/fig10.png,PNG DIFF,4.05e-01
+figures/pt_report/fig12.png,PNG SIZE,"(3351, 2528, 3) vs (3350, 2533, 3)"
+figures/pt_report/fig9.png,PNG DIFF,2.94e-02
+figures/pt_report/figA2.png,PNG DIFF,1.99e-01
+figures/pt_report/figA3.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA4.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA5.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA6.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA7.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA8.png,PIXEL-IDENTICAL,0.00e+00
+figures/pt_report/figA9.png,PNG DIFF,5.91e-03
+figures/study_area_shares.csv,IDENTICAL,0.00e+00
+final_review/filled_cells_area.csv,IDENTICAL,0.00e+00
+final_review/final_review.log,PRESENT,
+final_review/final_review_numbers.csv,DIFFERENT,column value: 0.308 vs 0.337 (rel 8.6e-02)
+final_review/lai_monthly_SC.csv,DIFFERENT,column lai_mean_vegetated: 3.756075417736843 vs 3.5423392490290158 (rel 6.0e-02)
+final_review/lai_monthly_SC_zscores.csv,DIFFERENT,column 1: -1.01 vs -2.28 (rel 5.6e-01)
+final_review/landcover_ef_potential_SC.csv,IDENTICAL,0.00e+00
+final_review/partial_correlations_detrended.csv,DIFFERENT,column r_LAI_given_T: 0.5877736320347802 vs 0.507401572339611 (rel 1.6e-01)
+final_review/trends_fdr_hr.csv,DIFFERENT,column MK_p: 0.00826505849047754 vs 0.026522235089512458 (rel 6.9e-01)
+final_review/tropomi_magnitude_grid.csv,DIFFERENT,column ratio_obs_expected_raw: 1.1784837918119593 vs 1.1918756530825498 (rel 1.1e-02)
+ijest_review/ijest_review.log,PRESENT,
+ijest_review/ijest_review_numbers.csv,DIFFERENT,column value: -0.1 vs -4.8 (rel 9.8e-01)
+ijest_review/lai_annual_by_growth_form.csv,DIFFERENT,column all: 3.293896104524748 vs 3.137544274224172 (rel 5.0e-02)
+ijest_review/lai_monthly_state_z.csv,DIFFERENT,column lai: 3.756075417736843 vs 3.5423392490290158 (rel 6.0e-02)
+ijest_review/plantation_ef_sensitivity_2019.csv,IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction.png,PIXEL-IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction_2024_2025_monthly.csv,IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction_annual_groups.csv,EQUAL,0.00e+00
+lai_viirs_check/lai_correction_hindcast_2013_2023.csv,IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction_hindcast_annual.csv,IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction_map_2025.png,PIXEL-IDENTICAL,0.00e+00
+lai_viirs_check/lai_correction_settings.json,PRESENT,
+lai_viirs_check/lai_viirs_corrected_2024_2025.npz,PRESENT,
+notebook11/annual_totals_SC_v10_all_classes.csv,DIFFERENT,column ISOP: 254247.38676290284 vs 248562.82577573165 (rel 2.3e-02)
+notebook11/verify_v10_report.csv,DIFFERENT,"column detail: ""sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soiln"" vs ""sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soiln"""
+notebook11/verify_v10_totals.png,PNG DIFF,3.61e-02
+notebook13_meso2024/annual_grids_cache.npz,NEW,
+notebook13_meso2024/annual_totals_SC_by_class.csv,DIFFERENT,column ISOP: 254247.38676290284 vs 248562.82577573165 (rel 2.3e-02)
+notebook13_meso2024/correlations_emissions_drivers.csv,DIFFERENT,column r: 0.8889123877141321 vs 0.8922994528847765 (rel 3.8e-03)
+notebook13_meso2024/drivers_annual_SC.csv,DIFFERENT,column LAI: 3.293896104524748 vs 3.137544274224172 (rel 5.0e-02)
+notebook13_meso2024/figures/en/fig1.png,PNG DIFF,1.03e-03
+notebook13_meso2024/figures/en/fig2.png,PNG DIFF,1.00e-02
+notebook13_meso2024/figures/en/fig3.png,PNG DIFF,3.78e-01
+notebook13_meso2024/figures/en/fig4.png,PNG DIFF,9.06e-03
+notebook13_meso2024/figures/en/fig5.png,PNG DIFF,8.92e-02
+notebook13_meso2024/figures/en/fig6.png,PNG DIFF,4.55e-02
+notebook13_meso2024/figures/en/fig7.png,PNG DIFF,2.26e-02
+notebook13_meso2024/figures/en/fig8.png,PNG DIFF,1.58e-02
+notebook13_meso2024/figures/en/fig_detrend.png,PNG DIFF,4.87e-03
+notebook13_meso2024/figures/pt/fig1.png,PNG DIFF,1.03e-03
+notebook13_meso2024/figures/pt/fig2.png,PNG DIFF,1.02e-02
+notebook13_meso2024/figures/pt/fig3.png,PNG DIFF,3.78e-01
+notebook13_meso2024/figures/pt/fig4.png,PNG DIFF,9.06e-03
+notebook13_meso2024/figures/pt/fig5.png,PNG DIFF,8.15e-02
+notebook13_meso2024/figures/pt/fig6.png,PNG DIFF,4.55e-02
+notebook13_meso2024/figures/pt/fig7.png,PNG DIFF,2.26e-02
+notebook13_meso2024/figures/pt/fig8.png,PNG DIFF,1.58e-02
+notebook13_meso2024/figures/pt/fig_detrend.png,PNG DIFF,4.88e-03
+notebook13_meso2024/manuscript_numbers.csv,DIFFERENT,column value: 656.5225437412145 vs 653.5769771572236 (rel 4.5e-03)
+notebook13_meso2024/municipalities_2019.csv,IDENTICAL,0.00e+00
+notebook13_meso2024/seasonal_climatology.csv,DIFFERENT,column mean: 100349.68867475688 vs 100003.64769685357 (rel 3.5e-03)
+notebook13_meso2024/seasonal_cycle_monthly.csv,DIFFERENT,column ISOP: 38409.82168036489 vs 37759.01577337996 (rel 1.7e-02)
+notebook13_meso2024/table2_annual_totals_SC_groups.csv,DIFFERENT,column ISOP: 254247.38676290284 vs 248562.82577573165 (rel 2.3e-02)
+notebook13_meso2024/table3_mesoregions_soa.csv,DIFFERENT,column MT: 40422.10423715173 vs 40232.20032368701 (rel 4.7e-03)
+notebook13_meso2024/table4_municipalities_2025.csv,DIFFERENT,column BVOC: 460.67640512376107 vs 424.1886615570257 (rel 8.6e-02)
+notebook13_meso2024/trends.csv,DIFFERENT,column mean: 656522.5437412144 vs 653576.9771572236 (rel 4.5e-03)
+notebook14/hcho_evaluation_cf0.3_sza70_fire120.png,PNG DIFF,5.72e-02
+notebook14/monthly_series_cf0.3_sza70_fire120.csv,DIFFERENT,column ISOP_t: 38409.82168583972 vs 37759.015771786464 (rel 1.7e-02)
+notebook14/tier1_spatial_cf0.3_sza70_fire120.csv,DIFFERENT,column pearson_r: 0.12327166199562047 vs 0.1233396969519469 (rel 5.5e-04)
+notebook14/tier2_seasonal_cf0.3_sza70_fire120.csv,DIFFERENT,column 0: -0.2616201048350753 vs -0.261580273909292 (rel 1.5e-04)
+notebook14/tier3_anomalies_cf0.3_sza70_fire120.csv,DIFFERENT,column r: 0.45176182524365593 vs 0.4284231014288884 (rel 5.4e-02)
+notebook14/tier4_slope_cf0.3_sza70_fire120.csv,DIFFERENT,column slope_ols_s: 242.85945275017892 vs 244.45208237738365 (rel 6.5e-03)
+notebook15/S3_fixlog_annual.csv,DIFFERENT,column BVOC_t: 739274.8102156507 vs 715913.9571924084 (rel 3.3e-02)
+notebook15/S3_fixlog_monthly.csv,DIFFERENT,column bvoc_reduction_approx: 0.00017747668480394552 vs 0.00016485006940425428 (rel 7.7e-02)
+notebook15/s1/S1_isoprene_ratio_2019_28d.png,PIXEL-IDENTICAL,0.00e+00
+notebook15/s1/s1_cell_ratios.csv,IDENTICAL,0.00e+00
+notebook15/s1/s1_class_totals.csv,IDENTICAL,0.00e+00
+notebook15/s1/s1_compare.log,PRESENT,
+notebook15/s1/s1_diurnal_check.csv,IDENTICAL,0.00e+00
+notebook15/s1/s1_groups.csv,IDENTICAL,0.00e+00
+report/driver_correlations_v10.csv,DIFFERENT,column r: 0.5841973932672482 vs 0.2562688542812344 (rel 1.3e+00)
+report/isop_monthly_v10.csv,DIFFERENT,column ISOP_t: 38409.82168036489 vs 37759.01577337996 (rel 1.7e-02)
+report/meso_2025_v10.csv,DIFFERENT,column BVOC_t: 66707.72271750517 vs 61181.90177641928 (rel 9.0e-02)
+report/muni_2025_ranked_v10.csv,DIFFERENT,column mun: 'São Joaquim' vs 'Capão Alto'
+report/report_numbers_v10.csv,DIFFERENT,"column value: '681,5' vs '678,5'"
+report/std_regression_v10.csv,DIFFERENT,column beta_TEMP2_C: 0.7371912899298588 vs 0.8643035247946766 (rel 1.5e-01)
+report/temp_sensitivity_v10.csv,DIFFERENT,column pct_per_K: 20.589971572815347 vs 20.19680408992357 (rel 1.9e-02)

@@ -1,0 +1,139 @@
+year,check,result,detail
+2003,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2003,C1 forested cells without isoprene,PASS,0 cells
+2003,C2 intensity outliers,PASS,0 cells > 766 kg/ha/yr
+2003,C3 filled cells vs valid neighbours,PASS,ISOP 0/70 > 0.23 (limit 2) | MT_PINE 0/70 > 0.22 (limit 2) | MEOH 1/70 > 0.20 (limit 2) | 70 of 190 filled cells LAI-matched
+2003,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2003,C5 PAR monthly SC mean (W m-2),PASS,48-115
+2004,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2004,C1 forested cells without isoprene,PASS,0 cells
+2004,C2 intensity outliers,PASS,0 cells > 651 kg/ha/yr
+2004,C3 filled cells vs valid neighbours,PASS,ISOP 0/71 > 0.22 (limit 2) | MT_PINE 1/71 > 0.21 (limit 2) | MEOH 1/71 > 0.20 (limit 2) | 71 of 190 filled cells LAI-matched
+2004,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2004,C5 PAR monthly SC mean (W m-2),PASS,46-113
+2005,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2005,C1 forested cells without isoprene,PASS,0 cells
+2005,C2 intensity outliers,PASS,0 cells > 726 kg/ha/yr
+2005,C3 filled cells vs valid neighbours,PASS,ISOP 0/74 > 0.22 (limit 2) | MT_PINE 0/74 > 0.22 (limit 2) | MEOH 1/74 > 0.20 (limit 2) | 74 of 190 filled cells LAI-matched
+2005,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2005,C5 PAR monthly SC mean (W m-2),PASS,49-115
+2006,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2006,C1 forested cells without isoprene,PASS,0 cells
+2006,C2 intensity outliers,PASS,0 cells > 763 kg/ha/yr
+2006,C3 filled cells vs valid neighbours,PASS,ISOP 0/68 > 0.23 (limit 2) | MT_PINE 0/68 > 0.21 (limit 2) | MEOH 0/68 > 0.20 (limit 2) | 68 of 190 filled cells LAI-matched
+2006,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2006,C5 PAR monthly SC mean (W m-2),PASS,50-117
+2007,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2007,C1 forested cells without isoprene,PASS,0 cells
+2007,C2 intensity outliers,PASS,0 cells > 757 kg/ha/yr
+2007,C3 filled cells vs valid neighbours,PASS,ISOP 0/68 > 0.22 (limit 2) | MT_PINE 0/68 > 0.21 (limit 2) | MEOH 0/68 > 0.19 (limit 2) | 68 of 190 filled cells LAI-matched
+2007,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2007,C5 PAR monthly SC mean (W m-2),PASS,53-120
+2008,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2008,C1 forested cells without isoprene,PASS,0 cells
+2008,C2 intensity outliers,PASS,0 cells > 641 kg/ha/yr
+2008,C3 filled cells vs valid neighbours,PASS,ISOP 0/72 > 0.22 (limit 2) | MT_PINE 0/72 > 0.21 (limit 2) | MEOH 0/72 > 0.20 (limit 2) | 72 of 190 filled cells LAI-matched
+2008,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2008,C5 PAR monthly SC mean (W m-2),PASS,49-121
+2009,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2009,C1 forested cells without isoprene,PASS,0 cells
+2009,C2 intensity outliers,PASS,0 cells > 754 kg/ha/yr
+2009,C3 filled cells vs valid neighbours,PASS,ISOP 0/72 > 0.21 (limit 2) | MT_PINE 1/72 > 0.21 (limit 2) | MEOH 1/72 > 0.19 (limit 2) | 72 of 190 filled cells LAI-matched
+2009,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2009,C5 PAR monthly SC mean (W m-2),PASS,50-109
+2010,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2010,C1 forested cells without isoprene,PASS,0 cells
+2010,C2 intensity outliers,PASS,0 cells > 717 kg/ha/yr
+2010,C3 filled cells vs valid neighbours,PASS,ISOP 0/71 > 0.22 (limit 2) | MT_PINE 1/71 > 0.21 (limit 2) | MEOH 2/71 > 0.19 (limit 2) | 71 of 190 filled cells LAI-matched
+2010,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2010,C5 PAR monthly SC mean (W m-2),PASS,49-112
+2011,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2011,C1 forested cells without isoprene,PASS,0 cells
+2011,C2 intensity outliers,PASS,0 cells > 672 kg/ha/yr
+2011,C3 filled cells vs valid neighbours,PASS,ISOP 0/73 > 0.21 (limit 2) | MT_PINE 1/73 > 0.21 (limit 2) | MEOH 2/73 > 0.19 (limit 2) | 73 of 190 filled cells LAI-matched
+2011,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2011,C5 PAR monthly SC mean (W m-2),PASS,50-113
+2012,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2012,C1 forested cells without isoprene,PASS,0 cells
+2012,C2 intensity outliers,PASS,0 cells > 793 kg/ha/yr
+2012,C3 filled cells vs valid neighbours,PASS,ISOP 0/65 > 0.25 (limit 2) | MT_PINE 0/65 > 0.22 (limit 2) | MEOH 0/65 > 0.21 (limit 2) | 65 of 190 filled cells LAI-matched
+2012,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2012,C5 PAR monthly SC mean (W m-2),PASS,50-115
+2013,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2013,C1 forested cells without isoprene,PASS,0 cells
+2013,C2 intensity outliers,PASS,0 cells > 686 kg/ha/yr
+2013,C3 filled cells vs valid neighbours,PASS,ISOP 0/67 > 0.24 (limit 2) | MT_PINE 0/67 > 0.22 (limit 2) | MEOH 0/67 > 0.20 (limit 2) | 67 of 190 filled cells LAI-matched
+2013,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2013,C5 PAR monthly SC mean (W m-2),PASS,42-116
+2014,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2014,C1 forested cells without isoprene,PASS,0 cells
+2014,C2 intensity outliers,PASS,0 cells > 844 kg/ha/yr
+2014,C3 filled cells vs valid neighbours,PASS,ISOP 1/75 > 0.24 (limit 2) | MT_PINE 1/75 > 0.21 (limit 2) | MEOH 1/75 > 0.19 (limit 2) | 75 of 190 filled cells LAI-matched
+2014,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2014,C5 PAR monthly SC mean (W m-2),PASS,42-115
+2015,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2015,C1 forested cells without isoprene,PASS,0 cells
+2015,C2 intensity outliers,PASS,0 cells > 761 kg/ha/yr
+2015,C3 filled cells vs valid neighbours,FAIL,ISOP 0/71 > 0.21 (limit 2) | MT_PINE 2/71 > 0.21 (limit 2) | MEOH 4/71 > 0.19 (limit 2) | 71 of 190 filled cells LAI-matched
+2015,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2015,C5 PAR monthly SC mean (W m-2),PASS,46-111
+2016,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2016,C1 forested cells without isoprene,PASS,0 cells
+2016,C2 intensity outliers,PASS,0 cells > 747 kg/ha/yr
+2016,C3 filled cells vs valid neighbours,PASS,ISOP 0/73 > 0.22 (limit 2) | MT_PINE 1/73 > 0.21 (limit 2) | MEOH 2/73 > 0.19 (limit 2) | 73 of 190 filled cells LAI-matched
+2016,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2016,C5 PAR monthly SC mean (W m-2),PASS,50-112
+2017,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2017,C1 forested cells without isoprene,PASS,0 cells
+2017,C2 intensity outliers,PASS,0 cells > 784 kg/ha/yr
+2017,C3 filled cells vs valid neighbours,PASS,ISOP 0/68 > 0.22 (limit 2) | MT_PINE 0/68 > 0.21 (limit 2) | MEOH 0/68 > 0.19 (limit 2) | 68 of 190 filled cells LAI-matched
+2017,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2017,C5 PAR monthly SC mean (W m-2),PASS,45-112
+2018,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2018,C1 forested cells without isoprene,PASS,0 cells
+2018,C2 intensity outliers,PASS,0 cells > 749 kg/ha/yr
+2018,C3 filled cells vs valid neighbours,PASS,ISOP 1/69 > 0.23 (limit 2) | MT_PINE 1/69 > 0.22 (limit 2) | MEOH 1/69 > 0.20 (limit 2) | 69 of 190 filled cells LAI-matched
+2018,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2018,C5 PAR monthly SC mean (W m-2),PASS,48-128
+2019,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2019,C1 forested cells without isoprene,PASS,0 cells
+2019,C2 intensity outliers,PASS,0 cells > 838 kg/ha/yr
+2019,C3 filled cells vs valid neighbours,PASS,ISOP 1/68 > 0.23 (limit 2) | MT_PINE 1/68 > 0.21 (limit 2) | MEOH 1/68 > 0.19 (limit 2) | 68 of 190 filled cells LAI-matched
+2019,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2019,C5 PAR monthly SC mean (W m-2),PASS,43-122
+2020,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2020,C1 forested cells without isoprene,PASS,0 cells
+2020,C2 intensity outliers,PASS,0 cells > 750 kg/ha/yr
+2020,C3 filled cells vs valid neighbours,PASS,ISOP 0/68 > 0.23 (limit 2) | MT_PINE 0/68 > 0.21 (limit 2) | MEOH 2/68 > 0.20 (limit 2) | 68 of 190 filled cells LAI-matched
+2020,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2020,C5 PAR monthly SC mean (W m-2),PASS,48-116
+2021,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2021,C1 forested cells without isoprene,PASS,0 cells
+2021,C2 intensity outliers,PASS,0 cells > 691 kg/ha/yr
+2021,C3 filled cells vs valid neighbours,PASS,ISOP 0/67 > 0.21 (limit 2) | MT_PINE 1/67 > 0.21 (limit 2) | MEOH 1/67 > 0.20 (limit 2) | 67 of 191 filled cells LAI-matched
+2021,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2021,C5 PAR monthly SC mean (W m-2),PASS,46-126
+2022,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2022,C1 forested cells without isoprene,PASS,0 cells
+2022,C2 intensity outliers,PASS,0 cells > 716 kg/ha/yr
+2022,C3 filled cells vs valid neighbours,PASS,ISOP 1/65 > 0.23 (limit 2) | MT_PINE 1/65 > 0.22 (limit 2) | MEOH 0/65 > 0.20 (limit 2) | 65 of 191 filled cells LAI-matched
+2022,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2022,C5 PAR monthly SC mean (W m-2),PASS,48-121
+2023,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2023,C1 forested cells without isoprene,PASS,0 cells
+2023,C2 intensity outliers,PASS,0 cells > 806 kg/ha/yr
+2023,C3 filled cells vs valid neighbours,PASS,ISOP 1/63 > 0.23 (limit 2) | MT_PINE 1/63 > 0.22 (limit 2) | MEOH 1/63 > 0.20 (limit 2) | 63 of 190 filled cells LAI-matched
+2023,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2023,C5 PAR monthly SC mean (W m-2),PASS,50-120
+2024,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2024,C1 forested cells without isoprene,PASS,0 cells
+2024,C2 intensity outliers,PASS,0 cells > 782 kg/ha/yr
+2024,C3 filled cells vs valid neighbours,PASS,ISOP 1/68 > 0.21 (limit 2) | MT_PINE 2/68 > 0.21 (limit 2) | MEOH 2/68 > 0.19 (limit 2) | 68 of 190 filled cells LAI-matched
+2024,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2024,C5 PAR monthly SC mean (W m-2),PASS,48-111
+2025,C0 provenance,PASS,"sha a933b29602929a82 | ['FIX-6 gamtp_megan321', 'FIX-7 soilnox_megan321', 'FIX-8 hourly_flux_fixed'] | variant base | LAI mean"
+2025,C1 forested cells without isoprene,PASS,0 cells
+2025,C2 intensity outliers,PASS,0 cells > 704 kg/ha/yr
+2025,C3 filled cells vs valid neighbours,PASS,ISOP 0/68 > 0.23 (limit 2) | MT_PINE 1/68 > 0.21 (limit 2) | MEOH 1/68 > 0.21 (limit 2) | 68 of 190 filled cells LAI-matched
+2025,C4 completeness,PASS,"12 months, 12 fix logs, 0 checkpoints"
+2025,C5 PAR monthly SC mean (W m-2),PASS,43-117

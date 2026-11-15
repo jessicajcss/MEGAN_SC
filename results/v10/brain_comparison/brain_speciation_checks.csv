@@ -1,0 +1,19 @@
+check,item,expected,brain,ok
+species never produced by MAP_CV2CB6X,XYL,0.0,0.0,True
+species never produced by MAP_CV2CB6X,NR,0.0,0.0,True
+species never produced by MAP_CV2CB6X,NH3,0.0,0.0,True
+species never produced by MAP_CV2CB6X,ALDX,0.0,0.0,True
+species never produced by MAP_CV2CB6X,TOL,0.0,0.0,True
+species never produced by MAP_CV2CB6X,ETHY,0.0,0.0,True
+species never produced by MAP_CV2CB6X,BENZ,0.0,0.0,True
+species never produced by MAP_CV2CB6X,KET,0.0,0.0,True
+species never produced by MAP_CV2CB6X,N2O,0.0,0.0,True
+fingerprint of class LVOC,ETHA/OLE,0.5624999999999999,0.5625000219485429,True
+fingerprint of class LVOC,ETH/OLE,1.1249999999999998,1.1250000438970857,True
+fingerprint of class LVOC,PRPA/OLE,0.3749999999999999,0.37499999139659707,True
+fingerprint of class OTHER,TRS/CH4,1.6000000000000005,1.599999943077226,True
+fingerprint of class OTHER,CH3BR/CH4,0.2,0.19999998748089198,True
+fingerprint of class OTHER,CH3CL/CH4,1.0,1.0,True
+fingerprint of class OTHER,CH3I/CH4,1.4666666666666668,1.466666600171038,True
+fingerprint of class ETOH,ETOH/ALD2,1.0,1.0,True
+fingerprint of class ACID,FACD/AACD,4.2105263157894735,4.210526441692404,True

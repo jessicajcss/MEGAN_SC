@@ -1,0 +1,11 @@
+year,correction,state_lai,vs_modis_pct,vs_vnp_2018_2023_pct
+2024,MODIS (no correction),3.138,0.0,-4.88
+2024,"published (VNP, Earth Engine, 2013-2023)",3.294,4.98,-0.15
+2024,"VNP, Earth Engine, 2018-2023",3.299,5.15,0.0
+2024,"VJ1, this notebook, 2018-2023",3.29,4.87,-0.27
+2024,"VNP, this notebook, 2018-2023",3.298,5.12,-0.03
+2025,MODIS (no correction),2.93,0.0,-10.56
+2025,"published (VNP, Earth Engine, 2013-2023)",3.271,11.63,-0.15
+2025,"VNP, Earth Engine, 2018-2023",3.276,11.82,0.0
+2025,"VJ1, this notebook, 2018-2023",3.367,14.9,2.78
+2025,"VNP, this notebook, 2018-2023",3.278,11.89,0.06

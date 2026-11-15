@@ -1,0 +1,77 @@
+key,description,value,en,pt
+bvoc_mean_kt,mean BVOC 2003-2025 (kt/yr),653.5769771572236,654,654
+bvoc_cv_pct,"interannual CV of BVOC (%, ddof=1)",7.75933623606012,7.8,"7,8"
+bvoc_max,BVOC maximum: year / thousand t,739400.7761152497,2019 / 739,2019 / 739
+bvoc_min,BVOC minimum: year / thousand t,552031.9831732309,2008 / 552,2008 / 552
+y2025_BVOC_t,2025 BVOC (t),628484,"628,484",628.484
+y2025_ISOP_t,2025 ISOP (t),219189,"219,189",219.189
+y2025_MT_t,2025 MT (t),159150,"159,150",159.150
+y2025_SQT_t,2025 SQT (t),13522,"13,522",13.522
+y2025_OVOC_t,2025 OVOC (t),119481,"119,481",119.481
+y2025_LVOC_t,2025 LVOC (t),84754,"84,754",84.754
+y2025_NO_t,2025 NO (t),10292,"10,292",10.292
+y2025_CO_t,2025 CO (t),24439,"24,439",24.439
+y2025_text,2025 BVOC / ISOP / MT (thousand t),628483.949317463,628.5 / 219.2 / 159.1,"628,5 / 219,2 / 159,1"
+trend_BVOC,trend BVOC: Sen %/yr (95% CI); Hamed-Rao p; original MK p,0.5175282788597865,+0.52% yr-1 (0.05 to 1.06; p = 0.027; MK p = 0.027),"0,52% ano-1 (0,05 a 1,06; p = 0,027; MK p = 0,027)"
+trend_ISOP,trend ISOP: Sen %/yr (95% CI); Hamed-Rao p; original MK p,0.8218061938045448,+0.82% yr-1 (0.22 to 1.43; p = 0.007; MK p = 0.007),"0,82% ano-1 (0,22 a 1,43; p = 0,007; MK p = 0,007)"
+trend_MT,trend MT: Sen %/yr (95% CI); Hamed-Rao p; original MK p,0.4489210932897993,+0.45% yr-1 (0.03 to 0.92; p = 0.035; MK p = 0.035),"0,45% ano-1 (0,03 a 0,92; p = 0,035; MK p = 0,035)"
+trend_SQT,trend SQT: Sen %/yr (95% CI); Hamed-Rao p; original MK p,0.6716691424894511,+0.67% yr-1 (0.05 to 1.37; p = 0.030; MK p = 0.030),"0,67% ano-1 (0,05 a 1,37; p = 0,030; MK p = 0,030)"
+trend_OVOC,trend OVOC: Sen %/yr (95% CI); Hamed-Rao p; original MK p,0.33344437928725246,+0.33% yr-1 (-0.03 to 0.82; p = 0.057; MK p = 0.057),"0,33% ano-1 (-0,03 a 0,82; p = 0,057; MK p = 0,057)"
+trend_LVOC,trend LVOC: Sen %/yr (95% CI); Hamed-Rao p; original MK p,0.2246634376375745,+0.22% yr-1 (-0.20 to 0.68; p = 0.267; MK p = 0.267),"0,22% ano-1 (-0,20 a 0,68; p = 0,267; MK p = 0,267)"
+trend_MBO,trend MBO: Sen %/yr (95% CI); Hamed-Rao p; original MK p,0.4174661880117219,+0.42% yr-1 (-0.16 to 0.98; p = 0.170; MK p = 0.170),"0,42% ano-1 (-0,16 a 0,98; p = 0,170; MK p = 0,170)"
+trend_NO,trend NO: Sen %/yr (95% CI); Hamed-Rao p; original MK p,-0.3669112469348064,-0.37% yr-1 (-0.58 to -0.12; p = 0.003; MK p = 0.003),"-0,37% ano-1 (-0,58 a -0,12; p = 0,003; MK p = 0,003)"
+trend_CO,trend CO: Sen %/yr (95% CI); Hamed-Rao p; original MK p,0.3312576512550019,+0.33% yr-1 (-0.16 to 0.82; p = 0.154; MK p = 0.154),"0,33% ano-1 (-0,16 a 0,82; p = 0,154; MK p = 0,154)"
+mean_ISOP,mean 2003-2025 ISOP kt/yr (share of BVOC),216.98537179073264,217 kt yr-1 (33.2%),"217 kt ano-1 (33,2%)"
+mean_MT,mean 2003-2025 MT kt/yr (share of BVOC),168.3733658966381,168 kt yr-1 (25.8%),"168 kt ano-1 (25,8%)"
+mean_OVOC,mean 2003-2025 OVOC kt/yr (share of BVOC),126.23550444076719,126 kt yr-1 (19.3%),"126 kt ano-1 (19,3%)"
+mean_LVOC,mean 2003-2025 LVOC kt/yr (share of BVOC),93.22807117147732,93 kt yr-1 (14.3%),"93 kt ano-1 (14,3%)"
+mean_STRESS_OTHER,mean 2003-2025 STRESS_OTHER kt/yr (share of BVOC),33.95588807820128,34 kt yr-1 (5.2%),"34 kt ano-1 (5,2%)"
+mean_SQT,mean 2003-2025 SQT kt/yr (share of BVOC),14.198326203615649,14 kt yr-1 (2.2%),"14 kt ano-1 (2,2%)"
+mean_MBO,mean 2003-2025 MBO kt/yr (share of BVOC),0.6004495757913741,0.6 kt yr-1 (0.1%),"0,6 kt ano-1 (0,1%)"
+isop_mt_ratio,isoprene:monoterpene ratio of the 2003-2025 means,1.2887155319086316,1.29:1,"1,29:1"
+rdet_bvoc_classes_TEMP2_C,"detrended r, 17 BVOC classes vs TEMP2_C: min to max","(np.float64(0.821), np.float64(0.915))",0.82 to 0.92,"0,82 a 0,92"
+rdet_bvoc_classes_LAI,"detrended r, 17 BVOC classes vs LAI: min to max","(np.float64(0.438), np.float64(0.714))",0.44 to 0.71,"0,44 a 0,71"
+rdet_bvoc_classes_PAR,"detrended r, 17 BVOC classes vs PAR: min to max","(np.float64(0.078), np.float64(0.296))",0.08 to 0.30,"0,08 a 0,30"
+rdet_bvoc_classes_SOILM,"detrended r, 17 BVOC classes vs SOILM: min to max","(np.float64(-0.351), np.float64(-0.189))",-0.35 to -0.19,"-0,35 a -0,19"
+r_NO_T,soil NO vs temperature: raw r ; detrended r,"(np.float64(0.307), np.float64(0.812))",0.31 ; 0.81,"0,31 ; 0,81"
+soa_total_kt,"SOA precursors (MT+SQT) 2003-2025 mean, state (kt/yr)",182.57169210025378,183,183
+meso_sum,"sum of the six mesoregions (area weighting) / state total (cell-centre rule), SOA 2003-2025 mean (%)",99.8216223072839,99.82%,"99,82%"
+meso_Oeste Catarinense,Oeste Catarinense: SOA t/yr; % of SC; kg/ha/yr; SQT %,43610.099004288044,"43,610; 23.9%; 16.0; 7.7%","43.610; 23,9%; 16,0; 7,7%"
+meso_Norte Catarinense,Norte Catarinense: SOA t/yr; % of SC; kg/ha/yr; SQT %,36596.1482450243,"36,596; 20.1%; 23.0; 8.1%","36.596; 20,1%; 23,0; 8,1%"
+meso_Vale do Itajaí,Vale do Itajaí: SOA t/yr; % of SC; kg/ha/yr; SQT %,33822.603027454374,"33,823; 18.6%; 25.8; 7.8%","33.823; 18,6%; 25,8; 7,8%"
+meso_Serrana,Serrana: SOA t/yr; % of SC; kg/ha/yr; SQT %,30717.986896687857,"30,718; 16.9%; 13.8; 7.2%","30.718; 16,9%; 13,8; 7,2%"
+meso_Grande Florianópolis,Grande Florianópolis: SOA t/yr; % of SC; kg/ha/yr; SQT %,19773.183792037475,"19,773; 10.8%; 26.9; 7.9%","19.773; 10,8%; 26,9; 7,9%"
+meso_Sul Catarinense,Sul Catarinense: SOA t/yr; % of SC; kg/ha/yr; SQT %,17726.003962840532,"17,726; 9.7%; 18.3; 7.9%","17.726; 9,7%; 18,3; 7,9%"
+meso_forest_r,SOA intensity vs native forest: Pearson r (Fisher 95% CI); Spearman rho; n,0.9683438119855426,r = 0.97 (95% CI 0.73 to 1.00; p = 0.001); rho = 0.94 (p = 0.005); n = 6,"r = 0,97 (IC 95% 0,73 a 1,00; p = 0,001); rho = 0,94 (p = 0,005); n = 6"
+meso_sqt_share_range,"SQT share of SOA precursors, min to max over mesoregions (%)","(np.float64(7.21), np.float64(8.11))",7.2% to 8.1%,"7,2% a 8,1%"
+meso_top_isop,mesoregion with the largest isoprene total,Oeste Catarinense,Oeste Catarinense,Oeste Catarinense
+meso_top_no,mesoregions with the largest soil NO (t/yr),,"Oeste Catarinense 3,640; Serrana 2,649; Norte Catarinense 1,393","Oeste Catarinense 3,640; Serrana 2,649; Norte Catarinense 1,393"
+mun_top12_bvoc,top-12 municipalities 2025: BVOC t (kg/ha/yr),,"Lages 9,994 (38); Itaiópolis 9,551 (74); Joinville 9,341 (83); Mafra 8,716 (62); Santa Cecília 8,636 (75); Campos Novos 7,520 (44); Rio Negrinho 7,219 (80); Caçador 7,070 (72); Bom Retiro 6,737 (64); Capão Alto 6,643 (50); Porto União 6,582 (78); São Joaquim 6,571 (35)","Lages 9,994 (38); Itaiópolis 9,551 (74); Joinville 9,341 (83); Mafra 8,716 (62); Santa Cecília 8,636 (75); Campos Novos 7,520 (44); Rio Negrinho 7,219 (80); Caçador 7,070 (72); Bom Retiro 6,737 (64); Capão Alto 6,643 (50); Porto União 6,582 (78); São Joaquim 6,571 (35)"
+mun_top5_isop,top-5 isoprene municipalities 2025 (t),,"Lages 3,583; Santa Cecília 3,323; Itaiópolis 3,194; Mafra 3,172; Joinville 2,937","Lages 3,583; Santa Cecília 3,323; Itaiópolis 3,194; Mafra 3,172; Joinville 2,937"
+mun_top5_no,top-5 soil-NO municipalities 2025 (t),,Lages 374; São Joaquim 284; Campos Novos 212; Capão Alto 166; Água Doce 159,Lages 374; São Joaquim 284; Campos Novos 212; Capão Alto 166; Água Doce 159
+mun_intensity,"municipal BVOC intensity 2025 (kg/ha/yr, IBGE area): min to max; median",63.735955954927014,12 to 126 (median 64; max Itapoá),12 a 126 (mediana 64; máximo Itapoá)
+mun_top_jenks,"top Jenks class of intensity: lower limit (kg/ha/yr), number of municipalities, the first ones",92.82365490899578,">= 92.8 kg ha-1 yr-1 (42 municipalities; limits 11.9, 42.7, 60.9, 76.4, 92.8, 126.5): Itapoá, Luiz Alves, Balneário Barra do Sul, Nova Trento, Botuverá, Apiúna, Guabiruba, Ascurra","≥ 92,8 kg ha-1 ano-1 (42 municípios; limites 11,9; 42,7; 60,9; 76,4; 92,8; 126,5): Itapoá, Luiz Alves, Balneário Barra do Sul, Nova Trento, Botuverá, Apiúna, Guabiruba, Ascurra"
+mun_cells,"municipalities: grid cells that intersect each one (min, median, max); IBGE area in cell areas (min, median, max)",33.822281063072936,"17, 54, 485; 5.1, 34, 384 (cell 6.87 km2)","17, 54, 485; 5,1, 34, 384 (célula de 6,87 km²)"
+mun_area_check,"area attributed to each municipality / IBGE area (min to max); sum of the 295 municipalities / state total, BVOC 2025 (%)",99.83191471567083,0.9988 to 1.0061; 99.83%,"0,999 a 1,006; 99,83%"
+isop_flux,isoprene areal flux g C m-2 yr-1: state mean (cell median; p99; max),1.9933871984788194,2.0 (cell median 1.9; p99 4.5; max 6.1),"2,0 (mediana por célula 1,9; p99 4,5; máximo 6,1)"
+cmp2019_ISOP,2019 ISOP: this inventory Gg vs previous Gg; ratio,7.583538504411687,252.4 Gg vs 33.3 Gg; ratio 7.6,"252,4 Gg contra 33,3 Gg; razão 7,6"
+cmp2019_CO,2019 CO: this inventory Gg vs previous Gg; ratio,3.7084425664487783,27.8 Gg vs 7.50 Gg; ratio 3.7,"27,8 Gg contra 7,50 Gg; razão 3,7"
+cmp2019_NO,2019 NO: this inventory Gg vs previous Gg; ratio,18.91048486455419,10.8 Gg vs 0.571 Gg; ratio 18.9,"10,8 Gg contra 0,571 Gg; razão 18,9"
+cmp2019_range,range of the three 2019 ratios,"(np.float64(3.71), np.float64(18.91))",4 to 19 times,4 a 19 vezes
+isop_mean_ratio,isoprene: 2003-2025 mean Gg; mean/previous; 2025/previous; peak year,6.519878731416873,217 Gg; 6.5; 6.6; peak 2019,"217 Gg; 6,5; 6,6; pico 2019"
+lai_gaps,LAI gap cell-months filled (FIX-4) per year: min to max,,0 to 7,0 to 7
+met_filled,SC cells with filled ERA5-Land meteorology (FIX-1) per year: min to max,,190 to 191,190 to 191
+grid_facts,grid; SC cells (% of box); SC area on grid (km2),13970,"144 x 224; 13970 (43.3%); 95,969","144 x 224; 13970 (43.3%); 95,969"
+season_BVOC,BVOC monthly climatology 2003-2025: max month (t); min month (t); max/min; Oct-Mar and DJF share of the year (%),4.967351408110799,"Jan 100,004 t; Jul 20,132 t; ratio 4.97; Oct-Mar 72.3%; DJF 42.8%","jan 100.004 t; jul 20.132 t; razão 4,97; out-mar 72,3%; dez-fev 42,8%"
+season_ISOP,ISOP monthly climatology 2003-2025: max month (t); min month (t); max/min; Oct-Mar and DJF share of the year (%),7.2179762621352,"Jan 36,122 t; Jun 5,004 t; ratio 7.22; Oct-Mar 75.8%; DJF 46.3%","jan 36.122 t; jun 5.004 t; razão 7,22; out-mar 75,8%; dez-fev 46,3%"
+season_MT,MT monthly climatology 2003-2025: max month (t); min month (t); max/min; Oct-Mar and DJF share of the year (%),4.172309597174309,"Jan 24,348 t; Jul 5,836 t; ratio 4.17; Oct-Mar 70.4%; DJF 40.7%","jan 24.348 t; jul 5.836 t; razão 4,17; out-mar 70,4%; dez-fev 40,7%"
+season_SQT,SQT monthly climatology 2003-2025: max month (t); min month (t); max/min; Oct-Mar and DJF share of the year (%),6.703472204632671,"Jan 2,352 t; Jul 351 t; ratio 6.70; Oct-Mar 75.2%; DJF 46.1%","jan 2.352 t; jul 351 t; razão 6,70; out-mar 75,2%; dez-fev 46,1%"
+season_OVOC,OVOC monthly climatology 2003-2025: max month (t); min month (t); max/min; Oct-Mar and DJF share of the year (%),4.452300460761538,"Jan 18,677 t; Jul 4,195 t; ratio 4.45; Oct-Mar 71.1%; DJF 41.5%","jan 18.677 t; jul 4.195 t; razão 4,45; out-mar 71,1%; dez-fev 41,5%"
+season_LVOC,LVOC monthly climatology 2003-2025: max month (t); min month (t); max/min; Oct-Mar and DJF share of the year (%),3.8567729131574024,"Jan 13,257 t; Jul 3,437 t; ratio 3.86; Oct-Mar 69.1%; DJF 40.0%","jan 13.257 t; jul 3.437 t; razão 3,86; out-mar 69,1%; dez-fev 40,0%"
+season_STRESS_OTHER,STRESS_OTHER monthly climatology 2003-2025: max month (t); min month (t); max/min; Oct-Mar and DJF share of the year (%),4.7562688391338535,"Jan 5,146 t; Jul 1,082 t; ratio 4.76; Oct-Mar 71.8%; DJF 42.4%","jan 5.146 t; jul 1.082 t; razão 4,76; out-mar 71,8%; dez-fev 42,4%"
+season_MBO,MBO monthly climatology 2003-2025: max month (t); min month (t); max/min; Oct-Mar and DJF share of the year (%),7.667573142406591,Jan 102 t; Jun 13 t; ratio 7.67; Oct-Mar 76.5%; DJF 46.8%,"jan 102 t; jun 13 t; razão 7,67; out-mar 76,5%; dez-fev 46,8%"
+season_nonISOP,nonISOP monthly climatology 2003-2025: max month (t); min month (t); max/min; Oct-Mar and DJF share of the year (%),4.283205349571289,"Jan 63,882 t; Jul 14,914 t; ratio 4.28; Oct-Mar 70.6%; DJF 41.1%","jan 63.882 t; jul 14.914 t; razão 4,28; out-mar 70,6%; dez-fev 41,1%"
+season_NO,NO monthly climatology 2003-2025: max month (t); min month (t); max/min; Oct-Mar and DJF share of the year (%),1.5710001984084416,"Oct 1,060 t; May 675 t; ratio 1.57; Oct-Mar 53.2%; DJF 26.6%","out 1.060 t; mai 675 t; razão 1,57; out-mar 53,2%; dez-fev 26,6%"
+season_CO,CO monthly climatology 2003-2025: max month (t); min month (t); max/min; Oct-Mar and DJF share of the year (%),6.572890350766903,"Jan 4,043 t; Jun 615 t; ratio 6.57; Oct-Mar 75.1%; DJF 45.1%","jan 4.043 t; jun 615 t; razão 6,57; out-mar 75,1%; dez-fev 45,1%"
+season_bvoc_max_min_months,BVOC: number of years with the monthly maximum / minimum in each month,,"max: Jan 11, Feb 4, Mar 1, Nov 1, Dec 6 | min: Jun 10, Jul 13","máx.: jan 11, fev 4, mar 1, nov 1, dez 6 | mín.: jun 10, jul 13"
+season_isop_share,"isoprene share of monthly BVOC (climatology): Jun, Jul, Dec, Jan (%)",,Jun 24.7%; Jul 25.9%; Dec 36.2%; Jan 36.1%,"jun 24,7%; jul 25,9%; dez 36,2%; jan 36,1%"

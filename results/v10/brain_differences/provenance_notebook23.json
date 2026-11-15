@@ -1,0 +1,12 @@
+{
+ "notebook": "23_brain_differences_2019",
+ "run_utc": "2026-11-03T00:11:45Z",
+ "nb18": "/content/drive/MyDrive/MEGAN_SC/notebooks/18_brain_comparison_2019.ipynb",
+ "n20": "/content/drive/MyDrive/megan_sc_outputs_v10/analysis_v10/sensitivity_2019/full",
+ "n21": "/content/drive/MyDrive/megan_sc_outputs_v10/analysis_v10/era5land_vs_inmet/lapse_rate.json",
+ "tropomi": "/content/drive/MyDrive/megan_sc_outputs_v10/analysis_v10/tropomi_hcho/cache_cf0.3_sza70_fire120",
+ "n_boot": 1000,
+ "n_perm": 100000,
+ "block_cells": 10,
+ "seed": 23
+}

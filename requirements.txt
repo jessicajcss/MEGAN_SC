@@ -1,0 +1,25 @@
+# --- Earth Engine + geospatial data access ---
+earthengine-api>=1.1
+geemap>=0.32
+# --- arrays / netCDF / geospatial ---
+numpy>=1.26
+scipy>=1.11
+pandas>=2.1
+xarray>=2024.1
+netCDF4>=1.6
+rioxarray>=0.15
+rasterio>=1.3
+geopandas>=1.0
+shapely>=2.0
+pyproj>=3.6
+geographiclib>=2.0
+# --- config / CLI / testing / plotting ---
+pyyaml>=6.0
+click>=8.1
+pytest>=8.0
+matplotlib>=3.8
+cartopy>=0.22
+tqdm>=4.66
+pymannkendall>=1.4   # trend tests (notebook 13, analysis/)
+statsmodels>=0.14    # analysis/v10/review (residual year term)
+Pillow>=10           # tools/compare_results.py (pixel comparison)

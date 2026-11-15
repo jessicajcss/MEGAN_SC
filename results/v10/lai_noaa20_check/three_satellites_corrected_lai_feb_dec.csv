@@ -1,0 +1,13 @@
+year,correction,state_lai_feb_dec,vs_modis_pct,vs_published_pct,vs_vnp_2023_pct
+2024,MODIS (no correction),3.101,0.0,-4.648,-5.121
+2024,"published (VNP, Earth Engine, 2013-2023)",3.252,4.874,0.0,-0.496
+2024,"VNP, Earth Engine, 2023",3.268,5.396,0.497,-0.002
+2024,"VNP, this notebook, 2023",3.268,5.397,0.499,0.0
+2024,"VJ1 (NOAA-20), 2023",3.157,1.825,-2.907,-3.389
+2024,"VJ2 (NOAA-21), 2023",3.27,5.461,0.56,0.06
+2025,MODIS (no correction),2.88,0.0,-10.563,-11.092
+2025,"published (VNP, Earth Engine, 2013-2023)",3.221,11.811,0.0,-0.592
+2025,"VNP, Earth Engine, 2023",3.237,12.377,0.506,-0.088
+2025,"VNP, this notebook, 2023",3.24,12.476,0.595,0.0
+2025,"VJ1 (NOAA-20), 2023",3.246,12.699,0.794,0.198
+2025,"VJ2 (NOAA-21), 2023",3.307,14.825,2.696,2.088

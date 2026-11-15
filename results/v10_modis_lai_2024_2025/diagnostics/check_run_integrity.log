@@ -1,0 +1,3 @@
+(a) months with steps != ndays*8: none (276 months checked)
+(b) max relative |annual - sum of monthly| over years and classes: 6.2e-10
+(c) 2025_09: 192 steps saved (steps 0-191, 24 days); cells above final month: 0; saved/final ISOP 0.793, MEOH 0.796

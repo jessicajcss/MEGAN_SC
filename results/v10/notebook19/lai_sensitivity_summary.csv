@@ -1,0 +1,193 @@
+key,modis_lai,corrected_lai,source,modis_lai_noaa_co2,changed
+bvoc_mean_kt,653.5769771572236,656.5225437412145,notebook13_meso2024/manuscript_numbers.csv,,True
+bvoc_cv_pct,7.759336236060122,7.9267472503471605,notebook13_meso2024/manuscript_numbers.csv,,True
+bvoc_max,739400.7761152497,739400.7761152497,notebook13_meso2024/manuscript_numbers.csv,,False
+bvoc_min,552031.9831732309,552031.9831732309,notebook13_meso2024/manuscript_numbers.csv,,False
+y2025_BVOC_t,628484,672871,notebook13_meso2024/manuscript_numbers.csv,,True
+y2025_ISOP_t,219189,228606,notebook13_meso2024/manuscript_numbers.csv,,True
+y2025_MT_t,159150,171712,notebook13_meso2024/manuscript_numbers.csv,,True
+y2025_SQT_t,13522,14867,notebook13_meso2024/manuscript_numbers.csv,,True
+y2025_OVOC_t,119481,128273,notebook13_meso2024/manuscript_numbers.csv,,True
+y2025_LVOC_t,84754,94302,notebook13_meso2024/manuscript_numbers.csv,,True
+y2025_NO_t,10292,10270,notebook13_meso2024/manuscript_numbers.csv,,True
+y2025_CO_t,24439,25500,notebook13_meso2024/manuscript_numbers.csv,,True
+y2025_text,628483.949317463,672871.1277500107,notebook13_meso2024/manuscript_numbers.csv,,True
+trend_BVOC,0.5175282788597865,0.6065043365302667,notebook13_meso2024/manuscript_numbers.csv,,True
+trend_ISOP,0.8218061938045448,0.8754559813749128,notebook13_meso2024/manuscript_numbers.csv,,True
+trend_MT,0.4489210932897993,0.5645474895062653,notebook13_meso2024/manuscript_numbers.csv,,True
+trend_SQT,0.6716691424894511,0.7648567222623242,notebook13_meso2024/manuscript_numbers.csv,,True
+trend_OVOC,0.33344437928725246,0.4713662886073956,notebook13_meso2024/manuscript_numbers.csv,,True
+trend_LVOC,0.2246634376375745,0.36474671823784044,notebook13_meso2024/manuscript_numbers.csv,,True
+trend_MBO,0.4174661880117219,0.5225186451260875,notebook13_meso2024/manuscript_numbers.csv,,True
+trend_NO,-0.3669112469348064,-0.3684022754274827,notebook13_meso2024/manuscript_numbers.csv,,True
+trend_CO,0.3312576512550019,0.44684017393085307,notebook13_meso2024/manuscript_numbers.csv,,True
+mean_ISOP,216.98537179073264,217.64197461434287,notebook13_meso2024/manuscript_numbers.csv,,True
+mean_MT,168.3733658966381,169.18901403826922,notebook13_meso2024/manuscript_numbers.csv,,True
+mean_OVOC,126.23550444076719,126.81357693628024,notebook13_meso2024/manuscript_numbers.csv,,True
+mean_LVOC,93.22807117147732,93.85368202894925,notebook13_meso2024/manuscript_numbers.csv,,True
+mean_STRESS_OTHER,33.95588807820128,34.13407020840975,notebook13_meso2024/manuscript_numbers.csv,,True
+mean_SQT,14.198326203615649,14.287699025867363,notebook13_meso2024/manuscript_numbers.csv,,True
+mean_MBO,0.6004495757913741,0.6025268890956397,notebook13_meso2024/manuscript_numbers.csv,,True
+isop_mt_ratio,1.2887155319086316,1.2863836097839896,notebook13_meso2024/manuscript_numbers.csv,,True
+rdet_bvoc_classes_TEMP2_C,"(0.821, 0.915)","(0.875, 0.92)",notebook13_meso2024/manuscript_numbers.csv,,True
+rdet_bvoc_classes_LAI,"(0.438, 0.714)","(0.617, 0.76)",notebook13_meso2024/manuscript_numbers.csv,,True
+rdet_bvoc_classes_PAR,"(0.078, 0.296)","(0.076, 0.292)",notebook13_meso2024/manuscript_numbers.csv,,True
+rdet_bvoc_classes_SOILM,"(-0.351, -0.189)","(-0.326, -0.147)",notebook13_meso2024/manuscript_numbers.csv,,True
+r_NO_T,"(np.float64(0.307), np.float64(0.812))","(np.float64(0.304), np.float64(0.815))",notebook13_meso2024/manuscript_numbers.csv,,True
+soa_total_kt,182.57169210025378,183.47671306413653,notebook13_meso2024/manuscript_numbers.csv,,True
+meso_sum,99.8216223072839,99.82150808316952,notebook13_meso2024/manuscript_numbers.csv,,True
+meso_Oeste Catarinense,43610.099004288044,43819.612866357886,notebook13_meso2024/manuscript_numbers.csv,,True
+meso_Norte Catarinense,36596.1482450243,36769.42642202772,notebook13_meso2024/manuscript_numbers.csv,,True
+meso_Vale do Itajaí,33822.603027454374,33984.957947676136,notebook13_meso2024/manuscript_numbers.csv,,True
+meso_Serrana,30717.986896687857,30861.43832111151,notebook13_meso2024/manuscript_numbers.csv,,True
+meso_Grande Florianópolis,19773.183792037475,19885.76250186969,notebook13_meso2024/manuscript_numbers.csv,,True
+meso_Sul Catarinense,17726.003962840532,17828.023903007863,notebook13_meso2024/manuscript_numbers.csv,,True
+meso_forest_r,0.9683438119855425,0.9683920266884538,notebook13_meso2024/manuscript_numbers.csv,,True
+meso_sqt_share_range,"(7.21, 8.11)","(7.21, 8.12)",notebook13_meso2024/manuscript_numbers.csv,,True
+meso_top_isop,Oeste Catarinense,Oeste Catarinense,notebook13_meso2024/manuscript_numbers.csv,,False
+meso_top_no,"Oeste Catarinense 3,640; Serrana 2,649; Norte Catarinense 1,393","Oeste Catarinense 3,639; Serrana 2,649; Norte Catarinense 1,393",notebook13_meso2024/manuscript_numbers.csv,,True
+mun_top12_bvoc,"Lages 9,994 (38); Itaiópolis 9,551 (74); Joinville 9,341 (83); Mafra 8,716 (62); Santa Cecília 8,636 (75); Campos Novos 7,520 (44); Rio Negrinho 7,219 (80); Caçador 7,070 (72); Bom Retiro 6,737 (64); Capão Alto 6,643 (50); Porto União 6,582 (78); São Joaquim 6,571 (35)","Lages 10,729 (41); Itaiópolis 10,193 (79); Joinville 9,883 (88); Mafra 9,236 (66); Santa Cecília 9,015 (79); Campos Novos 7,857 (46); Rio Negrinho 7,685 (85); Caçador 7,329 (75); Bom Retiro 7,211 (68); São Joaquim 7,009 (37); Capão Alto 7,008 (53); Porto União 6,916 (81)",notebook13_meso2024/manuscript_numbers.csv,,True
+mun_top5_isop,"Lages 3,583; Santa Cecília 3,323; Itaiópolis 3,194; Mafra 3,172; Joinville 2,937","Lages 3,760; Santa Cecília 3,420; Itaiópolis 3,358; Mafra 3,309; Joinville 3,042",notebook13_meso2024/manuscript_numbers.csv,,True
+mun_top5_no,Lages 374; São Joaquim 284; Campos Novos 212; Capão Alto 166; Água Doce 159,Lages 374; São Joaquim 284; Campos Novos 211; Capão Alto 166; Água Doce 158,notebook13_meso2024/manuscript_numbers.csv,,True
+mun_intensity,63.735955954927014,69.55738747225023,notebook13_meso2024/manuscript_numbers.csv,,True
+mun_top_jenks,92.82365490899578,102.94162323731327,notebook13_meso2024/manuscript_numbers.csv,,True
+mun_cells,33.822281063072936,33.822281063072936,notebook13_meso2024/manuscript_numbers.csv,,False
+mun_area_check,99.83191471567083,99.83017257304972,notebook13_meso2024/manuscript_numbers.csv,,True
+isop_flux,1.9933871984788194,1.9994192348887752,notebook13_meso2024/manuscript_numbers.csv,,True
+cmp2019_ISOP,7.583538504411687,7.583538504411687,notebook13_meso2024/manuscript_numbers.csv,,False
+cmp2019_CO,3.7084425664487783,3.7084425664487783,notebook13_meso2024/manuscript_numbers.csv,,False
+cmp2019_NO,18.91048486455419,18.91048486455419,notebook13_meso2024/manuscript_numbers.csv,,False
+cmp2019_range,"(np.float64(3.71), np.float64(18.91))","(np.float64(3.71), np.float64(18.91))",notebook13_meso2024/manuscript_numbers.csv,,False
+isop_mean_ratio,6.519878731416873,6.539608037357245,notebook13_meso2024/manuscript_numbers.csv,,True
+lai_gaps,0 to 7,0 to 7,notebook13_meso2024/manuscript_numbers.csv,,False
+met_filled,190 to 191,190 to 191,notebook13_meso2024/manuscript_numbers.csv,,False
+grid_facts,13970,13970,notebook13_meso2024/manuscript_numbers.csv,,False
+season_BVOC,4.9673514081108,4.983731945115018,notebook13_meso2024/manuscript_numbers.csv,,True
+season_ISOP,7.2179762621352,7.224284618616554,notebook13_meso2024/manuscript_numbers.csv,,True
+season_MT,4.172309597174309,4.192958874119314,notebook13_meso2024/manuscript_numbers.csv,,True
+season_SQT,6.703472204632671,6.723460104976092,notebook13_meso2024/manuscript_numbers.csv,,True
+season_OVOC,4.452300460761538,4.4700214647936525,notebook13_meso2024/manuscript_numbers.csv,,True
+season_LVOC,3.8567729131574024,3.873497460516008,notebook13_meso2024/manuscript_numbers.csv,,True
+season_STRESS_OTHER,4.7562688391338535,4.770170935200301,notebook13_meso2024/manuscript_numbers.csv,,True
+season_MBO,7.667573142406591,7.677391754745153,notebook13_meso2024/manuscript_numbers.csv,,True
+season_nonISOP,4.283205349571289,4.30172081199507,notebook13_meso2024/manuscript_numbers.csv,,True
+season_NO,1.5710001984084416,1.5711016492268497,notebook13_meso2024/manuscript_numbers.csv,,True
+season_CO,6.572890350766903,6.594608236524049,notebook13_meso2024/manuscript_numbers.csv,,True
+season_bvoc_max_min_months,"max: Jan 11, Feb 4, Mar 1, Nov 1, Dec 6 | min: Jun 10, Jul 13","max: Jan 11, Feb 4, Mar 1, Nov 1, Dec 6 | min: Jun 10, Jul 13",notebook13_meso2024/manuscript_numbers.csv,,False
+season_isop_share,Jun 24.7%; Jul 25.9%; Dec 36.2%; Jan 36.1%,Jun 24.8%; Jul 26.0%; Dec 36.1%; Jan 36.1%,notebook13_meso2024/manuscript_numbers.csv,,True
+hr_threshold,0.409,0.409,final_review/final_review_numbers.csv,,False
+hr_max_abs_acf,0.337,0.308,final_review/final_review_numbers.csv,,True
+hr_changes_p,False,False,final_review/final_review_numbers.csv,,False
+NO_p_with_lag1,0.0188,0.0134,final_review/final_review_numbers.csv,,True
+trend_ISOP,MK p 0.0071; BH q 0.0318; p from 2005 0.0235; 2003-2024 +0.96 %/yr (p 0.0057),MK p 0.0037; BH q 0.0165; p from 2005 0.0122; 2003-2024 +1.00 %/yr (p 0.0040),final_review/final_review_numbers.csv,,True
+trend_NO,MK p 0.0031; BH q 0.0279; p from 2005 0.0275; 2003-2024 -0.36 %/yr (p 0.0057),MK p 0.0022; BH q 0.0165; p from 2005 0.0201; 2003-2024 -0.36 %/yr (p 0.0057),final_review/final_review_numbers.csv,,True
+trend_BVOC,MK p 0.0265; BH q 0.0623; p from 2005 0.0655; 2003-2024 +0.63 %/yr (p 0.0095),MK p 0.0083; BH q 0.0186; p from 2005 0.0235; 2003-2024 +0.67 %/yr (p 0.0080),final_review/final_review_numbers.csv,,True
+trend_MT,MK p 0.0346; BH q 0.0623; p from 2005 0.0748; 2003-2024 +0.54 %/yr (p 0.0095),MK p 0.0112; BH q 0.0202; p from 2005 0.0275; 2003-2024 +0.61 %/yr (p 0.0080),final_review/final_review_numbers.csv,,True
+trend_SQT,MK p 0.0303; BH q 0.0623; p from 2005 0.0655; 2003-2024 +0.78 %/yr (p 0.0112),MK p 0.0083; BH q 0.0186; p from 2005 0.0201; 2003-2024 +0.83 %/yr (p 0.0080),final_review/final_review_numbers.csv,,True
+lai_2024,3.138 (-4.8 %; -2.4 SD of 2003-2023),3.294 (-0.1 %; -0.0 SD of 2003-2023),final_review/final_review_numbers.csv,,True
+lai_2025,2.930 (-11.1 %; -5.5 SD of 2003-2023),3.271 (-0.8 %; -0.4 SD of 2003-2023),final_review/final_review_numbers.csv,,True
+driver_interannual,"PAR CV 3.2 %; T SD 0.48 K; detrended r(PAR, SOILM) -0.89; detrended r(T, SOILM) -0.19","PAR CV 3.2 %; T SD 0.48 K; detrended r(PAR, SOILM) -0.89; detrended r(T, SOILM) -0.19",final_review/final_review_numbers.csv,,False
+partial_LAI_given_T_BVOC,0.37 to 0.85,0.42 to 0.75,final_review/final_review_numbers.csv,,True
+r_detrended_T_LAI,0.32,0.51,final_review/final_review_numbers.csv,,True
+residual_year_term_ISOP,+0.49 +- 0.13 %/yr,+0.40 +- 0.11 %/yr,final_review/final_review_numbers.csv,,True
+residual_year_term_NO,-0.50 +- 0.05 %/yr,-0.45 +- 0.05 %/yr,final_review/final_review_numbers.csv,,True
+T_trend,0.0328 K/yr (MK p 0.091),0.0328 K/yr (MK p 0.091),final_review/final_review_numbers.csv,,False
+anom_r_isop_background,"0.427 (N_eff 68, p 2.9e-04)","0.430 (N_eff 67, p 2.8e-04)",final_review/final_review_numbers.csv,,True
+anom_partial_r_isop_dHCHO_given_background,"0.616 (N_eff 74, p 5.0e-09)","0.645 (N_eff 74, p 6.1e-10)",final_review/final_review_numbers.csv,,True
+anom_partial_r_isop_dHCHO_given_T2,"0.435 (N_eff 72, p 1.3e-04)","0.476 (N_eff 72, p 2.2e-05)",final_review/final_review_numbers.csv,,True
+anom_r_dHCHO_background,-0.257,-0.257,final_review/final_review_numbers.csv,,False
+anom_r_isop_dHCHO_neff_minus12,"N_eff 61.8, p 5.3e-04","N_eff 61.5, p 2.4e-04",final_review/final_review_numbers.csv,,True
+anom_DJF,"n 21; r(isop, dHCHO) 0.51; r(isop, background) 0.25","n 21; r(isop, dHCHO) 0.54; r(isop, background) 0.27",final_review/final_review_numbers.csv,,True
+anom_MAM,"n 21; r(isop, dHCHO) 0.43; r(isop, background) 0.27","n 21; r(isop, dHCHO) 0.45; r(isop, background) 0.25",final_review/final_review_numbers.csv,,True
+anom_JJA,"n 21; r(isop, dHCHO) -0.21; r(isop, background) 0.71","n 21; r(isop, dHCHO) -0.21; r(isop, background) 0.71",final_review/final_review_numbers.csv,,False
+anom_SON,"n 21; r(isop, dHCHO) 0.65; r(isop, background) 0.75","n 21; r(isop, dHCHO) 0.67; r(isop, background) 0.75",final_review/final_review_numbers.csv,,True
+annual_r_isop_dHCHO,-0.485,-0.302,final_review/final_review_numbers.csv,,True
+annual_r_isop_background,0.881,0.876,final_review/final_review_numbers.csv,,True
+clim_min_month_isop_2019_2025,7,7,final_review/final_review_numbers.csv,,False
+clim_min_month_dHCHO_2019_2025,6,6,final_review/final_review_numbers.csv,,False
+tier1_r_smoothed_10_40km,-0.11 to 0.16,-0.11 to 0.16,final_review/final_review_numbers.csv,,False
+implied_tau_h_Y0.29,raw 1.192; bias-corrected 1.867,raw 1.178; bias-corrected 1.846,final_review/final_review_numbers.csv,,True
+implied_tau_h_Y0.43,raw 0.804; bias-corrected 1.259,raw 0.795; bias-corrected 1.245,final_review/final_review_numbers.csv,,True
+ratio_obs_expected_palmer_tau,raw 0.457 to 0.805; bias-corrected 0.715 to 1.261,raw 0.452 to 0.796; bias-corrected 0.707 to 1.247,final_review/final_review_numbers.csv,,True
+overpass_local_solar_time,16:30 UTC = 12.91 h to 13.28 h local mean solar time across SC,16:30 UTC = 12.91 h to 13.28 h local mean solar time across SC,final_review/final_review_numbers.csv,,False
+meso_r_fisher,r 0.9683 (95% CI 0.7322 to 0.9967; p 0.0015),r 0.9684 (95% CI 0.7325 to 0.9967; p 0.0015),final_review/final_review_numbers.csv,,True
+meso_spearman_exact,rho 0.9429; exact two-sided p 0.0167 (asymptotic 0.0048),rho 0.9429; exact two-sided p 0.0167 (asymptotic 0.0048),final_review/final_review_numbers.csv,,False
+mun_area_ratio,0.9988 to 1.0061 (median 1.0017),0.9988 to 1.0061 (median 1.0017),final_review/final_review_numbers.csv,,False
+meso_area_ratio,1.0014 to 1.0019,1.0014 to 1.0019,final_review/final_review_numbers.csv,,False
+c3_pooled_all,46 of 4782 above the valid-cell p99.5 (expected 23.9; binomial p 3.7e-05),42 of 4785 above the valid-cell p99.5 (expected 23.9; binomial p 5.0e-04),final_review/final_review_numbers.csv,,True
+c3_pooled_ISOP,6 of 1594 above the valid-cell p99.5 (expected 8.0; binomial p 8.1e-01),5 of 1595 above the valid-cell p99.5 (expected 8.0; binomial p 9.0e-01),final_review/final_review_numbers.csv,,True
+c3_pooled_MEOH,24 of 1594 above the valid-cell p99.5 (expected 8.0; binomial p 3.2e-06),23 of 1595 above the valid-cell p99.5 (expected 8.0; binomial p 1.0e-05),final_review/final_review_numbers.csv,,True
+c3_pooled_MT_PINE,16 of 1594 above the valid-cell p99.5 (expected 8.0; binomial p 7.8e-03),14 of 1595 above the valid-cell p99.5 (expected 8.0; binomial p 3.3e-02),final_review/final_review_numbers.csv,,True
+c3_distinct_cells,95,92,final_review/final_review_numbers.csv,,True
+cell_area_sphere_minus_ellipsoid_pct,0.123 to 0.193 % at 29.5-25.9 S,0.123 to 0.193 % at 29.5-25.9 S,final_review/final_review_numbers.csv,,False
+lai_months_below_1sd_nov2024_dec2025,12 of 14,3 of 14,final_review/final_review_numbers.csv,,True
+lai_months_below_2sd_by_year,2003 0; 2004 0; 2005 0; 2006 0; 2007 1; 2008 2; 2009 0; 2010 0; 2011 1; 2012 0; 2013 0; 2014 0; 2015 2; 2016 0; 2017 0; 2018 0; 2019 0; 2020 0; 2021 0; 2022 0; 2023 1; 2024 3; 2025 7,2003 0; 2004 0; 2005 0; 2006 0; 2007 1; 2008 2; 2009 0; 2010 0; 2011 1; 2012 0; 2013 0; 2014 0; 2015 2; 2016 0; 2017 0; 2018 0; 2019 0; 2020 0; 2021 0; 2022 0; 2023 1; 2024 0; 2025 1,final_review/final_review_numbers.csv,,True
+lai_max_cell_value,6.67,6.67,final_review/final_review_numbers.csv,,False
+filled_cells_area,190 cells = 1301.0 km2; 191 cells = 1307.9 km2,190 cells = 1301.0 km2; 191 cells = 1307.9 km2,final_review/final_review_numbers.csv,,False
+isop_trend_with_co2_inhibition,+0.63 %/yr (MK p 0.0346); without: +0.82 %/yr,+0.65 %/yr (MK p 0.0175); without: +0.88 %/yr,final_review/final_review_numbers.csv,+0.63 %/yr (MK p 0.0346); without: +0.82 %/yr,True
+bvoc_trend_with_co2_inhibition,+0.46 %/yr (MK p 0.0507); without: +0.52 %/yr,+0.54 %/yr (MK p 0.0231); without: +0.61 %/yr,final_review/final_review_numbers.csv,+0.46 %/yr (MK p 0.0507); without: +0.52 %/yr,True
+isop_mean_with_co2_inhibition,+0.30 % of the 2003-2025 mean isoprene,+0.30 % of the 2003-2025 mean isoprene,final_review/final_review_numbers.csv,+0.30 % of the 2003-2025 mean isoprene,False
+fdr_with_co2_inhibition,"BH q: isoprene 0.0779, BVOC 0.0858, soil NO 0.0279","BH q: isoprene 0.0314, BVOC 0.0347, soil NO 0.0197",final_review/final_review_numbers.csv,"BH q: isoprene 0.0779, BVOC 0.0858, soil NO 0.0279",True
+ols_trend_decomposition_ISOP,+0.85 %/yr = T +0.40 + LAI -0.03 + year term +0.49,+0.92 %/yr = T +0.35 + LAI +0.16 + year term +0.40,final_review/final_review_numbers.csv,,True
+ols_trend_decomposition_BVOC,+0.53 %/yr = T +0.32 + LAI -0.04 + year term +0.25,+0.64 %/yr = T +0.29 + LAI +0.15 + year term +0.20,final_review/final_review_numbers.csv,,True
+ols_trend_decomposition_MT,+0.46 %/yr = T +0.28 + LAI -0.05 + year term +0.23,+0.58 %/yr = T +0.25 + LAI +0.15 + year term +0.18,final_review/final_review_numbers.csv,,True
+ols_trend_decomposition_SQT,+0.70 %/yr = T +0.44 + LAI -0.05 + year term +0.31,+0.85 %/yr = T +0.40 + LAI +0.19 + year term +0.26,final_review/final_review_numbers.csv,,True
+ols_trend_decomposition_NO,-0.34 %/yr = T +0.14 + LAI +0.01 + year term -0.50,-0.35 %/yr = T +0.15 + LAI -0.05 + year term -0.45,final_review/final_review_numbers.csv,,True
+lai_gap_cell_months,12 in 2003-2025: 2003-12 4; 2015-10 7; 2023-10 1,12 in 2003-2025: 2003-12 4; 2015-10 7; 2023-10 1,final_review/final_review_numbers.csv,,False
+lai_max_cell_all_months,6.67,6.67,final_review/final_review_numbers.csv,,False
+growthform_area_tree,"44,011 km2 (2003) to 48,176 km2 (2024), +9.5 %; Theil-Sen +0.44 %/yr (MK p 1.2e-06)","44,011 km2 (2003) to 48,176 km2 (2024), +9.5 %; Theil-Sen +0.44 %/yr (MK p 1.2e-06)",final_review/final_review_numbers.csv,,False
+growthform_area_herb,"27,609 km2 (2003) to 22,431 km2 (2024), -18.8 %; Theil-Sen -0.88 %/yr (MK p 4.5e-09)","27,609 km2 (2003) to 22,431 km2 (2024), -18.8 %; Theil-Sen -0.88 %/yr (MK p 4.5e-09)",final_review/final_review_numbers.csv,,False
+growthform_area_crop,"21,170 km2 (2003) to 21,125 km2 (2024), -0.2 %; Theil-Sen -0.06 %/yr (MK p 1.6e-01)","21,170 km2 (2003) to 21,125 km2 (2024), -0.2 %; Theil-Sen -0.06 %/yr (MK p 1.6e-01)",final_review/final_review_numbers.csv,,False
+growthform_area_veg,"92,790 km2 (2003) to 91,732 km2 (2024), -1.1 %; Theil-Sen -0.05 %/yr (MK p 8.8e-11)","92,790 km2 (2003) to 91,732 km2 (2024), -1.1 %; Theil-Sen -0.05 %/yr (MK p 8.8e-11)",final_review/final_review_numbers.csv,,False
+ef_potential_ISOP,+8.1 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.38 %/yr,+8.1 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.38 %/yr,final_review/final_review_numbers.csv,,False
+ef_potential_MT,+4.4 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.21 %/yr,+4.4 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.21 %/yr,final_review/final_review_numbers.csv,,False
+ef_potential_SQT,+6.1 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.29 %/yr,+6.1 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.29 %/yr,final_review/final_review_numbers.csv,,False
+ef_potential_BVOC,+4.9 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.23 %/yr,+4.9 % from 2003 to 2024; OLS trend of ln over 2003-2025 +0.23 %/yr,final_review/final_review_numbers.csv,,False
+ef_potential_NO,-9.0 % from 2003 to 2024; OLS trend of ln over 2003-2025 -0.45 %/yr,-9.0 % from 2003 to 2024; OLS trend of ln over 2003-2025 -0.45 %/yr,final_review/final_review_numbers.csv,,False
+ef_rebuild_max_rel_dev,4.92e-08,4.92e-08,ijest_review/ijest_review_numbers.csv,,False
+tree_frac_120m_vs_run_r,0.950,0.950,ijest_review/ijest_review_numbers.csv,,False
+tree_area_120m_over_run,0.994,0.994,ijest_review/ijest_review_numbers.csv,,False
+plantation_area_km2_2019,"9,960","9,960",ijest_review/ijest_review_numbers.csv,,False
+plantation_share_of_tree_area,20.6,20.6,ijest_review/ijest_review_numbers.csv,,False
+base_ISOP_2019_t,"252,385","252,385",ijest_review/ijest_review_numbers.csv,,False
+base_MT_2019_t,"188,511","188,511",ijest_review/ijest_review_numbers.csv,,False
+base_SQT_2019_t,"16,751","16,751",ijest_review/ijest_review_numbers.csv,,False
+base_MBO_2019_t,684,684,ijest_review/ijest_review_numbers.csv,,False
+base_OVOC_2019_t,"140,513","140,513",ijest_review/ijest_review_numbers.csv,,False
+base_NO_2019_t,"10,800","10,800",ijest_review/ijest_review_numbers.csv,,False
+base_CO_2019_t,"27,798","27,798",ijest_review/ijest_review_numbers.csv,,False
+base_BVOC_2019_t,"739,401","739,401",ijest_review/ijest_review_numbers.csv,,False
+Pinus_ISOP_2019_change_pct,-18.7,-18.7,ijest_review/ijest_review_numbers.csv,,False
+Pinus_MT_2019_change_pct,+7.3,+7.3,ijest_review/ijest_review_numbers.csv,,False
+Pinus_SQT_2019_change_pct,+5.8,+5.8,ijest_review/ijest_review_numbers.csv,,False
+Pinus_MBO_2019_change_pct,+1915.5,+1915.5,ijest_review/ijest_review_numbers.csv,,False
+Pinus_OVOC_2019_change_pct,+2.7,+2.7,ijest_review/ijest_review_numbers.csv,,False
+Pinus_NO_2019_change_pct,+0.0,+0.0,ijest_review/ijest_review_numbers.csv,,False
+Pinus_CO_2019_change_pct,+0.0,+0.0,ijest_review/ijest_review_numbers.csv,,False
+Pinus_BVOC_2019_change_pct,-1.8,-1.8,ijest_review/ijest_review_numbers.csv,,False
+Eucalyptus_ISOP_2019_change_pct,+13.7,+13.7,ijest_review/ijest_review_numbers.csv,,False
+Eucalyptus_MT_2019_change_pct,+8.5,+8.5,ijest_review/ijest_review_numbers.csv,,False
+Eucalyptus_SQT_2019_change_pct,-1.3,-1.3,ijest_review/ijest_review_numbers.csv,,False
+Eucalyptus_MBO_2019_change_pct,-6.6,-6.6,ijest_review/ijest_review_numbers.csv,,False
+Eucalyptus_OVOC_2019_change_pct,+2.7,+2.7,ijest_review/ijest_review_numbers.csv,,False
+Eucalyptus_NO_2019_change_pct,+0.0,+0.0,ijest_review/ijest_review_numbers.csv,,False
+Eucalyptus_CO_2019_change_pct,+0.0,+0.0,ijest_review/ijest_review_numbers.csv,,False
+Eucalyptus_BVOC_2019_change_pct,+7.2,+7.2,ijest_review/ijest_review_numbers.csv,,False
+EF_Pinus_ISOP_MT,0.003 / 1.43,0.003 / 1.43,ijest_review/ijest_review_numbers.csv,,False
+EF_Eucalyptus_ISOP_MT,16.0 / 1.58,16.0 / 1.58,ijest_review/ijest_review_numbers.csv,,False
+EF_ecotype_tree_on_plantations_ISOP_MT,9.34 / 1.06,9.34 / 1.06,ijest_review/ijest_review_numbers.csv,,False
+ISOP_MT_ratio_2019_baseline,1.34,1.34,ijest_review/ijest_review_numbers.csv,,False
+lai_all_2024_vs_2003_2023_pct,-4.8,-0.1,ijest_review/ijest_review_numbers.csv,,True
+lai_all_2025_vs_2003_2023_pct,-11.1,-0.8,ijest_review/ijest_review_numbers.csv,,True
+lai_all_min_2003_2023_pct,-3.6,-3.6,ijest_review/ijest_review_numbers.csv,,False
+lai_tree_2024_vs_2003_2023_pct,-4.4,-0.5,ijest_review/ijest_review_numbers.csv,,True
+lai_tree_2025_vs_2003_2023_pct,-11.2,-2.1,ijest_review/ijest_review_numbers.csv,,True
+lai_tree_min_2003_2023_pct,-3.1,-3.1,ijest_review/ijest_review_numbers.csv,,False
+lai_herb_2024_vs_2003_2023_pct,-4.7,+1.8,ijest_review/ijest_review_numbers.csv,,True
+lai_herb_2025_vs_2003_2023_pct,-11.5,+0.5,ijest_review/ijest_review_numbers.csv,,True
+lai_herb_min_2003_2023_pct,-4.9,-4.9,ijest_review/ijest_review_numbers.csv,,False
+lai_crop_2024_vs_2003_2023_pct,-2.6,+2.6,ijest_review/ijest_review_numbers.csv,,True
+lai_crop_2025_vs_2003_2023_pct,-6.1,+4.7,ijest_review/ijest_review_numbers.csv,,True
+lai_crop_min_2003_2023_pct,-5.6,-5.6,ijest_review/ijest_review_numbers.csv,,False
+lai_months_z_below_-1_2024_2025,2024-01:-2.3 2024-09:-1.2 2024-11:-2.4 2024-12:-3.2 2025-01:-2.7 2025-02:-2.4 2025-03:-2.2 2025-04:-2.6 2025-05:-1.7 2025-08:-1.6 2025-09:-1.8 2025-10:-2.7 2025-11:-4.9 2025-12:-2.3,2024-01:-1.0 2024-11:-1.3 2025-10:-1.2 2025-11:-2.0,ijest_review/ijest_review_numbers.csv,,True
+lai_months_z_below_-1_2003_2023,36,36,ijest_review/ijest_review_numbers.csv,,False

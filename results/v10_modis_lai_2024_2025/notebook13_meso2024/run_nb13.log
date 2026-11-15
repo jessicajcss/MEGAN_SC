@@ -1,0 +1,248 @@
+### cell 1 ok 0.0 s
+### override ROOT = '<repository>/data/run_v10'
+### override BND = '<repository>/data/boundaries'
+### override OUT_DIR = '<work folder>/reproduced_final/notebook13_meso2024'
+ROOT <repository>/data/run_v10 | BND <repository>/data/boundaries | OUT_DIR <work folder>/reproduced_final/notebook13_meso2024
+grid 144 x 224; SC cells 13970 (95,969 km2); area attributed to each municipality / IBGE area: 0.9988 to 1.0061
+      TEMP2_C     PAR  SOILM    LAI
+year                               
+2003   17.774  85.820  0.432  3.307
+2004   17.273  83.625  0.441  3.227
+2005   17.793  82.830  0.437  3.251
+2006   17.889  84.613  0.429  3.246
+2007   17.792  84.008  0.441  3.235
+2008   17.016  81.356  0.443  3.176
+2009   17.591  80.220  0.444  3.304
+2010   17.469  80.606  0.441  3.238
+2011   17.101  80.586  0.445  3.221
+2012   18.085  86.385  0.427  3.354
+2013   17.167  82.014  0.442  3.292
+2014   18.305  83.330  0.438  3.464
+2015   18.327  76.147  0.452  3.266
+2016   17.338  83.047  0.442  3.320
+2017   18.279  84.234  0.432  3.384
+2018   17.914  82.802  0.437  3.356
+2019   18.558  83.140  0.436  3.317
+2020   18.030  90.220  0.412  3.340
+2021   17.440  84.984  0.430  3.280
+2022   17.320  85.120  0.436  3.284
+2023   18.331  83.764  0.441  3.350
+2024   18.694  83.519  0.437  3.138
+2025   17.700  84.091  0.441  2.930
+      months  filled_met_cells  lai_gap_cells
+2003      12               190              4
+2004      12               190              0
+2005      12               190              0
+2006      12               190              0
+2007      12               190              0
+2008      12               190              0
+2009      12               190              0
+2010      12               190              0
+2011      12               190              0
+2012      12               190              0
+2013      12               190              0
+2014      12               190              0
+2015      12               190              7
+2016      12               190              0
+2017      12               190              0
+2018      12               190              0
+2019      12               190              0
+2020      12               190              0
+2021      12               191              0
+2022      12               191              0
+2023      12               190              1
+2024      12               190              0
+2025      12               190              0
+### cell 2 ok 18.9 s
+        BVOC    ISOP      MT    SQT    OVOC    LVOC     NO     CO
+year                                                             
+2003  647188  208654  166791  14147  127029   95195  11418  25255
+2004  575454  182936  149579  11805  114096   85410  11192  22708
+2005  617270  199398  158982  13107  121259   90766  11366  24283
+2006  651127  215131  165910  14126  126664   93954  11367  25736
+2007  652116  213041  167997  14157  127408   94334  11171  25337
+2008  552032  174058  145479  11170  109788   81584  10667  21460
+2009  651066  212208  168859  14223  126827   94217  10750  24717
+2010  617970  201503  160321  13421  120174   89663  10566  23375
+2011  584999  189852  152687  12232  114275   84857  10312  22243
+2012  706997  240267  180342  15637  134824   98918  10801  26956
+2013  600502  195139  157042  12663  117000   86962  10211  22513
+2014  737622  248959  188936  16703  140471  104076  10738  27503
+2015  673278  223326  174044  14879  129493   96271  10711  24974
+2016  659490  217091  171777  14512  127521   94100  10271  24496
+2017  696334  232190  179409  15342  133652   99218  10678  26080
+2018  670787  221482  174086  14521  129648   95850  10481  25134
+2019  739401  252385  188511  16751  140513  102834  10800  27798
+2020  686038  235233  174339  14914  130226   95610  10620  26148
+2021  621196  204075  162311  12997  120713   88493  10277  23555
+2022  636338  215034  162829  13858  121595   89765  10184  24041
+2023  710667  240949  182231  15784  135447   99384  10658  26522
+2024  715914  248563  180975  16092  135312   98030  10841  27108
+2025  628484  219189  159150  13522  119481   84754  10292  24439
+### cell 3 ok 0.0 s
+              key                                                    en
+     bvoc_mean_kt                                                   654
+      bvoc_cv_pct                                                   7.8
+         bvoc_max                                            2019 / 739
+         bvoc_min                                            2008 / 552
+     y2025_BVOC_t                                               628,484
+     y2025_ISOP_t                                               219,189
+       y2025_MT_t                                               159,150
+      y2025_SQT_t                                                13,522
+     y2025_OVOC_t                                               119,481
+     y2025_LVOC_t                                                84,754
+       y2025_NO_t                                                10,292
+       y2025_CO_t                                                24,439
+       y2025_text                                 628.5 / 219.2 / 159.1
+       trend_BVOC   +0.52% yr-1 (0.05 to 1.06; p = 0.027; MK p = 0.027)
+       trend_ISOP   +0.82% yr-1 (0.22 to 1.43; p = 0.007; MK p = 0.007)
+         trend_MT   +0.45% yr-1 (0.03 to 0.92; p = 0.035; MK p = 0.035)
+        trend_SQT   +0.67% yr-1 (0.05 to 1.37; p = 0.030; MK p = 0.030)
+       trend_OVOC  +0.33% yr-1 (-0.03 to 0.82; p = 0.057; MK p = 0.057)
+       trend_LVOC  +0.22% yr-1 (-0.20 to 0.68; p = 0.267; MK p = 0.267)
+        trend_MBO  +0.42% yr-1 (-0.16 to 0.98; p = 0.170; MK p = 0.170)
+         trend_NO -0.37% yr-1 (-0.58 to -0.12; p = 0.003; MK p = 0.003)
+         trend_CO  +0.33% yr-1 (-0.16 to 0.82; p = 0.154; MK p = 0.154)
+        mean_ISOP                                   217 kt yr-1 (33.2%)
+          mean_MT                                   168 kt yr-1 (25.8%)
+        mean_OVOC                                   126 kt yr-1 (19.3%)
+        mean_LVOC                                    93 kt yr-1 (14.3%)
+mean_STRESS_OTHER                                     34 kt yr-1 (5.2%)
+         mean_SQT                                     14 kt yr-1 (2.2%)
+         mean_MBO                                    0.6 kt yr-1 (0.1%)
+    isop_mt_ratio                                                1.29:1
+### cell 4 ok 0.0 s
+driver    LAI   PAR  SOILM  TEMP2_C
+series                             
+ACID     0.56  0.18  -0.26     0.89
+ACTO     0.70  0.13  -0.23     0.85
+BVOC     0.59  0.18  -0.27     0.88
+CO       0.46  0.31  -0.37     0.91
+ETOH     0.48  0.19  -0.26     0.92
+ISOP     0.50  0.23  -0.31     0.89
+LVOC     0.68  0.14  -0.24     0.86
+MBO      0.44  0.30  -0.35     0.91
+MEOH     0.58  0.20  -0.26     0.87
+MT       0.66  0.13  -0.22     0.86
+MT_ACYC  0.54  0.22  -0.28     0.89
+MT_AROM  0.68  0.13  -0.22     0.86
+MT_CAMP  0.71  0.08  -0.19     0.82
+MT_PINE  0.66  0.13  -0.22     0.86
+MT_SABI  0.69  0.10  -0.21     0.84
+NO      -0.01  0.34  -0.33     0.81
+OTHER    0.68  0.15  -0.24     0.86
+OVOC     0.61  0.17  -0.25     0.88
+OXPROD   0.67  0.15  -0.25     0.87
+SQT      0.57  0.14  -0.22     0.87
+SQT_HR   0.56  0.14  -0.22     0.87
+SQT_LR   0.57  0.14  -0.22     0.87
+STRESS   0.55  0.24  -0.31     0.90
+### cell 5 ok 0.0 s
+                           MT     SQT     ISOP      NO      BVOC      SOA  pct_SC  area_ibge_ha  area_grid_ha  intensity_kg_ha  SQT_share_pct  forest_pct
+mesoregion                                                                                                                                               
+Oeste Catarinense     40232.2  3377.9  55101.8  3639.7  165418.5  43610.1    23.9     2731451.9     2736259.4             16.0            7.7        30.5
+Norte Catarinense     33629.7  2966.5  43304.8  1392.8  128520.8  36596.1    20.1     1593059.2     1596026.5             23.0            8.1        49.9
+Vale do Itajaí        31168.9  2653.7  35794.5  1223.0  111938.9  33822.6    18.6     1308895.8     1311205.7             25.8            7.8        53.9
+Serrana               28504.5  2213.5  41522.7  2648.9  117714.6  30718.0    16.9     2232794.8     2236366.8             13.8            7.2        32.3
+Grande Florianópolis  18217.8  1555.4  21683.8   566.9   65864.2  19773.2    10.8      735964.6      737161.2             26.9            7.9        62.1
+Sul Catarinense       16321.0  1405.0  19161.3  1234.5   63005.8  17726.0     9.7      970902.2      972305.7             18.3            7.9        35.3
+### cell 6 ok 0.0 s
+### cell 7 ok 0.0 s
+### cell 8 ok 0.0 s
+         BVOC   ISOP     MT   SQT   OVOC   LVOC  STRESS_OTHER   MBO  nonISOP    NO    CO
+month                                                                                   
+1      100.00  36.12  24.35  2.35  18.68  13.26          5.15  0.10    63.88  0.99  4.04
+2       89.95  31.70  22.27  2.15  16.86  12.24          4.64  0.09    58.25  0.88  3.52
+3       76.66  25.96  19.33  1.79  14.53  10.98          4.00  0.07    50.69  0.91  2.91
+4       47.43  14.49  12.63  1.03   9.32   7.41          2.52  0.04    32.94  0.78  1.67
+5       27.13   7.22   7.72  0.52   5.57   4.62          1.46  0.02    19.91  0.67  0.87
+6       20.27   5.00   5.97  0.36   4.25   3.56          1.10  0.01    15.26  0.84  0.62
+7       20.13   5.22   5.84  0.35   4.19   3.44          1.08  0.01    14.91  0.85  0.64
+8       27.74   7.99   7.77  0.50   5.69   4.32          1.45  0.02    19.76  0.91  0.96
+9       38.13  12.49   9.98  0.75   7.45   5.46          1.96  0.03    25.64  0.96  1.44
+10      51.12  16.40  13.64  1.01  10.16   7.22          2.64  0.05    34.72  1.06  1.96
+11      65.17  21.84  16.94  1.34  12.71   8.92          3.35  0.06    43.33  0.88  2.59
+12      89.85  32.55  21.95  2.03  16.83  11.79          4.60  0.09    57.30  0.98  3.67
+### cell 9 ok 1.0 s
+                       key                                                                                                                                                                                                                                                                            en
+              bvoc_mean_kt                                                                                                                                                                                                                                                                           654
+               bvoc_cv_pct                                                                                                                                                                                                                                                                           7.8
+                  bvoc_max                                                                                                                                                                                                                                                                    2019 / 739
+                  bvoc_min                                                                                                                                                                                                                                                                    2008 / 552
+              y2025_BVOC_t                                                                                                                                                                                                                                                                       628,484
+              y2025_ISOP_t                                                                                                                                                                                                                                                                       219,189
+                y2025_MT_t                                                                                                                                                                                                                                                                       159,150
+               y2025_SQT_t                                                                                                                                                                                                                                                                        13,522
+              y2025_OVOC_t                                                                                                                                                                                                                                                                       119,481
+              y2025_LVOC_t                                                                                                                                                                                                                                                                        84,754
+                y2025_NO_t                                                                                                                                                                                                                                                                        10,292
+                y2025_CO_t                                                                                                                                                                                                                                                                        24,439
+                y2025_text                                                                                                                                                                                                                                                         628.5 / 219.2 / 159.1
+                trend_BVOC                                                                                                                                                                                                                           +0.52% yr-1 (0.05 to 1.06; p = 0.027; MK p = 0.027)
+                trend_ISOP                                                                                                                                                                                                                           +0.82% yr-1 (0.22 to 1.43; p = 0.007; MK p = 0.007)
+                  trend_MT                                                                                                                                                                                                                           +0.45% yr-1 (0.03 to 0.92; p = 0.035; MK p = 0.035)
+                 trend_SQT                                                                                                                                                                                                                           +0.67% yr-1 (0.05 to 1.37; p = 0.030; MK p = 0.030)
+                trend_OVOC                                                                                                                                                                                                                          +0.33% yr-1 (-0.03 to 0.82; p = 0.057; MK p = 0.057)
+                trend_LVOC                                                                                                                                                                                                                          +0.22% yr-1 (-0.20 to 0.68; p = 0.267; MK p = 0.267)
+                 trend_MBO                                                                                                                                                                                                                          +0.42% yr-1 (-0.16 to 0.98; p = 0.170; MK p = 0.170)
+                  trend_NO                                                                                                                                                                                                                         -0.37% yr-1 (-0.58 to -0.12; p = 0.003; MK p = 0.003)
+                  trend_CO                                                                                                                                                                                                                          +0.33% yr-1 (-0.16 to 0.82; p = 0.154; MK p = 0.154)
+                 mean_ISOP                                                                                                                                                                                                                                                           217 kt yr-1 (33.2%)
+                   mean_MT                                                                                                                                                                                                                                                           168 kt yr-1 (25.8%)
+                 mean_OVOC                                                                                                                                                                                                                                                           126 kt yr-1 (19.3%)
+                 mean_LVOC                                                                                                                                                                                                                                                            93 kt yr-1 (14.3%)
+         mean_STRESS_OTHER                                                                                                                                                                                                                                                             34 kt yr-1 (5.2%)
+                  mean_SQT                                                                                                                                                                                                                                                             14 kt yr-1 (2.2%)
+                  mean_MBO                                                                                                                                                                                                                                                            0.6 kt yr-1 (0.1%)
+             isop_mt_ratio                                                                                                                                                                                                                                                                        1.29:1
+ rdet_bvoc_classes_TEMP2_C                                                                                                                                                                                                                                                                  0.82 to 0.92
+     rdet_bvoc_classes_LAI                                                                                                                                                                                                                                                                  0.44 to 0.71
+     rdet_bvoc_classes_PAR                                                                                                                                                                                                                                                                  0.08 to 0.30
+   rdet_bvoc_classes_SOILM                                                                                                                                                                                                                                                                -0.35 to -0.19
+                    r_NO_T                                                                                                                                                                                                                                                                   0.31 ; 0.81
+              soa_total_kt                                                                                                                                                                                                                                                                           183
+                  meso_sum                                                                                                                                                                                                                                                                        99.82%
+    meso_Oeste Catarinense                                                                                                                                                                                                                                                     43,610; 23.9%; 16.0; 7.7%
+    meso_Norte Catarinense                                                                                                                                                                                                                                                     36,596; 20.1%; 23.0; 8.1%
+       meso_Vale do Itajaí                                                                                                                                                                                                                                                     33,823; 18.6%; 25.8; 7.8%
+              meso_Serrana                                                                                                                                                                                                                                                     30,718; 16.9%; 13.8; 7.2%
+ meso_Grande Florianópolis                                                                                                                                                                                                                                                     19,773; 10.8%; 26.9; 7.9%
+      meso_Sul Catarinense                                                                                                                                                                                                                                                      17,726; 9.7%; 18.3; 7.9%
+             meso_forest_r                                                                                                                                                                                                      r = 0.97 (95% CI 0.73 to 1.00; p = 0.001); rho = 0.94 (p = 0.005); n = 6
+      meso_sqt_share_range                                                                                                                                                                                                                                                                  7.2% to 8.1%
+             meso_top_isop                                                                                                                                                                                                                                                             Oeste Catarinense
+               meso_top_no                                                                                                                                                                                                               Oeste Catarinense 3,640; Serrana 2,649; Norte Catarinense 1,393
+            mun_top12_bvoc Lages 9,994 (38); Itaiópolis 9,551 (74); Joinville 9,341 (83); Mafra 8,716 (62); Santa Cecília 8,636 (75); Campos Novos 7,520 (44); Rio Negrinho 7,219 (80); Caçador 7,070 (72); Bom Retiro 6,737 (64); Capão Alto 6,643 (50); Porto União 6,582 (78); São Joaquim 6,571 (35)
+             mun_top5_isop                                                                                                                                                                                              Lages 3,583; Santa Cecília 3,323; Itaiópolis 3,194; Mafra 3,172; Joinville 2,937
+               mun_top5_no                                                                                                                                                                                                   Lages 374; São Joaquim 284; Campos Novos 212; Capão Alto 166; Água Doce 159
+             mun_intensity                                                                                                                                                                                                                                             12 to 126 (median 64; max Itapoá)
+             mun_top_jenks                                                                                           >= 92.8 kg ha-1 yr-1 (42 municipalities; limits 11.9, 42.7, 60.9, 76.4, 92.8, 126.5): Itapoá, Luiz Alves, Balneário Barra do Sul, Nova Trento, Botuverá, Apiúna, Guabiruba, Ascurra
+                 mun_cells                                                                                                                                                                                                                                     17, 54, 485; 5.1, 34, 384 (cell 6.87 km2)
+            mun_area_check                                                                                                                                                                                                                                                      0.9988 to 1.0061; 99.83%
+                 isop_flux                                                                                                                                                                                                                                       2.0 (cell median 1.9; p99 4.5; max 6.1)
+              cmp2019_ISOP                                                                                                                                                                                                                                                252.4 Gg vs 33.3 Gg; ratio 7.6
+                cmp2019_CO                                                                                                                                                                                                                                                 27.8 Gg vs 7.50 Gg; ratio 3.7
+                cmp2019_NO                                                                                                                                                                                                                                               10.8 Gg vs 0.571 Gg; ratio 18.9
+             cmp2019_range                                                                                                                                                                                                                                                                 4 to 19 times
+           isop_mean_ratio                                                                                                                                                                                                                                                   217 Gg; 6.5; 6.6; peak 2019
+                  lai_gaps                                                                                                                                                                                                                                                                        0 to 7
+                met_filled                                                                                                                                                                                                                                                                    190 to 191
+                grid_facts                                                                                                                                                                                                                                              144 x 224; 13970 (43.3%); 95,969
+               season_BVOC                                                                                                                                                                                                             Jan 100,004 t; Jul 20,132 t; ratio 4.97; Oct-Mar 72.3%; DJF 42.8%
+               season_ISOP                                                                                                                                                                                                               Jan 36,122 t; Jun 5,004 t; ratio 7.22; Oct-Mar 75.8%; DJF 46.3%
+                 season_MT                                                                                                                                                                                                               Jan 24,348 t; Jul 5,836 t; ratio 4.17; Oct-Mar 70.4%; DJF 40.7%
+                season_SQT                                                                                                                                                                                                                  Jan 2,352 t; Jul 351 t; ratio 6.70; Oct-Mar 75.2%; DJF 46.1%
+               season_OVOC                                                                                                                                                                                                               Jan 18,677 t; Jul 4,195 t; ratio 4.45; Oct-Mar 71.1%; DJF 41.5%
+               season_LVOC                                                                                                                                                                                                               Jan 13,257 t; Jul 3,437 t; ratio 3.86; Oct-Mar 69.1%; DJF 40.0%
+       season_STRESS_OTHER                                                                                                                                                                                                                Jan 5,146 t; Jul 1,082 t; ratio 4.76; Oct-Mar 71.8%; DJF 42.4%
+                season_MBO                                                                                                                                                                                                                     Jan 102 t; Jun 13 t; ratio 7.67; Oct-Mar 76.5%; DJF 46.8%
+            season_nonISOP                                                                                                                                                                                                              Jan 63,882 t; Jul 14,914 t; ratio 4.28; Oct-Mar 70.6%; DJF 41.1%
+                 season_NO                                                                                                                                                                                                                  Oct 1,060 t; May 675 t; ratio 1.57; Oct-Mar 53.2%; DJF 26.6%
+                 season_CO                                                                                                                                                                                                                  Jan 4,043 t; Jun 615 t; ratio 6.57; Oct-Mar 75.1%; DJF 45.1%
+season_bvoc_max_min_months                                                                                                                                                                                                                 max: Jan 11, Feb 4, Mar 1, Nov 1, Dec 6 | min: Jun 10, Jul 13
+         season_isop_share                                                                                                                                                                                                                                    Jun 24.7%; Jul 25.9%; Dec 36.2%; Jan 36.1%
+### cell 10 ok 0.0 s
+pt figures 1-8 -> <work folder>/reproduced_final/notebook13_meso2024/figures/pt
+en figures 1-8 -> <work folder>/reproduced_final/notebook13_meso2024/figures/en
+### cell 11 ok 7.8 s
+### 13_manuscript_numbers_and_figures.ipynb: all 11 code cells ok in 28 s
