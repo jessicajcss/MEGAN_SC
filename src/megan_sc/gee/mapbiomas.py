@@ -6,8 +6,8 @@ grid with reduceResolution. Produces tree/shrub/herb/crop fraction bands plus th
 vegetated fraction — the high-resolution vegetation structure that weights the
 ecotype emission factors and drives the canopy model.
 
-Asset: ``projects/mapbiomas-public/assets/brazil/lulc/v1`` (band ``classification``,
-annual 1985-2024, 30 m). Runs under the user's EE project.
+Asset: ``projects/mapbiomas-public/assets/brazil/lulc/v1`` (band ``classification``, 30 m, one image per year and
+collection; Collection 10 covers 1985-2024). Runs under the user's EE project.
 """
 from __future__ import annotations
 
@@ -33,6 +33,23 @@ def classification_image(ee, year, collection_id=None):
     if collection_id is not None:
         col = col.filter(ee.Filter.eq("collection_id", collection_id))
     return ee.Image(col.sort("collection_id", False).first()).select("classification")
+
+
+def resolve_collection_id(ee, year, collection=None):
+    """The ``collection_id`` property value of the image to use for ``year``.
+
+    ``collection=None`` returns None, so :func:`classification_image` takes the newest collection in the asset (the
+    behaviour of the Santa Catarina production run, when Collection 10 was the newest). ``collection=10`` returns the
+    newest release of Collection 10 (property values 10, 10.0, 10.1, ...), read from the asset itself so that the value
+    keeps the type stored in Earth Engine. A run pinned this way does not change when a new collection is added.
+    """
+    if collection is None:
+        return None
+    col = ee.ImageCollection(ASSET).filter(ee.Filter.eq("year", int(year)))
+    ids = [i for i in col.aggregate_array("collection_id").getInfo() if int(float(i)) == int(collection)]
+    if not ids:
+        raise ValueError(f"MapBiomas asset {ASSET} has no image of Collection {collection} for {year}")
+    return max(ids, key=float)
 
 
 def growth_form_fractions(ee, region, year, out_scale_m, max_pixels=65536,

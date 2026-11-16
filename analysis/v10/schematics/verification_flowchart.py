@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""verification_flowchart.py - the verification and observational evaluation of the inventory (article and report Figure 2): one
+"""verification_flowchart.py - the verification and observational evaluation of the inventory (fig_verification): one
 card per step with the question it answers, how it was tested, its result and what the result means, on a numbered
 timeline (verification, steps 1-4; evaluation, step 5).
 
@@ -9,7 +9,7 @@ published one in results/v10):
   diagnostics/check_run_integrity.log                                                        steps per day, annual = sum
   notebook11/verify_v10_report.csv, diagnostics/c3/c3_impact_on_totals.log                  checks C0-C5
   notebook15/s1/s1_groups.csv, notebook15/S3_fixlog_annual.csv                               configuration tests
-  sensitivity_2019/full/variants_summary.csv (notebook 20), ijest_review/plantation_ef_sensitivity_2019.csv
+  sensitivity_2019/full/variants_summary.csv (notebook 20), posthoc_review/plantation_ef_sensitivity_2019.csv
                                                                                              sensitivity tests of 2019
   notebook14/tier{1,2,3,4}_spatial|seasonal|anomalies|slope_cf0.3_sza70_fire120.csv          TROPOMI tests
 Outputs: <MEGAN_SC_OUT>/figures/{pt,en}/fig_verification.png (published copies in results/v10/figures).
@@ -61,7 +61,7 @@ def numbers():
     vs = vs[(vs.region == 'Santa Catarina') & (vs.group == 'BVOC') & (vs.variant != 'base')]
     ch = list(vs.change_vs_base_pct) + [N['s1'], -N['gamsm']]                 # gamsm is a reduction (positive number)
     N['sens'] = (min(ch), max(ch))
-    pl = pd.read_csv(pick('ijest_review', 'plantation_ef_sensitivity_2019.csv'))
+    pl = pd.read_csv(pick('posthoc_review', 'plantation_ef_sensitivity_2019.csv'))
     pl = pl[(pl.group == 'ISOP') & pl.case.str.startswith('plantations as')].change_pct
     N['plant'] = (pl.min(), pl.max())
     t1 = pd.read_csv(pick('notebook14', f'tier1_spatial_{TAG}.csv')); t1 = t1[(t1.block_deg.round(2) == 0.1) & (t1.smoothing_km == 0)].iloc[0]

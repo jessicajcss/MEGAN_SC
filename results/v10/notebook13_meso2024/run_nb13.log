@@ -1,3 +1,4 @@
+MEGAN_SC folder: <repository> | Colab: False
 ### cell 1 ok 0.0 s
 ### override ROOT = '<repository>/data/run_v10'
 ### override BND = '<repository>/data/boundaries'
@@ -53,7 +54,7 @@ year
 2023      12               190              1
 2024      12               190              0
 2025      12               190              0
-### cell 2 ok 9.0 s
+### cell 2 ok 7.4 s
         BVOC    ISOP      MT    SQT    OVOC    LVOC     NO     CO
 year                                                             
 2003  647188  208654  166791  14147  127029   95195  11418  25255
@@ -79,7 +80,7 @@ year
 2023  710667  240949  182231  15784  135447   99384  10658  26522
 2024  739275  254247  187173  16803  139815  102871  10829  27714
 2025  672871  228606  171712  14867  128273   94302  10270  25500
-### cell 3 ok 0.1 s
+### cell 3 ok 0.0 s
               key                                                    en
      bvoc_mean_kt                                                   657
       bvoc_cv_pct                                                   7.9
@@ -137,16 +138,16 @@ SQT      0.68  0.13  -0.18     0.89
 SQT_HR   0.68  0.14  -0.18     0.89
 SQT_LR   0.68  0.13  -0.18     0.89
 STRESS   0.67  0.24  -0.27     0.92
-### cell 5 ok 0.1 s
+### cell 5 ok 0.0 s
                            MT     SQT     ISOP      NO      BVOC      SOA  pct_SC  area_ibge_ha  area_grid_ha  intensity_kg_ha  SQT_share_pct  forest_pct
 mesoregion                                                                                                                                               
-Oeste Catarinense     40422.1  3397.5  55287.2  3639.2  166153.5  43819.6    23.9     2731451.9     2736259.4             16.0            7.8        30.5
-Norte Catarinense     33784.2  2985.3  43434.5  1392.6  129086.9  36769.4    20.1     1593059.2     1596026.5             23.1            8.1        49.9
-Vale do Itajaí        31314.3  2670.7  35895.6  1222.8  112431.9  33985.0    18.6     1308895.8     1311205.7             26.0            7.9        53.9
-Serrana               28635.4  2226.1  41646.3  2648.7  118213.2  30861.4    16.9     2232794.8     2236366.8             13.8            7.2        32.3
-Grande Florianópolis  18318.7  1567.1  21745.5   566.9   66191.8  19885.8    10.9      735964.6      737161.2             27.0            7.9        62.1
-Sul Catarinense       16413.5  1414.5  19214.9  1234.2   63325.3  17828.0     9.7      970902.2      972305.7             18.4            7.9        35.3
-### cell 6 ok 0.1 s
+Oeste Catarinense     40422.1  3397.5  55287.2  3639.2  166153.5  43819.6    23.9     2731451.9     2736259.4             16.0            7.8        29.9
+Norte Catarinense     33784.2  2985.3  43434.5  1392.6  129086.9  36769.4    20.1     1593059.2     1596026.5             23.1            8.1        48.3
+Vale do Itajaí        31314.3  2670.7  35895.6  1222.8  112431.9  33985.0    18.6     1308895.8     1311205.7             26.0            7.9        53.3
+Serrana               28635.4  2226.1  41646.3  2648.7  118213.2  30861.4    16.9     2232794.8     2236366.8             13.8            7.2        31.8
+Grande Florianópolis  18318.7  1567.1  21745.5   566.9   66191.8  19885.8    10.9      735964.6      737161.2             27.0            7.9        59.3
+Sul Catarinense       16413.5  1414.5  19214.9  1234.2   63325.3  17828.0     9.7      970902.2      972305.7             18.4            7.9        34.0
+### cell 6 ok 0.0 s
 ### cell 7 ok 0.0 s
 ### cell 8 ok 0.0 s
          BVOC   ISOP     MT   SQT   OVOC   LVOC  STRESS_OTHER   MBO  nonISOP    NO    CO
@@ -208,7 +209,7 @@ month
               meso_Serrana                                                                                                                                                                                                                                                       30,861; 16.9%; 13.8; 7.2%
  meso_Grande Florianópolis                                                                                                                                                                                                                                                       19,886; 10.9%; 27.0; 7.9%
       meso_Sul Catarinense                                                                                                                                                                                                                                                        17,828; 9.7%; 18.4; 7.9%
-             meso_forest_r                                                                                                                                                                                                        r = 0.97 (95% CI 0.73 to 1.00; p = 0.001); rho = 0.94 (p = 0.005); n = 6
+             meso_forest_r                                                                                                                                                                                                        r = 0.97 (95% CI 0.75 to 1.00; p = 0.001); rho = 0.94 (p = 0.005); n = 6
       meso_sqt_share_range                                                                                                                                                                                                                                                                    7.2% to 8.1%
              meso_top_isop                                                                                                                                                                                                                                                               Oeste Catarinense
                meso_top_no                                                                                                                                                                                                                 Oeste Catarinense 3,639; Serrana 2,649; Norte Catarinense 1,393
@@ -244,5 +245,5 @@ season_bvoc_max_min_months                                                      
 ### cell 10 ok 0.0 s
 pt figures 1-8 -> <work folder>/reproduced/notebook13_meso2024/figures/pt
 en figures 1-8 -> <work folder>/reproduced/notebook13_meso2024/figures/en
-### cell 11 ok 5.8 s
-### 13_manuscript_numbers_and_figures.ipynb: all 11 code cells ok in 15 s
+### cell 11 ok 6.3 s
+### 13_santa_catarina_analysis.ipynb: all 11 code cells ok in 14 s

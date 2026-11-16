@@ -1,7 +1,6 @@
 # References
 
-The works cited in this tutorial, in the format of the article's reference list (ABNT), from which every entry is
-taken.
+The works cited in this tutorial and in the notebooks, in the ABNT format.
 
 ATKINSON, Roger; AREY, Janet. Atmospheric degradation of volatile organic compounds. *Chemical Reviews*, v. 103, n. 12,
 p. 4605-4638, 2003. DOI: https://doi.org/10.1021/cr0206420.
@@ -47,6 +46,17 @@ HOINASKI, L. (coord.); MEOTTI, B.; RIBEIRO, C. B.; SANTOS, O. N.; RODELLA, F. H.
 T. V.; BORTH, R. C. *Avaliação do impacto das emissões veiculares, queimadas, industriais e naturais na qualidade do ar
 em Santa Catarina*: ano base 2021. Florianópolis: LCQAr/UFSC, 2022. ISBN 978-85-8328-156-6.
 
+HOINASKI, L.; WILL, R.; RIBEIRO, C. B. *Brazilian Atmospheric Inventories - BRAIN version 1*: emission dataset in
+Southern Brazil [Dataset]. Science Data Bank, 2023. DOI: https://doi.org/10.57760/sciencedb.09886.
+
+HOINASKI, L.; WILL, R.; RIBEIRO, C. B. Brazilian Atmospheric Inventories - BRAIN: a comprehensive database of air
+quality in Brazil. *Earth System Science Data*, v. 16, n. 5, p. 2385-2405, 2024. DOI:
+https://doi.org/10.5194/essd-16-2385-2024.
+
+HUDMAN, R. C.; MOORE, N. E.; MEBUST, A. K.; MARTIN, R. V.; RUSSELL, A. R.; VALIN, L. C.; COHEN, R. C. Steps towards a
+mechanistic model of global soil nitric oxide emissions: implementation and space based-constraints. *Atmospheric
+Chemistry and Physics*, v. 12, n. 16, p. 7779-7795, 2012. DOI: https://doi.org/10.5194/acp-12-7779-2012.
+
 INSTITUTO BRASILEIRO DE GEOGRAFIA E ESTATÍSTICA (IBGE). *Malhas territoriais*: malha municipal 2024. Rio de Janeiro:
 IBGE, 2024. Disponível em: https://www.ibge.gov.br/geociencias/organizacao-do-territorio/malhas-territoriais/15774-malhas.html.
 Acesso em: 2 out. 2026.
@@ -72,6 +82,10 @@ Association*, v. 63, n. 324, p. 1379-1389, 1968. DOI: https://doi.org/10.1080/01
 SOUZA JUNIOR, C. M. et al. Reconstructing three decades of land use and land cover changes in Brazilian biomes with
 Landsat archive and Earth Engine. *Remote Sensing*, v. 12, n. 17, art. 2735, 2020. DOI:
 https://doi.org/10.3390/rs12172735.
+
+SULLA-MENASHE, D.; GRAY, J. M.; ABERCROMBIE, S. P.; FRIEDL, M. A. Hierarchical mapping of annual global land cover 2001
+to present: the MODIS Collection 6 Land Cover product. *Remote Sensing of Environment*, v. 222, p. 183-194, 2019. DOI:
+https://doi.org/10.1016/j.rse.2018.12.013.
 
 VIGOUROUX, C. et al. TROPOMI-Sentinel-5 Precursor formaldehyde validation using an extensive network of ground-based
 Fourier-transform infrared stations. *Atmospheric Measurement Techniques*, v. 13, n. 7, p. 3751-3767, 2020. DOI:

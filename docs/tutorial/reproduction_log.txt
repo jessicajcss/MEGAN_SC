@@ -1,187 +1,198 @@
-Reproduction of results/v10 with reproduce.py (15 November 2026)
+Reproduction of results/v10 with reproduce.py (16 November 2026)
 
-Machine: Linux x86_64 virtual machine, Python 3.13.18, numpy 2.5.3, pandas 3.0.5, matplotlib 3.11.2, geopandas 1.2.0,
-scipy 1.18.1 (newer than requirements-lock.txt).
-Data: the five release archives, unpacked into data/; check-data: 2,435 files, 0 missing or different.
-Unit tests: pytest -q, 127 passed.
-Command: python reproduce.py all, into an empty output folder, in one pass (16 steps; 5 min 22 s of wall time, while the
-MODIS control at the end of this file ran on the same machine). Output folder: 157 MB.
-Published files written on this machine: 17 PNG files (the 13 IJEST figures, the verification flowchart in both
-languages, report Figures 11 and A.2) and 4 CSV files (report/report_numbers_v10.csv, final_review/trend_robustness.csv,
-final_review/month_boundary_effect.csv, ijest_review/ecotype_tree_ef.csv). For these files the comparison does not test
-the published copy independently. The other PNG files were drawn in Google Colab and differ in rendering (fonts and
-library versions); the data behind them are equal.
-EQUAL: 28 CSV files differ only in the last digits of double-precision numbers (printed as 0.00e+00) and 4 (notebook14)
-by at most 9.5e-07 in relative terms; the GeoPackage is equal. NEW: the TIFF copies of the IJEST figures and the grid
-cache of notebook 13. PRESENT: logs, not compared.
+Machine: Linux x86_64 virtual machine (2 processors), Python 3.10.12 with the versions of requirements-lock.txt (numpy
+2.2.6, pandas 2.3.3, scipy 1.15.3, matplotlib 3.10.9, geopandas 1.1.4, rasterio 1.4.4, shapely 2.1.2).
+Repository: a fresh copy of the repository folder. Data: the five release archives of v1.0.0, their SHA-256 checked
+against data/RELEASE_ASSETS_SHA256SUMS.txt and unpacked into data/; check-data: 2438 data files checked, 0 missing or
+different.
+Unit tests: pytest -q, 129 passed.
+Command: the 16 steps of `python reproduce.py all`, in the same order and into an empty output folder, in six calls
+(integrity nb11 | nb13 nb14 nb15 s1 | c3 nb14diag report | maps meso2024 final | extra posthoc | laicorr compare),
+because the session used for the run limits one command to three minutes. In the first pass the steps c3 and nb14diag
+stopped: their scripts run cells of notebooks 11 and 14 from notebooks/src, whose first cell now opens with the block
+that finds the repository (notebooks/src/_setup_repo.py). analysis/v10/_paths.py (function notebook_source) now replaces
+that block with the repository folder, and both steps were run again; their timings below are those of the second run.
+Wall time of the 16 steps: 3 min 34 s. Output folder: 127 MB.
+
+Published files that come from this run: figures/pt_report/figA2.png to figA8.png, whose notes changed on 16 November
+2026 (they now cite FIX-1 of src/megan_sc/fixes.py and notebooks 16 and 17), and the log
+notebook13_meso2024/run_nb13.log. For these files the comparison does not test the published copy independently.
+figures/{en,pt}/fig_study_area.png and notebook13_meso2024/figures/{en,pt}/fig6.png are IDENTICAL because their
+published copies were redrawn with the same software on 16 November 2026, when MapBiomas 2024 became the land cover of
+reference.
+
+CSV files: the 5 files reported as EQUAL differ from their published copies only in the last digits of double-precision
+numbers; the GeoPackage of the mesoregions is EQUAL (same attributes and geometries). PNG files: 34 of 46 are IDENTICAL
+or PIXEL-IDENTICAL. Of the other 12, fig5 and fig8 (Portuguese and English) differ in at most 3.2e-05 of their pixels;
+fig7, fig12 and fig_verification differ in size by 1 to 64 pixels; fig9 (17 % of the pixels) and pt_report/fig9 (7 %)
+differ most, because matplotlib places their panels from the size of the text (tight_layout), so the panels move with
+the fonts. The class limits of every map (figures/maps_class_limits.csv) and the tables of notebook 14 are identical,
+and the numbers that the maps step prints for fig9 (anomaly r 0.452, N_eff 71.7) are those of
+notebook14/tier3_anomalies_cf0.3_sza70_fire120.csv.
 
 step       status   seconds
-integrity  ok         8.6 s
-nb11       ok        43.1 s
-nb13       ok        16.3 s
-nb14       ok         4.9 s
-nb15       ok         7.8 s
-s1         ok         1.8 s
-c3         ok        69.2 s
+integrity  ok         4.6 s
+nb11       ok        26.8 s
+nb13       ok        14.7 s
+nb14       ok         4.1 s
+nb15       ok         6.4 s
+s1         ok         1.7 s
+c3         ok        50.1 s
 nb14diag   ok         2.6 s
-report     ok         6.8 s
-maps       ok        44.1 s
-meso2024   ok         1.9 s
-final      ok         7.2 s
-extra      ok        37.5 s
-ijest      ok        41.4 s
-laicorr    ok        18.8 s
-compare    ok        10.0 s
+report     ok         5.6 s
+maps       ok        33.3 s
+meso2024   ok         7.1 s
+final      ok         5.2 s
+extra      ok        24.4 s
+posthoc    ok         3.5 s
+laicorr    ok        14.5 s
+compare    ok         9.7 s
 
-$ python3 <repository>/tools/compare_results.py <repository>/reproduced <repository>/results/v10 boundaries=<repository>/data/boundaries
+The comparison below was run again after the published figA2 to figA8 had been replaced by those of this run (the step
+compare then took 9.1 s).
+
+$ /usr/bin/python3 <repository>/tools/compare_results.py <repository>/reproduced <repository>/results/v10 boundaries=<repository>/data/boundaries
+boundaries/landcover2024_mesoregion.csv                 IDENTICAL        0.00e+00
 boundaries/sc_mesoregions_2024.gpkg                     EQUAL            0.00e+00
 boundaries/sc_municipios_2024_mesorregiao.csv           IDENTICAL        0.00e+00
-diagnostics/c3/c3_filled_cells_2003_2025.csv            EQUAL            0.00e+00
-diagnostics/c3/c3_lai_adjusted.csv                      EQUAL            0.00e+00
-diagnostics/c3/filled_cells_share.csv                   EQUAL            0.00e+00
+diagnostics/c3/c3_filled_cells_2003_2025.csv            IDENTICAL        0.00e+00
+diagnostics/c3/c3_lai_adjusted.csv                      IDENTICAL        0.00e+00
+diagnostics/c3/filled_cells_share.csv                   IDENTICAL        0.00e+00
 diagnostics/nb14/nb14_D5_terrain.csv                    IDENTICAL        0.00e+00
 diagnostics/nb14/nb14_diagnostics.csv                   IDENTICAL        0.00e+00
-figures/en/fig5.png                                     PNG SIZE         (1513, 2409, 3) vs (1507, 2409, 3)
-figures/en/fig7.png                                     PNG SIZE         (3361, 2297, 3) vs (3361, 2304, 3)
-figures/en/fig8.png                                     PNG SIZE         (2183, 2220, 3) vs (2184, 2219, 3)
-figures/en/fig9.png                                     PNG DIFF         9.58e-02
-figures/en/fig_study_area.png                           PNG DIFF         9.00e-02
-figures/en/fig_verification.png                         IDENTICAL        0.00e+00
-figures/ijest/Fig1.png                                  IDENTICAL        0.00e+00
-figures/ijest/Fig1.tif                                  NEW              
-figures/ijest/Fig10.png                                 IDENTICAL        0.00e+00
-figures/ijest/Fig10.tif                                 NEW              
-figures/ijest/Fig11.png                                 IDENTICAL        0.00e+00
-figures/ijest/Fig11.tif                                 NEW              
-figures/ijest/Fig2.png                                  IDENTICAL        0.00e+00
-figures/ijest/Fig2.tif                                  NEW              
-figures/ijest/Fig3.png                                  IDENTICAL        0.00e+00
-figures/ijest/Fig3.tif                                  NEW              
-figures/ijest/Fig4.png                                  IDENTICAL        0.00e+00
-figures/ijest/Fig4.tif                                  NEW              
-figures/ijest/Fig5.png                                  IDENTICAL        0.00e+00
-figures/ijest/Fig5.tif                                  NEW              
-figures/ijest/Fig6.png                                  IDENTICAL        0.00e+00
-figures/ijest/Fig6.tif                                  NEW              
-figures/ijest/Fig7.png                                  IDENTICAL        0.00e+00
-figures/ijest/Fig7.tif                                  NEW              
-figures/ijest/Fig8.png                                  IDENTICAL        0.00e+00
-figures/ijest/Fig8.tif                                  NEW              
-figures/ijest/Fig9.png                                  IDENTICAL        0.00e+00
-figures/ijest/Fig9.tif                                  NEW              
-figures/ijest/FigS4.png                                 IDENTICAL        0.00e+00
-figures/ijest/FigS4.tif                                 NEW              
-figures/ijest/FigS5.png                                 IDENTICAL        0.00e+00
-figures/ijest/FigS5.tif                                 NEW              
+figures/en/fig5.png                                     PNG DIFF         2.67e-05
+figures/en/fig7.png                                     PNG SIZE         (3361, 2305, 3) vs (3361, 2304, 3)
+figures/en/fig8.png                                     PNG DIFF         8.67e-06
+figures/en/fig9.png                                     PNG DIFF         1.73e-01
+figures/en/fig_study_area.png                           IDENTICAL        0.00e+00
+figures/en/fig_verification.png                         PNG SIZE         (2319, 2160, 3) vs (2383, 2160, 3)
 figures/maps_class_limits.csv                           IDENTICAL        0.00e+00
-figures/pt/fig5.png                                     PNG SIZE         (1510, 2398, 3) vs (1504, 2397, 3)
-figures/pt/fig7.png                                     PNG SIZE         (3361, 2295, 3) vs (3361, 2301, 3)
-figures/pt/fig8.png                                     PNG SIZE         (2183, 2161, 3) vs (2184, 2160, 3)
-figures/pt/fig9.png                                     PNG DIFF         9.85e-02
-figures/pt/fig_study_area.png                           PNG DIFF         9.15e-02
-figures/pt/fig_verification.png                         IDENTICAL        0.00e+00
-figures/pt_report/fig10.png                             PNG DIFF         7.19e-02
-figures/pt_report/fig12.png                             PNG SIZE         (3358, 2522, 3) vs (3351, 2528, 3)
-figures/pt_report/fig9.png                              IDENTICAL        0.00e+00
+figures/pt/fig5.png                                     PNG DIFF         3.16e-05
+figures/pt/fig7.png                                     PNG SIZE         (3361, 2302, 3) vs (3361, 2301, 3)
+figures/pt/fig8.png                                     PNG DIFF         8.90e-06
+figures/pt/fig9.png                                     PNG DIFF         1.75e-01
+figures/pt/fig_study_area.png                           IDENTICAL        0.00e+00
+figures/pt/fig_verification.png                         PNG SIZE         (2358, 2160, 3) vs (2421, 2160, 3)
+figures/pt_report/fig10.png                             PIXEL-IDENTICAL  0.00e+00
+figures/pt_report/fig12.png                             PNG SIZE         (3350, 2533, 3) vs (3351, 2528, 3)
+figures/pt_report/fig9.png                              PNG DIFF         6.62e-02
 figures/pt_report/figA2.png                             IDENTICAL        0.00e+00
-figures/pt_report/figA3.png                             PNG SIZE         (1521, 2388, 3) vs (1516, 2392, 3)
-figures/pt_report/figA4.png                             PNG SIZE         (1554, 2390, 3) vs (1549, 2394, 3)
-figures/pt_report/figA5.png                             PNG SIZE         (1521, 2388, 3) vs (1516, 2392, 3)
-figures/pt_report/figA6.png                             PNG SIZE         (1521, 2388, 3) vs (1516, 2392, 3)
-figures/pt_report/figA7.png                             PNG SIZE         (1554, 2428, 3) vs (1549, 2431, 3)
-figures/pt_report/figA8.png                             PNG SIZE         (1521, 2388, 3) vs (1516, 2392, 3)
-figures/pt_report/figA9.png                             PNG SIZE         (1525, 2556, 3) vs (1515, 2556, 3)
+figures/pt_report/figA3.png                             IDENTICAL        0.00e+00
+figures/pt_report/figA4.png                             IDENTICAL        0.00e+00
+figures/pt_report/figA5.png                             IDENTICAL        0.00e+00
+figures/pt_report/figA6.png                             IDENTICAL        0.00e+00
+figures/pt_report/figA7.png                             IDENTICAL        0.00e+00
+figures/pt_report/figA8.png                             IDENTICAL        0.00e+00
+figures/pt_report/figA9.png                             PIXEL-IDENTICAL  0.00e+00
 figures/study_area_shares.csv                           IDENTICAL        0.00e+00
-final_review/filled_cells_area.csv                      EQUAL            0.00e+00
+final_review/filled_cells_area.csv                      IDENTICAL        0.00e+00
 final_review/final_review.log                           PRESENT          
 final_review/final_review_numbers.csv                   IDENTICAL        0.00e+00
 final_review/lai_monthly_SC.csv                         IDENTICAL        0.00e+00
 final_review/lai_monthly_SC_zscores.csv                 IDENTICAL        0.00e+00
-final_review/landcover_ef_potential_SC.csv              EQUAL            0.00e+00
+final_review/landcover_ef_potential_SC.csv              IDENTICAL        0.00e+00
 final_review/month_boundary_effect.csv                  IDENTICAL        0.00e+00
 final_review/month_boundary_effect.log                  PRESENT          
-final_review/partial_correlations_detrended.csv         EQUAL            0.00e+00
+final_review/partial_correlations_detrended.csv         IDENTICAL        0.00e+00
 final_review/trend_robustness.csv                       IDENTICAL        0.00e+00
 final_review/trend_robustness.log                       PRESENT          
-final_review/trends_fdr_hr.csv                          EQUAL            0.00e+00
+final_review/trends_fdr_hr.csv                          IDENTICAL        0.00e+00
 final_review/tropomi_magnitude_grid.csv                 IDENTICAL        0.00e+00
-ijest_review/ecotype_tree_ef.csv                        IDENTICAL        0.00e+00
-ijest_review/ijest_review.log                           PRESENT          
-ijest_review/ijest_review_numbers.csv                   IDENTICAL        0.00e+00
-ijest_review/lai_annual_by_growth_form.csv              EQUAL            0.00e+00
-ijest_review/lai_monthly_state_z.csv                    IDENTICAL        0.00e+00
-ijest_review/plantation_ef_sensitivity_2019.csv         EQUAL            0.00e+00
-lai_viirs_check/lai_correction.png                      PNG DIFF         1.41e-01
-lai_viirs_check/lai_correction_2024_2025_monthly.csv    EQUAL            0.00e+00
+lai_viirs_check/lai_correction.png                      PIXEL-IDENTICAL  0.00e+00
+lai_viirs_check/lai_correction_2024_2025_monthly.csv    IDENTICAL        0.00e+00
 lai_viirs_check/lai_correction_annual_groups.csv        EQUAL            0.00e+00
-lai_viirs_check/lai_correction_hindcast_2013_2023.csv   EQUAL            0.00e+00
-lai_viirs_check/lai_correction_hindcast_annual.csv      EQUAL            0.00e+00
-lai_viirs_check/lai_correction_map_2025.png             PNG DIFF         2.61e-01
+lai_viirs_check/lai_correction_hindcast_2013_2023.csv   IDENTICAL        0.00e+00
+lai_viirs_check/lai_correction_hindcast_annual.csv      IDENTICAL        0.00e+00
+lai_viirs_check/lai_correction_map_2025.png             PIXEL-IDENTICAL  0.00e+00
 lai_viirs_check/lai_correction_settings.json            PRESENT          
 lai_viirs_check/lai_viirs_corrected_2024_2025.npz       PRESENT          
-notebook11/annual_totals_SC_v10_all_classes.csv         EQUAL            0.00e+00
+notebook11/annual_totals_SC_v10_all_classes.csv         IDENTICAL        0.00e+00
 notebook11/verify_v10_report.csv                        IDENTICAL        0.00e+00
-notebook11/verify_v10_totals.png                        PNG DIFF         1.64e-01
+notebook11/verify_v10_totals.png                        PIXEL-IDENTICAL  0.00e+00
 notebook13_meso2024/annual_grids_cache.npz              NEW              
-notebook13_meso2024/annual_totals_SC_by_class.csv       EQUAL            0.00e+00
+notebook13_meso2024/annual_totals_SC_by_class.csv       IDENTICAL        0.00e+00
 notebook13_meso2024/correlations_emissions_drivers.csv  EQUAL            0.00e+00
-notebook13_meso2024/drivers_annual_SC.csv               EQUAL            0.00e+00
-notebook13_meso2024/figures/en/fig1.png                 PNG DIFF         9.85e-03
-notebook13_meso2024/figures/en/fig2.png                 PNG SIZE         (3017, 2768, 3) vs (3013, 2769, 3)
-notebook13_meso2024/figures/en/fig3.png                 PNG DIFF         7.71e-02
-notebook13_meso2024/figures/en/fig4.png                 PNG DIFF         1.21e-02
-notebook13_meso2024/figures/en/fig5.png                 PNG DIFF         2.93e-02
-notebook13_meso2024/figures/en/fig6.png                 PNG DIFF         1.24e-02
-notebook13_meso2024/figures/en/fig7.png                 PNG DIFF         1.14e-02
-notebook13_meso2024/figures/en/fig8.png                 PNG SIZE         (1784, 2772, 3) vs (1784, 2771, 3)
-notebook13_meso2024/figures/en/fig_detrend.png          PNG DIFF         1.88e-02
-notebook13_meso2024/figures/pt/fig1.png                 PNG DIFF         1.06e-02
-notebook13_meso2024/figures/pt/fig2.png                 PNG SIZE         (3020, 2747, 3) vs (3015, 2746, 3)
-notebook13_meso2024/figures/pt/fig3.png                 PNG DIFF         8.60e-02
-notebook13_meso2024/figures/pt/fig4.png                 PNG DIFF         1.29e-02
-notebook13_meso2024/figures/pt/fig5.png                 PNG DIFF         2.83e-02
-notebook13_meso2024/figures/pt/fig6.png                 PNG DIFF         1.38e-02
-notebook13_meso2024/figures/pt/fig7.png                 PNG DIFF         1.26e-02
-notebook13_meso2024/figures/pt/fig8.png                 PNG SIZE         (1784, 2772, 3) vs (1784, 2771, 3)
-notebook13_meso2024/figures/pt/fig_detrend.png          PNG DIFF         1.96e-02
-notebook13_meso2024/manuscript_numbers.csv              EQUAL            0.00e+00
+notebook13_meso2024/drivers_annual_SC.csv               IDENTICAL        0.00e+00
+notebook13_meso2024/figures/en/fig1.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/en/fig2.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/en/fig3.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/en/fig4.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/en/fig5.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/en/fig6.png                 IDENTICAL        0.00e+00
+notebook13_meso2024/figures/en/fig7.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/en/fig8.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/en/fig_detrend.png          PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/pt/fig1.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/pt/fig2.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/pt/fig3.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/pt/fig4.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/pt/fig5.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/pt/fig6.png                 IDENTICAL        0.00e+00
+notebook13_meso2024/figures/pt/fig7.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/pt/fig8.png                 PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/figures/pt/fig_detrend.png          PIXEL-IDENTICAL  0.00e+00
+notebook13_meso2024/key_numbers.csv                     EQUAL            0.00e+00
 notebook13_meso2024/municipalities_2019.csv             IDENTICAL        0.00e+00
-notebook13_meso2024/seasonal_climatology.csv            IDENTICAL        0.00e+00
-notebook13_meso2024/seasonal_cycle_monthly.csv          IDENTICAL        0.00e+00
-notebook13_meso2024/table2_annual_totals_SC_groups.csv  EQUAL            0.00e+00
+notebook13_meso2024/seasonal_climatology.csv            EQUAL            0.00e+00
+notebook13_meso2024/seasonal_cycle_monthly.csv          EQUAL            0.00e+00
+notebook13_meso2024/table2_annual_totals_SC_groups.csv  IDENTICAL        0.00e+00
 notebook13_meso2024/table3_mesoregions_soa.csv          IDENTICAL        0.00e+00
 notebook13_meso2024/table4_municipalities_2025.csv      IDENTICAL        0.00e+00
-notebook13_meso2024/trends.csv                          EQUAL            0.00e+00
-notebook14/hcho_evaluation_cf0.3_sza70_fire120.png      PNG DIFF         1.83e-01
-notebook14/monthly_series_cf0.3_sza70_fire120.csv       EQUAL            7.10e-07
-notebook14/tier1_spatial_cf0.3_sza70_fire120.csv        EQUAL            0.00e+00
-notebook14/tier2_seasonal_cf0.3_sza70_fire120.csv       EQUAL            7.05e-08
-notebook14/tier3_anomalies_cf0.3_sza70_fire120.csv      EQUAL            9.50e-07
-notebook14/tier4_slope_cf0.3_sza70_fire120.csv          EQUAL            8.63e-08
-notebook15/S3_fixlog_annual.csv                         EQUAL            0.00e+00
-notebook15/S3_fixlog_monthly.csv                        EQUAL            0.00e+00
-notebook15/s1/S1_isoprene_ratio_2019_28d.png            PNG SIZE         (795, 1311, 3) vs (792, 1351, 3)
+notebook13_meso2024/trends.csv                          IDENTICAL        0.00e+00
+notebook14/hcho_evaluation_cf0.3_sza70_fire120.png      PIXEL-IDENTICAL  0.00e+00
+notebook14/monthly_series_cf0.3_sza70_fire120.csv       IDENTICAL        0.00e+00
+notebook14/tier1_spatial_cf0.3_sza70_fire120.csv        IDENTICAL        0.00e+00
+notebook14/tier2_seasonal_cf0.3_sza70_fire120.csv       IDENTICAL        0.00e+00
+notebook14/tier3_anomalies_cf0.3_sza70_fire120.csv      IDENTICAL        0.00e+00
+notebook14/tier4_slope_cf0.3_sza70_fire120.csv          IDENTICAL        0.00e+00
+notebook15/S3_fixlog_annual.csv                         IDENTICAL        0.00e+00
+notebook15/S3_fixlog_monthly.csv                        IDENTICAL        0.00e+00
+notebook15/s1/S1_isoprene_ratio_2019_28d.png            PIXEL-IDENTICAL  0.00e+00
 notebook15/s1/s1_cell_ratios.csv                        IDENTICAL        0.00e+00
-notebook15/s1/s1_class_totals.csv                       EQUAL            0.00e+00
+notebook15/s1/s1_class_totals.csv                       IDENTICAL        0.00e+00
 notebook15/s1/s1_compare.log                            PRESENT          
 notebook15/s1/s1_diurnal_check.csv                      IDENTICAL        0.00e+00
-notebook15/s1/s1_groups.csv                             EQUAL            0.00e+00
-report/driver_correlations_v10.csv                      EQUAL            0.00e+00
+notebook15/s1/s1_groups.csv                             IDENTICAL        0.00e+00
+posthoc_review/ecotype_tree_ef.csv                      IDENTICAL        0.00e+00
+posthoc_review/lai_annual_by_growth_form.csv            IDENTICAL        0.00e+00
+posthoc_review/lai_monthly_state_z.csv                  IDENTICAL        0.00e+00
+posthoc_review/plantation_ef_sensitivity_2019.csv       IDENTICAL        0.00e+00
+posthoc_review/posthoc_review.log                       PRESENT          
+posthoc_review/posthoc_review_numbers.csv               IDENTICAL        0.00e+00
+report/driver_correlations_v10.csv                      IDENTICAL        0.00e+00
 report/isop_monthly_v10.csv                             IDENTICAL        0.00e+00
 report/meso_2025_v10.csv                                IDENTICAL        0.00e+00
 report/muni_2025_ranked_v10.csv                         IDENTICAL        0.00e+00
 report/report_numbers_v10.csv                           IDENTICAL        0.00e+00
-report/std_regression_v10.csv                           EQUAL            0.00e+00
-report/temp_sensitivity_v10.csv                         EQUAL            0.00e+00
+report/std_regression_v10.csv                           IDENTICAL        0.00e+00
+report/temp_sensitivity_v10.csv                         IDENTICAL        0.00e+00
 
-CSV files: 58 compared, 26 identical, 32 equal within tolerance, 0 different, 0 without a published copy
-PNG files: 59 compared, 17 pixel-identical
+CSV files: 59 compared, 54 identical, 5 equal within tolerance, 0 different, 0 without a published copy
+PNG files: 46 compared, 34 pixel-identical
 
-MODIS control (REPRODUCE.md, section B), same machine and day: python tools/lai_variant_view.py, then
-MEGAN_SC_RUN=data/run_v10_modis_view MEGAN_SC_RESULTS=results/v10_modis_lai_2024_2025 MEGAN_SC_OUT=reproduced_modis
-python reproduce.py integrity nb11 nb13 nb14 nb15 s1 c3 nb14diag report maps meso2024 final laicorr compare.
-Published files of results/v10_modis_lai_2024_2025 written on this machine: report/report_numbers_v10.csv,
-final_review/trend_robustness.csv and final_review/month_boundary_effect.csv. The PNG files of that folder were drawn in
-Google Colab.
-CSV files: 52 compared, 21 identical, 31 equal within tolerance, 0 different, 0 without a published copy
-PNG files: 42 compared, 0 pixel-identical
+
+MODIS control (REPRODUCE.md, section B), same machine and day, into reproduced_modis:
+
+$ python tools/lai_variant_view.py
+$ MEGAN_SC_RUN=data/run_v10_modis_view MEGAN_SC_RESULTS=results/v10_modis_lai_2024_2025 MEGAN_SC_OUT=reproduced_modis \
+    python reproduce.py integrity nb11 nb13 nb14 nb15 s1 c3 nb14diag report maps meso2024 final laicorr compare
+
+All 14 steps ok (run in three calls). The published figA2 to figA8 of results/v10_modis_lai_2024_2025/figures/pt_report
+come from this run (their notes changed on 16 November 2026), as does notebook13_meso2024/run_nb13.log. Result of the
+step compare, run again after that replacement:
+
+CSV files: 53 compared, 53 identical, 0 equal within tolerance, 0 different, 0 without a published copy
+PNG files: 42 compared, 41 pixel-identical
+The PNG file that differs is figures/pt_report/fig9.png (1.3e-03 of its pixels).
+
+
+Notebook 25 on the example run, same machine and day:
+
+$ python tools/run_notebook.py notebooks/25_results_any_region.ipynb "RUN_ROOT='data/run_v10';OUT_DIR='<work folder>/nb25_sc'"
+### 25_results_any_region.ipynb: all 7 code cells ok in 11 s
+
+Notebook 25 writes the standard results of any run from its configuration (here config/santa_catarina_2003_2025.yaml).
+Against the tables of notebook 13 in results/v10/notebook13_meso2024, largest relative difference:
+  annual totals of the 11 groups, 23 years (annual_totals_by_group.csv vs table2_annual_totals_SC_groups.csv)  6.4e-10
+  trends of the 9 series: Theil-Sen slope and interval, Mann-Kendall and Hamed-Rao (trends.csv vs trends.csv)  1.1e-07
+  seasonal climatology, mean, minimum and maximum of BVOC, ISOP, MT, NO and CO by month                        5.9e-10

@@ -40,13 +40,14 @@
 
 # %%
 # 1 · Settings ----------------------------------------------------------------------------------------------------------------
+__FILE:notebooks/src/_setup_repo.py__
 %pip -q install earthaccess h5py numpy pandas scipy rasterio geopandas matplotlib netCDF4
 import os, sys, re, glob, json, time, datetime, shutil
 try:
     from google.colab import drive; drive.mount('/content/drive')
 except Exception:
     pass
-REPO_DIR  = '/content/drive/MyDrive/MEGAN_SC'                       # <-- this repository (laicorr.py, lai_variant_view.py, boundaries)
+# REPO_DIR: this repository, found by the setup block above
 ROOT_V10  = '/content/drive/MyDrive/megan_sc_outputs_v10'           # <-- production run (MODIS LAI 2013-2023, growth forms)
 ARCHIVE   = '/content/drive/MyDrive/megan_sc_outputs_v10_modis_lai_2024_2025'   # MODIS-LAI 2024-2025 once installed (notebook 19)
 NB16_CACHE = ROOT_V10 + '/analysis_v10/lai_viirs_check/lai_viirs_modis_cache.npz'   # notebook 16 (Earth Engine, Suomi NPP and MODIS)

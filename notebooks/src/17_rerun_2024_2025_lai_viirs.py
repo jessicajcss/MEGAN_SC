@@ -137,9 +137,10 @@
 
 # %%
 # 1 · Setup ---------------------------------------------------------------------------------------------
+__FILE:notebooks/src/_setup_repo.py__
 %pip -q install earthengine-api numpy scipy xarray netCDF4 matplotlib pyyaml pandas rasterio geopandas
 from google.colab import drive; drive.mount('/content/drive')
-MEGAN_DIR = '/content/drive/MyDrive/megan-sc'          # <-- the engine repo in Drive (same as before)
+MEGAN_DIR = REPO_DIR                      # the repository folder (found by the setup block)
 OUT_BASE  = '/content/drive/MyDrive'                   # <-- the outputs go to OUT_BASE/megan_sc_outputs_v10_lai_viirs
 ROOT_V10  = '/content/drive/MyDrive/megan_sc_outputs_v10'   # <-- the production run of notebook 10 (LAI 2013-2025, growth forms)
 VIIRS_CACHE = ROOT_V10 + '/analysis_v10/lai_viirs_check/lai_viirs_modis_cache.npz'   # <-- monthly VIIRS LAI, notebook 16

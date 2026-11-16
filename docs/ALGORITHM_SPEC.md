@@ -230,7 +230,7 @@ FIX-6 and FIX-7 are the two engine patches, and `fixes.apply_engine_patches()` i
 | FIX-7 | engine | soil NO, no-soil path: air temperature capped at 303 K before both the grass factor and TSOI = 0.72·TAIR + 82.28 (soilnox.F) |
 | FIX-8 | data | ERA5-Land radiation: hourly flux = difference with the previous hour at every hour except 01 UTC, where the accumulation restarts; the field valid at 00 UTC holds the 24 h ending at 00 UTC (ECMWF ERA5-Land documentation) |
 
-**Settings of the Santa Catarina production run** (stated in the manuscript):
+**Settings of the Santa Catarina production run** (`config/santa_catarina_2003_2025.yaml` and the provenance file of every year):
 * ERA5-Land sampled every 3 h (00, 03, ..., 21 UTC); each step stands for 3 h in the monthly integration.
 * Wilting point constant at 0.12 m³ m⁻³ for GAMSM (section 9 describes the soil-type table of the Fortran, which the
   run did not use); GAMSM on; GAMBD on for ethanol/acetaldehyde.

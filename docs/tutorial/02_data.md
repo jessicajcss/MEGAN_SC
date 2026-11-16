@@ -31,7 +31,7 @@ Two facts about the inputs shape the method:
 
 | Folder | In git? | Size | Content |
 |---|---|---|---|
-| `data/boundaries/` | yes | 3.9 MB | IBGE state, municipalities and mesoregions; MapBiomas 2019 land-cover shares by mesoregion (`landcover2019_mesoregion.csv`); ONI |
+| `data/boundaries/` | yes | 3.9 MB | IBGE state, municipalities and mesoregions; MapBiomas 2024 land-cover shares by mesoregion (`landcover2024_mesoregion.csv`; the 2019 table of the earlier versions is kept); ONI |
 | `data/megan_inputs/`, `data/sc_ecotype.nc` | yes | 2.6 MB | MEGAN emission-factor and speciation tables, ecotype tile |
 | `data/run_v10/` | release archive | 840 MB | the production run of notebook 10, 2003-2025, with 2024 and 2025 from notebook 17 (corrected LAI; 2,075 files) |
 | `data/tropomi_hcho_v10/` | release archive | 18 MB | 84 monthly TROPOMI fields on the model grid |
@@ -43,7 +43,7 @@ Chapter 3 shows how to download and check the release archives (five zip files, 
 `data/run_v10/` holds the monthly and annual emission grids, the inputs as the model saw them (monthly means of the
 meteorology, the gap-filled LAI, the growth forms, the emission factors), a fix log per month, the diurnal profiles,
 the monthly statistics and a provenance file. The ERA5-Land hourly fields themselves are not shipped: they would take
-hundreds of gigabytes and can be read again from Earth Engine (chapter 6).
+hundreds of gigabytes and can be read again from Earth Engine (chapter 6, notebook 10).
 
 ## 2.3 Orientation of the grids
 
@@ -74,12 +74,13 @@ print(int(inside.sum()))                                  # 13970 cells
 isop = float(ds['ISOP'].where(inside).sum())
 print(isop, RHO_ISOP * isop)                              # 262900.6 t as computed by the code; 252384.6 t with rho
 bvoc = sum(ds[c] * (RHO_ISOP if c == 'ISOP' else 1.0) for c in ds.data_vars if c not in ('NO', 'CO'))
-print(float(bvoc.where(inside).sum()) / 1e3)              # 739.4 kt of BVOC: the 2019 peak of article Figure 3 (2024: 739.3 kt)
+print(float(bvoc.where(inside).sum()) / 1e3)              # 739.4 kt of BVOC, the largest annual total of 2003-2025 (2024: 739.3 kt)
 ```
 
 The isoprene total without ρ equals the value written by notebook 10 in
-`data/run_v10/2019/stats/annual_by_family_2019.csv` (262,900.6 t); with ρ it is the 2019 isoprene of Table S1 of the article (Table 2 of the
-report; 252,385 t), and the BVOC total is the 2019 value of the same table. (`union_all` needs geopandas 1.0 or later; older
+`data/run_v10/2019/stats/annual_by_family_2019.csv` (262,900.6 t); with ρ it is the 2019 isoprene of
+`results/v10/notebook13_meso2024/table2_annual_totals_SC_groups.csv` (252,385 t), and the BVOC total is the 2019 value of
+the same table. (`union_all` needs geopandas 1.0 or later; older
 versions use `unary_union`.)
 
 **Intensity per area.** Divide by the cell area. The analysis scripts use a sphere of radius 6,371,008.8 m:

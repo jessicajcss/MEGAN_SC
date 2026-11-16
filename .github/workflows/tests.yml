@@ -15,7 +15,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Install the level-A requirements
+      - name: Install the requirements of reproduce.py and of the tests
         run: pip install -r requirements-reproduce.txt
-      - name: Run the 127 unit tests (engine, fixes.py and the region wizard; no data download needed)
+      - name: Run the unit tests (engine, fixes.py, the region wizard, notebooks 10, 11 and 25 offline; no data download needed)
         run: pytest -q

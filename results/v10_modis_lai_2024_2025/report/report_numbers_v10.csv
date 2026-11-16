@@ -43,7 +43,7 @@ soa_share_top3,"Oeste Catarinense 23,9%; Norte Catarinense 20,1%; Vale do Itaja�
 soa_intensity_top3,"Grande Florianópolis 26,9; Vale do Itajaí 25,8; Norte Catarinense 23,0",table3 (kg/ha/yr)
 soa_intensity_min,"Serrana 13,8; Oeste Catarinense 16,0",table3 (kg/ha/yr)
 sqt_share_range,"7,2% a 8,1%",table3
-soa_forest_r,"r = 0,97 (IC 95% 0,73 a 1,00; p = 0,001); rho = 0,94 (p = 0,005); n = 6",table3
+soa_forest_r,"r = 0,97 (IC 95% 0,75 a 1,00; p = 0,001); rho = 0,94 (p = 0,005); n = 6",table3
 meso2025_BVOC_intensity,Grande Florianópolis 83; Vale do Itajaí 82; Norte Catarinense 77; Sul Catarinense 60; Oeste Catarinense 59; Serrana 52,meso_2025_v10.csv (kg/ha/yr)
 meso2025_NO_intensity,"Oeste Catarinense 1,3; Sul Catarinense 1,2; Serrana 1,1; Vale do Itajaí 0,9; Norte Catarinense 0,9; Grande Florianópolis 0,7",meso_2025_v10.csv
 meso2025_CO_intensity,"Vale do Itajaí 2,8; Oeste Catarinense 2,8; Norte Catarinense 2,7; Sul Catarinense 2,6; Grande Florianópolis 2,6; Serrana 2,0",meso_2025_v10.csv
@@ -91,15 +91,15 @@ mun_bottom5,"Balneário Rincão (12; Criciúma), Laguna (14; Criciúma), Jaguaru
 mun_bottom_quintile_total_regions,Chapecó 30; Criciúma 16; Blumenau 11; Caçador 1; Florianópolis 1,table4 + NM_RGINT (20% menores totais)
 mun_top_quintile_total_regions,Joinville 15; Blumenau 13; Lages 12; Chapecó 7; Caçador 5; Florianópolis 5; Criciúma 2,table4 + NM_RGINT (20% maiores totais)
 mun_cells_min,17,table4 (células da grade que tocam cada município)
-isop_flux,"2,0 (mediana por célula 1,9; p99 4,5; máximo 6,1)",manuscript_numbers.csv
-cmp2019_ISOP,"252,4 Gg contra 33,3 Gg; razão 7,6",manuscript_numbers.csv
-cmp2019_CO,"27,8 Gg contra 7,50 Gg; razão 3,7",manuscript_numbers.csv
-cmp2019_NO,"10,8 Gg contra 0,571 Gg; razão 18,9",manuscript_numbers.csv
-cmp2019_range,4 a 19 vezes,manuscript_numbers.csv
-isop_mean_ratio,"217 Gg; 6,5; 6,6; pico 2019",manuscript_numbers.csv
-isop_mt_ratio,"1,29:1",manuscript_numbers.csv
-met_filled,190 to 191,manuscript_numbers.csv
-lai_gaps,0 to 7,manuscript_numbers.csv
-mun_cells,"17, 54, 485; 5,1, 34, 384 (célula de 6,87 km²)",manuscript_numbers.csv
-mun_area_check,"0,999 a 1,006; 99,83%",manuscript_numbers.csv
-meso_sum,"99,82%",manuscript_numbers.csv
+isop_flux,"2,0 (mediana por célula 1,9; p99 4,5; máximo 6,1)",key_numbers.csv
+cmp2019_ISOP,"252,4 Gg contra 33,3 Gg; razão 7,6",key_numbers.csv
+cmp2019_CO,"27,8 Gg contra 7,50 Gg; razão 3,7",key_numbers.csv
+cmp2019_NO,"10,8 Gg contra 0,571 Gg; razão 18,9",key_numbers.csv
+cmp2019_range,4 a 19 vezes,key_numbers.csv
+isop_mean_ratio,"217 Gg; 6,5; 6,6; pico 2019",key_numbers.csv
+isop_mt_ratio,"1,29:1",key_numbers.csv
+met_filled,190 to 191,key_numbers.csv
+lai_gaps,0 to 7,key_numbers.csv
+mun_cells,"17, 54, 485; 5,1, 34, 384 (célula de 6,87 km²)",key_numbers.csv
+mun_area_check,"0,999 a 1,006; 99,83%",key_numbers.csv
+meso_sum,"99,82%",key_numbers.csv

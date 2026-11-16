@@ -1,92 +1,100 @@
-# MEGAN_SC: biogenic emissions of Santa Catarina, Brazil, 2003-2025
-
-Code, model output and analysis behind the article *Biogenic emissions in Santa Catarina, Brazil,
-2003-2025: a MEGANv3.21 inventory driven by MapBiomas, MODIS and ERA5-Land* and the state inventory report
-(*Inventário das emissões biogênicas na qualidade do ar em Santa Catarina*, base year 2025 with the 2003-2025 series).
-Both documents cite this repository at https://github.com/jessicajcss/MEGAN_SC.
-
-> [Leia-me em português](README.pt-BR.md) · **Illustrated PDF tutorial: [`TUTORIAL_MEGAN_SC_en.pdf`](TUTORIAL_MEGAN_SC_en.pdf)** ([português](TUTORIAL_MEGAN_SC_pt.pdf)) · [Technical chapters](docs/tutorial/README.md) · [Reproduce in four commands](#quick-start-reproduce-every-number-in-a-few-minutes)
+# MEGAN_SC: biogenic emissions with MEGANv3.21 and Google Earth Engine, for any region and period
 
 MEGAN_SC is a Python implementation of the MEGANv3.21 emission code (Guenther, 2024b) with a Google Earth Engine data
-layer. For Santa Catarina it computes, on a 0.025° grid (144 × 224 cells, 13,970 of them inside the state) and every
-3 h from 2003 to 2025, the emission of 19 MEGAN classes: isoprene, monoterpenes, sesquiterpenes, oxygenated and light
-VOCs, soil NO and CO. The input and run procedures (FIX-1 to FIX-8) are in `src/megan_sc/fixes.py`, whose SHA-256 is
-stamped in every output file, and the engine, as used in production, agrees stage by stage with the official Fortran
-executables to float32 precision. When the analyses read the run, they multiply isoprene by the canopy loss and
-production factor ρ = 0.96 (Guenther et al., 2006), which the MEGANv3.21 code does not apply.
+layer. For a region given by a boundary file and a period given in months, it computes on a regular latitude-longitude
+grid, every 3 h, the emission of the 19 MEGAN classes: isoprene, monoterpenes, sesquiterpenes, oxygenated and light
+VOCs, soil NO and CO. The meteorology comes from ERA5-Land, the leaf area from MODIS, the land cover from MapBiomas
+(Brazil) or MODIS (worldwide), and the emission factors from the MEGAN 3.2 input files. The input and run procedures
+(FIX-1 to FIX-8) are in `src/megan_sc/fixes.py`, whose SHA-256 is stamped in every output file, and the engine, as used
+in production, agrees stage by stage with the official Fortran executables to float32 precision.
+
+The repository ships one complete worked example: Santa Catarina, Brazil, 2003-2025, on a 0.025° grid (144 × 224
+cells, 13,970 of them inside the state). Its model output, every table, number and figure computed from it, and a
+one-command reproduction of all of them are included, so the example can be checked on any computer and the same
+pipeline applied to another region.
+
+> [Leia-me em português](README.pt-BR.md) · **Illustrated PDF tutorial: [`TUTORIAL_MEGAN_SC_en.pdf`](TUTORIAL_MEGAN_SC_en.pdf)** ([português](TUTORIAL_MEGAN_SC_pt.pdf)) · [Technical chapters](docs/tutorial/README.md) · [Reproduce the example](#quick-start-reproduce-the-santa-catarina-example) · [Your region](#your-own-region-and-period)
 
 ## What this repository lets you do
 
-| Level | Goal | Needs | Time | Start at |
-|---|---|---|---|---|
-| **A. Reproduce** | recompute every number, table and figure of the article and of the report from the shipped model output, and compare them with the published copies | Python 3.10+, about 1.2 GB of disk, no accounts | about 5 min of computing | [Quick start](#quick-start-reproduce-every-number-in-a-few-minutes), [tutorial chapter 5](docs/tutorial/05_level_A_reproduce.md) |
-| **B. Replicate** | run the model again from the raw inputs (ERA5-Land, MODIS, MapBiomas), the checks, the Fortran benchmark and the TROPOMI evaluation | Google account with Earth Engine, Google Colab | hours of Earth Engine requests per model year; 41 EECU-hours for the TROPOMI notebook | [tutorial chapter 6](docs/tutorial/06_level_B_rerun_the_model.md) |
-| **C. Extend** | build the same inventory for another state, province or country | as B, plus a boundary file | as B | [tutorial chapter 11](docs/tutorial/11_your_region.md), [`run_your_region/`](run_your_region/START_HERE.md) |
+| Goal | Needs | Time | Start at |
+|---|---|---|---|
+| **Reproduce the example**: recompute every number, table and figure of the Santa Catarina example from the shipped model output, and compare them with the published copies | Python 3.10+, about 1.2 GB of disk, no accounts | a few minutes of computing | [Quick start](#quick-start-reproduce-the-santa-catarina-example), [tutorial chapter 5](docs/tutorial/05_reproduce_the_example.md) |
+| **Run the model for your region and period**: boundary file, wizard, model run, checks and results | a Google account with an Earth Engine project, Google Colab and Google Drive | minutes for a test; hours of Earth Engine requests per model year | [Your region](#your-own-region-and-period), [tutorial chapter 8](docs/tutorial/08_your_region.md), [`run_your_region/`](run_your_region/START_HERE.md) |
+| **Rerun the example from the raw inputs**, with the Fortran benchmark, the TROPOMI evaluation and the sensitivity tests | as above | as above; 41 EECU-hours for the TROPOMI notebook | [tutorial chapter 6](docs/tutorial/06_run_the_model.md) |
+| **Understand the method and read the results** | nothing | | [tutorial chapters 1, 7 and 9](docs/tutorial/README.md) |
 
-## Quick start: reproduce every number in a few minutes
+## Quick start: reproduce the Santa Catarina example
 
 ```bash
-git clone https://github.com/jessicajcss/MEGAN_SC megan-sc && cd megan-sc
+git clone https://github.com/jessicajcss/MEGAN_SC.git MEGAN_SC && cd MEGAN_SC
 pip install -r requirements-reproduce.txt          # or: conda env create -f environment.yml && conda activate megan-sc
 python tools/data_release.py fetch https://github.com/jessicajcss/MEGAN_SC/releases/download/v1.0.0   # the data archives (DATA_AVAILABILITY.md)
 python reproduce.py check-data                     # SHA-256 of every data file
-python reproduce.py all                            # 16 steps; the last one compares every file with results/v10
+python reproduce.py all                            # every step; the last one compares every file with results/v10
 ```
 
-The address above is that of the GitHub release (tag v1.0.0) that will hold the data archives once the repository is published. The archived copy on Zenodo, once deposited,
-or a local folder holding the zip files works the same way (DATA_AVAILABILITY.md). Everything is written under `reproduced/`; nothing in
-`data/` or `results/` changes. The last step prints the comparison with the published files. A run of 15 November 2026 on
-a Linux machine with newer library versions than `requirements-lock.txt` (Python 3.13.18, numpy 2.5.3, pandas 3.0.5, matplotlib 3.11.2, geopandas 1.2.0), in one pass into an empty folder (5 min 22 s), ended with:
+The address above is that of the GitHub release (tag v1.0.0) that holds the data archives; a local folder holding the
+zip files works the same way (DATA_AVAILABILITY.md). Everything is written under `reproduced/`; nothing in `data/` or
+`results/` changes. The last step prints the comparison with the published files. On 16 November 2026, on a Linux machine with the versions of `requirements-lock.txt`, the 16 steps took 3 min 34 s and
+every CSV file matched its published copy (54 of 59 byte for byte, 5 within a relative tolerance of 10⁻⁶); 34 of the
+46 PNG files were pixel-identical.
+`docs/tutorial/reproduction_log.txt` holds the full comparison, file by file. PNG files depend on fonts and library
+versions, so on another machine some figures may differ by a few pixels, or in the position of their panels, while every
+number stays the same
+([chapter 5](docs/tutorial/05_reproduce_the_example.md) explains how to read the comparison).
 
-```
-CSV files: 58 compared, 26 identical, 32 equal within tolerance, 0 different, 0 without a published copy
-PNG files: 59 compared, 17 pixel-identical
-```
+## Your own region and period
 
-Four of the identical CSV files (`report/report_numbers_v10.csv`, `final_review/trend_robustness.csv`,
-`final_review/month_boundary_effect.csv`, `ijest_review/ecotype_tree_ef.csv`) and the 17 pixel-identical PNG files were
-written to `results/v10` on that machine, so the comparison does not test them independently. The other PNG files were
-drawn in Google Colab and differ in rendering (fonts and library versions), while the data behind them are equal. Of the
-32 CSV files equal within tolerance, 28 differ from their published copies only in the last digits of double-precision
-numbers and 4 (TROPOMI tests of notebook 14) by at most 9.5 × 10⁻⁷ in relative terms.
-`docs/tutorial/reproduction_log.txt` holds the full comparison, file by file, and the result of the MODIS control
-(REPRODUCE.md, section B). Running notebook 13 a second time into the same folder reads its single-precision grid cache
-instead of the NetCDF files, and more files then come out as equal within tolerance.
-PNG files depend on fonts and library versions, so on another machine some figures may differ by a few pixels while
-every number stays the same ([chapter 5](docs/tutorial/05_level_A_reproduce.md) explains how to read the comparison).
+All in Google Colab, with the repository copied to Google Drive as `MyDrive/MEGAN_SC`
+([chapter 3](docs/tutorial/03_setup.md) shows how, and how to register an Earth Engine project):
 
-## Run the notebooks in Google Colab
+1. `run_your_region/region_setup.ipynb`: give the boundary file, the first and last month, the Earth Engine project
+   and the resolution; the wizard builds the grid, reads the land cover, runs a short test with the full engine and
+   writes `config/<region>_run.yaml` ([START_HERE.md](run_your_region/START_HERE.md));
+2. `notebooks/10_production_run.ipynb` with `RUN_CONFIG = 'config/<region>_run.yaml'`: the model run, month by month,
+   resumable after a disconnection;
+3. `notebooks/11_verify_run.ipynb`: six automatic checks of every year;
+4. `notebooks/25_results_any_region.ipynb`: totals by class and group, seasonal cycle, maps of intensity, drivers,
+   correlations and trends.
 
-The fourteen notebooks of `notebooks/` run in Google Colab with Google Drive (levels B and C). Run them in this order; [notebooks/README.md](notebooks/README.md) gives, for each one, what it needs, what it writes, its settings cell and the time it takes.
+[Chapter 8](docs/tutorial/08_your_region.md) lists the choices to review for another region, and
+[chapter 9](docs/tutorial/09_reading_the_results.md) explains how to read the results.
 
-| Order | Notebook | Open in Colab |
+## The notebooks
+
+The notebooks of `notebooks/` run in Google Colab with Google Drive, or in Jupyter on a computer with Earth Engine
+credentials. Each one opens with the same setup block, which finds the repository and, in Colab, mounts Drive.
+[notebooks/README.md](notebooks/README.md) gives, for each one, what it needs, what it writes, its settings and the time
+it takes. The links below open the notebooks of the `main` branch in Colab; they need the repository in Drive.
+
+| Notebook | What it does | Open in Colab |
 |---|---|---|
-| 1 | `12_fortran_benchmark.ipynb`: comparison with the official Fortran executables | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/12_fortran_benchmark.ipynb) |
-| 2 | `10_production_run.ipynb`: the production run (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/10_production_run.ipynb) |
-| 3 | `11_verify_run.ipynb`: checks C0-C5 of every year | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/11_verify_run.ipynb) |
-| 4 | `13_manuscript_numbers_and_figures.ipynb`: numbers, tables and figures | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/13_manuscript_numbers_and_figures.ipynb) |
-| 5 | `14_tropomi_hcho_evaluation.ipynb`: evaluation with TROPOMI formaldehyde (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/14_tropomi_hcho_evaluation.ipynb) |
-| 6 | `15_sensitivity_2019.ipynb`: sensitivity tests | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/15_sensitivity_2019.ipynb) |
-| 7 | `16_lai_independent_check.ipynb`: VIIRS check of the 2024-2025 decrease of the MODIS LAI (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/16_lai_independent_check.ipynb) |
-| 8 | `17_rerun_2024_2025_lai_viirs.ipynb`: 2024 and 2025 with the VIIRS-corrected LAI (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/17_rerun_2024_2025_lai_viirs.ipynb) |
-| 9 | `18_brain_comparison_2019.ipynb`: comparison with the BRAIN MEGAN emissions of 2019 (d02, 4 km) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/18_brain_comparison_2019.ipynb) |
-| 10 | `19_install_and_reproduce.ipynb`: checks and installation of 2024-2025 with the corrected LAI, NOAA CO₂ file, reproduction with both LAI inputs | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/19_install_and_reproduce.ipynb) |
-| 11 | `21_era5land_vs_inmet.ipynb`: ERA5-Land temperature and radiation against INMET stations, and the lapse rate read by notebook 20 (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/21_era5land_vs_inmet.ipynb) |
-| 12 | `20_sensitivity_2019_inputs.ipynb`: 2019 reruns with one setting changed at a time (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/20_sensitivity_2019_inputs.ipynb) |
-| 13 | `22_lai_check_noaa20_viirs.ipynb`: LAI of the VIIRS on NOAA-20 and NOAA-21 against Suomi NPP (Earthdata login) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/22_lai_check_noaa20_viirs.ipynb) |
-| 14 | `23_brain_differences_2019.ipynb`: tests of the explanations of the differences from BRAIN | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/23_brain_differences_2019.ipynb) |
+| `10_production_run.ipynb` | the model run for a run configuration (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/10_production_run.ipynb) |
+| `11_verify_run.ipynb` | checks C0-C5 of every year of a run | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/11_verify_run.ipynb) |
+| `25_results_any_region.ipynb` | the standard results of a run | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/25_results_any_region.ipynb) |
+| `12_fortran_benchmark.ipynb` | comparison with the official Fortran executables | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/12_fortran_benchmark.ipynb) |
+| `13_santa_catarina_analysis.ipynb` | tables, numbers and figures of the example (mesoregions, municipalities, previous state inventory) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/13_santa_catarina_analysis.ipynb) |
+| `14_tropomi_hcho_evaluation.ipynb` | evaluation with TROPOMI formaldehyde (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/14_tropomi_hcho_evaluation.ipynb) |
+| `15_sensitivity_2019.ipynb` | sensitivity tests S1 and S3 | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/15_sensitivity_2019.ipynb) |
+| `16_lai_independent_check.ipynb` | VIIRS check of the 2024-2025 decrease of the MODIS LAI (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/16_lai_independent_check.ipynb) |
+| `17_rerun_2024_2025_lai_viirs.ipynb` | 2024 and 2025 with the VIIRS-corrected LAI (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/17_rerun_2024_2025_lai_viirs.ipynb) |
+| `18_brain_comparison_2019.ipynb` | comparison with the BRAIN MEGAN emissions of 2019 (d02, 4 km) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/18_brain_comparison_2019.ipynb) |
+| `19_install_and_reproduce.ipynb` | installation of 2024-2025 with the corrected LAI, NOAA CO₂ file, reproduction with both LAI inputs (run once to prepare the example) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/19_install_and_reproduce.ipynb) |
+| `20_sensitivity_2019_inputs.ipynb` | 2019 reruns with one setting changed at a time (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/20_sensitivity_2019_inputs.ipynb) |
+| `21_era5land_vs_inmet.ipynb` | ERA5-Land temperature and radiation against INMET stations, and the lapse rate read by notebook 20 (Earth Engine) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/21_era5land_vs_inmet.ipynb) |
+| `22_lai_check_noaa20_viirs.ipynb` | LAI of the VIIRS on NOAA-20 and NOAA-21 against Suomi NPP (Earthdata login) | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/22_lai_check_noaa20_viirs.ipynb) |
+| `23_brain_differences_2019.ipynb` | tests of the explanations of the differences from BRAIN | [open](https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/23_brain_differences_2019.ipynb) |
 
-The links open the notebooks of the `main` branch. Set your Earth Engine project (`EE_PROJECT`) in the cell "3 · Earth Engine" of notebooks 10, 17 and 20, in the cell "2 · Earth Engine" of notebook 21 and in the settings cell of notebooks 14 and 16; notebook 22 needs an Earthdata login. Notebook 19 installed 2024-2025 with the corrected LAI in the run and was run once by the authors; `reproduce.py` repeats its comparisons ([notebooks/README.md](notebooks/README.md)).
-
-## Main results and where each one comes from
+## The Santa Catarina example: main results and where each one comes from
 
 | Result (2003-2025, Santa Catarina) | Value | File in `results/v10/` |
 |---|---|---|
-| Mean BVOC emission | 657 Gg yr⁻¹; isoprene 33.2 %, monoterpenes 25.8 %, oxygenated VOC 19.3 % | `notebook13_meso2024/manuscript_numbers.csv` (`bvoc_mean_kt`, `mean_*`) |
+| Mean BVOC emission | 657 Gg yr⁻¹; isoprene 33.2 %, monoterpenes 25.8 %, oxygenated VOC 19.3 % | `notebook13_meso2024/key_numbers.csv` (`bvoc_mean_kt`, `mean_*`) |
 | Interannual coefficient of variation of BVOC | 7.9 % (peaks 2019 and 2024, 739 Gg; minimum 2008, 552 Gg) | same file (`bvoc_cv_pct`, `bvoc_max`, `bvoc_min`) |
 | Trend of isoprene and of soil NO (Theil-Sen, Mann-Kendall) | +0.88 % yr⁻¹ (p = 0.004) and −0.37 % yr⁻¹ (p = 0.002); with total BVOC, monoterpenes, sesquiterpenes and oxygenated VOC, six trends survive Benjamini-Hochberg control (q ≤ 0.023), also over 2003-2023 (q ≤ 0.048) | `notebook13_meso2024/trends.csv`; `final_review/trends_fdr_hr.csv`, `trend_robustness.csv` |
-| SOA precursors (monoterpenes + sesquiterpenes) | 183 Gg yr⁻¹; intensity against native-forest share of the six mesoregions: Spearman ρ = 0.94 (exact p = 0.017), Pearson r = 0.97 (95 % CI 0.73 to 1.00) | `notebook13_meso2024/table3_mesoregions_soa.csv`, `manuscript_numbers.csv` (`meso_forest_r`), `final_review/final_review_numbers.csv` (`meso_spearman_exact`) |
-| 2019 against the previous state inventory | isoprene 7.6, CO 3.7 and soil NO 18.9 times larger | `manuscript_numbers.csv` (`cmp2019_*`) |
+| SOA precursors (monoterpenes + sesquiterpenes) | 183 Gg yr⁻¹; intensity against native-forest share of the six mesoregions: Spearman ρ = 0.94 (exact p = 0.017), Pearson r = 0.97 (95 % CI 0.75 to 0.997) | `notebook13_meso2024/table3_mesoregions_soa.csv`, `key_numbers.csv` (`meso_forest_r`), `final_review/final_review_numbers.csv` (`meso_spearman_exact`) |
+| 2019 against the previous state inventory | isoprene 7.6, CO 3.7 and soil NO 18.9 times larger | `key_numbers.csv` (`cmp2019_*`) |
 | 2019 against BRAIN (true cell areas) | isoprene 0.79, monoterpenes 0.85, summed VOC 0.87, soil NO 1.13 times BRAIN | `brain_comparison/comparison_2019_classes_t.csv`; `brain_differences/` |
 | Parts of the trends (descriptive, unstable) | isoprene: linear trend of the logarithm +0.92 % yr⁻¹ = temperature +0.35, LAI +0.16, time term +0.40 (tree area +9.5 % from 2003 to 2024; isoprene emission potential +0.38 % yr⁻¹); soil NO time term −0.45 % yr⁻¹ (emission potential −0.45 % yr⁻¹) | `final_review/final_review_numbers.csv` (`ols_trend_decomposition_*`, `growthform_area_*`, `ef_potential_*`) |
 | Isoprene trend with CO₂ inhibition (NOAA global CO₂, 375 to 426 ppm) | +0.65 % yr⁻¹ (p = 0.018; BH q = 0.03); period mean +0.3 % | same file (`isop_trend_with_co2_inhibition`, `fdr_with_co2_inhibition`, `isop_mean_with_co2_inhibition`) |
@@ -95,8 +103,8 @@ The links open the notebooks of the `main` branch. Set your Earth Engine project
 All values use the VIIRS-corrected LAI of 2024 and 2025 (the values with the uncorrected MODIS LAI are in `results/v10_modis_lai_2024_2025/`). Isoprene includes ρ = 0.96 (except in the BRAIN comparison, where neither side applies it); municipal and mesoregion totals split each cell among the polygons in proportion to its
 area inside each one.
 
-[Chapter 8 of the tutorial](docs/tutorial/08_number_map.md) maps every number of both documents to its file, column
-or key, and the script that writes it.
+[Chapter 9 of the tutorial](docs/tutorial/09_reading_the_results.md) explains how to read each of these results, and
+[chapter 7](docs/tutorial/07_statistics.md) the estimators behind them.
 
 ## How the work was checked
 
@@ -121,26 +129,28 @@ or key, and the script that writes it.
 
 ```
 README.md, README.pt-BR.md this page, in English and Portuguese
-REPRODUCE.md               the short version of tutorial chapters 5 and 6
+REPRODUCE.md               the short version of tutorial chapters 5, 6 and 8
 DATA_AVAILABILITY.md       every input and output, its source, licence and checksum
 VALIDATION.md              comparison with the Fortran code and with observations; checks of the run
 CHANGELOG.md, CITATION.cff, LICENSE (MIT, code), LICENSE-docs-data.md (CC-BY-4.0, documents and results)
-reproduce.py               level A in one command (python reproduce.py list)
+reproduce.py               reproduction of the example in one command (python reproduce.py list)
 TUTORIAL_MEGAN_SC_en.pdf   illustrated tutorial (also TUTORIAL_MEGAN_SC_pt.pdf); HTML sources in docs/tutorial/
-docs/tutorial/             the technical chapters: 13 chapters, from the equations to the number map and provenance
+docs/tutorial/             the technical chapters: 12 chapters, from the equations to your own region and provenance
 docs/                      ALGORITHM_SPEC (equations transcribed from the Fortran), TIME_CONVENTIONS, INDEX
-src/megan_sc/              the engine (canopy, activity factors, soil NO, speciation) and fixes.py (procedures FIX-1 to FIX-8)
-tests/                     127 unit tests (pytest -q)
-notebooks/                 10-23: production run, checks, Fortran benchmark, numbers and figures, TROPOMI, sensitivity,
-                           VIIRS check of the LAI, rerun of 2024-2025, comparison with BRAIN 2019, installation and
-                           reproduction, 2019 sensitivity runs, ERA5-Land against INMET, NOAA-20/21 LAI, BRAIN differences
-analysis/v10/              scripts run on the output of notebook 10 (diagnostics, report numbers, maps, study-area map,
-                           verification flowchart)
-results/v10/               the published results: tables, numbers, figures, logs (corrected LAI of 2024-2025)
+config/                    run configurations: santa_catarina_2003_2025.yaml (the example); the wizard adds yours
+src/megan_sc/              the engine (canopy, activity factors, soil NO, speciation), the Earth Engine layer and
+                           fixes.py (procedures FIX-1 to FIX-8)
+tests/                     unit tests (pytest -q), including an offline run of notebooks 10, 11 and 25
+notebooks/                 10, 11 and 25 for any region; 12-23 for the example: Fortran benchmark, tables and figures,
+                           TROPOMI, sensitivity, VIIRS check of the LAI, rerun of 2024-2025, comparison with BRAIN 2019,
+                           installation and reproduction, 2019 sensitivity runs, ERA5-Land against INMET, NOAA-20/21 LAI
+analysis/v10/              scripts run on the output of notebook 10 for the example (diagnostics, statistics, maps,
+                           study-area map, verification flowchart)
+results/v10/               the results of the example: tables, numbers, figures, logs (corrected LAI of 2024-2025)
 results/v10_modis_lai_2024_2025/  the same results with the uncorrected MODIS LAI of 2024-2025
-data/                      small inputs in git (boundaries, MEGAN tables, data/external: MapBiomas 2019 window, IBGE
+data/                      small inputs in git (boundaries, MEGAN tables, data/external: MapBiomas 2019 and 2024 windows, IBGE
                            outlines, NOAA global CO2); the model output and TROPOMI fields arrive with tools/data_release.py
-tools/                     notebook runner, result comparison, data release, test fixtures
+tools/                     notebook runners (also offline, without Earth Engine), result comparison, data release, test fixtures
 benchmark/                 scripts and results of the Fortran comparison
 run_your_region/           setup wizard for another region
 scripts/                   generator of the region wizard notebook
@@ -160,6 +170,6 @@ documents, tables and figures under CC-BY-4.0; third-party data keep their own l
 
 ## Citation
 
-Cite the article and this repository; `CITATION.cff` holds the metadata (GitHub shows it under "Cite this
-repository"). The DOI of the archived version will be added there after deposit. Cite also the MEGANv3.21 code
-(Guenther, 2024b) and the MEGAN 3.2 input files (Guenther, 2024a); `CITATION.cff` lists both.
+`CITATION.cff` holds the citation metadata of this repository (GitHub shows it under "Cite this repository"); the DOI
+of the archived version will be added there after deposit. Cite also the MEGANv3.21 code (Guenther, 2024b) and the
+MEGAN 3.2 input files (Guenther, 2024a); `CITATION.cff` lists both.

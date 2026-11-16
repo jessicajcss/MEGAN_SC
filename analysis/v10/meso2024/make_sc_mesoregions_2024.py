@@ -4,16 +4,18 @@
 Why: the IBGE mesoregion polygons of data/boundaries/sc_mesoregions.gpkg leave out the coastal islands (Santa Catarina
 Island, in Florianópolis, and São Francisco do Sul Island), whose 83 grid cells would then belong to no mesoregion.
 Building each mesoregion from the 2024 municipal mesh puts the islands in their mesoregions, makes the mesoregions
-coincide with the municipalities of Table 4, and uses the same polygons as the MapBiomas 2019 forest shares
-(biomass-burning pipeline, tools/study_area_map.py).
+coincide with the municipalities of Table 4, and uses the same polygons as the MapBiomas forest shares
+(analysis/v10/maps/landcover_mesoregion.py).
 
 Attribution: each municipality goes to the IBGE mesoregion polygon that holds the largest part of its area
-(South America Albers equal-area, ESRI:102033). If the table of the biomass-burning pipeline is present
-(sc_municipios_2024_atributos.csv, attribution by the majority of 400 random points against another layer), the two
-attributions are compared and must agree.
+(South America Albers equal-area, ESRI:102033). If the environment variable WILDFIRE_ATTR names a second attribution
+table (CSV with CD_MUN and mesorregiao), the two attributions are compared and must agree; the shipped files were compared
+with an attribution by the majority of 400 random points against another IBGE layer, with no disagreement (the .log of
+this folder).
 
 Inputs : data/boundaries/SC_Municipios_2024.gpkg, data/boundaries/sc_mesoregions.gpkg (IBGE mesoregions, islands left out),
-         data/boundaries/landcover2019_mesoregion.csv (MapBiomas Collection 10, 2019, from the biomass-burning pipeline)
+         data/boundaries/landcover2024_mesoregion.csv (MapBiomas Collection 10, 2024, written by analysis/v10/maps/landcover_mesoregion.py;
+         until 16 November 2026 forest_pct came from landcover2019_mesoregion.csv, 2019)
 Outputs: reproduced/boundaries/sc_mesoregions_2024.gpkg (EPSG:4326; name_meso, n_mun, area_ibge_km2, forest_pct) and
          reproduced/boundaries/sc_municipios_2024_mesorregiao.csv (CD_MUN, NM_MUN, mesorregiao, majority_fraction);
          the copies shipped in data/boundaries were made by this script (set MEGAN_SC_BND_OUT=data/boundaries to overwrite them)
@@ -35,9 +37,8 @@ tab = mun[['CD_MUN', 'NM_MUN']].copy(); tab['CD_MUN'] = tab.CD_MUN.astype(str); 
 tab['mesorregiao'] = tab.CD_MUN.map(best.name_meso)
 tab['majority_fraction'] = tab.CD_MUN.map(best.a / m.set_index(m.CD_MUN.astype(str)).area).round(4)
 assert tab.mesorregiao.notna().all()
-wf = os.environ.get('WILDFIRE_ATTR', os.path.join(REPO, '..', '..', 'wildfire', 'FINN_SC_pipeline_v2', 'data', 'external',
-                                                  'sc_municipios_2024_atributos.csv'))
-if os.path.exists(wf):
+wf = os.environ.get('WILDFIRE_ATTR', '')
+if wf and os.path.exists(wf):
     w = pd.read_csv(wf, dtype={'CD_MUN': str}).set_index('CD_MUN').mesorregiao
     dis = tab[tab.mesorregiao != tab.CD_MUN.map(w)]
     print(f'compared with {wf}: {len(dis)} disagreements'); assert dis.empty, dis
@@ -65,7 +66,8 @@ d = d.to_crs('EPSG:4326')
 filled = [fill_slivers(g) for g in d.geometry]
 d['geometry'] = [g for g, _ in filled]
 print('interior rings filled (< 1 km2) per mesoregion:', dict(zip(d.name_meso, [n for _, n in filled])))
-F = pd.read_csv(os.path.join(BND, 'landcover2019_mesoregion.csv'))
+LC_YEAR = 2024   # MapBiomas year of forest_pct: the last year of Collection 10 (2019 until 16 November 2026)
+F = pd.read_csv(os.path.join(BND, f'landcover{LC_YEAR}_mesoregion.csv'))
 d['forest_pct'] = d.name_meso.map(F[F.group == 'forest'].set_index('mesorregiao').pct_of_mesoregion)
 assert d.forest_pct.notna().all()
 d = d[['name_meso', 'n_mun', 'area_ibge_km2', 'forest_pct', 'geometry']].to_crs('EPSG:4326')

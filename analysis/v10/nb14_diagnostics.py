@@ -10,7 +10,7 @@ from netCDF4 import Dataset
 from scipy import stats
 import sys; sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import _paths as PATHS
 R = PATHS.RUN; TAG = PATHS.TAG; DOUT = PATHS.out('diagnostics', 'nb14')
-src = open(os.path.join(PATHS.NB_SRC, '14_tropomi_hcho_evaluation.py'), encoding='utf-8').read()
+src = PATHS.notebook_source('14_tropomi_hcho_evaluation.py')
 import types, sys; from unittest import mock
 g = types.ModuleType('google'); col = types.ModuleType('google.colab'); col.drive = mock.MagicMock(); g.colab = col
 sys.modules['google'] = g; sys.modules['google.colab'] = col

@@ -34,7 +34,7 @@ implied_tau_h_Y0.29,raw 1.192; bias-corrected 1.867,
 implied_tau_h_Y0.43,raw 0.804; bias-corrected 1.259,
 ratio_obs_expected_palmer_tau,raw 0.457 to 0.805; bias-corrected 0.715 to 1.261,"tau 1.48-1.76 h (Palmer et al., 2003, Table 3), Y 0.29-0.43 per C"
 overpass_local_solar_time,16:30 UTC = 12.91 h to 13.28 h local mean solar time across SC,
-meso_r_fisher,r 0.9683 (95% CI 0.7322 to 0.9967; p 0.0015),
+meso_r_fisher,r 0.9708 (95% CI 0.7506 to 0.9969; p 0.0013),
 meso_spearman_exact,rho 0.9429; exact two-sided p 0.0167 (asymptotic 0.0048),
 mun_area_ratio,0.9988 to 1.0061 (median 1.0017),area attributed by area weighting (sum of the cell fractions times the cell areas on the authalic sphere) / IBGE area
 meso_area_ratio,1.0014 to 1.0019,mesoregions: area attributed by area weighting / sum of the IBGE areas of the municipalities

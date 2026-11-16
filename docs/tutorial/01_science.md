@@ -26,9 +26,9 @@ E_c      = Σ_k  flux_c × f_ck × 10⁻⁹ × A × Δt × M_k × 10⁻⁶      
 The MEGAN equation also holds a canopy loss and production factor ρ, E = ε · γ · ρ, where ε is the emission of a
 compound into the canopy (Guenther et al., 2006). For isoprene, Guenther et al. (2006, section 3.3 and Table 1)
 estimated ρ between 0.93 and 0.99 and recommended the constant value 0.96. The MEGANv3.21 code applies no such factor,
-so the files of `data/run_v10` hold isoprene as the code computes it; every script that reads the run multiplies
-isoprene by 0.96 (`RHO_ISOP` in notebooks 11, 13, 14 and 15, `RHO` in `analysis/v10/common.py`), and ρ = 1 for the
-other classes. Every published number includes the factor.
+so the files written by notebook 10 (`data/run_v10` for the example) hold isoprene as the code computes it; every
+notebook and script that reads a run multiplies isoprene by 0.96 (`RHO_ISOP` in notebooks 11, 13, 14, 15 and 25, `RHO`
+in `analysis/v10/common.py`), and ρ = 1 for the other classes. Every number of `results/v10` includes the factor.
 
 In the Santa Catarina run, ERA5-Land is sampled at 00, 03, ..., 21 UTC, so each step stands for `Δt` = 3 h, and the
 cell area is computed on the authalic sphere (R = 6,371,007.181 m), the sphere whose total surface equals that of the
@@ -36,7 +36,7 @@ WGS 84 ellipsoid; at the latitudes of Santa Catarina the spherical cell areas ar
 ellipsoidal ones
 (`results/v10/final_review/final_review_numbers.csv`, key `cell_area_sphere_minus_ellipsoid_pct`).
 
-The 19 classes and their coefficients (MEGVEA.EXT; Table 1 of the article):
+The 19 classes and their coefficients (MEGVEA.EXT):
 
 | # | Class | Representative compounds | β (K⁻¹) | LDF | CT1 | Cleo |
 |---|---|---|---|---|---|---|
@@ -169,8 +169,8 @@ LAIp (FIX-3).
 ```
 
 The Fortran takes θw from the soil type; this run used a constant θw = 0.12 m³ m⁻³, so γSM < 1 only below
-0.16 m³ m⁻³. In the fix logs of the run, the monthly mean γSM was below 1 in 0.63 % of the cell-months (report key
-`gamsm_lt1`), and the state mean stayed between 0.992 and 1.000 (test S3).
+0.16 m³ m⁻³. In the fix logs of the run, the monthly mean γSM was below 1 in 0.63 % of the cell-months (key
+`gamsm_lt1` of `results/v10/report/report_numbers_v10.csv`), and the state mean stayed between 0.992 and 1.000 (test S3).
 
 **CO₂ inhibition of isoprene** (megvea.f): with the intercellular concentration Ci = 0.7 × CO₂ (ppm),
 
@@ -249,7 +249,7 @@ Notebook 12 compares the engine with the official Fortran executables (`VALIDATI
 stage of the engine agrees with the Fortran to float32 precision, and controls run with the engine modules alone show
 that the comparison detects a departure from megvea.f and soilnox.F.
 
-## 1.10 Settings of the Santa Catarina run
+## 1.10 Settings of the Santa Catarina example run
 
 * Grid 0.025° (about 2.8 km), 144 × 224 cells over the bounding box of the state; a cell is in the state when its
   centre lies inside the IBGE polygon (13,970 cells). Municipal and mesoregion totals split the emission of each cell
@@ -262,7 +262,8 @@ that the comparison detects a departure from megvea.f and soilnox.F.
 * Isoprene multiplied by ρ = 0.96 when the run is read (section 1.1).
 * Trees as temperate broadleaf canopy; silviculture mapped to trees.
 
-These choices are stated in both documents, and test S3 (chapter 5) measures the effect of γSM.
+These choices are written in `config/santa_catarina_2003_2025.yaml` and in the provenance file of every year of the
+run, and test S3 (chapter 5) measures the effect of γSM. Chapter 8 lists the ones to review for another region.
 
 ## 1.11 Worked example
 

@@ -1,11 +1,13 @@
 # Documentation index
 
 **Start here**
-* `../README.md` (English) and `../README.pt-BR.md` (Portuguese): what the repository contains, the three levels of use
-  and the quick start.
-* `tutorial/README.md`: the tutorial, 13 chapters from the MEGAN equations to the map of every number.
+* `../README.md` (English) and `../README.pt-BR.md` (Portuguese): what the repository contains, what it lets you do,
+  the quick start for the Santa Catarina example and the route for your own region.
+* `tutorial/README.md`: the tutorial, 12 chapters from the MEGAN equations to your own region, the reading of the
+  results and provenance.
 * `../TUTORIAL_MEGAN_SC_pt.pdf`, `../TUTORIAL_MEGAN_SC_en.pdf`: the illustrated tutorial (sources in `tutorial/`).
-* `../REPRODUCE.md`: the short version of tutorial chapters 5 and 6.
+* `../REPRODUCE.md`: the short version of tutorial chapters 5, 6 and 8.
+* `../run_your_region/START_HERE.md`: the region wizard, in plain language.
 
 **Reference**
 * `ALGORITHM_SPEC.md`: MEGANv3.21 equations and constants as transcribed from the Fortran source, with the input and

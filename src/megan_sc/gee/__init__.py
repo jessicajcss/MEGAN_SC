@@ -6,38 +6,37 @@ imagery: server-side computation, filter-early/clip-late, batch-by-month exports
 with explicit crs/scale/maxPixels/tileScale, and idempotent skipping of months
 already produced.
 
-These modules are authored to run under the user's EE project (e.g.
-``ee-yourname``); they are not executed inside the build sandbox. Call
-``init(project)`` once before using the collection builders.
+These modules run under the user's Earth Engine project (a Google Cloud project
+registered for Earth Engine; tutorial, chapter 3). Call ``initialize(project)`` once
+before using the collection builders.
 """
 from __future__ import annotations
 
 
-def initialize(project=None, *, auth_mode="notebook", service_account_key=None,
+def initialize(project=None, *, auth_mode=None, service_account_key=None,
                service_account_email=None, force=False):
-    """Initialise Earth Engine, choosing an auth method that works off-localhost.
+    """Initialise Earth Engine for ``project`` (a Google Cloud project registered for Earth Engine).
 
-    The default browser/localhost token flow (``ee.Authenticate()``) often fails on lab
-    machines (no localhost redirect, firewall, headless). This helper avoids that:
+    The order follows the Earth Engine guide "Authentication and Initialization"
+    (https://developers.google.com/earth-engine/guides/auth):
 
-    * **Already authenticated once?** It just calls ``ee.Initialize`` — no prompt. EE caches
-      a refresh token at ``~/.config/earthengine/credentials`` after the first success, so you
-      authenticate *once per machine*, not once per run.
-    * ``auth_mode="notebook"`` (default) — ``ee.Authenticate(auth_mode='notebook')`` prints a
-      URL and asks you to paste back a verification code. **No localhost redirect needed** —
-      this is the fix when the pop-up/token flow won't complete.
-    * ``auth_mode="localhost"`` — the original browser flow (only if it works for you).
-    * ``auth_mode="gcloud"`` — reuse Google Cloud SDK application-default credentials.
-    * ``service_account_key=<path.json>`` — **fully non-interactive** (best for automation and
-      reproducible runs): a Google Cloud service-account key. The account must be granted Earth
-      Engine access (register it at https://code.earthengine.google.com or give it the
-      *Earth Engine Resource Viewer/Writer* role in the project).
+    * ``service_account_key=<path.json>``: a service-account key, for unattended runs
+      (``ee.ServiceAccountCredentials`` then ``ee.Initialize(credentials, project=...)``). The service account needs
+      access to Earth Engine in the project (Earth Engine service-account guide).
+    * Otherwise the credentials stored by an earlier ``ee.Authenticate()`` or ``earthengine authenticate`` (file
+      ``~/.config/earthengine/credentials``) are tried first, so a machine authenticates once.
+    * If that fails (or ``force=True``), ``ee.Authenticate(auth_mode=auth_mode)`` runs. ``auth_mode=None`` lets the
+      Earth Engine client choose its default for the environment: ``colab`` in Google Colab, ``notebook`` in other
+      Jupyter notebooks, ``localhost`` when a browser is available and gcloud is not installed, ``gcloud`` otherwise.
+      Pass ``"notebook"`` on a remote machine without a browser.
 
     Returns the ``ee`` module, ready to use.
     """
     import ee
 
-    # 1) Service account — no interaction at all.
+    if not project or project == "your-ee-project":
+        raise ValueError("Earth Engine needs the id of a Google Cloud project registered for Earth Engine "
+                         "(tutorial, chapter 3); got %r" % (project,))
     if service_account_key:
         email = service_account_email
         if email is None:
@@ -47,17 +46,16 @@ def initialize(project=None, *, auth_mode="notebook", service_account_key=None,
         creds = ee.ServiceAccountCredentials(email, key_file=service_account_key)
         ee.Initialize(creds, project=project)
         return ee
-
-    # 2) Reuse cached credentials if we have them (no prompt).
     if not force:
         try:
             ee.Initialize(project=project)
             return ee
         except Exception:
             pass
-
-    # 3) Interactive auth via the chosen mode, then initialise.
-    ee.Authenticate(auth_mode=auth_mode)
+    if auth_mode is None:
+        ee.Authenticate(force=force)
+    else:
+        ee.Authenticate(auth_mode=auth_mode, force=force)
     ee.Initialize(project=project)
     return ee
 
@@ -67,14 +65,14 @@ def initialize_from_config(config):
     ee_cfg = config.get("earth_engine", {})
     return initialize(
         project=ee_cfg.get("project"),
-        auth_mode=ee_cfg.get("auth_mode", "notebook"),
+        auth_mode=ee_cfg.get("auth_mode"),
         service_account_key=ee_cfg.get("service_account_key"),
         service_account_email=ee_cfg.get("service_account_email"),
     )
 
 
 def init(project: str):
-    """Backward-compatible alias for :func:`initialize` (notebook auth by default)."""
+    """Backward-compatible alias for :func:`initialize`."""
     return initialize(project=project)
 
 

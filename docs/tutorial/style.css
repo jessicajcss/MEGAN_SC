@@ -1,4 +1,4 @@
-/* Style of the illustrated tutorial of MEGAN_SC (same layout as the FINN_SC tutorial of the series). */
+/* Style of the illustrated tutorial of MEGAN_SC. */
 @page { size: A4; margin: 16mm 17mm 18mm 17mm; }
 :root {
   --ink: #1d2433; --muted: #5b6475; --line: #dfe3ea; --bg: #ffffff;

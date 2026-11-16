@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""final_review_diagnostics.py - additional diagnostics of the manuscript and the report (trends, LAI, TROPOMI magnitude, ...).
+"""final_review_diagnostics.py - additional diagnostics of the Santa Catarina example (trends, LAI, TROPOMI magnitude, ...).
 
 Every value written here is computed from files of this repository; nothing is typed in by hand except the literature
 constants named below. Diagnostics defined after the first results were seen are marked POST HOC in the log.

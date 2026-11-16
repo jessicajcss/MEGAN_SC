@@ -6,8 +6,8 @@ abstract: >-
   0.025-degree inventory of biogenic VOCs, soil NO and CO for Santa Catarina, Brazil (2003-2025). The repository holds
   the engine and its input and run procedures (src/megan_sc/fixes.py), a stage-by-stage comparison with the official
   Fortran executables, the notebooks of the production run, its automatic checks, the TROPOMI formaldehyde evaluation,
-  the sensitivity tests, the model output (as release archives) and a one-command reproduction of every number, table
-  and figure of the article and of the state inventory report (reproduce.py).
+  the sensitivity tests, the model output (as release archives), a one-command reproduction of every number, table
+  and figure of this example (reproduce.py), and notebooks that run the same pipeline for any region and period.
 type: software
 authors:
   # Names withheld for double-blind review; the list with names, ORCID and affiliations is restored after

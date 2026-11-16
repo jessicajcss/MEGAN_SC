@@ -4,17 +4,18 @@ import os, sys, glob, json, re
 import numpy as np, pandas as pd
 from scipy import stats
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')); import _paths as P
-src = open(os.path.join(P.NB_SRC, '11_verify_run.py'), encoding='utf-8').read()
-code = src[src.index('import numpy as np, pandas as pd, rasterio'):src.index("years = sorted(int(os.path.basename(p))")]
+src = P.notebook_source('11_verify_run.py')
+code = src[src.index('import json, yaml\nimport numpy as np, pandas as pd, rasterio'):src.index("years = sorted(int(os.path.basename(p))")]
 code = re.sub(r'^# %%.*$', '', code, flags=re.M)
 NEW_ROOT = P.RUN
 import common as C                                    # RHO_ISOP of notebook 11 (cell 1) = common.RHO; the test uses ratios
-g = dict(NEW_ROOT=NEW_ROOT, SC_GPKG=os.path.join(P.BND, 'sc_state_ibge.gpkg'), os=os, glob=glob, json=json, RHO_ISOP=C.rho('ISOP'))
+g = dict(REPO_DIR=P.REPO, RUN_CONFIG=os.path.join('config', 'santa_catarina_2003_2025.yaml'), NEW_ROOT=NEW_ROOT,
+         BOUNDARY=os.path.join(P.BND, 'sc_state_ibge.gpkg'), REPORT_DIR=None, os=os, glob=glob, json=json, RHO_ISOP=C.rho('ISOP'))
 exec(code, g)
 rows = []; share = []
 for y in range(2003, 2026):
     D = os.path.join(NEW_ROOT, str(y)); E, (lat, lon), _ = g['read_annual'](NEW_ROOT, y)
-    SC = g['sc_mask'](lat, lon); A = g['cell_area'](lat, lon)
+    SC = g['region_mask'](lat, lon); A = g['cell_area'](lat, lon)
     filled = np.zeros_like(SC)
     for f in glob.glob(os.path.join(D, 'inputs', f'fixlog_{y}_??.npz')): filled |= np.load(f)['filled_met_steps'] > 0
     Z = np.load(os.path.join(D, 'inputs', f'ef_{y}.npz')); EF = Z['ef'].astype('float64'); ecl = [str(c) for c in Z['classes']]

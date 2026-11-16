@@ -1,5 +1,4 @@
-"""TROPOMI figure (PT and EN; report Figure A.10; its panels are article Figures 10 and 11, drawn in the journal format
-by ijest/ijest_figures.py): TROPOMI HCHO against modelled isoprene, 2019-2025.
+"""TROPOMI figure fig9 (PT and EN): TROPOMI HCHO against modelled isoprene, 2019-2025.
 Panels a, b, d, e are the pre-specified notebook-14 views (DJF maps, seasonal cycle, deseasonalised anomalies);
 panels c and f are diagnostics defined after the pre-specified tests (surface pressure as terrain proxy).
 Inputs: the production run (data/run_v10), the TROPOMI cache of notebook 14 (data/tropomi_hcho_v10) and the boundaries.
@@ -9,10 +8,10 @@ import numpy as np, pandas as pd, rasterio
 from unittest import mock
 import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
 import geopandas as gpd
-sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'maps')); import wf_style as W   # map frame of the biomass-burning article
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'maps')); import wf_style as W   # common map frame (maps/wf_style.py)
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__))); import _paths as PATHS
 R = PATHS.RUN; TAG = PATHS.TAG; OUT = sys.argv[1] if len(sys.argv) > 1 else PATHS.out('figures')
-src = open(os.path.join(PATHS.NB_SRC, '14_tropomi_hcho_evaluation.py'), encoding='utf-8').read()
+src = PATHS.notebook_source('14_tropomi_hcho_evaluation.py')
 g = types.ModuleType('google'); col = types.ModuleType('google.colab'); col.drive = mock.MagicMock(); g.colab = col
 sys.modules['google'] = g; sys.modules['google.colab'] = col; sys.modules['ee'] = mock.MagicMock()
 cells = [c for c in src.split('# %%') if c.strip()]

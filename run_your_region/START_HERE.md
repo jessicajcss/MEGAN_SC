@@ -16,7 +16,7 @@ There are two files in this folder:
 > stay exactly as they are.
 
 > The wizard runs the engine of notebook 10 with the same input and run procedures
-> (FIX-1 to FIX-8 of `src/megan_sc/fixes.py`), active in STEP 7 and STEP 9.
+> (FIX-1 to FIX-8 of `src/megan_sc/fixes.py`), active in its test (STEP 7) and in notebook 10.
 
 ---
 
@@ -24,8 +24,8 @@ There are two files in this folder:
 
 - A short **test map** of your region's isoprene emissions (proof it works), in minutes.
 - A saved settings file, `config/<your-region>_run.yaml`.
-- Optionally, a **full monthly inventory** for your region in
-  `megan_sc_outputs_<your-region>/` (this part takes hours, so start small).
+- Then, with notebooks 10, 11 and 25 of `notebooks/`, the **full monthly inventory** of your region in
+  `megan_sc_outputs_<your-region>/`, its checks and its results (this part takes hours, so start small).
 
 ---
 
@@ -49,8 +49,9 @@ It comes as either:
   the same source the Santa Catarina files came from.
 - **US states / counties:** the US Census TIGER/Line files.
 
-Put the file(s) in your Google Drive inside the pipeline folder, for example
-`MyDrive/megan-sc/data/boundaries/`. Note the full path: you'll paste it into the wizard.
+Put the file(s) in your Google Drive inside the repository folder, for example in
+`MyDrive/MEGAN_SC/data/regions/` (git ignores that folder, so your files stay apart from the repository). Note the full
+path, for example `/content/drive/MyDrive/MEGAN_SC/data/regions/myregion.shp`: you'll paste it into the wizard.
 
 > **Tip:** if you downloaded a whole-country file with many provinces and you only want
 > one, that's fine: the outline can contain several pieces; the model uses the whole
@@ -62,17 +63,23 @@ Put the file(s) in your Google Drive inside the pipeline folder, for example
 The model pulls weather, leaf-area, and land-cover data live from **Google Earth Engine**
 (free for research/non-commercial use).
 
-1. Go to [earthengine.google.com](https://earthengine.google.com/) and click **Get
-   Started** / **Sign Up**. Approve the one-time access with your Google account.
-2. You'll get a **project id** that looks like `ee-yourname`. You can see it at
-   [console.cloud.google.com](https://console.cloud.google.com/) (top project dropdown),
-   or in the Earth Engine Code Editor under *Assets*. Keep it handy: you'll type it into
-   the wizard as `EE_PROJECT`.
+1. Open [console.cloud.google.com/earth-engine](https://console.cloud.google.com/earth-engine) with your Google
+   account, create a Google Cloud project (or choose one) and register it for Earth Engine.
+2. For research, teaching or other noncommercial use, answer the noncommercial-eligibility questions on
+   [console.cloud.google.com/earth-engine/configuration](https://console.cloud.google.com/earth-engine/configuration);
+   no billing account is needed for noncommercial use.
+3. Note the **project id** (for example `my-ee-project`), shown in the project selector at the top of the Cloud
+   console. You'll type it into the wizard as `EE_PROJECT`. Chapter 3 of the tutorial (`docs/tutorial/03_setup.md`)
+   has the details, including Earth Engine on your own computer.
 
-### 3. The `megan-sc` folder in your Google Drive
+### 3. The `MEGAN_SC` folder in your Google Drive
 
-The whole pipeline folder must be at `MyDrive/megan-sc` (or
-`MyDrive/MEGAN_072026/megan-sc`). If you can open it in Drive, you're ready.
+The whole repository must be in your Drive as `MyDrive/MEGAN_SC` (a `MEGAN_SC` folder one level down in `MyDrive` also
+works). Two ways to put it there: download the repository as a ZIP from GitHub (**Code > Download ZIP**), unpack it,
+rename `MEGAN_SC-main` to `MEGAN_SC` and upload the folder (**New > Folder upload** in Google Drive); or, in a Colab
+cell, mount Drive and run
+`!git clone https://github.com/jessicajcss/MEGAN_SC.git /content/drive/MyDrive/MEGAN_SC`.
+If you can open `MyDrive/MEGAN_SC/run_your_region/region_setup.ipynb` in Drive, you're ready.
 
 ---
 
@@ -101,7 +108,8 @@ The whole pipeline folder must be at `MyDrive/megan-sc` (or
    confirm it's the right shape. STEP 7 runs a short simulation with the full engine and draws an
    isoprene map. **If that map looks sensible, your region works.**
 
-5. **Your settings are saved** automatically in STEP 8 as `config/<region>_run.yaml`.
+5. **Your settings are saved** automatically in STEP 8 as `config/<region>_run.yaml`, and STEP 9 prints what to type
+   in notebooks 10, 11 and 25 for the full run.
 
 If a step needs something from you, it stops and prints a plain-language message telling
 you exactly what to fix. Change STEP 1 and run again.
@@ -118,9 +126,9 @@ Everything the model needs is worldwide **except** the land-cover map:
   map (500 metres). It covers the entire planet, but it's coarser and can be less accurate
   in some forests. Everything still runs; just know the land-cover input is blunter.
 
-If you work outside Brazil and your country has an excellent local land-cover map, that can
-be plugged in later (ask whoever maintains the pipeline), and the built-in global option
-works everywhere with no extra steps.
+A local land-cover map would need code that turns its classes into the four growth forms of MEGAN (trees, shrubs,
+herbs, crops), as `src/megan_sc/gee/modis_lc.py` does for MODIS; the built-in global option works everywhere with no
+extra steps.
 
 ---
 
@@ -149,21 +157,20 @@ the same record. The wizard accepts the map as either a **NetCDF** (`.nc`) or a 
 
 ## The full inventory (after the test works)
 
-The test in STEP 7 already used the **full** model engine. To make the complete monthly
-inventory for all your months and years, you have two options:
+The test in STEP 7 already used the **full** model engine. The complete monthly inventory for all your months and years
+is computed by three notebooks of the `notebooks/` folder, opened in Colab the same way as the wizard:
 
-**Easy (recommended):** in the wizard, go to **STEP 9**, change `RUN_FULL = False` to
-`RUN_FULL = True`, and run that cell. It writes a NetCDF of tonnes and a statistics CSV per
-month into `megan_sc_outputs_<region>/<year>/`. Start with **one year** and a **coarse
-resolution** the first time: a full year can take hours.
+1. **`10_production_run.ipynb`**: in its settings cell, set `RUN_CONFIG = 'config/<your-region>_run.yaml'` (the value
+   printed by STEP 9) and your `EE_PROJECT`, then **Runtime ▸ Run all**. It writes one folder per year in
+   `MyDrive/megan_sc_outputs_<your-region>/`, saves a checkpoint after every step and resumes after a disconnection
+   (just run all cells again).
+2. **`11_verify_run.ipynb`**: same `RUN_CONFIG`; six automatic checks of every year.
+3. **`25_results_any_region.ipynb`**: same `RUN_CONFIG`; tables, maps, seasonal cycle and trends in
+   `megan_sc_outputs_<your-region>/results/`.
 
-**Advanced (full-featured):** `notebooks/10_production_run.ipynb`, the notebook
-that produced the Santa Catarina inventory, adds checkpointing (it resumes after a
-disconnect), per-municipality tables, input GeoTIFFs and the fix logs. The edits that
-point it at your region are listed in `docs/tutorial/11_your_region.md`.
-
-Because the wizard wrote your box into the config, the run will target your region either
-way.
+Start with **one month** and a **coarse resolution** the first time: a full year can take hours. Chapter 8 of the
+tutorial (`docs/tutorial/08_your_region.md`) lists the choices to review for your region, and chapter 9 explains how to
+read the results.
 
 ---
 
@@ -172,9 +179,9 @@ way.
 - It **needs the internet and Earth Engine**: the data are pulled live, not stored locally.
 - A **full run takes time** (hours per year at fine resolution). The *test* is quick.
 - Outside Santa Catarina it **needs the global ecotype file once** (see STEP 5 above).
-- The per-municipality **choropleth figures** in the analysis notebooks assume Brazilian
-  IBGE units. For another country, supply your own administrative outline for those
-  figures, or skip them; the emissions themselves don't depend on them.
+- Tables by unit (municipalities, counties) need a zones file (`ZONES_PATH` in STEP 1); without it, notebook 25 gives
+  the totals of the whole region. The maps of `notebooks/13_santa_catarina_analysis.ipynb` are specific to Santa
+  Catarina.
 - It does not change or delete any existing Santa Catarina files.
 
 ---
@@ -184,7 +191,7 @@ way.
 | Message you see | What to do |
 |-----------------|-----------|
 | `I can't find your boundary file` | The `SHAPEFILE_PATH` in STEP 1 is wrong, or the file isn't in Drive yet. For a shapefile, make sure the `.shp`, `.dbf`, `.shx`, `.prj` are all in the same folder. |
-| `Could not find the 'megan-sc' folder` | Put the whole `megan-sc` folder at `MyDrive/megan-sc` and re-run STEP 2. |
+| `The MEGAN_SC folder was not found` | Put the whole repository at `MyDrive/MEGAN_SC` (see thing #3 above) and run all cells again. |
 | `Earth Engine sign-in failed` | Check `EE_PROJECT` in STEP 1, and that you enabled Earth Engine for that Google account. |
 | `no cells fell inside it` | Your file loaded but isn't a filled outline (polygon). Use an administrative *boundary/area* file, not a point or line file. |
 | `Your region is OUTSIDE Santa Catarina …` | You need the global ecotype file: see **STEP 5** above. |
@@ -192,6 +199,5 @@ way.
 
 ---
 
-*This wizard reuses the same tested model code as the main pipeline (notebook 10, with the
-same procedures) and implements none of the science anew. If the built-in test runs, your region is
-ready.*
+*This wizard reuses the same tested model code as notebook 10, with the same procedures, and implements none of the
+science anew. If the built-in test runs, your region is ready for notebook 10.*

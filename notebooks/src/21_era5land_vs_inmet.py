@@ -36,6 +36,7 @@
 
 # %%
 # 1 · Settings -----------------------------------------------------------------------------------------------------------------
+__FILE:notebooks/src/_setup_repo.py__
 %pip -q install earthengine-api pandas numpy scipy statsmodels openpyxl xlrd geopandas matplotlib requests
 import os, sys, io, re, json, time, zipfile, unicodedata, datetime, warnings
 from concurrent.futures import ThreadPoolExecutor
@@ -45,7 +46,7 @@ except Exception:
     pass
 ROOT_V10    = '/content/drive/MyDrive/megan_sc_outputs_v10'
 OUT_DIR     = ROOT_V10 + '/analysis_v10/era5land_vs_inmet'                 # lapse_rate.json is read by notebook 20
-BND         = '/content/drive/MyDrive/MEGAN_SC/data/boundaries'            # <-- sc_state_ibge.gpkg, sc_mesoregions_2024.gpkg
+BND         = os.path.join(REPO_DIR, 'data/boundaries')            # <-- sc_state_ibge.gpkg, sc_mesoregions_2024.gpkg
 LIST_8110   = '/content/drive/MyDrive/INMET/Estações-Normal-Climatoógica-1981-2010.xls'   # <-- INMET station list 1981-2010
 LIST_6190   = '/content/drive/MyDrive/INMET/Relac_Est_Meteo_NC.xls'                       # <-- INMET station list 1961-1990
 NORMALS_URL = 'https://portal.inmet.gov.br/uploads/normais/Normal-Climatologica-TMEDSECA.xlsx'

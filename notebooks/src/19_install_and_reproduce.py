@@ -49,12 +49,13 @@ cell 2 if run on it again.
 
 # %%
 # 1 · Settings ---------------------------------------------------------------------------------------------------------
+__FILE:notebooks/src/_setup_repo.py__
 import os, sys, json, glob, shutil, hashlib, subprocess, datetime, time, re, urllib.request
 try:
     from google.colab import drive; drive.mount('/content/drive'); IN_COLAB = True
 except Exception:
     IN_COLAB = False
-REPO_DRIVE    = '/content/drive/MyDrive/MEGAN_SC'                                # <-- this repository, unzipped
+REPO_DRIVE    = REPO_DIR                       # the repository folder (found by the setup block)
 ROOT_V10      = '/content/drive/MyDrive/megan_sc_outputs_v10'                    # <-- production run (notebook 10)
 LAIV_ROOT     = '/content/drive/MyDrive/megan_sc_outputs_v10_lai_viirs'          # <-- rerun of notebook 17
 ARCHIVE       = '/content/drive/MyDrive/megan_sc_outputs_v10_modis_lai_2024_2025'  # MODIS-LAI 2024-2025 after install
@@ -409,7 +410,7 @@ print(CB[(CB.status == 'DIFFERENT') & CB.file.str.endswith('.csv')].to_string(in
 # %% [markdown]
 # ## Cell 8 · Side-by-side summary: MODIS LAI and corrected LAI
 #
-# Every number of `manuscript_numbers.csv` (notebook 13), `final_review_numbers.csv` and `ijest_review_numbers.csv`, the
+# Every number of `key_numbers.csv` (notebook 13), `final_review_numbers.csv` and `posthoc_review_numbers.csv`, the
 # trends of `trends.csv` and `trends_fdr_hr.csv`, and the annual totals of 2024 and 2025, from pass A (MODIS LAI) and
 # pass B (corrected LAI). The CO₂-inhibition lines are also given from pass A2, which isolates the new CO₂ file.
 
@@ -423,8 +424,8 @@ def kv(out, rel, key='key', val='value'):
     x = t[val].where(t[val] != '', t['en']) if 'en' in t.columns else t[val]     # text-only numbers of notebook 13
     return x[~x.index.duplicated()]
 parts = []
-for rel, val in (('notebook13_meso2024/manuscript_numbers.csv', 'value'), ('final_review/final_review_numbers.csv', 'value'),
-                 ('ijest_review/ijest_review_numbers.csv', 'value')):
+for rel, val in (('notebook13_meso2024/key_numbers.csv', 'value'), ('final_review/final_review_numbers.csv', 'value'),
+                 ('posthoc_review/posthoc_review_numbers.csv', 'value')):
     a, b = kv(OUT_A, rel, val=val), kv(OUT_B, rel, val=val)
     df = pd.DataFrame({'modis_lai': a, 'corrected_lai': b}); df.index.name = 'key'; df['source'] = rel
     parts.append(df.reset_index())
@@ -545,7 +546,7 @@ else:
 # %% [markdown]
 # ## Cell 10 · Release (by hand)
 #
-# 1. Read `lai_sensitivity_summary.md` and update the texts (green passages of the report and the manuscript).
+# 1. Read `lai_sensitivity_summary.md` and update every text that quotes numbers of 2024 or 2025.
 # 2. Commit `REPO_DRIVE` to GitHub (`results/`, `data/DATA_SHA256SUMS.txt`, `data/RELEASE_ASSETS_SHA256SUMS.txt`,
 #    `data/external/`).
 # 3. GitHub → Releases → *Draft a new release*, tag `v1.0.0`; attach the five zips and `SHA256SUMS_assets.txt` of

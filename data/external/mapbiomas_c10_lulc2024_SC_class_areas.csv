@@ -1,0 +1,23 @@
+class_id,class_name,area_km2,pct_classified
+0,Sem classificação (águas costeiras dentro do limite do IBGE),230.44,
+3,Formação florestal,36481.78,38.209
+5,Mangue,69.6,0.073
+9,Silvicultura,10472.36,10.968
+11,Campo alagado e área pantanosa,183.69,0.192
+12,Formação campestre,5478.45,5.738
+15,Pastagem,8103.0,8.487
+21,Mosaico de usos,17009.53,17.815
+23,"Praia, duna e areal",60.94,0.064
+24,Área urbanizada,2282.83,2.391
+25,Outras áreas não vegetadas,160.0,0.168
+29,Afloramento rochoso,0.02,0.0
+30,Mineração,36.86,0.039
+31,Aquicultura,2.95,0.003
+32,Apicum,3.03,0.003
+33,"Rio, lago e oceano",1654.92,1.733
+39,Soja,6812.96,7.135
+40,Arroz,1561.73,1.636
+41,Outras lavouras temporárias,4181.86,4.38
+49,Restinga arbórea,896.67,0.939
+50,Restinga herbácea,26.99,0.028
+75,Usina fotovoltaica (beta),0.04,0.0

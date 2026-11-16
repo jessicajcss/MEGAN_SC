@@ -1,0 +1,59 @@
+# =====================================================================================================================
+# Run configuration of the Santa Catarina example: the settings of the run shipped in data/run_v10 (2003-2025).
+# notebooks/10_production_run.ipynb and 11_verify_run.ipynb read this file by default. The wizard of run_your_region/
+# writes a file of the same form for another region (config/<region>_run.yaml); paths are relative to the repository.
+# =====================================================================================================================
+
+run:
+  name: "santa_catarina_2003_2025"
+  description: "Biogenic emissions of Santa Catarina (Brazil), monthly, 2003-2025, 0.025 degree grid"
+
+period:                              # first and last month, both included (UTC calendar months)
+  start: "2003-01"
+  end: "2025-12"
+  sample_hours: 3                    # ERA5-Land sampled at 00, 03, ..., 21 UTC: 8 model steps per day
+
+domain:
+  mode: "bbox"                       # "bbox": the grid covers this box | "shapefile": the grid covers the boundary file
+  bbox: {lon_min: -53.9, lon_max: -48.3, lat_min: -29.5, lat_max: -25.9}
+  resolution_deg: 0.025              # 144 x 224 cells of about 2.8 km
+  crs: "EPSG:4326"
+
+region:                              # the area reported (a cell counts when its centre lies inside the boundary)
+  name: "Santa Catarina"
+  abbr: "SC"                         # used in file and column names (annual_tonnes_SC)
+  boundary: "data/boundaries/sc_state_ibge.gpkg"
+  zones: "data/boundaries/SC_Municipios_2024.gpkg"   # optional: one table row per polygon (here the 295 municipalities)
+  zones_id: "CD_MUN"                 # identifier column of the zones file
+
+datasets:
+  meteorology:
+    source: "era5-land"
+    ee_id: "ECMWF/ERA5_LAND/HOURLY"
+  lai:
+    source: "modis"
+    ee_id: "MODIS/061/MCD15A3H"
+  vegetation:
+    growth_form_source: "mapbiomas"  # "mapbiomas" (Brazil, 30 m) | "modis" (MCD12Q1 LC_Type5, worldwide, 500 m)
+    collection: 10                   # MapBiomas collection; null takes the newest collection in Earth Engine
+    first_year: 1985                 # land-cover years available; a year outside them uses the nearest one
+    last_year: 2024                  #   (2025 uses the 2024 map)
+    tree_canopy_type: 3              # MEGCAN canopy type of trees: 3 temperate broadleaf (2 tropical, 1 needleleaf)
+    lai_mask: true                   # LAI set to 0 in cells without vegetation
+  soil:
+    wilting_point_source: "constant"
+    constant_wilt: 0.12              # m3 m-3
+  emission_factors:                  # MEGAN 3.2 input files (Guenther, 2024a): tables of EFP240120.zip, clip of EVT3d.nc
+    ef_table: "data/megan_inputs/EFP240120/EFv240120.csv"
+    speciation_dir: "data/megan_inputs/EFP240120/"
+    ecotype: "data/sc_ecotype.nc"
+
+earth_engine:
+  project: "your-ee-project"         # the id of your Google Cloud project registered for Earth Engine
+
+species:
+  mechanism: "CB6X"
+
+output:
+  dir: "megan_sc_outputs_v10"        # folder created next to the repository (in Colab: MyDrive/megan_sc_outputs_v10)
+  tag: "SC_v10"                      # used in the names of the summary files (annual_totals_SC_v10_*.csv)

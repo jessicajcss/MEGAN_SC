@@ -39,6 +39,7 @@
 
 # %%
 # 1 · Settings --------------------------------------------------------------------------------------------
+__FILE:notebooks/src/_setup_repo.py__
 import os, glob, json, datetime, calendar, warnings
 try:
     from google.colab import drive
@@ -55,7 +56,7 @@ if IN_COLAB:
 %pip -q install earthengine-api rasterio geopandas netCDF4 scipy pandas matplotlib
 EE_PROJECT = 'your-ee-project'                                     # <-- your Earth Engine (Google Cloud) project id
 MODEL_ROOT = '/content/drive/MyDrive/megan_sc_outputs_v10'          # <-- production run (notebook 10)
-BND        = '/content/drive/MyDrive/megan-sc/data/boundaries'
+BND        = os.path.join(REPO_DIR, 'data/boundaries')
 OUT_DIR    = os.path.join(MODEL_ROOT, 'analysis_v10', 'tropomi_hcho')
 YEARS      = list(range(2019, 2026))
 CF_MAX, SZA_MAX = 0.3, 70.0              # orbit-level screening (sensitivity: CF_MAX = 0.5)

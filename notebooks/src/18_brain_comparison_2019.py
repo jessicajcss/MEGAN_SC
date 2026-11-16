@@ -28,15 +28,15 @@
 # | species | 34 CB6X species (`ISOP`, `TERP`, `SQT`, `MEOH`, `CO`, `NO`, ...), all in mol s⁻¹ per grid cell | `VAR-LIST`, `units` |
 # | processing | MGN2MECH of MEGANv3.21 (path in `FILEDESC`), soil NO from BDSNP (`BDSNP` in the file name), meteorology from WRF ARW 4.0 through MCIP 5.1 | `FILEDESC`, `UPNAM`, file name |
 #
-# The article describes the BRAIN biogenic emissions as MEGAN 3.2 driven by WRF and MCIP, d01 over Brazil at 20 km and
-# d02 over southern Brazil at 4 km, year 2019 (Hoinaski et al. 2024, Sect. 2.1.4 and 3). It does not report biogenic
+# Hoinaski et al. (2024) describe the BRAIN biogenic emissions as MEGAN 3.2 driven by WRF and MCIP, d01 over Brazil at 20 km and
+# d02 over southern Brazil at 4 km, year 2019 (their Sect. 2.1.4 and 3). The paper does not report biogenic
 # totals, and it does not name the LAI, land-cover or emission-factor inputs of MEGAN.
 #
 # ## 2. How the comparison is made
 #
-# 1. **Same region.** Santa Catarina is the IBGE polygon of the article (`sc_state_ibge.gpkg`). Every cell of both grids
+# 1. **Same region.** Santa Catarina is the IBGE state polygon (`data/boundaries/sc_state_ibge.gpkg`). Every cell of both grids
 #    is weighted by the fraction of its area inside the polygon, computed in an equal-area projection. For this
-#    inventory, the cell-centre mask of the article is also reported, so the published totals can be traced.
+#    inventory, the cell-centre mask of notebook 13 is also reported, so the totals of notebook 13 can be traced.
 # 2. **Same species.** This inventory stores the 19 MEGAN classes in mass. They are converted to the 34 CB6X species
 #    with the two tables MGN2MECH uses, read from `MEGANv3.21.tar.gz` (Guenther 2024): `SPC_NOCONVER.EXT` (19 classes →
 #    201 compounds, molar masses and molar fractions) and `MAP_CV2CB6X.EXT` (201 compounds → CB6X). MEGANv3.21 splits each
@@ -77,13 +77,13 @@
 #   class LVOC). The same ratios in BRAIN show that BRAIN used the same speciation tables, which the class-level
 #   comparison requires;
 # * daily totals from the 24 hourly rates against the trapezoid over the 25 steps (difference reported);
-# * this inventory: the 2019 isoprene of the article (cell-centre mask, ρ = 1) is reproduced from the monthly files.
+# * this inventory: the 2019 isoprene of notebook 13 (cell-centre mask, ρ = 1) is reproduced from the monthly files.
 #
 # ## 4. What the comparison can and cannot show
 #
 # Both inventories use the MEGANv3.21 code: BRAIN through the Fortran, this inventory through its Python port, which was
 # checked against the Fortran (notebook 12). They differ in meteorology (WRF at 4 km against ERA5-Land at 0.1°), vegetation
-# inputs (those of BRAIN are not named in the article; this inventory uses MapBiomas growth forms at 30 m and the MODIS
+# inputs (those of BRAIN are not named by Hoinaski et al. 2024; this inventory uses MapBiomas growth forms at 30 m and the MODIS
 # MCD15A3H LAI), soil NO scheme (BDSNP against the MEGANv3.21 default), grid, time step (1 h against 3 h) and the canopy
 # factor ρ of isoprene (not applied by the code; 0.96 in the published numbers of this inventory). The ratios measure the
 # combined effect of all these differences. Assigning a difference to one input requires runs that change one input at
@@ -142,6 +142,7 @@
 
 # %%
 # 1 · Paths and settings ---------------------------------------------------------------------------------------------
+__FILE:notebooks/src/_setup_repo.py__
 import os, sys, glob, json, re, time, zipfile, tarfile, hashlib, shutil, warnings, calendar, urllib.parse, datetime as dt
 try:
     from google.colab import drive; drive.mount('/content/drive'); IN_COLAB = True
@@ -149,7 +150,7 @@ except Exception:
     IN_COLAB = False
 %pip -q install netCDF4 pyproj geopandas shapely rasterio requests
 ROOT      = '/content/drive/MyDrive/megan_sc_outputs_v10'          # <-- production run of notebook 10
-BND       = '/content/drive/MyDrive/megan-sc/data/boundaries'      # <-- sc_state_ibge.gpkg, sc_mesoregions_2024.gpkg
+BND       = os.path.join(REPO_DIR, 'data/boundaries')      # <-- sc_state_ibge.gpkg, sc_mesoregions_2024.gpkg
 URL_FILE  = '/content/drive/MyDrive/BRAIN/BRAIN_output_urls.txt'   # <-- list of download links of the BRAIN d02 files
 BRAIN_DIR = '/content/drive/MyDrive/BRAIN/MEGAN_SC_4X4'            # <-- zips saved by hand (optional; read before any download)
 MGN_TGZ   = '/content/drive/MyDrive/MEGANv3.21.tar.gz'             # <-- same file as notebook 12 (Zenodo 10.5281/zenodo.10526206)
@@ -423,7 +424,7 @@ print('FILEDESC:'); print('\n'.join('   ' + HDR['FILEDESC'][i:i + 80].rstrip() f
 # ## Cell 5 · Santa Catarina and the mesoregions on both grids
 #
 # Fractions of each cell inside the polygons, from exact intersections in an Albers equal-area projection centred on the
-# state (cell edges densified every 0.002°). The article's cell-centre mask of this inventory is built as in notebook 13.
+# state (cell edges densified every 0.002°). The cell-centre mask of this inventory is built as in notebook 13.
 
 # %%
 # 5 · Polygon fractions -------------------------------------------------------------------------------------------------
@@ -574,7 +575,7 @@ assert np.all(np.diff(LAT) > 0), 'expected south-first latitudes'
 RES = float(LON[1] - LON[0]); NY, NX = LAT.size, LON.size
 OM = np.einsum('ci,mcyx->miyx', K, OT * 1e6)                     # mol per cell and month, 34 CB6X species (rho = 1)
 
-# masks of this inventory: cell centre (article) and area fractions
+# masks of this inventory: cell centre (notebook 13) and area fractions
 TR = from_origin(LON[0] - RES / 2, LAT[-1] + RES / 2, RES, RES)
 SC_CC = np.flipud(rasterize([(SC_POLY, 1)], out_shape=(NY, NX), transform=TR, fill=0, dtype='int32')) == 1
 lon_eo = np.r_[LON - RES / 2, LON[-1] + RES / 2]; lat_eo = np.r_[LAT - RES / 2, LAT[-1] + RES / 2]
@@ -724,7 +725,7 @@ for label, s, mw in KEY:
 # ## Cell 12 · Mesoregions
 #
 # Both datasets on the BRAIN grid, weighted by the fraction of each cell in each mesoregion (the 2024 municipal unions
-# of the article). The share of the state total shows whether the spatial distribution agrees independently of the
+# of `data/boundaries/sc_mesoregions_2024.gpkg`). The share of the state total shows whether the spatial distribution agrees independently of the
 # magnitude.
 
 # %%
@@ -857,8 +858,7 @@ if MAKE_FIGS:
 # ## Cell 15 · Parametrizations, provenance and summary
 #
 # The table records what differs between the two inventories and where each entry comes from: the BRAIN file header
-# (read here), the BRAIN article (Hoinaski et al. 2024), or the methods of this inventory (article Sections 2.2-2.4 and
-# notebook 10).
+# (read here), the BRAIN article (Hoinaski et al. 2024), or the notebooks of this inventory (10, 12 and 13).
 
 # %%
 # 15 · Parametrizations, provenance, summary ---------------------------------------------------------------------------
@@ -868,26 +868,26 @@ def fd_get(key):
     return hit[0].split(':', 1)[1].strip() if hit else 'not in FILEDESC'
 P = [
  ('Model code', 'MEGANv3.21, Python port checked against the Fortran (notebook 12)',
-  f"MEGAN 3.2 (article); MGN2MECH of MEGANv3.21 (FILEDESC: {fdl[1][:60]}...)", 'article Sect. 2.2; BRAIN header and Hoinaski et al. 2024'),
+  f"MEGAN 3.2 (Hoinaski et al. 2024); MGN2MECH of MEGANv3.21 (FILEDESC: {fdl[1][:60]}...)", 'notebook 12; BRAIN header and Hoinaski et al. 2024'),
  ('Grid', f'0.025 deg lon-lat ({NX} x {NY} cells)',
   f"{HDR['GDNAM'].strip()}: Mercator, true at {HDR['P_ALP']} deg, {HDR['XCELL']:.0f} m projected cells ({NC} x {NR}); sphere R = {G['R']:.0f} m",
   'notebook 10; BRAIN header'),
  ('Cell area for per-cell rates', 'true area on the sphere (megan_sc.domain)',
   f"nominal XCELL x YCELL = {G['a_nom'] / 1e6:.0f} km2 (mgn2mech.F: {GARE[0]})", 'notebook 10; mgn2mech.F of MEGANv3.21'),
  ('Meteorology', 'ERA5-Land, 0.1 deg, hourly fields sampled every 3 h (00-21 UTC)',
-  f"WRF ARW 4.0 via MCIP 5.1 (FILEDESC), 4 km; GFS 0.25 deg, 36-h runs, first 12 h discarded (article); "
+  f"WRF ARW 4.0 via MCIP 5.1 (FILEDESC), 4 km; GFS 0.25 deg, 36-h runs, first 12 h discarded (Hoinaski et al. 2024); "
   f"PBL {fd_get('PBL SCHEME')}; land surface {fd_get('LAND-SURFACE SCHEME')}; microphysics {fd_get('MICROPHYSICS')}",
-  'article Sect. 2.3.4; BRAIN header and Hoinaski et al. 2024'),
+  'notebook 10; BRAIN header and Hoinaski et al. 2024'),
  ('Land use of the meteorology', 'not applicable (ERA5-Land)', fd_get('LAND USE CLASSIFICATION'), 'BRAIN header'),
  ('Vegetation for MEGAN', 'MapBiomas Collection 10 (30 m) growth forms of the year; MEGAN v3 ecotype map and emission factors of the MEGAN 3.2 input files',
-  'not named in the article (MEGAN input data from bai.ess.uci.edu/megan/data-and-code)', 'article Sect. 2.3.3; Hoinaski et al. 2024'),
- ('Leaf area index', 'MODIS MCD15A3H C6.1, monthly means of main-algorithm retrievals on the 0.025 deg grid', 'not named in the article',
-  'article Sect. 2.3.2; Hoinaski et al. 2024'),
+  'not named by Hoinaski et al. 2024 (MEGAN input data from bai.ess.uci.edu/megan/data-and-code)', 'notebook 10; Hoinaski et al. 2024'),
+ ('Leaf area index', 'MODIS MCD15A3H C6.1, monthly means of main-algorithm retrievals on the 0.025 deg grid', 'not named by Hoinaski et al. 2024',
+  'notebook 10; Hoinaski et al. 2024'),
  ('Soil NO', 'MEGANv3.21 default (activity factor GAMNO, Yienger and Levy 1995 type), growing season set for the Southern Hemisphere',
   'BDSNP (Hudman et al. 2012), from the file name', 'notebook 10; BRAIN file name'),
  ('Chemical speciation', '19 MEGAN classes in mass (converted here to CB6X with the MEGANv3.21 tables)', '34 CB6X species in mol/s',
   'notebook 10; BRAIN header'),
- ('Isoprene canopy factor rho', f'1 in the code; {RHO_ISOP} in the published numbers', '1 (not applied by MEGANv3.21)', 'article Sect. 2.2'),
+ ('Isoprene canopy factor rho', f'1 in the code; {RHO_ISOP} in the published numbers', '1 (not applied by MEGANv3.21)', 'notebook 13'),
  ('Time', 'UTC; monthly totals of 3-hourly steps', 'UTC; 25 hourly steps per daily file', 'notebook 10; BRAIN header'),
  ('Year', str(YEAR), str(YEAR), ''),
 ]

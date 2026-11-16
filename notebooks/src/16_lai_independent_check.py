@@ -2,8 +2,8 @@
 # # 16 · Independent check of the 2024-2025 LAI decrease: VIIRS LAI and the MODIS quality flags
 #
 # In the production run, the statewide mean MODIS LAI of 2025 was 11% below its 2003-2023 mean, and the decrease was
-# larger than in any earlier year in cells dominated by trees or herbaceous vegetation (`results/v10/ijest_review`,
-# from `analysis/v10/review/ijest_review_diagnostics.py`). The orbits of Terra and Aqua have drifted since their orbit
+# larger than in any earlier year in cells dominated by trees or herbaceous vegetation (`results/v10/posthoc_review`,
+# from `analysis/v10/review/posthoc_review_diagnostics.py`). The orbits of Terra and Aqua have drifted since their orbit
 # maintenance ended, so part of the decrease could come from the MODIS record itself. This notebook asks two questions:
 #
 # 1. Does an independent sensor show a decrease of similar size in 2024-2025? It uses the VIIRS LAI of Suomi NPP
@@ -19,7 +19,7 @@
 # pixels in each 0.025° cell of the inventory grid (as `LAI_AGG = 'mean'` in notebook 10, without the gap filling of
 # FIX-4), and samples the monthly fraction of retrievals made by the main algorithm. The Santa Catarina mask and the
 # groups of cells dominated by trees, herbaceous vegetation or crops (growth-form fraction above 0.6, from the
-# MapBiomas growth forms of the run) are those of `ijest_review_diagnostics.py`. The reference period is 2013-2023
+# MapBiomas growth forms of the run) are those of `posthoc_review_diagnostics.py`. The reference period is 2013-2023
 # because VIIRS starts in January 2012, so the MODIS deviations here differ slightly from those of the inventory
 # diagnostics (reference 2003-2023).
 #
@@ -40,6 +40,7 @@
 
 # %%
 # 1 · Settings -------------------------------------------------------------------------------------------
+__FILE:notebooks/src/_setup_repo.py__
 import os, sys, glob, time
 try:
     from google.colab import drive
@@ -52,7 +53,7 @@ if IN_COLAB:
                            'mounted there. Use Runtime > Disconnect and delete runtime, then run the notebook again from cell 1.')
     drive.mount('/content/drive')
 %pip -q install earthengine-api rasterio geopandas xarray netCDF4 pandas matplotlib
-MEGAN_DIR  = '/content/drive/MyDrive/megan-sc'                  # <-- the repository in Drive
+MEGAN_DIR  = REPO_DIR                      # the repository folder (found by the setup block)
 ROOT       = '/content/drive/MyDrive/megan_sc_outputs_v10'      # <-- output of notebook 10 (grid and growth forms)
 BND        = os.path.join(MEGAN_DIR, 'data', 'boundaries')
 OUT_DIR    = os.path.join(ROOT, 'analysis_v10', 'lai_viirs_check')
@@ -73,7 +74,7 @@ from megan_sc.gee import lai as laimod                          # MODIS: same co
 print('Earth Engine ready:', EE_PROJECT, '| MODIS collection', laimod.COLLECTION)
 
 # %%
-# 3 · Grid, Santa Catarina mask and growth-form groups (as analysis/v10/review/ijest_review_diagnostics.py) ----------
+# 3 · Grid, Santa Catarina mask and growth-form groups (as analysis/v10/review/posthoc_review_diagnostics.py) ----------
 import xarray as xr, geopandas as gpd
 from rasterio.features import rasterize
 from rasterio.transform import Affine

@@ -1,7 +1,8 @@
 # =====================================================================
-# MEGAN-SC configuration — the ONLY file most users need to edit.
-# Every run is fully described by this file (+ the code version).
-# Copy to `config/my_run.yaml` and edit. Comments explain every field.
+# Engine configuration template with every field the package reads (src/megan_sc/run.py), commented.
+# Some scripts of the Santa Catarina example read it for the emission-factor files and the grid.
+# The run configurations of notebooks 10, 11 and 25 are in config/: config/santa_catarina_2003_2025.yaml
+# (the example) and the files written by the region wizard (tutorial, chapter 6, section 6.2).
 # =====================================================================
 
 run:
@@ -56,7 +57,7 @@ datasets:
                                       #   Savanna Formation in SC, correctly mapping the Araucária/
                                       #   seasonal FOREST that global MODIS/IGBP mislabels as savanna.
     year: 2020                        # land-cover year (annual); match to the inventory year
-    modis_asset: "MODIS/061/MCD12Q1"                    # LC_Type5 PFT band, 500 m — samples cheaply
+    modis_asset: "MODIS/061/MCD12Q1"                    # LC_Type5 PFT band, 500 m; samples cheaply
     mapbiomas_asset: "projects/mapbiomas-public/assets/brazil/lulc/v1"  # 30 m, finer, Brazil-specific
     tree_canopy_type: 3               # MEGCAN forest type (3=temperate broadleaf for subtropical SC; 2=tropical)
     lai_mask: true                    # keep OBSERVED MODIS LAI, mask non-veg via land cover (protects data quality)

@@ -29,7 +29,7 @@
 # * `megsea.f` takes the wilting point from the soil type of the meteorological model (`SLTYP`) when the soil-moisture
 #   factor is on.
 # * BRAIN: MEGAN 3.2 driven by WRF 4.0 through MCIP (WRF: Noah land surface, Dudhia shortwave, YSU boundary layer,
-#   Kain-Fritsch cumulus, MODIS land use; namelist in the supplement of Hoinaski et al. 2024); the article points to the
+#   Kain-Fritsch cumulus, MODIS land use; namelist in the supplement of Hoinaski et al. 2024); the paper points to the
 #   MEGAN distribution site for the input data and does not name the vegetation, LAI or emission-factor files; soil NO by
 #   BDSNP (file names). Which switches the BRAIN run used is not stated: block A gives the size of each, conditional on it.
 #
@@ -38,15 +38,16 @@
 
 # %%
 # 1 · Settings -------------------------------------------------------------------------------------------------------------------
+__FILE:notebooks/src/_setup_repo.py__
 %pip -q install netCDF4 pyproj geopandas shapely rasterio requests statsmodels scipy
 import os, sys, re, json, glob, math, itertools, datetime, warnings, hashlib
 try:
     from google.colab import drive; drive.mount('/content/drive')
 except Exception:
     pass
-NB18      = '/content/drive/MyDrive/MEGAN_SC/notebooks/18_brain_comparison_2019.ipynb'   # <-- this repository's notebook 18
-REPO_DIR  = '/content/drive/MyDrive/MEGAN_SC'                       # <-- this repository (boundaries, MapBiomas 120 m, outlines)
-MEGAN_DIR = '/content/drive/MyDrive/megan-sc'                       # <-- engine repo in Drive (emission factors, MEGAN functions)
+NB18      = os.path.join(REPO_DIR, 'notebooks/18_brain_comparison_2019.ipynb')   # <-- this repository's notebook 18
+# REPO_DIR: this repository, found by the setup block above
+MEGAN_DIR = REPO_DIR                      # the repository folder (found by the setup block)
 ROOT      = '/content/drive/MyDrive/megan_sc_outputs_v10'           # <-- production run (as notebook 18)
 OVERRIDES = dict(ROOT=ROOT, BND=REPO_DIR + '/data/boundaries', URL_FILE='/content/drive/MyDrive/BRAIN/BRAIN_output_urls.txt',
                  BRAIN_DIR='/content/drive/MyDrive/BRAIN/MEGAN_SC_4X4', MGN_TGZ='/content/drive/MyDrive/MEGANv3.21.tar.gz', MAKE_FIGS=False)

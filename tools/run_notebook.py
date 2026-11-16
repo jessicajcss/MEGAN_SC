@@ -1,14 +1,16 @@
 #!/usr/bin/env python3
 """run_notebook.py - run one of the notebooks of notebooks/ outside Google Colab.
 
-    python tools/run_notebook.py notebooks/13_manuscript_numbers_and_figures.ipynb "ROOT='data/run_v10';OUT_DIR='reproduced/x'"
+    python tools/run_notebook.py notebooks/13_santa_catarina_analysis.ipynb "ROOT='data/run_v10';OUT_DIR='reproduced/x'"
 
-The code cells are executed in order in one namespace, as Colab would. Three things differ from Colab:
+The code cells are executed in order in one namespace, as Colab would. Four things differ from Colab:
   * google.colab is replaced by a stub (the Drive mount becomes a no-op) and `%pip` / `!` lines are skipped, so the
     packages of environment.yml must already be installed;
   * the overrides `NAME=python_expression;...` are evaluated and assigned right after the first code cell, which is the
     settings cell of every notebook, so they replace the Colab paths of that cell;
-  * matplotlib uses the Agg backend (figures are written to files, plt.show() does nothing).
+  * matplotlib uses the Agg backend (figures are written to files, plt.show() does nothing);
+  * the environment variables MEGAN_SC_RUNNER=1 and MEGAN_SC_REPO=<this repository> tell the setup block of the
+    notebooks (notebooks/src/_setup_repo.py) that it runs outside Colab and where the repository is.
 Earth Engine is not stubbed: a notebook that needs it (10, or 14 without its cache) stops with the Earth Engine error.
 Each cell's run time is printed; the exit code is 1 if a cell fails.
 """
@@ -22,6 +24,8 @@ OV = [kv.split('=', 1) for kv in sys.argv[2].split(';') if kv.strip()] if len(sy
 cells = [''.join(c['source']) for c in json.load(open(NB, encoding='utf-8'))['cells'] if c['cell_type'] == 'code']
 g = types.ModuleType('google'); col = types.ModuleType('google.colab'); col.drive = mock.MagicMock(); g.colab = col
 sys.modules['google'] = g; sys.modules['google.colab'] = col
+os.environ['MEGAN_SC_RUNNER'] = '1'                  # the setup block of the notebooks then skips the Drive mount
+os.environ.setdefault('MEGAN_SC_REPO', os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import matplotlib
 matplotlib.use('Agg')
 G = {'__name__': '__main__'}

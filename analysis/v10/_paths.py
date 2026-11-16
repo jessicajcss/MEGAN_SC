@@ -37,7 +37,7 @@ RESULTS = _p('MEGAN_SC_RESULTS', 'results', 'v10')
 OUT = _p('MEGAN_SC_OUT', 'reproduced')
 _nb13_out = os.path.join(OUT, 'notebook13_meso2024')
 NB13 = os.path.abspath(os.environ.get('MEGAN_SC_NB13') or
-                       (_nb13_out if os.path.exists(os.path.join(_nb13_out, 'manuscript_numbers.csv'))
+                       (_nb13_out if os.path.exists(os.path.join(_nb13_out, 'key_numbers.csv'))
                         else os.path.join(RESULTS, 'notebook13_meso2024')))
 NB_SRC = os.path.join(REPO, 'notebooks', 'src')
 TAG = 'cf0.3_sza70_fire120'                       # notebook 14 screening: cloud fraction < 0.3, SZA < 70°, 20 km fire mask
@@ -52,6 +52,14 @@ def out(*parts, mkdir=True):
     if mkdir:
         os.makedirs(os.path.dirname(p) if p.lower().endswith(FILE_EXT) else p, exist_ok=True)
     return p
+
+
+def notebook_source(name):
+    """Source of notebooks/src/<name>, for the scripts that run cells of a notebook outside it. The block that opens every
+    notebook (notebooks/src/_setup_repo.py: it finds the repository and, in Colab, mounts Google Drive) is replaced by the
+    repository folder of this copy."""
+    src = open(os.path.join(NB_SRC, name), encoding='utf-8').read()
+    return src.replace('__FILE:notebooks/src/_setup_repo.py__', f'REPO_DIR = {REPO!r}; IN_COLAB = False')
 
 
 def grid_cache():

@@ -1,10 +1,9 @@
-"""wf_style.py - map style of the biomass-burning article (wildfire/FINN_SC_pipeline_v2/python/analysis/a10_figures.py and
-tools/study_area_map.py), shared by the map figures of the biogenic manuscript and report.
+"""wf_style.py - map style shared by every map figure of the Santa Catarina example.
 
 Frame: geographic axes (−54 to −48 °E, −29,5 to −25,8 °N; aspect 1/cos 27,6°), degree labels with decimal comma and true
 minus in Portuguese; north arrow over the Atlantic; 0-50-100 km scale bar inside the frame at the bottom right of every
 map; one source note per figure, below the frames; state outline (0.2 grey, 0.6 pt) and, on request, mesoregion lines (0.35 grey, 0.45 pt); municipalities
-filled without outlines; class legends at lower left, without frame; no figure title (the caption is in the document);
+filled without outlines; class legends at lower left, without frame; no figure title (the caption goes with the text that uses the figure);
 DejaVu Sans 8 pt. Multi-panel grids: no axes, one north arrow and one scale bar in the free panel at the bottom right.
 Municipal classes: Jenks natural breaks computed with Fisher's exact algorithm (fisher_jenks); labels of polygons at
 the interior point farthest from the edges (label_point)."""

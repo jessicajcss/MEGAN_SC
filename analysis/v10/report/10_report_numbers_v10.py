@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """10_report_numbers_v10.py
-Every quantitative statement of the inventory report computed from the production run (data/run_v10, fixes.py sha
+The numbers of the Santa Catarina example (statistics by class, mesoregion and municipality) computed from the production run (data/run_v10, fixes.py sha
 a933b29602929a82). Estimators:
   - standardised regression: annual series in z-scores (np.std, ddof = 0), no intercept, 4 drivers (TEMP2_C, PAR, LAI, SOILM);
   - temperature sensitivity: slope b of ln(E) on annual mean temperature, 100 (e^b - 1) % per K (raw and detrended);
@@ -34,7 +34,7 @@ assert SC.sum() == 13970
 
 # ---------------------------------------------------------------- 3.2 means, 2025, CV, extremes (Table 2 groups)
 G = pd.read_csv(f"{A10}/table2_annual_totals_SC_groups.csv").set_index('year').loc[YEARS]
-G['OTHERS'] = G.LVOC + G.STRESS_OTHER + G.MBO                     # 'HC leves e demais compostos' of the report
+G['OTHERS'] = G.LVOC + G.STRESS_OTHER + G.MBO                     # group 'HC leves e demais compostos' (light HC and other compounds)
 rec('mean_BVOC_CO_kt', pt((G.BVOC + G.CO).mean() / 1e3), 'table2')
 rec('mean_BVOC_kt', pt(G.BVOC.mean() / 1e3), 'table2'); rec('mean_CO_kt', pt(G.CO.mean() / 1e3), 'table2'); rec('mean_NO_kt', pt(G.NO.mean() / 1e3, 2), 'table2')
 for k in ('BVOC', 'ISOP', 'MT', 'SQT', 'OVOC', 'OTHERS', 'NO', 'CO'):
@@ -175,10 +175,10 @@ top_tot = MU.head(int(len(MU) * 0.2))
 rec('mun_top_quintile_total_regions', '; '.join(f"{k} {v}" for k, v in top_tot.rgint.value_counts().sort_index().sort_values(ascending=False, kind="stable").items()), 'table4 + NM_RGINT (20% maiores totais)')
 rec('mun_cells_min', str(int(MU.n_cells.min())), 'table4 (células da grade que tocam cada município)')
 # ---------------------------------------------------------------- flux, ratio and the 2019 comparison (notebook 13)
-MN = pd.read_csv(f"{A10}/manuscript_numbers.csv").set_index('key')
+MN = pd.read_csv(f"{A10}/key_numbers.csv").set_index('key')
 for k in ('isop_flux', 'cmp2019_ISOP', 'cmp2019_CO', 'cmp2019_NO', 'cmp2019_range', 'isop_mean_ratio', 'isop_mt_ratio', 'met_filled', 'lai_gaps',
           'mun_cells', 'mun_area_check', 'meso_sum'):
-    rec(k, MN.loc[k, 'pt'], 'manuscript_numbers.csv')
+    rec(k, MN.loc[k, 'pt'], 'key_numbers.csv')
 L = pd.DataFrame(LOG); L.to_csv(f"{OUT}/report_numbers_v10.csv", index=False)
 pd.set_option('display.width', 250); pd.set_option('display.max_colwidth', 200)
 print(L[['key', 'value']].to_string(index=False))

@@ -16,9 +16,9 @@ lowest majority fractions:
 4202305                Biguaçu Grande Florianópolis             0.8636
 interior rings filled (< 1 km2) per mesoregion: {'Grande Florianópolis': 337, 'Norte Catarinense': 693, 'Oeste Catarinense': 2681, 'Serrana': 1143, 'Sul Catarinense': 523, 'Vale do Itajaí': 762}
            name_meso  n_mun  area_ibge_km2  polygon_km2  forest_pct
-Grande Florianópolis     21         7359.6       7359.8       62.07
-   Norte Catarinense     26        15930.6      15930.9       49.89
-   Oeste Catarinense    118        27314.5      27314.9       30.51
-             Serrana     30        22327.9      22328.4       32.32
-     Sul Catarinense     46         9709.0       9709.3       35.30
-      Vale do Itajaí     54        13089.0      13089.6       53.94
+Grande Florianópolis     21         7359.6       7359.8       59.31
+   Norte Catarinense     26        15930.6      15930.9       48.29
+   Oeste Catarinense    118        27314.5      27314.9       29.92
+             Serrana     30        22327.9      22328.4       31.75
+     Sul Catarinense     46         9709.0       9709.3       33.99
+      Vale do Itajaí     54        13089.0      13089.6       53.32

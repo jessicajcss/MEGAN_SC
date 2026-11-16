@@ -31,8 +31,9 @@ def run_settings(**values):
 
 
 def test_notebook_is_generator_output(tmp_path):
-    os.makedirs(tmp_path / 'scripts')
+    os.makedirs(tmp_path / 'scripts'); os.makedirs(tmp_path / 'notebooks' / 'src')
     shutil.copy(GEN, tmp_path / 'scripts')
+    shutil.copy(os.path.join(REPO, 'notebooks', 'src', '_setup_repo.py'), tmp_path / 'notebooks' / 'src')
     subprocess.run([sys.executable, str(tmp_path / 'scripts' / os.path.basename(GEN))], check=True, capture_output=True)
     assert open(tmp_path / 'run_your_region' / 'region_setup.ipynb', 'rb').read() == open(NB, 'rb').read()
 

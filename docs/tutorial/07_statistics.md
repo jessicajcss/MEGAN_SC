@@ -1,16 +1,17 @@
 # 7. The statistics
 
-Every statistical statement of the two documents rests on one of the estimators below. For each one, this chapter
-gives the definition, the code that computes it and the published values. All series are **state totals**: the sum
-over the 13,970 cells whose centre lies inside the state, by year (n = 23, 2003-2025) or by month.
+Every statistical result of the Santa Catarina example rests on one of the estimators below, and notebook 25 applies
+the same ones to any run. For each estimator, this chapter gives the definition, the code that computes it and the
+values of the example. All series are **regional totals**: the sum over the cells whose centre lies inside the region
+(13,970 cells for Santa Catarina), by year (n = 23, 2003-2025) or by month.
 
 Notebook 13 computes the descriptive statistics, the trends and the correlations with the drivers. The estimators added
-as additional diagnostics, marked "post hoc" in the logs and labelled as such in the documents, are computed by
+as additional diagnostics, marked "post hoc" in the logs because they were defined after the first results were seen, are computed by
 `analysis/v10/review/final_review_diagnostics.py` and `analysis/v10/nb14_diagnostics.py`.
 
 ## 7.1 Level and variability
 
-* **Mean** of the annual totals, 2003-2025: BVOC 656.5 kt yr⁻¹ (`manuscript_numbers.csv`, `bvoc_mean_kt`).
+* **Mean** of the annual totals, 2003-2025: BVOC 656.5 kt yr⁻¹ (`notebook13_meso2024/key_numbers.csv`, `bvoc_mean_kt`).
 * **Coefficient of variation** with the sample standard deviation (ddof = 1): 7.9 % for BVOC (`bvoc_cv_pct`).
 * **Shares** of each group in the mean BVOC: isoprene 33.2 %, monoterpenes 25.8 %, oxygenated VOC 19.3 %
   (`mean_*`). Isoprene includes the factor ρ = 0.96 (chapter 1, section 1.1).
@@ -68,8 +69,7 @@ Post hoc, in `final_review/trends_fdr_hr.csv`:
   (p = 0.0080), sesquiterpenes +0.83 % yr⁻¹ (p = 0.0080), oxygenated VOC +0.51 % yr⁻¹ (p = 0.013), soil NO
   −0.36 % yr⁻¹ (p = 0.0057).
 
-Post hoc, in `final_review/trend_robustness.csv` (`analysis/v10/review/trend_robustness.py`; Online Resource 1,
-Table S9):
+Post hoc, in `final_review/trend_robustness.csv` (`analysis/v10/review/trend_robustness.py`):
 
 * 2003-2023, the years before the LAI correction applies: the same six trends, with p = 0.001 to 0.032 and
   Benjamini-Hochberg q ≤ 0.048 (isoprene +0.82 % yr⁻¹, soil NO −0.43 % yr⁻¹);
@@ -88,8 +88,8 @@ negative lag-1 autocorrelation its intervals were narrower than the Theil-Sen in
 The drivers are the state means of the annual means of the monthly maps of the run: 2 m temperature (°C), PAR,
 soil water, and LAI averaged over cells with LAI > 0 (`notebook13_meso2024/drivers_annual_SC.csv`). The correlation of
 each class with each driver is Pearson's r on the raw annual series and on the series after removing a linear trend
-from both, so that a common trend does not create a correlation (`correlations_emissions_drivers.csv`). Article Figure S4
-(`fig_detrend.png`, notebook 13) shows the procedure with soil NO and temperature, whose linear trends have opposite
+from both, so that a common trend does not create a correlation (`correlations_emissions_drivers.csv`). The figure
+`fig_detrend.png` of notebook 13 shows the procedure with soil NO and temperature, whose linear trends have opposite
 signs: r = 0.30 on the raw series and 0.82 on the detrended ones.
 
 | Driver | r, detrended, over the 17 BVOC classes |
@@ -107,14 +107,14 @@ which lowers the raw correlation.
 **Partial correlations** (post hoc, `final_review/partial_correlations_detrended.csv`): with temperature held fixed, the
 correlation of each BVOC class with LAI ranges from 0.42 (MBO) to 0.75 (MT_CAMP); the detrended correlation between
 temperature and LAI is 0.51. LAI therefore adds information beyond temperature, but the two drivers covary, and the
-regression partition of the trends between them is unstable (article Section 3.6).
+regression partition of the trends between them is unstable (section 7.7).
 
-## 7.6 Standardised regression (report)
+## 7.6 Standardised regression
 
 `analysis/v10/report/10_report_numbers_v10.py` regresses each annual class series, in z-scores (population standard
 deviation, ddof = 0), on the four drivers in z-scores, without intercept. The coefficients β are comparable across
 drivers. Temperature has the largest β for every BVOC class (0.65 to 0.84), and R² is 0.88 to 0.94
-(`report/std_regression_v10.csv`, report keys `beta_*`, `R2_BVOC`).
+(`report/std_regression_v10.csv`; keys `beta_*` and `R2_BVOC` of `report/report_numbers_v10.csv`).
 
 Collinearity is measured by the variance inflation factor, VIF = 1/(1 − R²) of each driver regressed on the others:
 temperature 1.61, PAR 5.38, LAI 1.68, soil water 5.38 (key `VIF`). PAR and soil water are strongly anticorrelated
@@ -132,10 +132,10 @@ year asks whether a trend remains once the two drivers are accounted for: isopre
 
 ## 7.8 Mesoregions (n = 6)
 
-The SOA-precursor intensity of the six mesoregions is compared with their native-forest share (MapBiomas 2019):
+The SOA-precursor intensity of the six mesoregions is compared with their native-forest share (MapBiomas 2024):
 
-* Pearson r = 0.968, with the 95 % interval from Fisher's transformation, z = artanh(r) ± 1.96/√(n − 3), back-
-  transformed: 0.732 to 0.997 (`meso_r_fisher`);
+* Pearson r = 0.971, with the 95 % interval from Fisher's transformation, z = artanh(r) ± 1.96/√(n − 3), back-
+  transformed: 0.750 to 0.997 (`meso_r_fisher`);
 * Spearman ρ = 0.943, exact two-sided p = 0.017 by enumeration of the 720 permutations (the asymptotic p, 0.005, is
   not reliable at n = 6; `meso_spearman_exact`).
 
@@ -176,5 +176,6 @@ algorithm, five classes).
 ## 7.11 What is descriptive
 
 * Correlations over the six mesoregions, and the annual TROPOMI correlation (n = 7, r = −0.30), are descriptive.
-* Diagnostics defined after seeing the results are labelled post hoc in the logs and in the documents.
+* Diagnostics defined after seeing the results are labelled post hoc in their logs (`final_review.log`, the
+  `diagnostics/` logs and the folder `posthoc_review/`).
 * Every p-value is two-sided.

@@ -1,25 +1,23 @@
 #!/usr/bin/env python3
-"""12_maps_wf_style.py - every map of the biogenic manuscript and report in the layout of the biomass-burning article
-(wf_style.py), with the colour ramps of the biogenic figures, the scale bar inside the frame at the bottom right of every
+"""12_maps_wf_style.py - every map of the Santa Catarina example in the common layout (wf_style.py), with the colour ramps of the biogenic figures, the scale bar inside the frame at the bottom right of every
 map, mesoregion labels at the interior point farthest from the edges, Jenks classes in the municipal maps, one source note
 per figure and one legend per row when the panels of a row share their classes, and larger lettering in Figure 5; in fig8
 the legend of each row is in its left map, the only place where the compound is named.
 
-Manuscript (Portuguese and English; article Figures 7, 8 and 9, redrawn in the journal format by ijest/ijest_figures.py;
-also report Figures 7, 9 and 10):
-  fig5  SOA-precursor intensity by mesoregion, 2003-2025 mean (article Table 2, report Table 3; mesoregions with the coastal islands)
+Portuguese and English:
+  fig5  SOA-precursor intensity by mesoregion, 2003-2025 mean (table3_mesoregions_soa.csv of notebook 13; mesoregions with the coastal islands)
   fig7  BVOC by municipality, 2025: a) total, b) intensity (Jenks natural breaks, 5 classes)
   fig8  isoprene, CO and soil NO by municipality, 2019 and 2025 (Jenks natural breaks of both years together)
-Report only (Portuguese):
-  fig9   2025 intensity by group of compounds (quintile classes of the state cells, per group; report Figure 11)
-  fig12  a) MapBiomas tree fraction, b) SOA-precursor intensity in 2025 (report Figure 14)
+Portuguese only (folder pt_report):
+  fig9   2025 intensity by group of compounds (quintile classes of the state cells, per group)
+  fig12  a) MapBiomas tree fraction, b) SOA-precursor intensity in 2025
   figA2..figA8  monthly input fields of 2025 (equal-interval classes shared by the 12 months)
   figA9  BVOC intensity by year (quintile classes of the state cells of all years)
 Inputs: the outputs of notebook 13 with sc_mesoregions_2024.gpkg (MEGAN_SC_NB13: tables and annual_grids_cache.npz),
 data/boundaries, and the 2025 inputs of the production run (data/run_v10/2025/inputs).
 Outputs: reproduced/figures/{pt,en}/fig5.png, fig7.png, fig8.png; reproduced/figures/pt_report/fig9.png, fig12.png,
 figA2-figA9.png; class limits in reproduced/figures/maps_class_limits.csv (published copies in results/v10/figures)."""
-import os, sys, textwrap
+import os, sys, json, textwrap
 import numpy as np, pandas as pd, geopandas as gpd, rasterio, matplotlib as mpl
 mpl.use('Agg')
 import matplotlib.pyplot as plt
@@ -94,7 +92,7 @@ OCEAN_LABEL = {'Grande Florianópolis': (-47.72, -27.22), 'Sul Catarinense': (-4
 F5_XLIM = (-54.0, -47.0)                                       # Figure 5 only: room for the two ocean labels
 for lang, L in TX.items():
     od = os.path.join(FIG, lang); os.makedirs(od, exist_ok=True)
-    # ---- Figure 5: mesoregions (layout of Figure 3 of the biomass-burning article)
+    # ---- Figure 5: mesoregions
     g = mesog.assign(v=mesog.name_meso.map(T3.intensity_kg_ha), t=mesog.name_meso.map(T3.SOA)); assert g.v.notna().all()
     bnds = np.arange(3 * np.floor(g.v.min() / 3), 3 * np.ceil(g.v.max() / 3) + 1, 3)
     cmap = ListedColormap(W.ramp('YlOrRd', len(bnds) - 1)); norm = BoundaryNorm(bnds, cmap.N)
@@ -119,7 +117,7 @@ for lang, L in TX.items():
     ax.xaxis.label.set_size(11); ax.yaxis.label.set_size(11)
     fig.tight_layout(); W.save(fig, os.path.join(od, 'fig5.png'))
     LIM.append(dict(figure='fig5', panel='SOA intensity', limits=list(bnds)))
-    # ---- Figure 7: municipalities, 2025 (two stacked panels, as Figure 6 of the biomass-burning article)
+    # ---- Figure 7: municipalities, 2025 (two stacked panels)
     fig, axs = plt.subplots(2, 1, figsize=(8.6, 11.2), dpi=300)
     for ax, col, ttl, unit, cm in ((axs[0], 'BVOC', L['f7a'], L['t'], 'Greens'), (axs[1], 'intensity_kg_ha', L['f7b'], L['kg'], 'YlGn')):
         v = mun.NM_MUN.map(MU[col]).values; q = W.fisher_jenks(v, 5)
@@ -128,7 +126,7 @@ for lang, L in TX.items():
         LIM.append(dict(figure='fig7', panel=col, limits=[round(float(x), 3) for x in q]))
     axs[1].text(0.0, -0.105, L['n7'], transform=axs[1].transAxes, fontsize=6.3, va='top', ha='left')   # one note for both panels
     fig.tight_layout(h_pad=1.5); W.save(fig, os.path.join(od, 'fig7.png'))
-    # ---- Figure 8: isoprene, CO and soil NO, 2019 and 2025 (grid as Figure 6 of the biomass-burning article; one compound per row,
+    # ---- Figure 8: isoprene, CO and soil NO, 2019 and 2025 (one compound per row,
     #      2019 and 2025 side by side; cartographic elements and source in the bottom row)
     fig = plt.figure(figsize=(8.6, 9.0), dpi=300); gs = fig.add_gridspec(4, 2, height_ratios=[1, 1, 1, 0.16], hspace=0.03, wspace=0.03)
     for j, (k, cm, nm) in enumerate((('ISOP', 'Greens', L['iso']), ('CO', 'Blues', L['co']), ('NO', 'Reds', L['no']))):
@@ -152,7 +150,7 @@ for lang, L in TX.items():
     W.save(fig, os.path.join(od, 'fig8.png'))
     print(lang, 'figures 5, 7, 8 ->', od)
 
-# ======================= report-only maps (Portuguese) on the model grid
+# ======================= Portuguese-only maps (pt_report) on the model grid
 lat, lon = c.grid(); SC = c.sc_mask(lat, lon); A = c.cell_area_m2(lat, lon)
 EXT = [lon[0] - 0.0125, lon[-1] + 0.0125, lat[0] - 0.0125, lat[-1] + 0.0125]
 Z = np.load(P.grid_cache())
@@ -213,9 +211,19 @@ def monthly(var):
             a = d.read((d.descriptions.index(var) + 1) if var != 'LAI' else 1).astype(float)[::-1]
         out.append(np.where(SC, a, np.nan))
     return out
-NOTE_MET = 'Células em branco: sem dado do ERA5-Land (faixa costeira); no modelo, recebem a meteorologia da célula válida mais próxima (Seção 2.4).'
+NOTE_MET = 'Células em branco: sem dado do ERA5-Land (faixa costeira); no modelo, recebem a meteorologia da célula válida mais próxima (FIX-1 de src/megan_sc/fixes.py).'
+def _variant(year):
+    """Variant recorded in the provenance file of the run for that year ('base', 'lai_viirs', ...), or None."""
+    f = os.path.join(V, str(year), 'provenance_v10.json')
+    if not os.path.exists(f):
+        return None
+    with open(f, encoding='utf-8') as fh:
+        return json.load(fh).get('variant')
+NOTE_LAI = ('IAF mensal usado na execução. Em 2025, IAF do MODIS corrigido com o VIIRS: média de 2013–2023 do MODIS na célula para o mês, multiplicada pela razão de anomalia do VIIRS (Suomi NPP) da zona da célula (cadernos 16 e 17). IAF nulo nas células sem vegetação.'
+            if _variant(2025) == 'lai_viirs' else
+            'IAF mensal do MODIS (MCD15A3H) usado na execução, sem correção. IAF nulo nas células sem vegetação.')
 PANELS = [('figA2', 'LAI', lambda a: a, 'IAF (m² m⁻²)', 'YlGn',
-           'IAF mensal usado na execução. Em 2025, IAF do MODIS corrigido com o VIIRS: média de 2013–2023 do MODIS na célula para o mês, multiplicada pela razão de anomalia do VIIRS (Suomi NPP) da zona da célula (Seção 2.3.3 do relatório). IAF nulo nas células sem vegetação.'),
+           NOTE_LAI),
           ('figA3', 'TEMP2', lambda a: a - 273.15, 'Temperatura (°C)', 'RdYlBu_r', NOTE_MET),
           ('figA4', 'PAR', lambda a: a, 'PAR (W m⁻²)', 'magma', 'PAR = 0,45 × radiação de onda curta descendente, com o passo das 00 UTC desacumulado. ' + NOTE_MET),
           ('figA5', 'SOILM', lambda a: a, 'Umidade do solo (m³ m⁻³)', 'BrBG', NOTE_MET),

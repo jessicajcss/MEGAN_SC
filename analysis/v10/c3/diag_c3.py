@@ -1,17 +1,18 @@
 import os, sys, glob, json, re
 import numpy as np, pandas as pd
 sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), '..')); import _paths as P
-src = open(os.path.join(P.NB_SRC, '11_verify_run.py'), encoding='utf-8').read()
-# take the helper definitions only (between the imports and the main loop)
-start = src.index('import numpy as np, pandas as pd, rasterio'); end = src.index("years = sorted(int(os.path.basename(p))")
+src = P.notebook_source('11_verify_run.py')
+# take the configuration and helper definitions only (between the settings cell and the main loop)
+start = src.index('import json, yaml\nimport numpy as np, pandas as pd, rasterio'); end = src.index("years = sorted(int(os.path.basename(p))")
 code = src[start:end]
 code = re.sub(r'^# %%.*$', '', code, flags=re.M)
 NEW_ROOT = P.RUN
 SC_GPKG = os.path.join(P.BND, 'sc_state_ibge.gpkg')
 import common as C                                    # RHO_ISOP of notebook 11 (cell 1) = common.RHO; C3 is a ratio test
-g = dict(NEW_ROOT=NEW_ROOT, SC_GPKG=SC_GPKG, os=os, glob=glob, json=json, RHO_ISOP=C.rho('ISOP'))
+g = dict(REPO_DIR=P.REPO, RUN_CONFIG=os.path.join('config', 'santa_catarina_2003_2025.yaml'), NEW_ROOT=NEW_ROOT,
+         BOUNDARY=SC_GPKG, REPORT_DIR=None, os=os, glob=glob, json=json, RHO_ISOP=C.rho('ISOP'))
 exec(code, g)
-read_annual, south_first_tif, sc_mask, nbr_median, cell_area = (g[k] for k in ('read_annual','south_first_tif','sc_mask','nbr_median','cell_area'))
+read_annual, south_first_tif, sc_mask, nbr_median, cell_area = (g[k] for k in ('read_annual','south_first_tif','region_mask','nbr_median','cell_area'))
 from scipy import stats
 years = [int(a) for a in sys.argv[1:]] or list(range(2003, 2026))
 rows = []

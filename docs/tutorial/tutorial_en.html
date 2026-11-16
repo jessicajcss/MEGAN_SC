@@ -12,7 +12,7 @@
   <div>
     <span class="pill">MEGAN_SC repository</span><span class="pill">First public version</span><span class="pill">November 2026</span>
     <h1 style="margin-top:14mm">MEGAN_SC<br>from leaf to inventory</h1>
-    <div class="sub">An illustrated tutorial to understand, reproduce and adapt the biogenic emission inventory of Santa Catarina, Brazil (2003 to 2025)</div>
+    <div class="sub">An illustrated tutorial to understand the MEGAN method, reproduce the worked example of Santa Catarina, Brazil (2003 to 2025), and build the biogenic emission inventory of any region and period</div>
   </div>
   <div class="svgwrap" style="margin:0">
     <svg viewBox="0 0 600 150" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Inter" font-size="13">
@@ -43,13 +43,13 @@
   <span class="chapnum">Before you start</span>
   <h1 class="chap">How to use this tutorial</h1>
   <p>This material speaks to two readers at once. Newcomers find plain-language explanations, examples and drawings. Readers who already work with emission inventories find, in the violet boxes, the equations, the files and the functions of the code.</p>
-  <p>Pick a trail. Each one ends in a concrete result, and you can stop at the end of any chapter. The 13 technical chapters in <code>docs/tutorial/</code> go deeper into every part, with the equations and the source files.</p>
+  <p>Pick a trail. Each one ends in a concrete result, and you can stop at the end of any chapter. The 12 technical chapters in <code>docs/tutorial/</code> go deeper into every part, with the equations and the source files. Every path, file and command named here is in the repository.</p>
 
   <div class="grid4">
-    <div class="trail" style="background:#1f7a3a"><h4>🚀 Quick trail</h4><p><b>about 30 min of reading</b><br>Chapters 1, 4 and 5. You install, recompute the published results and check the checksums.</p></div>
-    <div class="trail" style="background:#1f5fa8"><h4>🔬 Method trail</h4><p><b>about 1.5 h of reading</b><br>Chapters 2, 3, 6 and 8. You learn where each number comes from and how it was tested.</p></div>
-    <div class="trail" style="background:#0f7c80"><h4>☁️ Cloud trail</h4><p><b>about 1 h of reading, plus hours of running</b><br>Chapters 6 and 7. You run the notebooks in Google Colab, with Earth Engine.</p></div>
-    <div class="trail" style="background:#6a3fb5"><h4>🌎 Your-region trail</h4><p><b>about 1 h of reading, plus the run</b><br>Chapters 7 and 9. You build the same inventory for another region.</p></div>
+    <div class="trail" style="background:#1f7a3a"><h4>🚀 Quick trail</h4><p><b>about 30 min of reading</b><br>Chapters 1, 4 and 5. You install, recompute the results of the example and check the checksums.</p></div>
+    <div class="trail" style="background:#1f5fa8"><h4>🔬 Method trail</h4><p><b>about 1.5 h of reading</b><br>Chapters 2, 3, 9 and 11. You learn how the model works, how to read its results and what they support.</p></div>
+    <div class="trail" style="background:#0f7c80"><h4>☁️ Cloud trail</h4><p><b>about 1 h of reading, plus hours of running</b><br>Chapters 6 and 7. You run the model in Google Colab, with Earth Engine.</p></div>
+    <div class="trail" style="background:#6a3fb5"><h4>🌎 Your-region trail</h4><p><b>about 1 h of reading, plus the run</b><br>Chapters 6, 7, 8 and 9. You build the inventory of another region and period.</p></div>
   </div>
 
   <h2>What each box means</h2>
@@ -68,15 +68,16 @@
     <a href="#c2"><b>2</b> MEGANv3.21 in plain words</a>
     <a href="#c3"><b>3</b> The input data</a>
     <a href="#c4"><b>4</b> Inside the repository</a>
-    <a href="#c5"><b>5</b> Hands on: reproduce the results</a>
-    <a href="#c6"><b>6</b> The notebooks, from 10 to 23</a>
-    <a href="#c7"><b>7</b> Google Colab with Earth Engine</a>
-    <a href="#c8"><b>8</b> Reading and checking the results</a>
-    <a href="#c9"><b>9</b> The inventory of your region</a>
-    <a href="#c10"><b>10</b> Limitations</a>
-    <a href="#c11"><b>11</b> When something goes wrong</a>
-    <a href="#c12"><b>12</b> Glossary</a>
-    <a href="#c13"><b>13</b> References</a>
+    <a href="#c5"><b>5</b> Hands on: reproduce the example</a>
+    <a href="#c6"><b>6</b> Google Drive, Colab and Earth Engine</a>
+    <a href="#c7"><b>7</b> Run the model: notebooks 10, 11 and 25</a>
+    <a href="#c8"><b>8</b> The inventory of your region</a>
+    <a href="#c9"><b>9</b> Reading the results</a>
+    <a href="#c10"><b>10</b> The notebooks of the example</a>
+    <a href="#c11"><b>11</b> Limitations</a>
+    <a href="#c12"><b>12</b> When something goes wrong</a>
+    <a href="#c13"><b>13</b> Glossary</a>
+    <a href="#c14"><b>14</b> References</a>
     <a href="#final"><b>✓</b> Final checklist</a>
   </div>
   <div class="box warn"><span class="t">⚠️ One rule for the whole tutorial</span>
@@ -89,9 +90,9 @@
   <span class="chapnum">Chapter 1</span>
   <h1 class="chap">The inventory on one page</h1>
   <div class="box goal"><span class="t">🎯 In this chapter · 5 min</span>
-  <ul><li>what the repository computes and who it is for;</li><li>why biogenic emissions matter for ozone and PM<sub>2.5</sub>;</li><li>the main numbers and the correction of the 2024 and 2025 LAI.</li></ul></div>
+  <ul><li>what the repository computes and who it is for;</li><li>why biogenic emissions matter for ozone and PM<sub>2.5</sub>;</li><li>the main numbers of the Santa Catarina example and the correction of its 2024 and 2025 LAI.</li></ul></div>
 
-  <p><b>MEGAN_SC</b> estimates how much the vegetation and soils of Santa Catarina release into the air as <b>biogenic volatile organic compounds (BVOC)</b>, soil NO and CO. The calculation uses the MEGANv3.21 code (Guenther 2024b), rewritten in Python, on a 0.025° grid (about 2.8 km) with 13,970 cells inside the state. It runs every 3 hours, from 2003 to 2025. The same files feed the scientific article and the state inventory report, whose base year is 2025.</p>
+  <p><b>MEGAN_SC</b> estimates how much the vegetation and soils of a region release into the air as <b>biogenic volatile organic compounds (BVOC)</b>, soil NO and CO. The calculation uses the MEGANv3.21 code (Guenther 2024b), rewritten in Python, with inputs read from Google Earth Engine, for any region given by an outline file and any period given in months. The repository ships one complete worked example: Santa Catarina, Brazil, on a 0.025° grid (about 2.8 km) with 13,970 cells inside the state, every 3 hours from 2003 to 2025. Its numbers illustrate this tutorial, and chapter 5 recomputes all of them.</p>
 
   <div class="box lay"><span class="t">🗣️ In plain words</span>
   <p>Trees, grasslands and crops release light gases into the air, such as isoprene and the terpenes that give pine its smell. MEGAN estimates how much comes out of each small piece of the map, hour by hour, from the type of vegetation, the amount of leaves, the temperature and the light.</p></div>
@@ -119,7 +120,7 @@
   </svg></div>
   <p>In the atmosphere, BVOC react with the OH radical, with ozone and with the nitrate radical (Atkinson and Arey 2003). With nitrogen oxides (NOx) and sunlight, these reactions take part in ozone formation (Sillman 1999). Part of the oxidation products condenses into secondary organic aerosol, a component of fine particulate matter (Hallquist et al. 2009; Carlton et al. 2009). Ozone and PM<sub>2.5</sub> have guideline values of the World Health Organization (WHO 2021).</p>
 
-  <h2>The numbers of 2003 to 2025</h2>
+  <h2>The example in numbers: Santa Catarina, 2003 to 2025</h2>
   <p class="small">The years 2024 and 2025 use the LAI corrected with VIIRS (chapter 3). The amber tiles are 2025 values.</p>
   <div class="kpi">
     <div><b>657 kt yr⁻¹</b><span>mean BVOC emission of the state</span></div>
@@ -128,16 +129,16 @@
     <div><b>+0.88% yr⁻¹</b><span>isoprene trend (Theil-Sen); soil NO: −0.37% yr⁻¹</span></div>
   </div>
   <div class="kpi">
-    <div class="flag"><b>672.9 kt</b><span>of BVOC in 2025, the base year of the report</span></div>
+    <div class="flag"><b>672.9 kt</b><span>of BVOC in 2025, the last year of the series</span></div>
     <div class="flag"><b>228.6 kt</b><span>of isoprene in 2025</span></div>
     <div><b>7.9%</b><span>interannual coefficient of variation; peaks in 2019 and 2024 (739 kt)</span></div>
     <div><b>13,970</b><span>0.025° cells with their centre inside the state</span></div>
   </div>
-  <p class="small muted">Sources: <code>results/v10/notebook13_meso2024/manuscript_numbers.csv</code> (keys <code>bvoc_mean_kt</code>, <code>mean_ISOP</code>, <code>mean_MT</code>, <code>soa_total_kt</code>, <code>trend_ISOP</code>, <code>trend_NO</code>, <code>y2025_text</code>, <code>bvoc_cv_pct</code>, <code>bvoc_max</code>, <code>grid_facts</code>). Isoprene includes the factor ρ = 0.96 (chapter 2).</p>
+  <p class="small muted">Sources: <code>results/v10/notebook13_meso2024/key_numbers.csv</code> (keys <code>bvoc_mean_kt</code>, <code>mean_ISOP</code>, <code>mean_MT</code>, <code>soa_total_kt</code>, <code>trend_ISOP</code>, <code>trend_NO</code>, <code>y2025_text</code>, <code>bvoc_cv_pct</code>, <code>bvoc_max</code>, <code>grid_facts</code>). Isoprene includes the factor ρ = 0.96 (chapter 2).</p>
 
   <div class="box warn"><span class="t">⚠️ The LAI of 2024 and 2025 was corrected</span>
-  <p>In 2025, the MODIS leaf area index (LAI) was 12.1% below its 2013-2023 mean, and the VIIRS LAI was 1.8% below (notebook 16). The MODIS decrease was treated as a defect of the recent record of that sensor. The correction by the VIIRS anomaly raises the state mean LAI by 5.0% (2024) and 11.6% (2025). Notebook 17 recomputed 2024 and 2025 with the corrected LAI, and notebook 19 installed the two years in the run. In 2025, total BVOC rose by 7.1% and isoprene by 4.3% (Online Resource 1, Table S6).</p>
-  <p>The years 2003 to 2023 did not change. The first computation of 2024 and 2025, with the MODIS LAI, is kept in <code>data/run_v10_modis_lai_2024_2025/</code> and its results in <code>results/v10_modis_lai_2024_2025/</code> (chapters 3 and 6).</p></div>
+  <p>In 2025, the MODIS leaf area index (LAI) was 12.1% below its 2013-2023 mean, and the VIIRS LAI was 1.8% below (notebook 16). The MODIS decrease was treated as a defect of the recent record of that sensor. The correction by the VIIRS anomaly raises the state mean LAI by 5.0% (2024) and 11.6% (2025). Notebook 17 recomputed 2024 and 2025 with the corrected LAI, and notebook 19 installed the two years in the run. In 2025, total BVOC rose by 7.1% and isoprene by 4.3% (<code>results/v10/notebook19/lai_sensitivity_table2_2024_2025.csv</code>).</p>
+  <p>The years 2003 to 2023 did not change. The first computation of 2024 and 2025, with the MODIS LAI, is kept in <code>data/run_v10_modis_lai_2024_2025/</code> and its results in <code>results/v10_modis_lai_2024_2025/</code> (chapters 3 and 10).</p></div>
 
   <div class="box idea"><span class="t">💡 Key idea</span>
   <p>The inventory measures emission, the mass that leaves the vegetation and the soil. The concentration of ozone or PM<sub>2.5</sub> in the air also depends on chemistry, transport and the other sources. To get there, these emissions enter an air-quality model as input.</p></div>
@@ -179,7 +180,7 @@
     </g>
     <g stroke="#8a94a6" stroke-width="2" fill="none" marker-end="url(#ar2)"><path d="M561 95 V125"/><path d="M153 156 H173"/></g>
   </svg></div>
-  <p>Isoprene also gets the factor γ<sub>CO2</sub>, and the ethanol and acetaldehyde class gets the bidirectional-exchange factor γ<sub>BD</sub>. The stress factors of the Fortran equal 1 in this run.</p>
+  <p>Isoprene also gets the factor γ<sub>CO2</sub>, and the ethanol and acetaldehyde class gets the bidirectional-exchange factor γ<sub>BD</sub>. The stress factors of the Fortran equal 1 in the runs of this repository.</p>
 
   <div class="box lay"><span class="t">🗣️ In plain words</span>
   <p>Think of a recipe. EF is the standard recipe of each type of vegetation. The γ factors say whether, at that hour, it is warmer or colder, whether there is more or less light, whether the leaves are young or mature and whether water is short. More leaves mean more emission, so LAI multiplies everything.</p></div>
@@ -211,13 +212,13 @@
   <h2>2.3 Leaf age, soil water and CO<sub>2</sub></h2>
   <div class="grid3">
     <div class="card"><h4>🍃 γ<sub>age</sub></h4><p>Young leaves emit little isoprene and much monoterpene and methanol. MEGAN splits the foliage into new, growing, mature and old leaves from the change of LAI between the previous month and the current one. With a steady LAI, γ<sub>age</sub> of isoprene is 0.95.</p></div>
-    <div class="card"><h4>💧 γ<sub>SM</sub></h4><p>Below the wilting point plus 0.04 m³ m⁻³, the emission falls. The run used a constant wilting point of 0.12 m³ m⁻³. The monthly state mean stayed between 0.992 and 1.000 (test S3).</p></div>
-    <div class="card"><h4>🫧 γ<sub>CO2</sub></h4><p>MEGANv3.21 fixes CO<sub>2</sub> at 400 ppm, where γ<sub>CO2</sub> = 1, and the run kept that choice. The same formula would give 1.025 at 376 ppm and 0.979 at 425 ppm (Heald et al. 2009 discuss this response).</p></div>
+    <div class="card"><h4>💧 γ<sub>SM</sub></h4><p>Below the wilting point plus 0.04 m³ m⁻³, the emission falls. The example used a constant wilting point of 0.12 m³ m⁻³, and its monthly state mean stayed between 0.992 and 1.000 (test S3).</p></div>
+    <div class="card"><h4>🫧 γ<sub>CO2</sub></h4><p>MEGANv3.21 fixes CO<sub>2</sub> at 400 ppm, where γ<sub>CO2</sub> = 1, and notebook 10 keeps that choice. The same formula would give 1.025 at 376 ppm and 0.979 at 425 ppm (Heald et al. 2009 discuss this response).</p></div>
   </div>
 
   <h2>2.4 Soil NO and speciation</h2>
   <p>Soil NO follows Yienger and Levy (1995), as coded in MEGANv3.21, on the path that uses air temperature only. South of 23° S, the Fortran compares the day of the year with month-day constants, which makes the growing season degenerate. MEGAN_SC uses the November to May season and clips the fertiliser factor at zero. This is a documented and intended departure.</p>
-  <p>The 19 MEGAN classes are split into 201 compounds, converted to mass and summed back by class. The documents group the classes as follows.</p>
+  <p>The 19 MEGAN classes are split into 201 compounds, converted to mass and summed back by class. The results group the classes as follows.</p>
   <table>
     <tr><th style="width:44mm">Group</th><th>MEGAN classes</th></tr>
     <tr><td>Isoprene</td><td><code>ISOP</code></td></tr>
@@ -230,7 +231,7 @@
   <p>BVOC is the sum of the 17 classes left once NO and CO are set apart. SOA precursors are monoterpenes plus sesquiterpenes.</p>
 
   <div class="box expert"><span class="t">🧠 For specialists · the isoprene factor ρ</span>
-  <p>The MEGAN equation holds a canopy loss and production factor, ρ. For isoprene, Guenther et al. (2006) recommended the constant value 0.96. The MEGANv3.21 code applies ρ = 1. The files of <code>data/run_v10</code> hold isoprene as the code computes it, and every reading of the run multiplies isoprene by 0.96 (<code>RHO_ISOP</code> in notebooks 11, 13, 14, 15 and 18; <code>RHO</code> in <code>analysis/v10/common.py</code>). Every published number includes the factor.</p></div>
+  <p>The MEGAN equation holds a canopy loss and production factor, ρ. For isoprene, Guenther et al. (2006) recommended the constant value 0.96. The MEGANv3.21 code applies ρ = 1. The files written by notebook 10 hold isoprene as the code computes it, and every reading of a run multiplies isoprene by 0.96 (<code>RHO_ISOP</code> in notebooks 11, 13, 14, 15 and 25; <code>RHO</code> in <code>analysis/v10/common.py</code>). Every number of <code>results/v10</code> includes the factor; the comparison with BRAIN leaves it out on both sides.</p></div>
 
   <h2>2.5 The eight procedures FIX-1 to FIX-8</h2>
   <p>The file <code>src/megan_sc/fixes.py</code> gathers eight procedures that prepare the inputs and run the engine faithfully to MEGANv3.21 and to the ERA5-Land conventions.</p>
@@ -258,7 +259,7 @@ print(g.gamtld(303.15, 297.0, isop))                 <span class="c"># leaf at 3
 print(g.gamp(1500.0, 400.0))                         <span class="c"># strong light, near the plateau</span>
 print(g.gamtli(340.0, pine), g.gamtli(340.0, sqt))   <span class="c"># what would happen without FIX-1</span>
 print(g.gamma_a(3.0, 3.0, 297.0, isop, 12))          <span class="c"># leaf age with steady LAI</span>
-print(g.gamma_co2(376.0), g.gamma_co2(425.0))        <span class="c"># CO2 (off in the run)</span>
+print(g.gamma_co2(376.0), g.gamma_co2(425.0))        <span class="c"># CO2 (off in notebook 10)</span>
 EOF</pre>
   <p>Expected output, rounded: <code>1.0543</code>, <code>1.0160</code>, <code>39.8 525.6</code>, <code>0.95</code>, <code>1.0250 0.9794</code>. The third line shows why FIX-1 exists. A cell at 340 K and without light would emit about 40 times more α-pinene and 526 times more caryophyllene than it should.</p></div>
   <div class="box expert"><span class="t">🧠 For specialists</span>
@@ -271,37 +272,37 @@ EOF</pre>
   <span class="chapnum">Chapter 3</span>
   <h1 class="chap">The input data</h1>
   <div class="box goal"><span class="t">🎯 In this chapter · 15 min</span>
-  <ul><li>where each input comes from and how the model uses it;</li><li>the 0.025° grid and the state mask;</li><li>the check of the 2024-2025 LAI against VIIRS and its correction.</li></ul></div>
+  <ul><li>where each input comes from and how the model uses it;</li><li>the grid and the mask, with the example of Santa Catarina;</li><li>the check of the 2024-2025 LAI of the example against VIIRS and its correction.</li></ul></div>
 
   <table>
     <tr><th style="width:38mm">Input</th><th style="width:44mm">Product</th><th>How the model uses it</th></tr>
     <tr><td>Weather</td><td>ERA5-Land hourly (Muñoz-Sabater et al. 2021), 0.1°</td><td>2 m temperature, short-wave radiation, 10 m wind, pressure, humidity and soil water; sampled every 3 h</td></tr>
     <tr><td>Leaf area index (LAI)</td><td>MODIS MCD15A3H version 6.1 (Myneni et al. 2021), 500 m, 4 days</td><td>monthly mean of the good-quality retrievals in each cell; multiplies every class and sets leaf age</td></tr>
     <tr><td>Independent LAI</td><td>VIIRS version 2 of Suomi NPP (VNP15A2H; Myneni 2023b), NOAA-20 (VJ115A2H; Myneni 2023a) and NOAA-21 (VJ215A2H; Myneni 2026), 500 m, 8 days</td><td>check of the LAI from 2013 to 2025 (notebook 16, Suomi NPP), correction of 2024 and 2025 (notebook 17) and check of the correction with the other two satellites (notebook 22)</td></tr>
-    <tr><td>Land cover</td><td>MapBiomas Collection 10 (Souza Junior et al. 2020), 30 m, annual</td><td>fractions of tree, shrub, herb and crop; 2025 uses the 2024 map</td></tr>
+    <tr><td>Land cover</td><td>MapBiomas Collection 10 (Souza Junior et al. 2020), 30 m, annual, Brazil; elsewhere MODIS MCD12Q1 (Sulla-Menashe et al. 2019), 500 m</td><td>fractions of tree, shrub, herb and crop; a year outside the product range uses the nearest one (in the example, 2025 uses the 2024 map)</td></tr>
     <tr><td>Emission factors</td><td>MEGAN 3.2 input files: tables and ecotype map (Guenther 2024a)</td><td>EF of each class by ecotype and growth form; split into 201 compounds</td></tr>
-    <tr><td>Boundaries</td><td>IBGE, 2024 municipal mesh (IBGE 2025)</td><td>state mask and sums by municipality and mesoregion</td></tr>
+    <tr><td>Boundaries</td><td>your outline file; in the example, IBGE, 2024 municipal mesh (IBGE 2025)</td><td>region mask and sums by zone (municipality, mesoregion)</td></tr>
     <tr><td>HCHO (evaluation only)</td><td>TROPOMI L3 OFFL (De Smedt et al. 2018)</td><td>comparison with modelled isoprene (notebook 14)</td></tr>
   </table>
   <p>Every input except the MEGAN tables is read through Google Earth Engine (Gorelick et al. 2017), by the modules of <code>src/megan_sc/gee/</code> and by notebooks 10, 14, 16, 17, 20 and 21. The exception is the check of notebook 22, which reads the VIIRS files of NASA Earthdata.</p>
 
-  <h2>3.1 The grid and the state mask</h2>
+  <h2>3.1 The grid and the mask: the example</h2>
   <div class="grid2">
     <div class="card"><h4>📐 The grid</h4><p>144 rows × 224 columns of 0.025°. Cell centres from 29.4875° S to 25.9125° S and from 53.8875° W to 48.3125° W. Inside the state lie 13,970 cells (43.3% of the box), with 95,969 km² of grid area.</p></div>
     <div class="card"><h4>🗺️ The mask</h4><p>A cell belongs to the state when its centre lies inside the IBGE polygon. Municipal and mesoregion totals split each cell by the area it has inside each polygon.</p></div>
   </div>
   <div class="box warn"><span class="t">⚠️ Watch out · grid orientation</span>
   <p>In NetCDF files and NumPy arrays, row 0 is at the <b>south</b>. In GeoTIFF files, row 0 is at the <b>north</b>. Apply <code>numpy.flipud</code> to a GeoTIFF field before combining it with a NetCDF field. GIS programs read both correctly.</p></div>
-  <figure class="w60"><img src="img/study_area_en.jpg" alt="Study area"><figcaption>MapBiomas land use and land cover in 2019 (a) and tree fraction on the model grid (b). File <code>results/v10/figures/en/fig_study_area.png</code>, drawn by <code>analysis/v10/maps/study_area_map.py</code>.</figcaption></figure>
+  <figure class="w60"><img src="img/study_area_en.jpg" alt="Study area"><figcaption>MapBiomas land use and land cover in 2024 (a) and tree fraction on the model grid (b). File <code>results/v10/figures/en/fig_study_area.png</code>, drawn by <code>analysis/v10/maps/study_area_map.py</code>.</figcaption></figure>
 
   <h2>3.2 Two features of ERA5-Land</h2>
   <ul>
-    <li><b>Land only.</b> Cells on the coast, on lagoons and on islands lack data in some variables. In the run, 190 vegetated cells of the state (1,301 km²; 191 in 2021 and 2022) take their weather from the nearest valid cell (FIX-1).</li>
+    <li><b>Land only.</b> Cells on the coast, on lagoons and on islands lack data in some variables. In the example, 190 vegetated cells of the state (1,301 km²; 191 in 2021 and 2022) take their weather from the nearest valid cell (FIX-1).</li>
     <li><b>Accumulated radiation.</b> Short-wave radiation is accumulated from 00 UTC, and the 00 UTC field holds the previous 24 h (ECMWF 2025). The hourly flux is the difference between consecutive hours, except at 01 UTC (FIX-8).</li>
   </ul>
 
   <h2>3.3 The LAI of 2024 and 2025: a check against VIIRS</h2>
-  <p>Notebook 16 compared the monthly LAI of VIIRS, on board Suomi NPP, with the MODIS LAI used by the first run, on the same grid, from 2013 to 2025. VIIRS was developed for continuity of the MODIS record (Román et al. 2024). The comparison used the 2013-2023 mean as reference and set apart the cells dominated (fraction ≥ 60%) by trees, by herbaceous vegetation or by crops. From 2013 to 2023, the annual deviations of the two sensors correlated at 0.84 to 0.91 in these groups and in the whole state.</p>
+  <p>Notebook 16 compared the monthly LAI of VIIRS, on board Suomi NPP, with the MODIS LAI used by the first run of the example, on the same grid, from 2013 to 2025. VIIRS was developed for continuity of the MODIS record (Román et al. 2024). The comparison used the 2013-2023 mean as reference and set apart the cells dominated (fraction ≥ 60%) by trees, by herbaceous vegetation or by crops. From 2013 to 2023, the annual deviations of the two sensors correlated at 0.84 to 0.91 in these groups and in the whole state.</p>
   <table>
     <tr><th>Deviation from 2013-2023</th><th>MODIS 2024</th><th>VIIRS 2024</th><th>MODIS 2025</th><th>VIIRS 2025</th></tr>
     <tr><td>All cells</td><td>−5.8%</td><td>−1.2%</td><td>−12.1%</td><td>−1.8%</td></tr>
@@ -315,7 +316,7 @@ EOF</pre>
 
   <h3>The correction</h3>
   <div class="formula" style="font-size:13pt">LAI*(cell, year, month) = MODIS 2013-2023 mean (cell, month) × VIIRS ratio (zone, year, month)</div>
-  <p>The VIIRS ratio is the VIIRS LAI of the month of the corrected year divided by its 2013-2023 mean for the same month, in one of four zones: cells dominated by trees, by herbaceous vegetation, by crops, and the rest of the state. The form of the correction was chosen by a hindcast. Each year of 2013-2023 was predicted from the other ten, and eleven candidates were compared. The correction by growth-form zones had the lowest root-mean-square error, 0.362 m² m⁻², against 0.386 m² m⁻² for the MODIS mean alone. The corrected LAI is 5.0% (2024) and 11.6% (2025) above the MODIS LAI used by the first run. Notebook 22 repeated the correction with the VIIRS of NOAA-20 and NOAA-21 and 2023 as reference. In 2025, the three VIIRS records gave a statewide February-December LAI of 3.24 to 3.31 m² m⁻², against 3.22 m² m⁻² for the published correction, which was kept (Online Resource 1, Table S7).</p>
+  <p>The VIIRS ratio is the VIIRS LAI of the month of the corrected year divided by its 2013-2023 mean for the same month, in one of four zones: cells dominated by trees, by herbaceous vegetation, by crops, and the rest of the state. The form of the correction was chosen by a hindcast. Each year of 2013-2023 was predicted from the other ten, and eleven candidates were compared. The correction by growth-form zones had the lowest root-mean-square error, 0.362 m² m⁻², against 0.386 m² m⁻² for the MODIS mean alone. The corrected LAI is 5.0% (2024) and 11.6% (2025) above the MODIS LAI used by the first run. Notebook 22 repeated the correction with the VIIRS of NOAA-20 and NOAA-21 and 2023 as reference. In 2025, the three VIIRS records gave a statewide February-December LAI of 3.24 to 3.31 m² m⁻², against 3.22 m² m⁻² for the published correction, which was kept (<code>results/v10/lai_noaa20_check/</code>).</p>
   <figure class="w70"><img src="img/lai_correction.jpg" alt="LAI correction"><figcaption>Monthly LAI anomaly from 2022 to 2025 (a), annual deviation of 2024 and 2025 by group (b) and hindcast of the candidates (c). File <code>results/v10/lai_viirs_check/lai_correction.png</code>, step <code>laicorr</code> of <code>reproduce.py</code>.</figcaption></figure>
   <div class="box expert"><span class="t">🧠 For specialists</span>
   <ul><li>Formula and choices in <code>src/megan_sc/laicorr.py</code> (<code>DEFAULT = dict(method='zone', k=0, clip=None)</code>, zones of <code>growth_form_zones()</code>, dominance threshold 0.6).</li>
@@ -329,34 +330,35 @@ EOF</pre>
   <span class="chapnum">Chapter 4</span>
   <h1 class="chap">Inside the repository</h1>
   <div class="box goal"><span class="t">🎯 In this chapter · 10 min</span>
-  <ul><li>what each folder holds;</li><li>the three levels of use: reproduce, replicate and extend;</li><li>where the large data live.</li></ul></div>
+  <ul><li>what each folder holds;</li><li>three ways to use it: reproduce the example, run your region, rerun the example;</li><li>where the large data live.</li></ul></div>
 
 <pre>MEGAN_SC/
 ├── README.md, README.pt-BR.md     <span class="c"># overview in English and Portuguese</span>
 ├── TUTORIAL_MEGAN_SC_pt.pdf, _en.pdf  <span class="c"># this tutorial</span>
 ├── REPRODUCE.md, DATA_AVAILABILITY.md, VALIDATION.md, CHANGELOG.md, CITATION.cff
-├── reproduce.py                   <span class="c"># level A in one command</span>
+├── reproduce.py                   <span class="c"># the example recomputed in one command</span>
+├── config/                        <span class="c"># run configurations (the example; yours)</span>
 ├── src/megan_sc/                  <span class="c"># engine, Earth Engine layer, fixes.py, laicorr.py</span>
-├── notebooks/                     <span class="c"># notebooks 10 to 23 (.ipynb) and notebooks/src (.py sources)</span>
-├── analysis/v10/                  <span class="c"># scripts that read the run: numbers, maps, diagnostics</span>
-├── results/v10/                   <span class="c"># published tables, numbers and figures</span>
+├── notebooks/                     <span class="c"># 10, 11, 25 for any region; 12 to 23 for the example</span>
+├── analysis/v10/                  <span class="c"># scripts of the example: statistics, maps, diagnostics</span>
+├── results/v10/                   <span class="c"># tables, numbers and figures of the example</span>
 ├── results/MANIFEST.sha256        <span class="c"># SHA-256 of every published file</span>
 ├── data/                          <span class="c"># small inputs; the large ones come with the release</span>
-├── tests/                         <span class="c"># 127 unit tests</span>
-├── tools/                         <span class="c"># notebook runner, comparison, data, manifest</span>
+├── tests/                         <span class="c"># unit tests, offline run of 10, 11 and 25</span>
+├── tools/                         <span class="c"># notebook runners, comparison, data, manifest</span>
 ├── benchmark/                     <span class="c"># comparison with the Fortran executables</span>
 ├── run_your_region/               <span class="c"># wizard for another region</span>
-└── docs/                          <span class="c"># ALGORITHM_SPEC.md and the 13 technical chapters</span></pre>
+└── docs/                          <span class="c"># ALGORITHM_SPEC.md and the 12 technical chapters</span></pre>
 
-  <h2>4.1 Three levels of use</h2>
+  <h2>4.1 Three ways to use it</h2>
   <div class="grid3">
-    <div class="card" style="border-color:#1f7a3a"><h4>A · Reproduce</h4><p>Recomputes every number, table and figure from the shipped run and compares them with the published copies.</p><p class="tag">Python 3.10 or later, about 1.2 GB of disk, no accounts. About 5 min of computing.</p></div>
-    <div class="card" style="border-color:#1f5fa8"><h4>B · Replicate</h4><p>Runs the model again from the raw data, the checks, the Fortran comparison and the TROPOMI evaluation.</p><p class="tag">Google account with Earth Engine and Google Colab. Hours of requests per model year; 41.2 EECU-hours for the TROPOMI notebook.</p></div>
-    <div class="card" style="border-color:#6a3fb5"><h4>C · Extend</h4><p>Builds the same inventory for another state, province or country.</p><p class="tag">As B, plus a file with the outline of the region.</p></div>
+    <div class="card" style="border-color:#1f7a3a"><h4>Reproduce the example</h4><p>Recomputes every number, table and figure of Santa Catarina from the shipped run and compares them with the published copies (chapter 5).</p><p class="tag">Python 3.10 or later, about 1.2 GB of disk, no accounts. A few minutes of computing.</p></div>
+    <div class="card" style="border-color:#6a3fb5"><h4>Run your region</h4><p>Builds the inventory of another state, province or country, for the period you choose (chapters 6 to 9).</p><p class="tag">Google account with an Earth Engine project, Colab and Drive, plus the outline of the region.</p></div>
+    <div class="card" style="border-color:#1f5fa8"><h4>Rerun the example</h4><p>Runs the model of the example again from the raw data, with the checks, the Fortran comparison and the TROPOMI evaluation (chapters 7 and 10).</p><p class="tag">As for your region. Hours of requests per model year; 41.2 EECU-hours for the TROPOMI notebook.</p></div>
   </div>
 
   <h2>4.2 Data in git and data of the release</h2>
-  <p>The small inputs live in the repository: IBGE boundaries, MEGAN tables, a tile of the ecotype map and the files of <code>data/external/</code>. The large data will be distributed as five zip files, attached to the GitHub release and deposited on Zenodo when the repository is published.</p>
+  <p>The small inputs live in the repository: IBGE boundaries, MEGAN tables, a tile of the ecotype map and the files of <code>data/external/</code>. The large data of the example are distributed as five zip files, attached to the release v1.0.0 of the repository.</p>
   <table>
     <tr><th>Zip file</th><th>Folder</th><th>Content</th></tr>
     <tr><td><code>megan_sc_run_v10_2003-2025.zip</code> (723 MB)</td><td><code>data/run_v10/</code></td><td>the production run of notebook 10, 2003 to 2025, with 2024 and 2025 from notebook 17</td></tr>
@@ -365,178 +367,83 @@ EOF</pre>
     <tr><td><code>lai_viirs_v10_2013-2025.zip</code> (59 MB)</td><td><code>data/lai_viirs_v10/</code></td><td>monthly VIIRS and MODIS LAI, 2013 to 2025 (notebook 16)</td></tr>
     <tr><td><code>megan_sc_run_v10_modis_lai_2024_2025.zip</code> (63 MB)</td><td><code>data/run_v10_modis_lai_2024_2025/</code></td><td>2024 and 2025 computed with the MODIS LAI</td></tr>
   </table>
-  <p>The SHA-256 of every data file is in <code>data/DATA_SHA256SUMS.txt</code> (2,435 files). Sources, licences and identifiers of every item are in <code>DATA_AVAILABILITY.md</code>.</p>
-  <div class="box warn"><span class="t">⚠️ Watch out · the release does not exist yet</span>
-  <p>The address <code>https://github.com/jessicajcss/MEGAN_SC/releases/download/v1.0.0</code> will hold the zip files once the repository is published. Meanwhile, a local folder with the zip files works the same way (chapter 5). The Zenodo DOI will be added to <code>CITATION.cff</code> after deposit.</p></div>
+  <p>The SHA-256 of every data file is in <code>data/DATA_SHA256SUMS.txt</code> (2,438 files). Sources, licences and identifiers of every item are in <code>DATA_AVAILABILITY.md</code>.</p>
+  <div class="box warn"><span class="t">⚠️ Watch out · where the zip files come from</span>
+  <p>The address <code>https://github.com/jessicajcss/MEGAN_SC/releases/download/v1.0.0</code> holds the five zip files. A local folder with the zip files works the same way (chapter 5). The Zenodo DOI will be added to <code>CITATION.cff</code> after deposit.</p></div>
   <div class="box expert"><span class="t">🧠 For specialists · where each part of the code lives</span>
   <ul><li><code>src/megan_sc/engine/</code>: MEGANv3.21 in Python (canopy, activity factors, soil NO, daily means, speciation).</li>
   <li><code>src/megan_sc/gee/</code>: reading of ERA5-Land, LAI, MapBiomas, MODIS land cover and soil texture in Earth Engine.</li>
   <li><code>src/megan_sc/fixes.py</code> (FIX-1 to FIX-8) and <code>src/megan_sc/laicorr.py</code> (LAI correction).</li>
-  <li><code>analysis/v10/_paths.py</code>: the folders in use, which the environment variables <code>MEGAN_SC_*</code> override.</li></ul></div>
+  <li><code>analysis/v10/_paths.py</code>: the folders in use, which the environment variables <code>MEGAN_SC_*</code> override.</li>
+  <li><code>notebooks/src/_setup_repo.py</code>: the block that opens every notebook, finds the repository and, in Colab, mounts Drive.</li></ul></div>
 </section>
 
 <!-- ============================================================ CH 5 -->
 <section class="chapter" id="c5" style="--accent:#1f7a3a">
   <div class="progress"></div>
   <span class="chapnum">Chapter 5</span>
-  <h1 class="chap">Hands on: reproduce the results</h1>
+  <h1 class="chap">Hands on: reproduce the Santa Catarina example</h1>
   <div class="box goal"><span class="t">🎯 In this chapter · 30 min of reading, a few minutes of computing</span>
-  <ul><li>install the environment and run the tests;</li><li>check the published files against the manifest;</li><li>download the data and recompute everything with <code>reproduce.py</code>.</li></ul></div>
+  <ul><li>install the environment and run the tests;</li><li>check the published files against the manifest;</li><li>download the data of the example and recompute everything with <code>reproduce.py</code>.</li></ul></div>
   <div class="box lay"><span class="t">🗣️ In plain words</span>
-  <p>To reproduce is to redo the calculation with the same data and the same code and reach the same result. The manifest checks that you have the right files. <code>reproduce.py</code> checks that the code arrives at them.</p></div>
+  <p>To reproduce is to redo the calculation with the same data and the same code and reach the same result. The repository ships one complete inventory, Santa Catarina from 2003 to 2025, so anyone can check the whole chain on a laptop before running the model for another place. The manifest checks that you have the right files. <code>reproduce.py</code> checks that the code arrives at them.</p></div>
 
   <div class="step"><div class="n">1</div><div><h4>Get the repository</h4>
-<pre>git clone https://github.com/jessicajcss/MEGAN_SC megan-sc &amp;&amp; cd megan-sc   <span class="c"># after publication</span>
-<span class="c"># or: unzip MEGAN_SC.zip and enter the folder MEGAN_SC/</span></pre></div></div>
+<pre>git clone https://github.com/jessicajcss/MEGAN_SC.git MEGAN_SC &amp;&amp; cd MEGAN_SC
+<span class="c"># or: Code &gt; Download ZIP on GitHub, unzip, rename MEGAN_SC-main to MEGAN_SC</span></pre></div></div>
   <div class="step"><div class="n">2</div><div><h4>Install the environment</h4>
-<pre>pip install -r requirements-reproduce.txt        <span class="c"># level A only</span>
+<pre>pip install -r requirements-reproduce.txt        <span class="c"># reproduction only</span>
 <span class="c"># or the full environment (Earth Engine, notebooks, maps):</span>
 conda env create -f environment.yml &amp;&amp; conda activate megan-sc</pre>
   <p><code>requirements-lock.txt</code> installs a tested set of versions (Python 3.10.12).</p></div></div>
   <div class="step"><div class="n">3</div><div><h4>Run the unit tests</h4>
-<pre>pytest -q                                        <span class="c"># expected: 127 passed</span></pre>
-  <p>The tests check the transcription of the Fortran and the procedures FIX-1 to FIX-8. They do not compare the model with observations.</p></div></div>
+<pre>pytest -q                                        <span class="c"># expected: every test passes</span></pre>
+  <p>The tests check the transcription of the Fortran, the procedures FIX-1 to FIX-8, the region wizard and a run of notebooks 10, 11 and 25 for a small region with Earth Engine replaced by synthetic fields. They do not compare the model with observations.</p></div></div>
   <div class="step"><div class="n">4</div><div><h4>Check the published results</h4>
 <pre>python tools/verify_manifest.py
-<span class="o">363 files listed: OK 363, CHANGED 0, MISSING 0, EXTRA 0</span></pre>
+<span class="o">337 files listed: OK 337, CHANGED 0, MISSING 0, EXTRA 0</span></pre>
   <p>The manifest <code>results/MANIFEST.sha256</code> lists the SHA-256 of every file of <code>results/</code>. It answers the question "are these the published files?".</p></div></div>
   <div class="step"><div class="n">5</div><div><h4>Download and check the data</h4>
-<pre>python tools/data_release.py fetch &lt;address-or-folder-with-the-zips&gt;
+<pre>python tools/data_release.py fetch https://github.com/jessicajcss/MEGAN_SC/releases/download/v1.0.0
 python reproduce.py check-data
-<span class="o">2435 data files checked, 0 missing or different</span></pre>
-  <p>Before the download, <code>check-data</code> reports 2,416 missing files and checks the 19 data files that come with git.</p></div></div>
+<span class="o">2438 data files checked, 0 missing or different</span></pre>
+  <p>A folder holding the five zip files also works in place of the address. Before the download, <code>check-data</code> reports 2,416 missing files and checks the 22 data files that come with git.</p></div></div>
   <div class="step"><div class="n">6</div><div><h4>Recompute everything</h4>
-<pre>python reproduce.py list        <span class="c"># the 16 steps and what each one writes</span>
+<pre>python reproduce.py list        <span class="c"># the steps and what each one writes</span>
 python reproduce.py all         <span class="c"># everything, then the comparison with results/v10</span>
 python reproduce.py nb13 maps   <span class="c"># or any subset, in the order given</span></pre></div></div>
 
   <div class="box check"><span class="t">✅ Checkpoint · what to expect</span>
-  <p>In the run of 15 November 2026 (16 steps in one pass, on a Linux machine with newer library versions), the last step printed:</p>
-<pre>CSV files: 58 compared, 26 identical, 32 equal within tolerance, 0 different, 0 without a published copy
-PNG files: 59 compared, 17 pixel-identical</pre>
-  <p>The 17 identical figures, and four of the identical tables, were made on that machine and copied to <code>results/v10</code>, so for them the comparison is not an independent test. The other figures come from Colab and differ in rendering, while the data behind them are equal. The full record, file by file, is in <code>docs/tutorial/reproduction_log.txt</code>.</p></div>
+  <p>On 16 November 2026, on a Linux machine with the versions of <code>requirements-lock.txt</code>, the 16 steps took 3 min 34 s. Every CSV file matched its published copy (54 of 59 byte for byte, 5 within a relative tolerance of 10<sup>−6</sup>), and 34 of the 46 PNG files were pixel-identical. The other figures differ by a few pixels or in the position of their panels, which matplotlib sets from the size of the text.</p>
+  <p>The full record, file by file, is in <code>docs/tutorial/reproduction_log.txt</code>.</p></div>
 
   <h2>5.1 The steps</h2>
   <table>
     <tr><th style="width:24mm">Step</th><th>What it recomputes</th></tr>
     <tr><td><code>integrity</code></td><td>eight steps per day in every month; annual file equal to the sum of the monthly ones</td></tr>
     <tr><td><code>nb11</code></td><td>notebook 11: checks C0 to C5 of every year</td></tr>
-    <tr><td><code>nb13</code></td><td>notebook 13: tables, trends, correlations, seasonal cycle, <code>manuscript_numbers.csv</code> and figures</td></tr>
+    <tr><td><code>nb13</code></td><td>notebook 13: totals by class and group, trends, correlations, seasonal cycle, mesoregions, municipalities, <code>key_numbers.csv</code> and figures</td></tr>
     <tr><td><code>nb14</code>, <code>nb14diag</code></td><td>notebook 14 from the TROPOMI cache (no Earth Engine) and the later diagnostics</td></tr>
     <tr><td><code>nb15</code>, <code>s1</code></td><td>tests S3 (soil moisture) and S1 (time step)</td></tr>
     <tr><td><code>c3</code></td><td>the C3 failure of 2015 in detail and its effect on the totals</td></tr>
-    <tr><td><code>report</code>, <code>maps</code></td><td>numbers of the report and every map</td></tr>
-    <tr><td><code>meso2024</code>, <code>final</code>, <code>extra</code></td><td>2024 mesoregions, additional diagnostics, study-area map and flowchart</td></tr>
-    <tr><td><code>ijest</code>, <code>laicorr</code></td><td>figures of the English manuscript; check and correction of the 2024-2025 LAI</td></tr>
+    <tr><td><code>report</code>, <code>maps</code></td><td>statistics by class, mesoregion and municipality; every map</td></tr>
+    <tr><td><code>meso2024</code>, <code>final</code>, <code>extra</code></td><td>2024 land cover of the mesoregions, additional diagnostics, study-area map and flowchart</td></tr>
+    <tr><td><code>posthoc</code>, <code>laicorr</code></td><td>post hoc diagnostics (planted forests, LAI by growth form); check and correction of the 2024-2025 LAI</td></tr>
     <tr><td><code>compare</code></td><td>every recomputed file against its published copy</td></tr>
   </table>
   <p>Everything is written to <code>reproduced/</code> (or to <code>$MEGAN_SC_OUT</code>), with one log per step in <code>reproduced/logs/</code>. The folders <code>data/</code> and <code>results/</code> stay untouched.</p>
   <div class="box warn"><span class="t">⚠️ Watch out · figures and fonts</span>
-  <p>PNG files depend on fonts and library versions. On another machine, some figures may differ by a few pixels while the numbers stay the same. Running notebook 13 twice into the same folder makes the second run read a single-precision cache, and the comparison then shows some files as equal within tolerance.</p></div>
+  <p>PNG files depend on fonts and library versions. On another machine, some figures may differ by a few pixels, or in the position of their panels, while the numbers stay the same. Running notebook 13 twice into the same folder makes the second run read a single-precision cache, and the comparison then shows some files as equal within tolerance.</p></div>
 </section>
 
 <!-- ============================================================ CH 6 -->
-<section class="chapter" id="c6" style="--accent:#6a3fb5">
+<section class="chapter" id="c6" style="--accent:#0f7c80">
   <div class="progress"></div>
   <span class="chapnum">Chapter 6</span>
-  <h1 class="chap">The notebooks, from 10 to 23</h1>
-  <div class="box goal"><span class="t">🎯 In this chapter · 25 min</span>
-  <ul><li>what each notebook does, needs and writes;</li><li>in which order to run them and which ones have run;</li><li>the observation on the nominal cell area of BRAIN.</li></ul></div>
-
-  <div class="svgwrap">
-  <svg viewBox="0 0 640 266" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Inter" font-size="11.5">
-    <defs><marker id="ar6" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8a94a6"/></marker></defs>
-    <g text-anchor="middle">
-      <rect x="4" y="117" width="128" height="38" rx="9" fill="#e8f4ec" stroke="#1f7a3a"/><text x="68" y="140" font-weight="700" fill="#1f7a3a">10 · production</text>
-      <rect x="168" y="6" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="27">11 · checks</text>
-      <rect x="168" y="50" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="71">14 · TROPOMI</text>
-      <rect x="168" y="94" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="115">15 · sensitivity</text>
-      <rect x="168" y="138" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="159">16 · VIIRS LAI</text>
-      <rect x="168" y="182" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="203">18 · BRAIN 2019</text>
-      <rect x="168" y="226" width="146" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="241" y="247">20 · 2019 inputs</text>
-      <rect x="346" y="6" width="150" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="421" y="27">13 · numbers, figures</text>
-      <rect x="346" y="94" width="150" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="421" y="115">22 · NOAA-20/21 LAI</text>
-      <rect x="346" y="138" width="150" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="421" y="159">17 · 2024-2025 rerun</text>
-      <rect x="346" y="182" width="150" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="421" y="203">23 · BRAIN differences</text>
-      <rect x="346" y="226" width="150" height="34" rx="8" fill="#f4f6f9" stroke="#8a94a6" stroke-dasharray="4 3"/><text x="421" y="247">21 · ERA5-Land, INMET</text>
-      <rect x="528" y="138" width="108" height="34" rx="8" fill="#e8f0fb" stroke="#1f5fa8"/><text x="582" y="159">19 · install</text>
-      <rect x="528" y="6" width="108" height="40" rx="8" fill="#f4f6f9" stroke="#8a94a6" stroke-dasharray="4 3"/><text x="582" y="23" font-weight="700">12 · Fortran</text><text x="582" y="39">independent</text>
-    </g>
-    <g stroke="#8a94a6" stroke-width="1.8" fill="none" marker-end="url(#ar6)">
-      <path d="M133 125 C150 108 150 30 165 23"/><path d="M133 129 C150 116 150 72 165 67"/><path d="M133 133 C150 126 152 112 165 111"/>
-      <path d="M133 139 C150 143 152 154 165 155"/><path d="M133 145 C150 158 150 194 165 199"/><path d="M133 149 C150 172 150 236 165 243"/>
-      <path d="M315 23 H343"/><path d="M315 155 H343"/><path d="M315 151 C328 140 330 116 343 111"/><path d="M497 155 H525"/>
-      <path d="M315 199 H343"/><path d="M345 243 H318"/>
-    </g>
-  </svg></div>
-  <p>The authors ran 12, 10, 11, 13, 14 and 15 in October 2026, 16 on 31 October, 17 and 18 by 1 November, and 19 to 23 from 1 to 8 November 2026. Notebooks 12 and 21 (dashed) do not read the run, and 21 passes its lapse rate to 20. Each notebook is built from a percent-format source in <code>notebooks/src/</code> by <code>notebooks/src/build_ipynb.py</code>, so the <code>.py</code> and the <code>.ipynb</code> hold the same code. Every notebook has a single settings cell, its first code cell, with the Google Drive folders.</p>
-
-  <div class="nbcard" style="--accent:#1f7a3a"><h4>10 · Production run <span class="pill ran">run (Colab, October 2026)</span></h4>
-  <p>For each month of <code>YEARS</code>, it samples ERA5-Land, MODIS LAI and MapBiomas in Earth Engine, runs the engine every <code>SAMPLE_HOURS</code> hours and writes the monthly and annual grids, the sampled inputs and a log of each procedure.</p>
-  <ul><li>Cells: 1 settings and Drive · 2 writes <code>fixes.py</code> and checks its hash · 3 Earth Engine (<code>EE_PROJECT</code>) · 4 parameters (<code>YEARS</code>, <code>SAMPLE_HOURS = 3</code>, <code>VARIANT = 'base'</code>) · 5 engine and FIX-5 · 6 mask and municipalities · 7 Earth Engine samplers · 8 one month and one year · 9 run · 10 self-check.</li>
-  <li>Writes to <code>megan_sc_outputs_v10/&lt;year&gt;/</code>, with the layout of <code>data/run_v10/</code>. It saves a checkpoint after every step. After a disconnection, run all cells again and it resumes where it stopped.</li></ul></div>
-
-  <div class="nbcard"><h4>11 · Automatic checks C0 to C5 <span class="pill ran">run</span></h4>
-  <p>Six checks per year: C0 provenance (all procedures active), C1 forested cells without isoprene, C2 outlier cells, C3 consistency of the filled cells with their neighbours, C4 completeness, C5 monthly state-mean PAR between 20 and 200 W m⁻². In the production run, 137 of 138 results passed. The failure was C3 in 2015, for methanol, explained in <code>results/v10/diagnostics/c3/</code>.</p></div>
-
-  <div class="nbcard"><h4>12 · Comparison with the Fortran executables <span class="pill ran">run (Colab)</span></h4>
-  <p>Runs the official MEGANv3.21 binaries and the Python engine with the same inputs and compares them stage by stage. With the procedures of <code>fixes.py</code>, as in production, every stage passes. It needs <code>MEGANv3.21.tar.gz</code> (Guenther 2024b) and Linux x86-64, and takes 15 to 25 min. The results are in <code>benchmark/results_colab/</code> and <code>VALIDATION.md</code>.</p></div>
-
-  <div class="nbcard"><h4>13 · Numbers, tables and figures <span class="pill ran">run</span></h4>
-  <p>Reads the run and writes the tables, trends, correlations, seasonal cycle, <code>manuscript_numbers.csv</code> and the figures in Portuguese and English. It should run after notebook 11 reports no failure, or after every failure has been explained.</p></div>
-
-  <div class="nbcard"><h4>14 · Evaluation with TROPOMI formaldehyde <span class="pill ran">run</span></h4>
-  <p>Exports from Earth Engine, month by month, the screened HCHO on the model grid and applies four tests fixed before the comparison. It used 41.2 EECU-hours and about 6 h for the 84 months. With the cache of <code>data/tropomi_hcho_v10/</code>, it runs without Earth Engine.</p></div>
-
-  <div class="nbcard"><h4>15 · Sensitivity tests <span class="pill part">S1 and S3 run; S2 planned</span></h4>
-  <p>S1 compares a 3-h step with a 1-h step over 28 days of 2019. S3 measures the effect of the soil-moisture factor from the logs of the run. S2, on LAI aggregation, was planned and not run.</p></div>
-</section>
-
-<section class="chapter" style="--accent:#6a3fb5">
-  <div class="nbcard"><h4>16 · LAI check against VIIRS <span class="pill ran">run by the authors on 31 Oct 2026</span></h4>
-  <p>Compares the monthly VIIRS LAI (<code>NASA/VIIRS/002/VNP15A2H</code>, main-algorithm retrievals) with the MODIS LAI of the run, on the inventory grid, from 2013 to 2025. It makes 312 Earth Engine requests (two per month and product). It writes tables and a figure to <code>analysis_v10/lai_viirs_check/</code>; the published copies are in <code>results/v10/lai_viirs_check/</code> (chapter 3).</p></div>
-
-  <div class="nbcard"><h4>17 · Rerun of 2024 and 2025 with the corrected LAI <span class="pill ran">run</span></h4>
-  <p>It is notebook 10 for 2024 and 2025, with the LAI corrected by <code>laicorr.corrected_run_lai</code> (cell 7a). The shared code was copied line for line from notebook 10.</p>
-  <ul><li>Writes to <code>megan_sc_outputs_v10_lai_viirs/</code> and leaves the production run untouched.</li>
-  <li>Cell 11 compares the inputs with production and checks that only the LAI changes. In the authors' run, the meteorology was identical.</li>
-  <li>Cell 12 installs the corrected years into the production run only with <code>INSTALL = True</code>. Read cell 11 first.</li></ul>
-  <p>In 2025, total BVOC rose by 7.1%, isoprene by 4.3% and monoterpenes by 7.9%, and soil NO fell by 0.2% (Online Resource 1, Table S6). Notebook 19 checks and installs the two years.</p></div>
-
-  <div class="nbcard"><h4>18 · Comparison with BRAIN 2019 <span class="pill ran">run</span></h4>
-  <p>Compares the 2019 emissions with the MEGAN emissions of BRAIN, 4-km domain d02 (Hoinaski et al. 2024). It uses the same region (the IBGE polygon, area-weighted on both grids), the same species (the 19 classes converted to the 34 CB6X species with the MEGANv3.21 tables), the same units and the same period. It downloads the 364 daily files of 2019 from the Science Data Bank. 31 December is missing, and the December total was scaled by 31/30. It needs no Earth Engine.</p>
-  <p>On true cell areas, the 2019 isoprene of this inventory was 0.79 times that of BRAIN, and the sum of the VOC classes 0.87 times. The monthly cycles of isoprene correlated at r = 0.96 and the cell values at r = 0.63 (Online Resource 1, Section S9 and Table S12).</p></div>
-  <div class="box expert"><span class="t">🧠 For specialists · the nominal cell area of BRAIN</span>
-  <p>MGN2MECH of MEGANv3.21 turns fluxes (nmol m⁻² s⁻¹) into rates per cell with <code>garea = xcell3d * ycell3d</code>, the nominal area of 16 km². The BRAIN grid is a Mercator projection true at the equator. On it, the true area of a cell at latitude φ is about 16 cos²φ km², or 12.2 to 12.9 km² over Santa Catarina. The delivered rates thus equal MEGAN fluxes times 16 km². The notebook checks this line in <code>mgn2mech.F</code> (cell 2) and reports the state totals both ways, "BRAIN, true area" and "BRAIN, as delivered". Maps and cell statistics use fluxes and do not depend on this choice. Over Santa Catarina, the state totals from the rates as delivered were 1.26 to 1.27 times those on true areas, and the comparison uses true areas (Online Resource 1, Table S12).</p></div>
-  <div class="box warn"><span class="t">⚠️ Watch out · what the BRAIN comparison can show</span>
-  <p>Both inventories use the MEGANv3.21 code and differ in weather (WRF at 4 km against ERA5-Land at 0.1°), vegetation inputs, soil-NO scheme, grid, time step and factor ρ. The ratios measure the combined effect of these differences. Assigning a difference to one input requires runs that change one input at a time. Notebooks 20 and 23 made the tests the data allow. The BRAIN meteorology was not compared with ERA5-Land.</p></div>
-  <div class="nbcard"><h4>19 · Installation and reproduction <span class="pill ran">run</span></h4>
-  <p>Checks the run of 17, installs the corrected years in the production run and moves the MODIS years to <code>megan_sc_outputs_v10_modis_lai_2024_2025/</code>. It takes the official CO<sub>2</sub> file from NOAA and runs <code>reproduce.py</code> with the MODIS LAI, which gives back <code>results/v10_modis_lai_2024_2025</code>, and with the corrected LAI. It needs no Earth Engine and takes 30 to 60 min. Optionally, it writes <code>results/v10</code> with the corrected LAI, the checksums and the five release zips. It was run once by the authors, from folders that are not distributed, and <code>reproduce.py</code> repeats its comparisons.</p></div>
-
-  <div class="nbcard"><h4>20 · Sensitivity of 2019 to the inputs <span class="pill ran">run</span></h4>
-  <p>Runs 2019 again with one input changed at a time: temperature at the terrain height of each 0.025° cell, PAR as 50% of short-wave radiation, the tropical canopy, a needleleaf canopy for planted forests and the wilting point of clay. The full year takes about 15 h (914 min in the authors' run). Results in Online Resource 1, Table S10.</p></div>
-
-  <div class="nbcard"><h4>21 · ERA5-Land against the INMET stations <span class="pill ran">run</span></h4>
-  <p>Compares ERA5-Land temperature and radiation with the INMET climate normals and the 2019 hourly station records, and fits the empirical lapse rate that notebook 20 reads, so it runs before notebook 20. It takes about 30 min. By day, ERA5-Land was 0.17 K warmer than the stations (Online Resource 1, Section S8 and Table S11).</p></div>
-
-  <div class="nbcard"><h4>22 · LAI with the VIIRS of NOAA-20 and NOAA-21 <span class="pill ran">run</span></h4>
-  <p>Reads the VIIRS LAI of Suomi NPP, NOAA-20 and NOAA-21 from the HDF5 files of NASA Earthdata and recomputes the corrected LAI of 2024 and 2025 from each record. It needs an Earthdata account, no Earth Engine, and takes 1 to 2 h. The ratio of the NOAA-20 to the Suomi NPP statewide LAI rose from 1.009 in 2018 to 1.042 in 2025 (Online Resource 1, Section S2.5.6).</p>
-  <p class="small">Cell 2 prints the Earthdata user name. Clear its output before sharing an executed copy.</p></div>
-
-  <div class="nbcard"><h4>23 · Why this inventory differs from BRAIN <span class="pill ran">run</span></h4>
-  <p>Tests candidate explanations with the data at hand: the settings of MEGANv3.21 that differ from its defaults, the fingerprint of each class, a regression over the cells, a seasonal decomposition, the terrain, the sensitivity runs of 20, TROPOMI in 2019 and soil NO. It takes about 2 min. Results in Online Resource 1, Section S9.</p></div>
-  <div class="box check"><span class="t">✅ Checkpoint · where each notebook is</span>
-  <p>The sources are in <code>notebooks/src/&lt;name&gt;.py</code> and the notebooks in <code>notebooks/&lt;name&gt;.ipynb</code>. The file <code>notebooks/README.md</code> has one row per notebook, with what it needs, what it writes, where it runs and where its published copy is.</p></div>
-</section>
-
-<!-- ============================================================ CH 7 -->
-<section class="chapter" id="c7" style="--accent:#0f7c80">
-  <div class="progress"></div>
-  <span class="chapnum">Chapter 7</span>
-  <h1 class="chap">Google Colab with Earth Engine</h1>
+  <h1 class="chap">Google Drive, Colab and Earth Engine</h1>
   <div class="box goal"><span class="t">🎯 In this chapter · about 1 h of preparation</span>
-  <ul><li>register a Google Cloud project for Earth Engine;</li><li>bring the repository to Google Drive and open the notebooks in Colab;</li><li>authenticate, run and keep the results.</li></ul></div>
-  <p><b>Google Colab</b> runs Jupyter notebooks on a Google machine, through the browser. <b>Google Earth Engine</b> stores and processes the satellite and reanalysis data (Gorelick et al. 2017). The notebook runs in Colab and asks Earth Engine for the computations on the maps.</p>
+  <ul><li>register a Google Cloud project for Earth Engine;</li><li>bring the repository to Google Drive and open the notebooks in Colab;</li><li>use Earth Engine on your own computer or on a server.</li></ul></div>
+  <p><b>Google Colab</b> runs Jupyter notebooks on a Google machine, through the browser. <b>Google Earth Engine</b> stores and processes the satellite and reanalysis data (Gorelick et al. 2017). The notebook runs in Colab, asks Earth Engine for the computations on the maps and writes the results to <b>Google Drive</b>.</p>
   <div class="svgwrap">
   <svg viewBox="0 0 640 112" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Inter" font-size="11.5">
     <defs><marker id="ar7" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8a94a6"/></marker></defs>
@@ -544,7 +451,7 @@ PNG files: 59 compared, 17 pixel-identical</pre>
       <rect x="0" y="12" width="140" height="74" rx="10" fill="#e8f0fb" stroke="#1f5fa8"/>
       <text x="70" y="38" font-weight="700" fill="#1f5fa8">1. Cloud project</text><text x="70" y="56">registered for</text><text x="70" y="72">Earth Engine</text>
       <rect x="166" y="12" width="140" height="74" rx="10" fill="#fff4e0" stroke="#b26b00"/>
-      <text x="236" y="38" font-weight="700" fill="#b26b00">2. Repository</text><text x="236" y="56">in Drive, at</text><text x="236" y="72">MyDrive/megan-sc</text>
+      <text x="236" y="38" font-weight="700" fill="#b26b00">2. Repository</text><text x="236" y="56">in Drive, at</text><text x="236" y="72">MyDrive/MEGAN_SC</text>
       <rect x="332" y="12" width="140" height="74" rx="10" fill="#e8f4ec" stroke="#1f7a3a"/>
       <text x="402" y="38" font-weight="700" fill="#1f7a3a">3. Notebook</text><text x="402" y="56">in Colab, with</text><text x="402" y="72">EE_PROJECT</text>
       <rect x="498" y="12" width="140" height="74" rx="10" fill="#f1ebfb" stroke="#6a3fb5"/>
@@ -553,82 +460,167 @@ PNG files: 59 compared, 17 pixel-identical</pre>
     <g stroke="#8a94a6" stroke-width="2" fill="none" marker-end="url(#ar7)"><path d="M141 49 H163"/><path d="M307 49 H329"/><path d="M473 49 H495"/></g>
   </svg></div>
 
-  <h2>7.1 Register the Earth Engine project (once)</h2>
+  <h2>6.1 Register the Earth Engine project (once)</h2>
   <p>Earth Engine works inside a Google Cloud project registered for Earth Engine, for both free and paid use. The default projects of Cloud and Colab come without Earth Engine enabled (Google 2026a).</p>
   <div class="step"><div class="n">1</div><div><h4>Open the registration page</h4><p>Go to <code>console.cloud.google.com/earth-engine</code> with your Google account. The page creates a new project or registers one you already have, and registration enables access immediately (Google 2025).</p></div></div>
-  <div class="step"><div class="n">2</div><div><h4>Choose noncommercial use</h4><p>Fill in the eligibility questionnaire for noncommercial use. For noncommercial projects, Google requires no billing set-up (Google 2025).</p></div></div>
+  <div class="step"><div class="n">2</div><div><h4>Choose noncommercial use</h4><p>Fill in the eligibility questionnaire for noncommercial use (<code>console.cloud.google.com/earth-engine/configuration</code>). For noncommercial projects, Google requires no billing set-up (Google 2025).</p></div></div>
   <div class="step"><div class="n">3</div><div><h4>Enable the API</h4><p>On the Earth Engine API page of the Cloud Console, with your project selected, click <b>Enable</b> if the button shows (Google 2025).</p></div></div>
-  <div class="step"><div class="n">4</div><div><h4>Note the project ID</h4><p>The ID shows in the project selector of the console, for example <code>ee-yourname</code>. This text goes into the variable <code>EE_PROJECT</code> of notebooks 10, 14, 16, 17, 20 and 21.</p></div></div>
+  <div class="step"><div class="n">4</div><div><h4>Note the project ID</h4><p>The ID shows in the project selector of the console, for example <code>my-ee-project</code>. It goes into <code>EE_PROJECT</code> in the settings of a notebook, or into <code>earth_engine.project</code> of a run configuration (chapter 7). The placeholder <code>your-ee-project</code> stops a notebook with a message until it is replaced.</p></div></div>
   <div class="box warn"><span class="t">⚠️ Watch out</span>
   <ul><li>Projects registered before 15 April 2025 must verify noncommercial eligibility to keep access, and every noncommercial project re-verifies periodically (Google 2025).</li>
   <li>Institutional accounts sometimes block project creation. Ask the administrator, or create the project with a personal account and add the work account as Owner (Google 2026a).</li>
   <li>Noncommercial projects use the Community tier by default, with 150 EECU-hours per month. Above it, the project enters a restricted mode with lower concurrency (Google 2026b). Notebook 14 used 41.2 EECU-hours.</li></ul></div>
 
-  <h2>7.2 Bring the repository to Google Drive</h2>
-  <p>The notebooks expect the repository at <code>/content/drive/MyDrive/megan-sc</code> and write the run to <code>/content/drive/MyDrive/megan_sc_outputs_v10</code>. Open <code>colab.research.google.com</code>, create a new notebook and run one of the options.</p>
+  <h2>6.2 Bring the repository to Google Drive</h2>
+  <p>Every notebook opens with the same setup block. In Colab it mounts Drive and looks for the repository at <code>MyDrive/MEGAN_SC</code> (also <code>megan_sc</code>, <code>megan-sc</code>, or a <code>MEGAN_SC</code> folder one level down in <code>MyDrive</code>). The outputs go to <code>MyDrive</code>.</p>
   <div class="grid2">
-    <div class="card"><h4>Option 1 · GitHub (after publication)</h4>
+    <div class="card"><h4>Option 1 · upload the folder</h4><p>On GitHub, <b>Code › Download ZIP</b>. Unzip it on your computer, rename <code>MEGAN_SC-main</code> to <code>MEGAN_SC</code> and, in Google Drive, use <b>New › Folder upload</b> to send the folder to <b>My Drive</b>.</p></div>
+    <div class="card"><h4>Option 2 · clone from Colab</h4><p>In a new Colab notebook, run:</p>
 <pre>from google.colab import drive
 drive.mount('/content/drive')
-!git clone https://github.com/jessicajcss/MEGAN_SC /content/drive/MyDrive/megan-sc</pre></div>
-    <div class="card"><h4>Option 2 · zip file in Drive</h4><p>Upload <code>MEGAN_SC.zip</code> to <b>My Drive</b> and run:</p>
-<pre>from google.colab import drive
-drive.mount('/content/drive')
-!unzip -q /content/drive/MyDrive/MEGAN_SC.zip -d /content/drive/MyDrive/
-!mv /content/drive/MyDrive/MEGAN_SC /content/drive/MyDrive/megan-sc</pre></div>
+!git clone https://github.com/jessicajcss/MEGAN_SC.git \
+    /content/drive/MyDrive/MEGAN_SC</pre></div>
   </div>
+  <p>Notebook 10 and the region wizard need nothing else: the MEGAN tables, the ecotype map and the boundaries come with git. The notebooks that read the shipped run of the example (11, 13, 14 from its cache, 15 and 25) also need the five zip files of the release inside <code>MyDrive/MEGAN_SC</code>: in Colab, <code>%cd /content/drive/MyDrive/MEGAN_SC</code>, then the commands of step 5 of chapter 5, each preceded by <code>!</code>.</p>
 
-  <h2>7.3 Open, set and run a notebook</h2>
-  <div class="step"><div class="n">1</div><div><h4>Open the notebook</h4><p>In Drive, double-click <code>megan-sc/notebooks/10_production_run.ipynb</code> and choose <b>Google Colaboratory</b>. After publication, the address <code>colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/&lt;notebook&gt;.ipynb</code> also opens each notebook.</p></div></div>
-  <div class="step"><div class="n">2</div><div><h4>Set your project</h4><p>Write your project ID in <code>EE_PROJECT = 'your-ee-project'</code>. It sits in the cell "3 · Earth Engine" of notebooks 10, 17 and 20 ("2 · Earth Engine" in notebook 21) and in the settings cell of notebooks 14 and 16.</p></div></div>
-  <div class="step"><div class="n">3</div><div><h4>Run all</h4><p>Use <b>Runtime › Run all</b>. The Earth Engine API comes preinstalled in Colab (Google 2024). In Colab, <code>ee.Authenticate()</code> uses the <code>colab</code> mode and the credentials of Colab itself, and <code>ee.Initialize(project=EE_PROJECT)</code> ties the session to your project (Google 2026a).</p></div></div>
-  <div class="step"><div class="n">4</div><div><h4>Follow and resume</h4><p>A production year takes hours of requests. Authentication must be repeated in each new session, after a kernel restart or when the machine is recycled for inactivity (Google 2024). Notebook 10 resumes from its last checkpoint when you run all cells again.</p></div></div>
-  <div class="box check"><span class="t">✅ Checkpoint · end of notebook 10</span>
-  <p>The final self-check (cell 10) must report <code>signature_cells = 0</code> and 12 procedure logs per year. Then run notebook 11, which must end without failures, or with every failure explained, before notebook 13.</p></div>
+  <h2>6.3 Open, set and run a notebook</h2>
+  <div class="step"><div class="n">1</div><div><h4>Open the notebook</h4><p>In Drive, double-click <code>MEGAN_SC/notebooks/10_production_run.ipynb</code> and choose <b>Google Colaboratory</b> (the first time, <b>Connect more apps › Colaboratory</b>). The address <code>colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/&lt;notebook&gt;.ipynb</code> also opens each notebook, and it still needs the repository in Drive.</p></div></div>
+  <div class="step"><div class="n">2</div><div><h4>Set the settings cell</h4><p>In notebooks 10, 11 and 25: <code>RUN_CONFIG</code> (the run configuration) and, in notebook 10, <code>EE_PROJECT</code>. In the other Earth Engine notebooks of the example, <code>EE_PROJECT</code> sits in the cell "3 · Earth Engine" (17 and 20), "2 · Earth Engine" (21) or in the settings cell (14 and 16).</p></div></div>
+  <div class="step"><div class="n">3</div><div><h4>Run all</h4><p>Use <b>Runtime › Run all</b>. The Earth Engine API comes preinstalled in Colab (Google 2024). In Colab, <code>ee.Authenticate()</code> uses the <code>colab</code> mode and the credentials of Colab itself, and <code>ee.Initialize(project=EE_PROJECT)</code> ties the session to your project (Google 2026a). A failed Drive mount stops the notebook on purpose.</p></div></div>
+  <div class="step"><div class="n">4</div><div><h4>Follow and resume</h4><p>A year of model run takes hours of requests. Authentication must be repeated in each new session, after a kernel restart or when the machine is recycled for inactivity (Google 2024). Notebook 10 resumes from its last checkpoint when you run all cells again.</p></div></div>
 
-  <h2>7.4 Keep the land cover of the published run</h2>
-  <p>The MapBiomas asset in Earth Engine points to the newest collection. A rerun made after October 2026 may read a collection newer than Collection 10. Notebook 10 reuses the growth forms of a year when <code>&lt;output&gt;/&lt;year&gt;/inputs/growthform_&lt;land-cover year&gt;.npz</code> exists. To keep the published land cover, copy these files from <code>data/run_v10/</code> before running (technical chapter 6, section 6.3).</p>
+  <h2>6.4 Earth Engine on your own computer or on a server</h2>
+  <div class="grid2">
+    <div class="card"><h4>💻 Your computer</h4><p>Install <code>earthengine-api</code> (part of <code>environment.yml</code>) and sign in once:</p>
+<pre>earthengine authenticate
+earthengine set_project my-ee-project</pre>
+    <p>The credentials stay in <code>~/.config/earthengine/credentials</code> (Google 2026a). Open the notebooks of <code>notebooks/</code> in Jupyter from the repository: the setup block finds it, and the outputs go next to it. On a remote machine without a browser, use <code>auth_mode='notebook'</code>.</p></div>
+    <div class="card"><h4>🖥️ A server</h4><p>Create a service account in the same Cloud project, with a JSON key kept outside the repository. Give it the roles <b>Earth Engine Resource Writer</b> (interactive computations and export tasks) and <b>Service Usage Consumer</b>: without the permission <code>serviceusage.services.use</code>, <code>ee.Initialize</code> fails (Google 2026c). Then write <code>service_account_key: /path/key.json</code> under <code>earth_engine</code> in the run configuration.</p></div>
+  </div>
   <div class="box lay"><span class="t">🗣️ In plain words</span>
   <p>Colab is the borrowed computer. Earth Engine is the library of satellite maps. Drive is the drawer where the results stay when the borrowed computer is switched off.</p></div>
 </section>
 
-<!-- ============================================================ CH 8 -->
-<section class="chapter" id="c8" style="--accent:#1f5fa8">
+<!-- ============================================================ CH 7 -->
+<section class="chapter" id="c7" style="--accent:#6a3fb5">
   <div class="progress"></div>
-  <span class="chapnum">Chapter 8</span>
-  <h1 class="chap">Reading and checking the results</h1>
-  <div class="box goal"><span class="t">🎯 In this chapter · 20 min</span>
-  <ul><li>where each published result is;</li><li>how to trace a number to its file and code;</li><li>how the work was checked and how to read the statistics.</li></ul></div>
+  <span class="chapnum">Chapter 7</span>
+  <h1 class="chap">Run the model: notebooks 10, 11 and 25</h1>
+  <div class="box goal"><span class="t">🎯 In this chapter · 20 min of reading, hours of running</span>
+  <ul><li>what a run configuration holds;</li><li>how notebook 10 computes an inventory, month by month;</li><li>how notebooks 11 and 25 check it and turn it into results.</li></ul></div>
+  <p>Three notebooks serve the Santa Catarina example and any other region and period. A run is defined by a configuration file, and <code>config/santa_catarina_2003_2025.yaml</code> is the configuration of the example.</p>
+  <div class="svgwrap">
+  <svg viewBox="0 0 640 100" width="100%" xmlns="http://www.w3.org/2000/svg" font-family="Inter" font-size="11.5">
+    <defs><marker id="ar7b" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#8a94a6"/></marker></defs>
+    <g text-anchor="middle">
+      <rect x="0" y="12" width="140" height="70" rx="10" fill="#fff4e0" stroke="#b26b00"/>
+      <text x="70" y="38" font-weight="700" fill="#b26b00">config/*.yaml</text><text x="70" y="56">period, grid, region,</text><text x="70" y="72">inputs, output</text>
+      <rect x="166" y="12" width="140" height="70" rx="10" fill="#e8f4ec" stroke="#1f7a3a"/>
+      <text x="236" y="38" font-weight="700" fill="#1f7a3a">10 · model run</text><text x="236" y="56">Earth Engine,</text><text x="236" y="72">month by month</text>
+      <rect x="332" y="12" width="140" height="70" rx="10" fill="#e8f0fb" stroke="#1f5fa8"/>
+      <text x="402" y="38" font-weight="700" fill="#1f5fa8">11 · checks</text><text x="402" y="56">C0 to C5,</text><text x="402" y="72">every year</text>
+      <rect x="498" y="12" width="140" height="70" rx="10" fill="#f1ebfb" stroke="#6a3fb5"/>
+      <text x="568" y="38" font-weight="700" fill="#6a3fb5">25 · results</text><text x="568" y="56">totals, maps,</text><text x="568" y="72">cycle, trends</text>
+    </g>
+    <g stroke="#8a94a6" stroke-width="2" fill="none" marker-end="url(#ar7b)"><path d="M141 47 H163"/><path d="M307 47 H329"/><path d="M473 47 H495"/></g>
+  </svg></div>
 
-  <h2>8.1 The map of <code>results/v10/</code></h2>
+  <h2>7.1 The run configuration</h2>
   <table>
-    <tr><th style="width:42mm">Folder</th><th>Content</th></tr>
-    <tr><td><code>notebook13_meso2024/</code></td><td>the source of the documents: <code>manuscript_numbers.csv</code>, Tables 2 to 4, trends, correlations, seasonal cycle, figures</td></tr>
-    <tr><td><code>notebook11/</code></td><td>checks C0 to C5 and state totals by class</td></tr>
-    <tr><td><code>notebook14/</code>, <code>notebook15/</code></td><td>the four TROPOMI tests; tests S1 and S3</td></tr>
-    <tr><td><code>diagnostics/</code>, <code>final_review/</code></td><td>diagnostics defined after inspection, labelled as such in the documents</td></tr>
-    <tr><td><code>report/</code></td><td>numbers and tables of the state report</td></tr>
-    <tr><td><code>lai_viirs_check/</code>, <code>ijest_review/</code></td><td>LAI check and correction; post hoc diagnostics of the English manuscript</td></tr>
-    <tr><td><code>figures/</code></td><td>figures in Portuguese, English, for the report and for the English manuscript</td></tr>
+    <tr><th style="width:34mm">Block</th><th>Santa Catarina example</th><th style="width:62mm">Meaning</th></tr>
+    <tr><td><code>period</code></td><td><code>2003-01</code> to <code>2025-12</code>, <code>sample_hours: 3</code></td><td>first and last month (UTC); ERA5-Land read every 3 h</td></tr>
+    <tr><td><code>domain</code></td><td><code>bbox</code>, 0.025°</td><td>grid over a box or over the boundary file</td></tr>
+    <tr><td><code>region</code></td><td><code>sc_state_ibge.gpkg</code>; zones: municipalities</td><td>a cell counts when its centre lies inside</td></tr>
+    <tr><td><code>datasets.vegetation</code></td><td>MapBiomas, collection 10, 1985-2024, canopy type 3</td><td><code>mapbiomas</code> (Brazil) or <code>modis</code> (worldwide); a year outside the range uses the nearest one</td></tr>
+    <tr><td><code>datasets.soil</code>, <code>emission_factors</code></td><td>wilting point 0.12; MEGAN 3.2 tables and ecotype tile</td><td>soil-moisture factor; emission factors</td></tr>
+    <tr><td><code>earth_engine</code>, <code>output</code></td><td><code>your-ee-project</code>; <code>megan_sc_outputs_v10</code></td><td>project id; output folder and tag</td></tr>
   </table>
 
-  <h2>8.2 From a published number to its file</h2>
-  <p>Technical chapter 8 (<code>docs/tutorial/08_number_map.md</code>) links every number of the article and of the report to the file and key that hold it. Example with mean BVOC:</p>
-<pre>python - &lt;&lt;'EOF'
-import pandas as pd
-n = pd.read_csv('results/v10/notebook13_meso2024/manuscript_numbers.csv').set_index('key')
-print(n.loc['bvoc_mean_kt', 'en'])          <span class="c"># 657</span>
-print(n.loc['trend_ISOP', 'en'])            <span class="c"># +0.88% yr-1 (0.33 to 1.50; p = 0.004; MK p = 0.004)</span>
-f = 'results/v10/notebook13_meso2024/table2_annual_totals_SC_groups.csv'
-t = pd.read_csv(f).set_index('year')
-print(round(t.loc[2025, 'BVOC'] / 1e3, 1))  <span class="c"># 672.9 (kt)</span>
-EOF</pre>
+  <h2>7.2 Notebook 10: the model run</h2>
+  <p>Settings: <code>RUN_CONFIG</code>, <code>EE_PROJECT</code>, <code>OUT_BASE</code> (<code>MyDrive</code> in Colab), and optionally <code>YEARS</code>, <code>MONTHS</code> and <code>TEST_DAYS</code> (the first days of each month, for a preview). For each month the notebook samples ERA5-Land every 3 h, the MODIS LAI and the land cover in Earth Engine on the model grid, runs the engine with FIX-1 to FIX-8 and writes, for every year, the monthly and annual emission grids (tonnes per cell), the inputs as the model saw them, a log of each procedure, the monthly statistics and <code>provenance_v10.json</code>.</p>
+  <div class="box check"><span class="t">✅ Checkpoint · end of notebook 10</span>
+  <p>The final self-check must report <code>signature_cells = 0</code> (no forested cell without isoprene) and 12 procedure logs per complete year. After a disconnection, run all cells again: finished months are skipped and the current one resumes from its checkpoint.</p></div>
+  <div class="box warn"><span class="t">⚠️ Watch out · rerunning the example</span>
+  <p>The configuration fixes MapBiomas Collection 10, and the notebook writes the collection id it read into <code>provenance_v10.json</code>. To reuse exactly the land cover of the shipped run, copy <code>data/run_v10/&lt;year&gt;/inputs/growthform_*.npz</code> into the output folder first (technical chapter 6, section 6.3). The shipped 2024 and 2025 use a VIIRS-corrected LAI (chapter 3), so a rerun of those years compares with <code>results/v10_modis_lai_2024_2025</code>.</p></div>
+
+  <h2>7.3 Notebook 11: the checks</h2>
+  <p>With the same <code>RUN_CONFIG</code>, six checks per year: C0 provenance (same <code>fixes.py</code> hash and engine patches), C1 forested cells without isoprene, C2 outlier cells, C3 consistency of the cells filled by FIX-1 with their neighbours, C4 completeness, C5 monthly regional PAR between 20 and 200 W m⁻². In the example, 137 of 138 results passed; the failure, C3 in 2015 for methanol, is explained in <code>results/v10/diagnostics/c3/</code>.</p>
+
+  <h2>7.4 Notebook 25: the results of any run</h2>
+  <p>With the same <code>RUN_CONFIG</code>, it writes into <code>&lt;run&gt;/results/</code> the monthly and annual totals by class and by group, the seasonal cycle, maps of mean intensity (kg ha⁻¹ yr⁻¹, GeoTIFF and figure), the annual drivers as the model saw them, the raw and detrended correlations, the trends and the totals of each zone. Trends and correlations need at least 10 complete years. Chapter 9 explains how to read each file. For the example, notebook 13 adds what needs the boundaries of Santa Catarina and the previous state inventory.</p>
+</section>
+
+<!-- ============================================================ CH 8 -->
+<section class="chapter" id="c8" style="--accent:#6a3fb5">
+  <div class="progress"></div>
+  <span class="chapnum">Chapter 8</span>
+  <h1 class="chap">The inventory of your region</h1>
+  <div class="box goal"><span class="t">🎯 In this chapter · 20 min of reading, hours of running</span>
+  <ul><li>the <code>run_your_region/</code> wizard, without programming;</li><li>the full run with notebooks 10, 11 and 25;</li><li>the choices that need review in another region.</li></ul></div>
+  <p>The engine works for any land region of the world. The grid, the inputs and the mask follow from an outline file and a period. The guide <code>run_your_region/START_HERE.md</code> explains everything step by step, including where to find free outline files, and the notebook <code>run_your_region/region_setup.ipynb</code> runs in Colab.</p>
+  <h2>8.1 The wizard</h2>
+  <div class="step"><div class="n">1</div><div><h4>Fill in step 1</h4><p><code>REGION_NAME</code> (a short nickname), <code>SHAPEFILE_PATH</code> (outline in Drive, for example in <code>MyDrive/MEGAN_SC/data/regions/</code>), <code>COUNTRY_IS_BRAZIL</code>, the first and last month (<code>START_YEAR</code>, <code>START_MONTH</code>, <code>END_YEAR</code>, <code>END_MONTH</code>), <code>EE_PROJECT</code> and <code>RESOLUTION_DEG</code> (0.05° is the suggested default). Outside the Santa Catarina tile, also <code>GLOBAL_ECOTYPE_PATH</code>: the global ecotype map <code>EVT3d.nc</code> of the MEGAN 3.2 input files (Guenther 2024a).</p></div></div>
+  <div class="step"><div class="n">2</div><div><h4>Run all and check</h4><p>The wizard builds the grid and the mask, checks that ERA5-Land and the MODIS LAI cover the period, reads the land cover (MapBiomas in Brazil, MODIS MCD12Q1 elsewhere; Sulla-Menashe et al. 2019), picks the ecotype map and fills its gaps (FIX-5), builds the EF, runs a two-day test with the engine of notebook 10 in a warm month and draws an isoprene map.</p></div></div>
+  <div class="step"><div class="n">3</div><div><h4>Save and run the period</h4><p>Step 8 writes <code>config/&lt;region&gt;_run.yaml</code>, and step 9 prints the value of <code>RUN_CONFIG</code>. Then run notebooks 10, 11 and 25 with it (chapter 7). Start with one month and a coarse resolution, then one year, then the whole period.</p></div></div>
+  <h2>8.2 Choices to review in another region</h2>
+  <table>
+    <tr><th style="width:44mm">Choice</th><th>In Santa Catarina</th><th>What to check</th></tr>
+    <tr><td>Canopy type of trees</td><td>temperate broadleaf (type 3)</td><td>the wizard uses tropical broadleaf (type 2) within 23.5° of the equator</td></tr>
+    <tr><td>Land cover</td><td>MapBiomas, 30 m</td><td>MODIS MCD12Q1, 500 m, elsewhere: coarser forest edges and mosaics</td></tr>
+    <tr><td>Land-cover years</td><td>2025 uses 2024</td><td>MapBiomas 1985-2024, MCD12Q1 2001-2024 in Earth Engine</td></tr>
+    <tr><td>Wilting point</td><td>constant 0.12 m³ m⁻³</td><td>derive it from soil texture where soils dry out</td></tr>
+    <tr><td>Soil-NO season</td><td>November to May</td><td>whether the season fits the local agriculture</td></tr>
+    <tr><td>Isoprene factor ρ</td><td>0.96 applied when reading</td><td>state which convention your numbers follow</td></tr>
+    <tr><td>Coasts and islands</td><td>FIX-1 fills from the nearest cell</td><td><code>filled_met_steps</code> in the monthly logs</td></tr>
+    <tr><td>Resolution</td><td>0.025°</td><td>ERA5-Land is 0.1°; a finer grid adds land-cover detail only</td></tr>
+    <tr><td>Period</td><td>2003 to 2025</td><td>the MODIS LAI starts in July 2002; the last months arrive in Earth Engine with a delay</td></tr>
+  </table>
+  <div class="box idea"><span class="t">💡 What to report</span>
+  <p>Report the configuration file, the <code>fixes.py</code> hash, the choices above, the checks of notebook 11 and the limits that apply to your region (chapter 11). Until there is a comparison with observations, present the inventory as a model estimate.</p></div>
+</section>
+
+<!-- ============================================================ CH 9 -->
+<section class="chapter" id="c9" style="--accent:#1f5fa8">
+  <div class="progress"></div>
+  <span class="chapnum">Chapter 9</span>
+  <h1 class="chap">Reading the results</h1>
+  <div class="box goal"><span class="t">🎯 In this chapter · 25 min</span>
+  <ul><li>units and conventions of every result;</li><li>what drives the totals, the seasonal cycle and the maps;</li><li>how to read correlations and trends of a model inventory, and how the example was checked.</li></ul></div>
+
+  <h2>9.1 Units and conventions</h2>
+  <ul>
+    <li><b>Mass of the compounds.</b> Tonnes are the mass of the compounds of each class, not of carbon. Convert before comparing with an inventory given in carbon or in moles.</li>
+    <li><b>Isoprene with ρ = 0.96</b>, applied when the run is read; the files of notebook 10 hold isoprene without it (chapter 2).</li>
+    <li><b>Region.</b> A cell counts when its centre lies inside the boundary. Intensities divide by the cell area (kg ha⁻¹ yr⁻¹).</li>
+    <li><b>Time.</b> Months and years are calendar months and years in UTC, the time of ERA5-Land.</li>
+  </ul>
+
+  <h2>9.2 Totals and the seasonal cycle</h2>
+  <p>The level of a total is set mainly by the emission factors and the area of vegetation; its variation by the activity factors. The light-independent part of each class grows exponentially with leaf temperature, and the light-dependent part responds to temperature and light (chapter 2). Monthly totals follow the cycles of temperature, light and leaf area. In the example, BVOC averaged 657 kt yr⁻¹, peaked in January (100 kt month⁻¹ on average) and was lowest in June and July (about 20 kt month⁻¹).</p>
   <div class="grid2">
   <figure style="margin:0"><img src="img/series_en.jpg" alt="Annual series"><figcaption>Annual emissions of the state, 2003 to 2025: BVOC (a), isoprene (b), monoterpenes (c), sesquiterpenes (d) and soil NO (e). The years 2024 and 2025 use the LAI corrected with VIIRS. File <code>results/v10/figures/en/fig1.png</code>, notebook 13.</figcaption></figure>
   <figure style="margin:0"><img src="img/composition_en.jpg" alt="Composition and seasonal cycle"><figcaption>Mean BVOC composition (a), seasonal cycle (b) and cycle normalised by the monthly mean (c), 2003 to 2025. File <code>results/v10/figures/en/fig2.png</code>, notebook 13.</figcaption></figure>
   </div>
+  <div class="box warn"><span class="t">⚠️ Watch out · comparing inventories</span>
+  <p>Check the species definition, the mass convention, ρ, the area, the year, the land cover, the emission factors and the soil-NO scheme. In 2019, isoprene, CO and soil NO of the example were 7.6, 3.7 and 18.9 times those of the previous state inventory (Hoinaski et al. 2022). A ratio shows that two inventories differ; it does not show which one is right.</p></div>
 
-  <h2>8.3 How the work was checked</h2>
+  <h2>9.3 Maps and regions</h2>
+  <p>The intensity map follows first the emission factor of each cell, which weights the factors of the ecotype by the fractions of trees, shrubs, herbs and crops; leaf area and temperature then modulate it. Totals by unit favour large units, so rank units by intensity. In the example, the SOA-precursor intensity of the six mesoregions follows their native-forest share (MapBiomas 2024): Pearson r = 0.97 (95% interval 0.75 to 0.997), Spearman ρ = 0.94 (exact p = 0.017). With six units, this describes the six mesoregions.</p>
+  <figure class="w60"><img src="img/soa_meso_en.jpg" alt="SOA precursors and native forest"><figcaption>SOA-precursor intensity against the native-forest share of the six mesoregions (MapBiomas 2024). File <code>results/v10/notebook13_meso2024/figures/en/fig6.png</code>, notebook 13.</figcaption></figure>
+
+  <h2>9.4 Drivers and correlations</h2>
+  <p>The drivers are the inputs as the model read them, not independent observations. A correlation between an emission series and a driver shows which input moved the emissions of the model; it diagnoses the model. Detrend both series first, so that common trends do not create a correlation: soil NO and temperature correlate at r = 0.30 raw and 0.82 detrended in the example. Drivers covary (PAR and soil water: r = −0.90), so their separate effects are unstable.</p>
+
+  <h2>9.5 Trends</h2>
+  <ul>
+    <li><b>Theil-Sen</b> (Sen 1968): the slope is the median of the slopes between all pairs of years, given in % of the mean per year.</li>
+    <li><b>Mann-Kendall</b> (Mann 1945; Kendall 1975): tests the absence of a monotonic trend; the Hamed and Rao (1998) correction accounts for autocorrelation.</li>
+    <li><b>Benjamini-Hochberg</b> (Benjamini and Hochberg 1995): several trends tested together call for control of the false discovery rate. In the example, six of nine trends remain (q = 0.017 to 0.023), isoprene among them (+0.88% yr⁻¹).</li>
+  </ul>
+  <div class="box warn"><span class="t">⚠️ Watch out · trends of a model inventory</span>
+  <p>A trend is the trend of the inputs seen through the model: temperature, leaf area and land cover. A change of sensor, an orbit drift or a new land-cover collection can create a trend without a change of the vegetation. In the example, the 2003-2025 series end in the two years with the corrected LAI, and over 2003-2023 the same six trends remain (q ≤ 0.048).</p></div>
+
+  <h2>9.6 How the example was checked</h2>
   <div class="grid2">
     <div class="card"><h4>🧩 Against the official code</h4><p>With the engine as used in production, the emission activity differs from the Fortran by at most 3.8 × 10⁻⁶ (relative) on the test case of the code, when both use the Fortran canopy (<code>VALIDATION.md</code>).</p></div>
     <div class="card"><h4>🔎 The run itself</h4><p>Six checks per year, 138 results, 137 passed. Each of the 276 months holds eight steps per day, and each annual file is the sum of the monthly ones.</p></div>
@@ -636,101 +628,95 @@ EOF</pre>
     <div class="card"><h4>⚙️ Sensitivity</h4><p>3-h against 1-h step: −0.06% for BVOC over 28 days of 2019 (test S1). Soil-moisture factor: about −0.05% for BVOC (test S3).</p></div>
   </div>
   <figure class="w60"><img src="img/verification_en.jpg" alt="Verification flowchart"><figcaption>Verification flowchart. File <code>results/v10/figures/en/fig_verification.png</code>, drawn by <code>analysis/v10/schematics/verification_flowchart.py</code>.</figcaption></figure>
-
-  <h2>8.4 The statistics in a few words</h2>
-  <ul>
-    <li><b>Theil-Sen</b> (Sen 1968): the slope is the median of the slopes between all pairs of years. The documents give it in % of the 2003-2025 mean per year.</li>
-    <li><b>Mann-Kendall</b> (Mann 1945; Kendall 1975): tests the absence of a monotonic trend. The Hamed and Rao (1998) correction for autocorrelation left every p-value unchanged.</li>
-    <li><b>Benjamini-Hochberg</b> (Benjamini and Hochberg 1995): nine trends tested together call for control of the false discovery rate. Six trends remain (q = 0.017 to 0.023): BVOC, isoprene, monoterpenes, sesquiterpenes, oxygenated VOC and soil NO. Light hydrocarbons, MBO and CO (q = 0.081) drop out.</li>
-  </ul>
-  <div class="box warn"><span class="t">⚠️ Watch out · trends and 2024-2025</span>
-  <p>The 2003-2025 series end in the two years with the corrected LAI. Over 2003-2023, which the correction does not touch, the same six trends remain (q ≤ 0.048). Technical chapter 7 shows the sensitivity of the trends to the start year, the end year and the test (<code>final_review/</code>).</p></div>
-</section>
-
-<!-- ============================================================ CH 9 -->
-<section class="chapter" id="c9" style="--accent:#6a3fb5">
-  <div class="progress"></div>
-  <span class="chapnum">Chapter 9</span>
-  <h1 class="chap">The inventory of your region</h1>
-  <div class="box goal"><span class="t">🎯 In this chapter · 20 min of reading, hours of running</span>
-  <ul><li>the <code>run_your_region/</code> wizard, without programming;</li><li>notebook 10 adapted, with every feature of production;</li><li>the choices that need review in another region.</li></ul></div>
-  <p>The engine works for any region. The grid, the inputs and the mask follow from an outline file. The guide <code>run_your_region/START_HERE.md</code> explains everything step by step, and the notebook <code>run_your_region/region_setup.ipynb</code> runs in Colab.</p>
-  <h2>9.1 The wizard</h2>
-  <div class="step"><div class="n">1</div><div><h4>Fill in step 1</h4><p><code>REGION_NAME</code> (a short nickname), <code>SHAPEFILE_PATH</code> (outline in Drive), <code>COUNTRY_IS_BRAZIL</code>, the first and last month of the period (<code>START_YEAR</code>, <code>START_MONTH</code>, <code>END_YEAR</code>, <code>END_MONTH</code>), <code>EE_PROJECT</code> and <code>RESOLUTION_DEG</code> (0.05° is the suggested default).</p></div></div>
-  <div class="step"><div class="n">2</div><div><h4>Run all and check</h4><p>The wizard builds the grid and the mask, reads land cover (MapBiomas in Brazil, MODIS MCD12Q1 elsewhere), picks the ecotype map and fills its gaps (FIX-5), builds the EF, runs a two-day test in a warm month and draws an isoprene map.</p></div></div>
-  <div class="step"><div class="n">3</div><div><h4>Save and run the period</h4><p>Step 8 writes <code>config/&lt;region&gt;_run.yaml</code>. In step 9, <code>RUN_FULL = True</code> runs every month of the period, every 3 h. Start with one month and a coarse resolution.</p></div></div>
-  <div class="box expert"><span class="t">🧠 For specialists · how the wizard differs</span>
-  <p>The wizard uses the engine of notebook 10, with FIX-1 to FIX-8, but its daily mean temperature is the mean of the sampled steps, while notebook 10 uses the 24 hours (one more request per day). For checkpoints, input GeoTIFFs, procedure logs and municipal tables, adapt notebook 10 (technical chapter 11, section 11.2).</p></div>
-  <h2>9.2 Choices to review in another region</h2>
-  <table>
-    <tr><th style="width:44mm">Choice</th><th>In Santa Catarina</th><th>What to check</th></tr>
-    <tr><td>Canopy type of trees</td><td>temperate broadleaf (type 3)</td><td>the wizard uses tropical broadleaf (type 2) within 23.5° of the equator</td></tr>
-    <tr><td>Wilting point</td><td>constant 0.12 m³ m⁻³</td><td>derive it from soil texture where soils dry out</td></tr>
-    <tr><td>Soil-NO season</td><td>November to May</td><td>whether the season fits the local agriculture</td></tr>
-    <tr><td>Isoprene factor ρ</td><td>0.96 applied when reading</td><td>apply the same factor or state that you did not</td></tr>
-    <tr><td>Land-cover years</td><td>2025 uses 2024</td><td>the range of the product you use</td></tr>
-    <tr><td>Coasts and islands</td><td>FIX-1 fills from the nearest cell</td><td><code>filled_met_steps</code> in the monthly logs</td></tr>
-    <tr><td>Resolution</td><td>0.025°</td><td>ERA5-Land is 0.1°; a finer grid adds land-cover detail only</td></tr>
-  </table>
-  <div class="box idea"><span class="t">💡 What to report</span>
-  <p>Report the <code>fixes.py</code> hash, the choices above, the checks of notebook 11 and the limits that apply to your region. Until there is a comparison with observations, present the inventory as a model estimate.</p></div>
 </section>
 
 <!-- ============================================================ CH 10 -->
-<section class="chapter" id="c10" style="--accent:#b3261e">
+<section class="chapter" id="c10" style="--accent:#6a3fb5">
   <div class="progress"></div>
   <span class="chapnum">Chapter 10</span>
+  <h1 class="chap">The notebooks of the example, from 12 to 23</h1>
+  <div class="box goal"><span class="t">🎯 In this chapter · 20 min</span>
+  <ul><li>what each notebook of the Santa Catarina example does, needs and writes;</li><li>the observation on the nominal cell area of BRAIN.</li></ul></div>
+  <p>These notebooks evaluate and test the example run. They were run in Google Colab between October and 8 November 2026, and their published outputs are in <code>results/v10/</code>. Each notebook is built from a percent-format source in <code>notebooks/src/</code>, so the <code>.py</code> and the <code>.ipynb</code> hold the same code. <code>notebooks/README.md</code> has one row per notebook.</p>
+  <div class="nbcard"><h4>12 · Comparison with the Fortran executables <span class="pill ran">run (Colab)</span></h4>
+  <p>Runs the official MEGANv3.21 binaries and the Python engine with the same inputs and compares them stage by stage. With the procedures of <code>fixes.py</code>, as in production, every stage passes. It needs <code>MEGANv3.21.tar.gz</code> (Guenther 2024b) and Linux x86-64, and takes 15 to 25 min. The results are in <code>benchmark/results_colab/</code> and <code>VALIDATION.md</code>.</p></div>
+  <div class="nbcard"><h4>13 · Tables, numbers and figures of Santa Catarina <span class="pill ran">run</span></h4>
+  <p>Totals by class and group, trends, correlations, seasonal cycle, the six mesoregions, the 295 municipalities, the comparison of 2019 with the previous state inventory, <code>key_numbers.csv</code> and the figures in Portuguese and English.</p></div>
+  <div class="nbcard"><h4>14 · Evaluation with TROPOMI formaldehyde <span class="pill ran">run</span></h4>
+  <p>Exports from Earth Engine, month by month, the screened HCHO on the model grid and applies four tests fixed before the comparison. It used 41.2 EECU-hours and about 6 h for the 84 months. With the cache of <code>data/tropomi_hcho_v10/</code>, it runs without Earth Engine.</p></div>
+  <div class="nbcard"><h4>15 · Sensitivity tests <span class="pill part">S1 and S3 run; S2 planned</span></h4>
+  <p>S1 compares a 3-h step with a 1-h step over 28 days of 2019. S3 measures the effect of the soil-moisture factor from the logs of the run. S2, on LAI aggregation, was planned and not run.</p></div>
+  <div class="nbcard"><h4>16 · LAI check against VIIRS <span class="pill ran">run on 31 Oct 2026</span></h4>
+  <p>Compares the monthly VIIRS LAI (<code>NASA/VIIRS/002/VNP15A2H</code>) with the MODIS LAI of the run, on the inventory grid, from 2013 to 2025, in 312 Earth Engine requests (chapter 3).</p></div>
+  <div class="nbcard"><h4>17 · Rerun of 2024 and 2025 with the corrected LAI <span class="pill ran">run</span></h4>
+  <p>Notebook 10 for 2024 and 2025 with the LAI corrected by <code>laicorr.corrected_run_lai</code>. Cell 11 checks that only the LAI changes, and cell 12 installs the corrected years only with <code>INSTALL = True</code>. In 2025, total BVOC rose by 7.1%, isoprene by 4.3% and monoterpenes by 7.9%, and soil NO fell by 0.2% (<code>results/v10/notebook19/lai_sensitivity_table2_2024_2025.csv</code>).</p></div>
+  <div class="nbcard"><h4>18 · Comparison with BRAIN 2019 <span class="pill ran">run</span></h4>
+  <p>Compares the 2019 emissions with the MEGAN emissions of BRAIN, 4-km domain d02 (Hoinaski et al. 2024), with the same region, species, units and period. On true cell areas, the 2019 isoprene of the example was 0.79 times that of BRAIN, and the sum of the VOC classes 0.87 times. It needs no Earth Engine.</p></div>
+  <div class="box expert"><span class="t">🧠 For specialists · the nominal cell area of BRAIN</span>
+  <p>MGN2MECH of MEGANv3.21 turns fluxes (nmol m⁻² s⁻¹) into rates per cell with <code>garea = xcell3d * ycell3d</code>, the nominal area of 16 km². On the Mercator grid of BRAIN, true at the equator, the true area of a cell is about 16 cos²φ km², 12.2 to 12.9 km² over Santa Catarina. The notebook reports the state totals both ways; from the rates as delivered they were 1.26 to 1.27 times those on true areas, and the comparison uses true areas.</p></div>
+  <div class="nbcard"><h4>19 · Installation and reproduction <span class="pill ran">run once</span></h4>
+  <p>Checked the run of 17, installed the corrected years and moved the MODIS years to <code>megan_sc_outputs_v10_modis_lai_2024_2025/</code>, took the official CO<sub>2</sub> file from NOAA and ran <code>reproduce.py</code> with both LAI. It started from folders that are not distributed, and <code>reproduce.py</code> repeats its comparisons.</p></div>
+  <div class="nbcard"><h4>20 and 21 · Sensitivity of 2019 to the inputs; ERA5-Land against INMET <span class="pill ran">run</span></h4>
+  <p>20 runs 2019 again with one input changed at a time (terrain-adjusted temperature, PAR as 50% of short-wave, tropical canopy, needleleaf plantations, clay wilting point). 21 compares ERA5-Land with the INMET stations and fits the lapse rate that 20 reads, so it runs first.</p></div>
+  <div class="nbcard"><h4>22 and 23 · VIIRS of NOAA-20 and NOAA-21; differences from BRAIN <span class="pill ran">run</span></h4>
+  <p>22 recomputes the corrected LAI of 2024 and 2025 from the VIIRS of three satellites (Earthdata account; cell 2 prints the user name, so clear it before sharing). 23 tests the explanations of the differences from BRAIN with the data at hand.</p></div>
+</section>
+
+<!-- ============================================================ CH 11 -->
+<section class="chapter" id="c11" style="--accent:#b3261e">
+  <div class="progress"></div>
+  <span class="chapnum">Chapter 11</span>
   <h1 class="chap">Limitations</h1>
   <div class="box goal"><span class="t">🎯 In this chapter · 10 min</span>
   <ul><li>what the results support and what they leave open;</li><li>the method choices that weigh on the numbers.</li></ul></div>
   <div class="grid2">
-    <div class="card"><h4>📏 Local flux measurements are missing</h4><p>The model has not yet been compared with fluxes or concentrations measured in Santa Catarina (<code>VALIDATION.md</code>).</p></div>
-    <div class="card"><h4>🛰️ TROPOMI supports one part only</h4><p>The comparison supports the temporal anomalies of modelled isoprene. The observed spatial pattern follows the terrain, and the range of lifetimes, yields and bias corrections leaves the magnitude open (Palmer et al. 2003; Vigouroux et al. 2020).</p></div>
-    <div class="card"><h4>🍃 LAI of 2024 and 2025</h4><p>The MODIS LAI of these two years was replaced by a correction that rests on the Suomi NPP VIIRS record. NOAA-20 and NOAA-21 share its algorithm, so they do not test the retrieval method. NOAA-20 drifts relative to Suomi NPP, and the NOAA-21 record is too short to tell (chapters 3 and 6).</p></div>
-    <div class="card"><h4>🌲 Silviculture as tree</h4><p>Pinus and eucalyptus enter as tree, without separation. With the emission factors of pinus or eucalyptus on the 2019 plantation area, the 2019 isoprene would change by −18.7% or +13.7% (<code>results/v10/ijest_review/</code>).</p></div>
-    <div class="card"><h4>🫧 CO<sub>2</sub> switched off</h4><p>With CO<sub>2</sub> inhibition (375 to 426 ppm), the isoprene trend would be +0.65% per year (p = 0.018; q = 0.03), against +0.88% without it (Heald et al. 2009; Lan et al. 2026).</p></div>
+    <div class="card"><h4>📏 Local measurements are missing</h4><p>Every class scales with its emission factor, taken from the MEGAN tables. The repository checks the code and the run, not the emission factors. Fluxes or concentrations measured in the region would test the magnitude (<code>VALIDATION.md</code>).</p></div>
+    <div class="card"><h4>🛰️ TROPOMI supports one part only</h4><p>In the example, the comparison supports the temporal anomalies of modelled isoprene. The observed spatial pattern follows the terrain, and the range of lifetimes, yields and bias corrections leaves the magnitude open (Palmer et al. 2003; Vigouroux et al. 2020).</p></div>
+    <div class="card"><h4>🍃 LAI of 2024 and 2025</h4><p>The MODIS LAI of these two years was replaced by a correction that rests on the Suomi NPP VIIRS record. NOAA-20 and NOAA-21 share its algorithm, so they do not test the retrieval method (chapters 3 and 10).</p></div>
+    <div class="card"><h4>🌲 Silviculture as tree</h4><p>Pinus and eucalyptus enter as tree, without separation. With the emission factors of pinus or eucalyptus on the 2019 plantation area, the 2019 isoprene would change by −18.7% or +13.7% (<code>results/v10/posthoc_review/</code>).</p></div>
+    <div class="card"><h4>🫧 CO<sub>2</sub> switched off</h4><p>With CO<sub>2</sub> inhibition (375 to 426 ppm), the isoprene trend of the example would be +0.65% per year (p = 0.018; q = 0.03), against +0.88% without it (Heald et al. 2009; Lan et al. 2026).</p></div>
     <div class="card"><h4>🗺️ Land cover and soil</h4><p>MapBiomas ends in 2024, and 2025 uses the 2024 map. The wilting point is constant (0.12 m³ m⁻³), and the soil-moisture factor changes BVOC by about −0.05%.</p></div>
-    <div class="card"><h4>⏱️ A single run</h4><p>The production run was computed once. The repository has no measured spread between two full runs, and a reprocessing of an input collection by its producer can change a new run.</p></div>
-    <div class="card"><h4>📚 Comparing inventories</h4><p>In 2019, isoprene, CO and soil NO were 7.6, 3.7 and 18.9 times the previous state inventory (Hoinaski et al. 2022). Inventories with different versions and inputs cannot isolate a single cause.</p></div>
+    <div class="card"><h4>⏱️ A single run</h4><p>The example was computed once. The repository has no measured spread between two full runs, and a reprocessing of an input collection by its producer can change a new run.</p></div>
+    <div class="card"><h4>📚 Comparing inventories</h4><p>Inventories with different versions and inputs cannot isolate a single cause of their difference (chapter 9).</p></div>
   </div>
   <div class="box idea"><span class="t">💡 To keep in mind</span>
   <p>Reproducing proves that the code reaches the published numbers. Interpreting them well means keeping these assumptions in view, together with the difference between emission and concentration and the uncertainty of emission factors and vegetation.</p></div>
 </section>
 
-<!-- ============================================================ CH 11 -->
-<section class="chapter" id="c11" style="--accent:#b26b00">
+<!-- ============================================================ CH 12 -->
+<section class="chapter" id="c12" style="--accent:#b26b00">
   <div class="progress"></div>
-  <span class="chapnum">Chapter 11</span>
+  <span class="chapnum">Chapter 12</span>
   <h1 class="chap">When something goes wrong</h1>
-  <h2>11.1 Level A (<code>reproduce.py</code>)</h2>
+  <h2>12.1 Reproducing the example (<code>reproduce.py</code>)</h2>
   <table>
     <tr><th style="width:56mm">What you see</th><th>Why</th><th style="width:56mm">What to do</th></tr>
     <tr><td><code>missing run_v10/...</code> from <code>check-data</code></td><td>the zip files were not unpacked</td><td><code>python tools/data_release.py fetch &lt;address-or-folder&gt;</code></td></tr>
     <tr><td><code>checksum differs ...</code></td><td>interrupted download or changed file</td><td>delete the folder under <code>data/</code> and fetch again</td></tr>
     <tr><td><code>annual_grids_cache.npz not found</code></td><td>a step that reads notebook 13 ran before it</td><td><code>python reproduce.py nb13</code>, then the step again</td></tr>
     <tr><td><code>ModuleNotFoundError</code></td><td>missing package</td><td><code>pip install -r requirements-reproduce.txt</code></td></tr>
-    <tr><td><code>AttributeError ... union_all</code></td><td>geopandas older than 1.0</td><td>upgrade geopandas or use <code>requirements-lock.txt</code></td></tr>
     <tr><td>CSV marked <code>DIFFERENT</code></td><td>library versions or a changed input</td><td>read the first differing column; check <code>check-data</code> and <code>reproduce.py paths</code></td></tr>
     <tr><td><code>No space left on device</code></td><td>the outputs need about 160 MB, plus copies of the cache</td><td>point <code>MEGAN_SC_OUT</code> to a disk with space</td></tr>
   </table>
-  <h2>11.2 Level B (Colab and Earth Engine)</h2>
+  <h2>12.2 Notebooks, Colab and Earth Engine</h2>
   <table>
     <tr><th style="width:56mm">What you see</th><th>Why</th><th style="width:56mm">What to do</th></tr>
-    <tr><td><code>Earth Engine API has not been used in project ... or it is disabled</code></td><td>project without the API enabled</td><td>set the project in <code>ee.Initialize()</code> and enable the API (Google 2026a)</td></tr>
-    <tr><td><code>ee.Initialize</code> fails or project not found</td><td>wrong ID or unregistered project</td><td>check <code>EE_PROJECT</code> and the registration (chapter 7)</td></tr>
+    <tr><td><code>The MEGAN_SC folder was not found</code></td><td>no folder with <code>src/megan_sc/fixes.py</code> where the setup block looks</td><td>put the repository at <code>MyDrive/MEGAN_SC</code> (chapter 6)</td></tr>
+    <tr><td><code>Earth Engine needs the id of a Google Cloud project</code></td><td><code>EE_PROJECT</code> empty or still <code>your-ee-project</code></td><td>write your project id (chapter 6)</td></tr>
+    <tr><td><code>Earth Engine API has not been used in project ... or it is disabled</code></td><td>project without the API enabled</td><td>enable the API for the project (Google 2026a)</td></tr>
+    <tr><td><code>region boundary not found</code></td><td>wrong path in the configuration</td><td>paths in the repository are relative to it; files in Drive need <code>/content/drive/MyDrive/...</code></td></tr>
     <tr><td><code>EE retry ...</code> lines in notebook 10</td><td>transient errors; each request has four attempts</td><td>let it continue; after four failures, run all cells again</td></tr>
-    <tr><td><code>Computation timed out</code> in notebook 14</td><td>interactive request too large</td><td>use the notebook shipped here, which uses batch exports</td></tr>
-    <tr><td>notebook 13: <code>found 0</code></td><td>wrong <code>ROOT</code> or Drive not mounted</td><td>check <code>ROOT</code> in the settings cell</td></tr>
+    <tr><td>notebook 11 finds no year, or 25 no file</td><td>different <code>RUN_CONFIG</code> or <code>OUT_BASE</code>, or only test files</td><td>use the settings of the notebook-10 run</td></tr>
     <tr><td>notebook 12: <code>libiomp5.so not found</code></td><td>Intel OpenMP runtime missing</td><td>cell 2 installs it; run on Linux x86-64 (Colab)</td></tr>
   </table>
   <div class="box check"><span class="t">✅ Asking for help</span>
   <p>Open an issue on the repository with the command, the end of the log (<code>reproduced/logs/&lt;step&gt;.log</code>), the output of <code>python reproduce.py paths</code> and the versions of Python and of the packages (<code>pip freeze</code>).</p></div>
 </section>
 
-<!-- ============================================================ CH 12 -->
-<section class="chapter" id="c12" style="--accent:#1f7a3a">
+<!-- ============================================================ CH 13 -->
+<section class="chapter" id="c13" style="--accent:#1f7a3a">
   <div class="progress"></div>
-  <span class="chapnum">Chapter 12</span>
+  <span class="chapnum">Chapter 13</span>
   <h1 class="chap">Glossary</h1>
   <dl class="glossary">
     <dt>BVOC</dt><dd>Biogenic volatile organic compounds. Here, the sum of the 17 MEGAN classes left once soil NO and CO are set apart.</dd>
@@ -740,27 +726,28 @@ EOF</pre>
     <dt>EF (emission factor)</dt><dd>Emission of a class under standard conditions (nmol m⁻² s⁻¹), by ecotype and growth form.</dd>
     <dt>ER (emission activity)</dt><dd>Dimensionless product of LAI and the γ factors, computed for each class, cell and step.</dd>
     <dt>FIX-1 to FIX-8</dt><dd>The input and run procedures of <code>src/megan_sc/fixes.py</code>.</dd>
-    <dt>Growth form</dt><dd>Tree, shrub, herb or crop. MapBiomas classes are converted into these four.</dd>
+    <dt>Growth form</dt><dd>Tree, shrub, herb or crop. MapBiomas and MODIS land-cover classes are converted into these four.</dd>
     <dt>γ (gamma)</dt><dd>Activity factor: γ<sub>TP</sub> (light and temperature in the canopy), γ<sub>age</sub>, γ<sub>SM</sub> (soil moisture), γ<sub>CO2</sub>, γ<sub>BD</sub>.</dd>
     <dt>LAI (leaf area index)</dt><dd>Leaf area per ground area (m² m⁻²). It comes from MODIS and, for the check, from VIIRS.</dd>
     <dt>LDF</dt><dd>Light-dependent fraction of a class.</dd>
     <dt>PAR and PPFD</dt><dd>Photosynthetically active radiation (W m⁻²) and photosynthetic photon flux density (µmol m⁻² s⁻¹). PPFD = 4.5 × PAR.</dd>
     <dt>PM<sub>2.5</sub></dt><dd>Particulate matter with a diameter up to 2.5 µm.</dd>
     <dt>Reproduce and replicate</dt><dd>To reproduce is to redo the calculations with the same data and code. To replicate is to redo the study from the original sources, here with Earth Engine.</dd>
-    <dt>ρ (rho)</dt><dd>Canopy loss and production factor. It is 0.96 for isoprene in the published numbers.</dd>
+    <dt>Run configuration</dt><dd>The YAML file of <code>config/</code> that defines a run: period, grid, region, inputs and output folder. Notebooks 10, 11 and 25 read it.</dd>
+    <dt>ρ (rho)</dt><dd>Canopy loss and production factor. It is 0.96 for isoprene when a run is read.</dd>
     <dt>SHA-256</dt><dd>Fingerprint of a file. Any change in its content changes the fingerprint.</dd>
     <dt>SOA (secondary organic aerosol)</dt><dd>Particles formed in the air by condensation of the oxidation products of organic compounds. They are part of PM<sub>2.5</sub>.</dd>
-    <dt>S1, S2, S3</dt><dd>Sensitivity tests of notebook 15: time step, LAI aggregation (planned) and soil moisture.</dd>
+    <dt>S1, S2, S3</dt><dd>Sensitivity tests of the example (notebook 15): time step, LAI aggregation (planned) and soil moisture.</dd>
     <dt>ΔHCHO</dt><dd>TROPOMI formaldehyde column minus the Atlantic background.</dd>
   </dl>
 </section>
 
-<!-- ============================================================ CH 13 -->
-<section class="chapter refs" id="c13" style="--accent:#1f7a3a">
+<!-- ============================================================ CH 14 -->
+<section class="chapter refs" id="c14" style="--accent:#1f7a3a">
   <div class="progress"></div>
-  <span class="chapnum">Chapter 13</span>
+  <span class="chapnum">Chapter 14</span>
   <h1 class="chap">References</h1>
-  <p class="small muted" style="text-indent:0;padding-left:0">References taken from the reference list of the English manuscript, and official Google Earth Engine pages consulted on 1 November 2026.</p>
+  <p class="small muted" style="text-indent:0;padding-left:0">Works cited in this tutorial; official Google Earth Engine pages consulted on 1 and 16 November 2026.</p>
   <p>Atkinson R, Arey J (2003) Atmospheric degradation of volatile organic compounds. Chemical Reviews 103(12):4605-4638. https://doi.org/10.1021/cr0206420</p>
   <p>Benjamini Y, Hochberg Y (1995) Controlling the false discovery rate: a practical and powerful approach to multiple testing. Journal of the Royal Statistical Society: Series B (Methodological) 57(1):289-300. https://doi.org/10.1111/j.2517-6161.1995.tb02031.x</p>
   <p>Carlton AG, Wiedinmyer C, Kroll JH (2009) A review of secondary organic aerosol (SOA) formation from isoprene. Atmospheric Chemistry and Physics 9(14):4987-5005. https://doi.org/10.5194/acp-9-4987-2009</p>
@@ -770,6 +757,7 @@ EOF</pre>
   <p>Google (2025) Earth Engine access. Google Earth Engine guides. https://developers.google.com/earth-engine/guides/access. Accessed 1 Nov 2026</p>
   <p>Google (2026a) Authentication and initialization. Google Earth Engine guides. https://developers.google.com/earth-engine/guides/auth. Accessed 1 Nov 2026</p>
   <p>Google (2026b) Earth Engine noncommercial tiers. Google Earth Engine guides. https://developers.google.com/earth-engine/guides/noncommercial_tiers. Accessed 1 Nov 2026</p>
+  <p>Google (2026c) Access control. Google Earth Engine guides. https://developers.google.com/earth-engine/guides/access_control. Accessed 16 Nov 2026</p>
   <p>Gorelick N, Hancher M, Dixon M, Ilyushchenko S, Thau D, Moore R (2017) Google Earth Engine: planetary-scale geospatial analysis for everyone. Remote Sensing of Environment 202:18-27. https://doi.org/10.1016/j.rse.2017.06.031</p>
   <p>Guenther A (2024a) MEGAN 3.2 input files [Dataset]. Zenodo. https://doi.org/10.5281/zenodo.10939297</p>
   <p>Guenther A (2024b) MEGANv3.21.tar.gz emission calculator code (3.21). Zenodo. https://doi.org/10.5281/zenodo.10526206</p>
@@ -794,6 +782,7 @@ EOF</pre>
   <p>Román MO, Justice C, Paynter I et al (2024) Continuity between NASA MODIS Collection 6.1 and VIIRS Collection 2 land products. Remote Sensing of Environment 302:113963. https://doi.org/10.1016/j.rse.2023.113963</p>
   <p>Sen PK (1968) Estimates of the regression coefficient based on Kendall's tau. Journal of the American Statistical Association 63(324):1379-1389. https://doi.org/10.1080/01621459.1968.10480934</p>
   <p>Sillman S (1999) The relation between ozone, NOx and hydrocarbons in urban and polluted rural environments. Atmospheric Environment 33(12):1821-1845. https://doi.org/10.1016/S1352-2310(98)00345-8</p>
+  <p>Sulla-Menashe D, Gray JM, Abercrombie SP, Friedl MA (2019) Hierarchical mapping of annual global land cover 2001 to present: the MODIS Collection 6 Land Cover product. Remote Sensing of Environment 222:183-194. https://doi.org/10.1016/j.rse.2018.12.013</p>
   <p>Souza Junior CM et al (2020) Reconstructing three decades of land use and land cover changes in Brazilian biomes with Landsat archive and Earth Engine. Remote Sensing 12(17):2735. https://doi.org/10.3390/rs12172735</p>
   <p>Vigouroux C et al (2020) TROPOMI-Sentinel-5 Precursor formaldehyde validation using an extensive network of ground-based Fourier-transform infrared stations. Atmospheric Measurement Techniques 13(7):3751-3767. https://doi.org/10.5194/amt-13-3751-2020</p>
   <p>WHO (2021) WHO global air quality guidelines: particulate matter (PM2.5 and PM10), ozone, nitrogen dioxide, sulfur dioxide and carbon monoxide. World Health Organization, Geneva. ISBN 978-92-4-003422-8</p>
@@ -805,18 +794,18 @@ EOF</pre>
   <span class="chapnum">To print</span>
   <h1 class="chap">Final checklist</h1>
   <div class="grid2">
-    <div class="card"><h4>Reproduce (level A)</h4>
-      <ul class="tick"><li>Terminal in the folder <code>MEGAN_SC/</code></li><li>Environment installed and active</li><li><code>pytest -q</code>: 127 passed</li><li><code>verify_manifest.py</code>: OK 363</li><li>Data downloaded and <code>check-data</code> without missing files</li><li><code>reproduce.py all</code> finished and <code>compare</code> read</li></ul></div>
+    <div class="card"><h4>Reproduce the example</h4>
+      <ul class="tick"><li>Terminal in the folder <code>MEGAN_SC/</code></li><li>Environment installed and active</li><li><code>pytest -q</code>: every test passes</li><li><code>verify_manifest.py</code>: no file changed, missing or extra</li><li>Data downloaded and <code>check-data</code> without missing files</li><li><code>reproduce.py all</code> finished and <code>compare</code> read</li></ul></div>
     <div class="card"><h4>Understand</h4>
-      <ul class="tick"><li>I know what EF, ER and the γ factors are</li><li>I know what each FIX is for</li><li>I know why isoprene carries ρ = 0.96</li><li>I traced a number to its file and key</li><li>I know which numbers changed with the LAI correction</li></ul></div>
-    <div class="card"><h4>Colab and Earth Engine (level B)</h4>
-      <ul class="tick"><li>Project registered and ID noted</li><li>Repository at <code>MyDrive/megan-sc</code></li><li><code>EE_PROJECT</code> set in notebooks 10, 14, 16, 17, 20 and 21</li><li>Notebook 11 without unexplained failures</li><li>Published growth forms copied, if needed</li></ul></div>
-    <div class="card"><h4>Notebooks 17 to 23</h4>
-      <ul class="tick"><li>Cell 11 of 17 read: only the LAI changed</li><li>Years installed and <code>reproduce.py</code> run by 19</li><li>Earthdata account ready for 22</li><li>Output of cell 2 of 22 cleared before sharing</li></ul></div>
+      <ul class="tick"><li>I know what EF, ER and the γ factors are</li><li>I know what each FIX is for</li><li>I know why isoprene carries ρ = 0.96</li><li>I can read totals, maps, correlations and trends of a run</li><li>I know what the results cannot show</li></ul></div>
+    <div class="card"><h4>Drive, Colab and Earth Engine</h4>
+      <ul class="tick"><li>Project registered and ID noted</li><li>Repository at <code>MyDrive/MEGAN_SC</code></li><li><code>EE_PROJECT</code> set in the notebook or the configuration</li><li>Release zips in the Drive copy, if a notebook reads the example run</li></ul></div>
+    <div class="card"><h4>Your region</h4>
+      <ul class="tick"><li>Outline in Drive and step 1 of the wizard filled in</li><li>Test map checked and <code>config/&lt;region&gt;_run.yaml</code> written</li><li>Notebook 10 run with <code>RUN_CONFIG</code>; notebook 11 without unexplained failures</li><li>Notebook 25 results read; choices of chapter 8 reviewed</li><li>Configuration and <code>fixes.py</code> hash reported</li></ul></div>
+    <div class="card"><h4>Notebooks of the example</h4>
+      <ul class="tick"><li>Cell 11 of 17 read: only the LAI changed</li><li>Earthdata account ready for 22</li><li>Output of cell 2 of 22 cleared before sharing</li></ul></div>
     <div class="card"><h4>Cite</h4>
-      <ul class="tick"><li>This repository (<code>CITATION.cff</code>)</li><li>The inventory article</li><li>The MEGANv3.21 code (Guenther 2024b)</li><li>The MEGAN 3.2 input files (Guenther 2024a)</li><li>The data products of <code>DATA_AVAILABILITY.md</code></li></ul></div>
-    <div class="card"><h4>Your region (level C)</h4>
-      <ul class="tick"><li>Outline in Drive and step 1 filled in</li><li>Test map checked</li><li>Choices of chapter 9 reviewed</li><li><code>fixes.py</code> hash reported</li></ul></div>
+      <ul class="tick"><li>This repository (<code>CITATION.cff</code>)</li><li>The MEGANv3.21 code (Guenther 2024b)</li><li>The MEGAN 3.2 input files (Guenther 2024a)</li><li>The data products of <code>DATA_AVAILABILITY.md</code></li></ul></div>
   </div>
 </section>
 <script>

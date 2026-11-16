@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 """11_report_figures_v10.py
-Report-only figure of the inventory report that is not a map, from the production run (data/run_v10):
+Additional Portuguese figure of the Santa Catarina example that is not a map, from the production run (data/run_v10):
   fig10  standardised regression by class (std_regression_v10.csv, from 10_report_numbers_v10.py).
-The maps of the report (Figures 9, 12 and A.2 to A.9) are drawn by ../maps/12_maps_wf_style.py, in the layout of the
-biomass-burning article.
-Report Figure 1 is article Figure 1, Figures 2-10 are article Figures 3-11 (results/v10/figures/pt), Figure A.10 is article
-Figure 12 and Figure A.11 is article Figure 2.
+The additional Portuguese maps (pt_report/fig9, fig12 and figA2 to figA9) are drawn by ../maps/12_maps_wf_style.py.
 Output: reproduced/figures/pt_report/fig10.png (published copy in results/v10/figures/pt_report/).
 Usage: python3 11_report_figures_v10.py (after 10_report_numbers_v10.py, whose std_regression_v10.csv it reads)
 """

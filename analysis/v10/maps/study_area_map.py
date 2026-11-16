@@ -1,16 +1,17 @@
 #!/usr/bin/env python3
-"""study_area_map.py - study-area figure of the article (Figure 1): position of Santa Catarina in South America, land use
-and land cover of MapBiomas Collection 10 in 2019 (the year compared with the previous state inventory and the year of the
-native-forest shares of article Table 2 and report Table 3), and the MEGAN growth forms that the model derives from it on the 0.025° grid.
+"""study_area_map.py - study-area figure (fig_study_area): position of Santa Catarina in South America, land use
+and land cover of MapBiomas Collection 10 in the year YEAR (environment variable FIG1_YEAR; default 2024, the last year of
+the collection, whose map is also the land cover of 2025 in the run; until 16 November 2026 the figure showed 2019), and
+the MEGAN growth forms that the model derives from it on the 0.025° grid.
 
-Panel a follows tools/study_area_map.py of the biomass-burning pipeline (same data, classes and colours of the MapBiomas
-Collection 10 legend); panel b shows the tree fraction of each grid cell in 2019 (data/run_v10/2019/inputs/growthform_2019.npz)
+Panel a uses the classes and colours of the MapBiomas Collection 10 legend; panel b shows the tree fraction of each grid cell in YEAR (data/run_v10/<YEAR>/inputs/growthform_<YEAR>.npz)
 and the state shares of the four growth forms.
 
-Inputs: data/external/mapbiomas_c10_lulc2019_SC_120m.npz and mapbiomas_c10_lulc2019_SC_class_areas.csv (MapBiomas Collection
-10, 2019, Santa Catarina window at about 120 m and class areas inside the state), data/external/ibge_br_uf_2024_simplified.geojson
+Inputs: data/external/mapbiomas_c10_lulc<YEAR>_SC_120m.npz and mapbiomas_c10_lulc<YEAR>_SC_class_areas.csv (MapBiomas
+Collection 10, Santa Catarina window at about 120 m and class areas inside the state; 2024 written by extract_mapbiomas_sc.py
+of this folder from the GeoTIFF exported by mapbiomas_lulc_SC_export.ipynb, 2019 from the same MapBiomas asset at the same scale), data/external/ibge_br_uf_2024_simplified.geojson
 and ibge_america_do_sul_2021_simplified.geojson (IBGE), data/boundaries (municipalities and mesoregions of 2024), and the
-2019 growth forms of the production run.
+growth forms of that year in the production run.
 Outputs: <MEGAN_SC_OUT>/figures/{pt,en}/fig_study_area.png and <MEGAN_SC_OUT>/figures/study_area_shares.csv (published
 copies in results/v10/figures)."""
 import math, os, sys
@@ -26,7 +27,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(HERE, '..')); import _paths as P
 sys.path.insert(0, HERE); import wf_style as W
 REPO = P.REPO; EXT = os.path.join(REPO, 'data', 'external'); BND = P.BND
-YEAR = 2019; LAT0 = -27.6
+YEAR = int(os.environ.get('FIG1_YEAR', 2024)); LAT0 = -27.6
 GROUPS = [  # key, MapBiomas class ids, colour (Collection 10 legend), PT label, EN label
     ('forest', [3, 5, 49], '#1f8d49', 'Formação florestal', 'Forest formation'),
     ('grass', [12], '#d6bc74', 'Formação campestre', 'Grassland'),
@@ -36,7 +37,7 @@ GROUPS = [  # key, MapBiomas class ids, colour (Collection 10 legend), PT label,
     ('crop', [39, 40, 41], '#f54ca9', 'Lavouras temporárias', 'Temporary crops'),
     ('mosaic', [21], '#ffefc3', 'Mosaico de usos', 'Mosaic of uses'),
     ('urban', [24], '#d4271e', 'Área urbanizada', 'Urban area'),
-    ('nonveg', [23, 25, 30], '#ffa07a', 'Outras áreas não vegetadas', 'Other non-vegetated areas'),
+    ('nonveg', [23, 25, 30, 75], '#ffa07a', 'Outras áreas não vegetadas', 'Other non-vegetated areas'),
     ('water', [33, 31], '#2532e4', 'Água', 'Water'),
 ]
 GF = [('tree', 'Árvore', 'Tree', '#1f8d49'), ('herb', 'Herbácea', 'Herbaceous', '#d6bc74'), ('crop', 'Cultivo', 'Crop', '#f54ca9'),
@@ -44,14 +45,14 @@ GF = [('tree', 'Árvore', 'Tree', '#1f8d49'), ('herb', 'Herbácea', 'Herbaceous'
 TXT = {
     'pt': dict(a=f'a) Uso e cobertura da terra (MapBiomas), {YEAR}', legend='Classes (% da área classificada\ndo Estado)', sa='América do Sul', ocean='Oceano\nAtlântico',
                capital='Capital', city='Município (sede aproximada)', meso='Limite de mesorregião', BR='BRASIL', AR='ARGENTINA',
-               b='b) Fração de árvore na grade do modelo (0,025°), 2019', cb='Fração da célula ocupada\npela forma árvore',
-               shares='Formas de crescimento do MEGAN\nno Estado, 2019 (% da área)',
+               b=f'b) Fração de árvore na grade do modelo (0,025°), {YEAR}', cb='Fração da célula ocupada\npela forma árvore',
+               shares=f'Formas de crescimento do MEGAN\nno Estado, {YEAR} (% da área)',
                note=f'MapBiomas, Coleção 10 ({YEAR}); formas de crescimento do MEGAN obtidas do MapBiomas a 30 m e agregadas à grade de 0,025°. '
                     'Limites: IBGE (municípios e UF de 2024; América do Sul de 2021). Coordenadas geográficas, SIRGAS 2000/WGS 84.'),
     'en': dict(a=f'a) Land use and land cover (MapBiomas), {YEAR}', legend='Classes (% of the classified\nstate area)', sa='South America', ocean='Atlantic\nOcean',
                capital='State capital', city='Municipality (approximate seat)', meso='Mesoregion boundary', BR='BRAZIL', AR='ARGENTINA',
-               b='b) Tree fraction on the model grid (0.025°), 2019', cb='Fraction of the cell covered\nby the tree growth form',
-               shares='MEGAN growth forms in the\nstate, 2019 (% of the area)',
+               b=f'b) Tree fraction on the model grid (0.025°), {YEAR}', cb='Fraction of the cell covered\nby the tree growth form',
+               shares=f'MEGAN growth forms in the\nstate, {YEAR} (% of the area)',
                note=f'MapBiomas, Collection 10 ({YEAR}); MEGAN growth forms derived from MapBiomas at 30 m and aggregated to the 0.025° grid. '
                     'Boundaries: IBGE (municipalities and states, 2024; South America, 2021). Geographic coordinates, SIRGAS 2000/WGS 84.'),
 }
@@ -61,14 +62,14 @@ halo = [pe.withStroke(linewidth=1.6, foreground='white')]
 
 
 def lulc():
-    z = np.load(os.path.join(EXT, 'mapbiomas_c10_lulc2019_SC_120m.npz'))
+    z = np.load(os.path.join(EXT, f'mapbiomas_c10_lulc{YEAR}_SC_120m.npz'))
     a, inside, t = z['a'], z['inside'], z['transform']
     lut = np.full(256, -1, dtype=int)
     for k, (_, ids, *_r) in enumerate(GROUPS):
         lut[ids] = k
     g = lut[a].astype(float); g[(~inside) | (g < 0)] = np.nan
     extent = (t[2], t[2] + t[0] * a.shape[1], t[5] + t[4] * a.shape[0], t[5])
-    areas = pd.read_csv(os.path.join(EXT, 'mapbiomas_c10_lulc2019_SC_class_areas.csv'))
+    areas = pd.read_csv(os.path.join(EXT, f'mapbiomas_c10_lulc{YEAR}_SC_class_areas.csv'))
     pct = {key: areas[areas.class_id.isin(ids)].pct_classified.sum() for key, ids, *_r in GROUPS}
     assert abs(sum(pct.values()) - 100) < 0.01, sum(pct.values())
     return g, extent, pct
@@ -169,7 +170,7 @@ if __name__ == '__main__':
     g, extent, pct = lulc(); tree, gext, sh = growth_forms()
     for lang in ('pt', 'en'):
         main(lang, g, extent, pct, tree, gext, sh, mun, state, mesog, uf, sa)
-    rows = [dict(source='MapBiomas C10 2019, % of the classified state area', group=k, pct=round(pct[k], 3)) for k, *_ in GROUPS]
-    rows += [dict(source='MEGAN growth forms 2019, % of the state grid area', group=k, pct=round(sh[k], 3)) for k, *_ in GF]
+    rows = [dict(source=f'MapBiomas C10 {YEAR}, % of the classified state area', group=k, pct=round(pct[k], 3)) for k, *_ in GROUPS]
+    rows += [dict(source=f'MEGAN growth forms {YEAR}, % of the state grid area', group=k, pct=round(sh[k], 3)) for k, *_ in GF]
     pd.DataFrame(rows).to_csv(P.out('figures', 'study_area_shares.csv'), index=False)
     print(pd.DataFrame(rows).to_string(index=False))

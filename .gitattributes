@@ -9,6 +9,9 @@
 *.cff text eol=lf
 *.sh text eol=lf
 *.ipynb text eol=lf
+# The MEGAN 3.2 input tables are kept byte for byte as distributed (Windows line endings), so that they match
+# data/DATA_SHA256SUMS.txt and the files of EFP240120.zip on Zenodo
+data/megan_inputs/** -text
 # Binary files
 *.png binary
 *.pdf binary

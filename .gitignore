@@ -30,5 +30,10 @@ desktop.ini
 .vscode/
 .idea/
 
-# written at run time next to data/sc_ecotype.nc (FIX-5)
-data/sc_ecotype_filled.nc
+# written at run time next to the ecotype map (FIX-5), and the files of a region set up by the wizard
+data/*_ecotype_filled.nc
+data/regions/
+megan_sc_outputs_*/
+
+# RStudio session files of a local working copy
+.Rproj.user/

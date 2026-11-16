@@ -17,6 +17,7 @@
 
 # %%
 # 1 · Paths -----------------------------------------------------------------------------------------------
+__FILE:notebooks/src/_setup_repo.py__
 import os, glob, warnings
 try:
     from google.colab import drive
@@ -34,7 +35,7 @@ if IN_COLAB:
 BASE_ROOT   = '/content/drive/MyDrive/megan_sc_outputs_v10'
 HOURLY_ROOT = '/content/drive/MyDrive/megan_sc_outputs_v10_hourly'
 LAIDEF_ROOT = '/content/drive/MyDrive/megan_sc_outputs_v10_lai_eedefault'
-BND         = '/content/drive/MyDrive/megan-sc/data/boundaries'
+BND         = os.path.join(REPO_DIR, 'data/boundaries')
 OUT_DIR     = os.path.join(BASE_ROOT, 'analysis_v10', 'sensitivity')
 YEAR = 2019; YEARS_ALL = list(range(2003, 2026))
 RHO_ISOP = 0.96   # isoprene canopy loss and production factor (Guenther et al., 2006); notebook 10 writes rho = 1

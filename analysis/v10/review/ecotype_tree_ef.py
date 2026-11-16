@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-"""ecotype_tree_ef.py - the MEGAN v3 ecotypes of Santa Catarina and the tree emission factors they carry (Online Resource 1,
-Table S8).
+"""ecotype_tree_ef.py - the MEGAN v3 ecotypes of Santa Catarina and the tree emission factors they carry.
 
 Reads only files distributed with the repository:
   data/sc_ecotype.nc                                    ecotype map clipped from EVT3d.nc (1/120 degree)
@@ -9,11 +8,11 @@ Reads only files distributed with the repository:
   data/boundaries/sc_state_ibge.gpkg                    IBGE state polygon
 The ecotype map and the two tables come from the MEGAN 3.2 input files (Guenther 2024, Zenodo,
 https://doi.org/10.5281/zenodo.10939297).
-Output: reproduced/ijest_review/ecotype_tree_ef.csv (published copy in results/v10/ijest_review): for each ecotype present
+Output: reproduced/posthoc_review/ecotype_tree_ef.csv (published copy in results/v10/posthoc_review): for each ecotype present
 in the state, its share of the state area (ecotype cells with centre inside the polygon), the tree entries and their
 fractions, and the composed tree emission factor (sum of fraction x EF) of isoprene (EF1), MT_PINE (EF3) and MBO (EF2), with
 the same factors of the two entries. Code 65535 (no ecotype; a coastal strip that the run fills with the nearest valid
-ecotype, Section 2.4 of the article) is listed with its share only.
+ecotype, FIX-5 of notebook 10) is listed with its share only.
 """
 import os, sys
 import numpy as np, pandas as pd, xarray as xr, geopandas as gpd, shapely
@@ -43,6 +42,6 @@ for e, c in zip(ids, counts):
         refs = [str(tab.loc[v, 'References']) for v in sub.VegID]
         r['references_field'] = '; '.join('(empty)' if x in ('nan', '') else x for x in refs)
     rows.append(r)
-out = P.out('ijest_review', 'ecotype_tree_ef.csv')
+out = P.out('posthoc_review', 'ecotype_tree_ef.csv')
 pd.DataFrame(rows).to_csv(out, index=False, float_format='%.6g')
 print(pd.DataFrame(rows).to_string()); print('written', out)

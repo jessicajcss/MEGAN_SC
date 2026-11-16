@@ -1,4 +1,4 @@
-# Level A (python reproduce.py all) and the unit tests: no Earth Engine, no map projections library.
+# reproduce.py (python reproduce.py all) and the unit tests: no Earth Engine needed.
 # Exact versions of the reproduction run: requirements-lock.txt (Python 3.10.12).
 numpy>=1.26
 scipy>=1.11

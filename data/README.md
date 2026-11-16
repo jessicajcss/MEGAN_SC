@@ -2,7 +2,7 @@
 
 The small inputs are kept in git. The five large folders (`run_v10/` 2,075 files, `tropomi_hcho_v10/` 84, `s1_test/` 72, `lai_viirs_v10/` 5, `run_v10_modis_lai_2024_2025/` 180; 2,416 files, distributed as five zip files of 0.90 GB together) are unpacked here by
 `python tools/data_release.py fetch <base-url>`; `git` ignores them (`.gitignore`). `DATA_SHA256SUMS.txt` lists the
-SHA-256 of every file below (2,435 files: all except this README and the two checksum lists), and
+SHA-256 of every file below (2,438 files: all except this README and the two checksum lists), and
 `python reproduce.py check-data` verifies them; `RELEASE_ASSETS_SHA256SUMS.txt` holds the checksums of the five zip files. Sources and licences are in `../DATA_AVAILABILITY.md`.
 
 ## Conventions shared by every grid
@@ -26,15 +26,17 @@ SHA-256 of every file below (2,435 files: all except this README and the two che
 |---|---|
 | `boundaries/sc_state_ibge.gpkg` | state polygon (IBGE) |
 | `boundaries/SC_Municipios_2024.gpkg` | 295 municipalities, 2024 mesh, simplified; fields `CD_MUN`, `NM_MUN`, `NM_RGINT` (intermediate geographic region), `NM_UF`, `SIGLA_UF`, `AREA_KM2` |
-| `boundaries/sc_mesoregions_2024.gpkg` | six mesoregions with the islands; `name_meso`, `n_mun`, `area_ibge_km2`, `forest_pct` (MapBiomas 2019) |
+| `boundaries/sc_mesoregions_2024.gpkg` | six mesoregions with the islands; `name_meso`, `n_mun`, `area_ibge_km2`, `forest_pct` (MapBiomas 2024; 2019 until 16 November 2026) |
 | `boundaries/sc_municipios_2024_mesorregiao.csv` | municipality to mesoregion |
 | `boundaries/sc_mesoregions.gpkg` | IBGE mesoregion polygons (without the coastal islands), used only to attribute each 2024 municipality to its mesoregion (`analysis/v10/meso2024/make_sc_mesoregions_2024.py`); `name_meso`, `forest_pct` (documented for three mesoregions only; not read by any script), `reflor_pct` |
-| `boundaries/landcover2019_mesoregion.csv` | share of land-cover groups by mesoregion, MapBiomas Collection 10, 2019, from the biomass-burning pipeline (`tools/study_area_map.py` of that pipeline); fields `group`, `mesorregiao`, `km2`, `pct_of_group`, `pct_of_mesoregion`; input of `make_sc_mesoregions_2024.py`, which takes the `forest` rows as `forest_pct` of `sc_mesoregions_2024.gpkg` |
+| `boundaries/landcover2024_mesoregion.csv` | share of land-cover groups by mesoregion, MapBiomas Collection 10, 2024, written by `analysis/v10/maps/landcover_mesoregion.py`; fields `group`, `mesorregiao`, `km2`, `pct_of_group`, `pct_of_mesoregion`; input of `make_sc_mesoregions_2024.py`, which takes the `forest` rows as `forest_pct` of `sc_mesoregions_2024.gpkg` |
+| `boundaries/landcover2019_mesoregion.csv` | the same for 2019, made with the method of `analysis/v10/maps/landcover_mesoregion.py` before that script was added; source of `forest_pct` until 16 November 2026, kept as the record of the earlier values and read by no script |
 | `boundaries/oni.csv` | Oceanic Niño Index |
 | `megan_inputs/EFP240120/` | `EFv240120.csv` (emission factors by ecotype and growth form) and `Speciation{Tree,Shrub,Herb,Crop}*.csv`, unchanged from `EFP240120.zip` of the MEGAN 3.2 input files (Guenther, 2024, Zenodo 10.5281/zenodo.10939297) |
 | `sc_ecotype.nc` | MEGAN ecotype codes on the Santa Catarina tile, clipped from `EVT3d.nc` of the same record (variable `EVT`; 65535 = no data, filled by FIX-5 at run time) |
-| `external/mapbiomas_c10_lulc2019_SC_120m.npz` | MapBiomas Collection 10, 2019, Santa Catarina window at about 120 m: `a` (class codes, uint8), `inside` (state mask), `transform` (affine of the window); study-area map |
+| `external/mapbiomas_c10_lulc2019_SC_120m.npz` | MapBiomas Collection 10, 2019, Santa Catarina window at about 120 m: `a` (class codes, uint8), `inside` (state mask), `transform` (affine of the window); study-area map until 16 November 2026, plantation diagnostic of `analysis/v10/review/posthoc_review_diagnostics.py` |
 | `external/mapbiomas_c10_lulc2019_SC_class_areas.csv` | `class_id`, `class_name`, `area_km2`, `pct_classified`: MapBiomas classes inside the state in 2019 |
+| `external/mapbiomas_c10_lulc2024_SC_120m.npz`, `external/mapbiomas_c10_lulc2024_SC_class_areas.csv` | the same for 2024 (study-area map from 16 November 2026; written by `analysis/v10/maps/extract_mapbiomas_sc.py`) |
 | `external/ibge_br_uf_2024_simplified.geojson`, `external/ibge_america_do_sul_2021_simplified.geojson` | IBGE outlines (states 2024, South America 2021), simplified |
 | `external/co2_annmean_gl.txt` | NOAA GML global annual mean CO₂ (`year mean unc`, ppm); read by `analysis/v10/review/final_review_diagnostics.py` |
 

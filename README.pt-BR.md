@@ -1,64 +1,89 @@
-# MEGAN_SC: emissões biogênicas de Santa Catarina, 2003-2025
+# MEGAN_SC: emissões biogênicas com o MEGANv3.21 e o Google Earth Engine, para qualquer região e período
 
-Código, saídas do modelo e análises do artigo *Emissões biogênicas em Santa Catarina, Brasil, 2003-2025:
-inventário com o MEGANv3.21 forçado por MapBiomas, MODIS e ERA5-Land* e do relatório *Inventário das emissões
-biogênicas na qualidade do ar em Santa Catarina* (ano-base 2025, série 2003-2025). Os dois documentos citam este
-repositório pelo endereço https://github.com/jessicajcss/MEGAN_SC.
+O MEGAN_SC é uma implementação em Python do código de emissões MEGANv3.21 (Guenther, 2024b), com uma camada de dados
+no Google Earth Engine. Para uma região dada por um arquivo de limites e um período dado em meses, ele calcula numa
+grade regular de latitude e longitude, a cada 3 h, a emissão das 19 classes do MEGAN: isopreno, monoterpenos,
+sesquiterpenos, COV oxigenados e leves, NO do solo e CO. A meteorologia vem do ERA5-Land, o índice de área foliar (IAF)
+do MODIS, a cobertura da terra do MapBiomas (Brasil) ou do MODIS (qualquer país) e os fatores de emissão dos arquivos de
+entrada do MEGAN 3.2. Os procedimentos de preparação das entradas e de execução (FIX-1 a FIX-8) estão em
+`src/megan_sc/fixes.py`, cujo SHA-256 fica gravado em cada arquivo de saída, e o motor, tal como usado na produção,
+reproduz etapa por etapa os executáveis Fortran oficiais na precisão de float32.
+
+O repositório traz um exemplo completo: Santa Catarina, 2003-2025, em grade de 0,025° (144 × 224 células, das quais
+13.970 dentro do Estado). As saídas do modelo, todas as tabelas, números e figuras calculados a partir delas e um
+comando que recalcula tudo acompanham o exemplo. Qualquer pessoa pode conferi-lo no próprio computador e aplicar o mesmo
+procedimento a outra região.
 
 > [README in English](README.md) · **Tutorial ilustrado em PDF: [`TUTORIAL_MEGAN_SC_pt.pdf`](TUTORIAL_MEGAN_SC_pt.pdf)** ([English](TUTORIAL_MEGAN_SC_en.pdf)) · [Capítulos técnicos (em inglês)](docs/tutorial/README.md)
 
-O MEGAN_SC é uma implementação em Python do código de emissões MEGANv3.21 (Guenther, 2024b), com uma camada de dados
-no Google Earth Engine. Para Santa Catarina, calcula em grade de 0,025° (144 × 224 células, das quais 13.970 dentro do
-Estado), a cada 3 h de 2003 a 2025, a emissão das 19 classes do MEGAN: isopreno, monoterpenos, sesquiterpenos, COV
-oxigenados e leves, NO do solo e CO. Os procedimentos de preparação das entradas e de execução (FIX-1 a FIX-8) estão em
-`src/megan_sc/fixes.py`, cujo SHA-256 fica gravado em cada arquivo de saída, e o motor, tal como usado na produção,
-reproduz etapa por etapa os executáveis Fortran oficiais na precisão de float32. Ao ler a execução, as análises
-multiplicam o isopreno pelo fator de perda e produção no dossel, ρ = 0,96 (Guenther et al., 2006), que o código
-MEGANv3.21 não aplica.
+## O que o repositório permite
 
-## Três níveis de uso
+| Objetivo | Requisitos | Tempo |
+|---|---|---|
+| **Reproduzir o exemplo**: recalcular todos os números, tabelas e figuras do exemplo de Santa Catarina a partir das saídas do modelo distribuídas e compará-los com as cópias publicadas | Python 3.10 ou mais recente, cerca de 1,2 GB em disco, sem contas | alguns minutos de processamento |
+| **Executar o modelo para a sua região e período**: arquivo de limites, assistente, execução, verificações e resultados | conta Google com um projeto do Earth Engine, Google Colab e Google Drive | minutos para um teste; horas de requisições ao Earth Engine por ano simulado |
+| **Executar de novo o exemplo a partir dos dados brutos**, com a comparação com o Fortran, a avaliação com o TROPOMI e os testes de sensibilidade | como no item anterior | como no item anterior; 41 EECU-horas no caderno do TROPOMI |
 
-| Nível | Objetivo | Requisitos | Tempo |
-|---|---|---|---|
-| **A. Reproduzir** | recalcular todos os números, tabelas e figuras do artigo e do relatório a partir das saídas do modelo distribuídas com o repositório e compará-los com as cópias publicadas | Python 3.10 ou mais recente, cerca de 1,2 GB em disco, sem contas | cerca de 5 min de processamento |
-| **B. Replicar** | executar de novo o modelo a partir dos dados brutos (ERA5-Land, MODIS, MapBiomas), as verificações, a comparação com o Fortran e a avaliação com o TROPOMI | conta Google com Earth Engine e Google Colab | horas de requisições ao Earth Engine por ano simulado; 41 EECU-horas no caderno do TROPOMI |
-| **C. Estender** | montar o mesmo inventário para outro estado, província ou país | como em B, mais um arquivo de limites | como em B |
-
-## Reprodução em quatro comandos (nível A)
+## Reprodução do exemplo em cinco comandos
 
 ```bash
-git clone https://github.com/jessicajcss/MEGAN_SC megan-sc && cd megan-sc
+git clone https://github.com/jessicajcss/MEGAN_SC.git MEGAN_SC && cd MEGAN_SC
 pip install -r requirements-reproduce.txt          # ou: conda env create -f environment.yml && conda activate megan-sc
 python tools/data_release.py fetch https://github.com/jessicajcss/MEGAN_SC/releases/download/v1.0.0   # os arquivos de dados (DATA_AVAILABILITY.md)
 python reproduce.py check-data                     # SHA-256 de cada arquivo de dados
-python reproduce.py all                            # 16 etapas; a última compara cada arquivo com results/v10
+python reproduce.py all                            # todas as etapas; a última compara cada arquivo com results/v10
 ```
 
-O endereço acima é o da versão (*release*) do GitHub, marcada v1.0.0, que vai receber os arquivos de dados quando o
-repositório for publicado. A cópia arquivada no Zenodo, depois do depósito, ou uma pasta local com os arquivos zip
-funcionam do mesmo modo. Tudo é gravado em `reproduced/`, sem alterar `data/` nem `results/`. A última etapa compara cada arquivo recalculado
-com a cópia publicada. Numa execução de 15/11/2026, numa máquina Linux com versões de bibliotecas mais novas que as de
-`requirements-lock.txt`, em uma única passada numa pasta vazia (5 min 22 s), os 58 arquivos CSV ficaram idênticos (26) ou
-iguais dentro da tolerância (32), sem nenhum diferente, e 17 das 59 figuras PNG ficaram idênticas pixel a pixel
-(`docs/tutorial/reproduction_log.txt`). Quatro dos arquivos CSV idênticos e essas 17 figuras foram gravados em
-`results/v10` nessa máquina, e a comparação não os testa de forma independente. As demais figuras foram desenhadas no
-Google Colab e diferem na renderização, por causa de fontes e versões de bibliotecas, sem mudança nos números, e os
-arquivos iguais dentro da tolerância diferem no máximo em 9,5 × 10⁻⁷ em termos relativos.
+O endereço acima é o da versão (*release*) v1.0.0 do GitHub, que guarda os arquivos de dados. Uma pasta local com os
+arquivos zip funciona do mesmo modo. Tudo é gravado em `reproduced/`, sem alterar `data/` nem `results/`, e a última
+etapa compara cada arquivo recalculado com a cópia publicada. Em 16 de novembro de 2026, numa máquina Linux com as versões de `requirements-lock.txt`, as 16 etapas levaram 3 min 34 s
+e todos os arquivos CSV coincidiram com a cópia publicada (54 de 59 byte a byte, 5 dentro de uma tolerância relativa de
+10⁻⁶). Dos 46 arquivos PNG, 34 ficaram idênticos pixel a pixel. As figuras dependem das fontes e das versões das
+bibliotecas, e em outra máquina algumas podem mudar em poucos pixels ou na posição dos painéis, sem mudança nos números.
+O registro completo, arquivo por arquivo, está em `docs/tutorial/reproduction_log.txt`.
 
-## Cadernos no Google Colab
+## A sua região e o seu período
 
-Os catorze cadernos Jupyter (*notebooks*) de `notebooks/` são executados no Google Colab com o Google Drive (níveis B e C), nesta ordem: 12 (comparação com os executáveis Fortran), 10 (execução de produção, Earth Engine), 11 (verificações C0 a C5), 13 (números, tabelas e figuras), 14 (avaliação com o formaldeído do TROPOMI, Earth Engine), 15 (testes de sensibilidade), 16 (comparação da queda do IAF do MODIS em 2024 e 2025 com o IAF do VIIRS, Earth Engine), 17 (2024 e 2025 com o IAF corrigido pela anomalia do VIIRS, Earth Engine), 18 (comparação com as emissões do MEGAN no BRAIN, 2019), 19 (verificação e instalação de 2024 e 2025 com o IAF corrigido e reprodução com os dois IAF), 21 (ERA5-Land contra estações do INMET e gradiente térmico vertical lido pelo caderno 20, Earth Engine), 20 (novas execuções de 2019 com uma configuração alterada por vez, Earth Engine), 22 (IAF do VIIRS do NOAA-20 e do NOAA-21, com login do Earthdata) e 23 (testes das explicações das diferenças em relação ao BRAIN). Cada um abre diretamente no Colab pelo endereço https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/<nome do caderno>.ipynb (ramo `main`); [notebooks/README.md](notebooks/README.md) descreve o que cada caderno precisa e produz, a célula de configurações e o tempo de execução. Informe o seu projeto do Earth Engine (`EE_PROJECT`) na célula "3 · Earth Engine" dos cadernos 10, 17 e 20, na célula "2 · Earth Engine" do caderno 21 e na célula de configurações dos cadernos 14 e 16. O caderno 19 instalou na execução os anos de 2024 e 2025 com o IAF corrigido e foi executado uma vez pelos autores; o `reproduce.py` repete as suas comparações.
+Tudo no Google Colab, com o repositório copiado para o Google Drive como `MyDrive/MEGAN_SC` (o capítulo 3 do tutorial
+mostra como copiar e como registrar um projeto do Earth Engine):
+
+1. `run_your_region/region_setup.ipynb`: informe o arquivo de limites, o primeiro e o último mês, o projeto do Earth
+   Engine e a resolução. O assistente monta a grade, lê a cobertura da terra, roda um teste curto com o motor completo
+   e grava `config/<região>_run.yaml` ([START_HERE.md](run_your_region/START_HERE.md));
+2. `notebooks/10_production_run.ipynb` com `RUN_CONFIG = 'config/<região>_run.yaml'`: a execução do modelo, mês a mês,
+   retomada automaticamente depois de uma desconexão;
+3. `notebooks/11_verify_run.ipynb`: seis verificações automáticas de cada ano;
+4. `notebooks/25_results_any_region.ipynb`: totais por classe e por grupo, ciclo sazonal, mapas de intensidade,
+   variáveis de controle, correlações e tendências.
+
+O capítulo 8 do tutorial lista as escolhas a revisar em outra região, e o capítulo 9 explica como ler os resultados.
+
+## Cadernos
+
+Os cadernos Jupyter (*notebooks*) de `notebooks/` rodam no Google Colab com o Google Drive, ou no Jupyter num computador
+com credenciais do Earth Engine. Todos começam pelo mesmo bloco, que encontra o repositório e, no Colab, conecta o
+Drive. Os cadernos 10, 11 e 25 servem a qualquer região. Os demais acompanham o exemplo: 12 (comparação com os
+executáveis Fortran), 13 (tabelas, números e figuras de Santa Catarina, com mesorregiões, municípios e o inventário
+estadual anterior), 14 (avaliação com o formaldeído do TROPOMI, Earth Engine), 15 (testes de sensibilidade), 16
+(comparação da queda do IAF do MODIS em 2024 e 2025 com o IAF do VIIRS, Earth Engine), 17 (2024 e 2025 com o IAF
+corrigido, Earth Engine), 18 (comparação com as emissões do MEGAN no BRAIN, 2019), 19 (instalação de 2024 e 2025 com o
+IAF corrigido e reprodução com os dois IAF, executado uma vez na preparação do exemplo), 20 (novas execuções de 2019 com
+uma configuração alterada por vez, Earth Engine), 21 (ERA5-Land contra estações do INMET, Earth Engine), 22 (IAF do
+VIIRS do NOAA-20 e do NOAA-21, com login do Earthdata) e 23 (testes das explicações das diferenças em relação ao BRAIN).
+Cada um abre no Colab pelo endereço https://colab.research.google.com/github/jessicajcss/MEGAN_SC/blob/main/notebooks/<nome do caderno>.ipynb,
+desde que o repositório esteja no Drive. [notebooks/README.md](notebooks/README.md) descreve o que cada caderno precisa e
+produz, a célula de configurações e o tempo de execução.
 
 ## Onde está cada coisa
 
 * **Tutorial ilustrado** (`TUTORIAL_MEGAN_SC_pt.pdf`, em português, e `TUTORIAL_MEGAN_SC_en.pdf`, em inglês; fontes
-  HTML em `docs/tutorial/`): do que é o inventário à leitura e à verificação dos resultados, com glossário e lista de
-  conferência.
-* **Capítulos técnicos** (`docs/tutorial/`, em inglês): 13 capítulos, das equações do MEGAN ao mapa que liga cada número dos
-  documentos ao arquivo e à coluna de onde vem (capítulo 8), cada figura ou tabela ao script que a produz (capítulo 9)
-  e a forma de identificar o código, os dados e os resultados (capítulo 13).
-* **Resultados publicados** (`results/v10/`): tabelas, números e figuras da execução de produção (caderno 10), com o IAF
-  de 2024 e 2025 corrigido (cadernos 17 e 19). Os resultados com o IAF do MODIS sem correção estão em
+  HTML em `docs/tutorial/`): o MEGANv3.21 em palavras simples, os dados, o repositório, o exemplo, o Google Drive, o
+  Colab e o Earth Engine, a sua região, a leitura dos resultados, glossário e lista de conferência.
+* **Capítulos técnicos** (`docs/tutorial/`, em inglês): 12 capítulos, das equações do MEGAN à execução para outra região,
+  à leitura dos resultados e à forma de identificar o código, os dados e os resultados.
+* **Configurações** (`config/`): `santa_catarina_2003_2025.yaml`, a do exemplo; o assistente grava ali as novas.
+* **Resultados do exemplo** (`results/v10/`): tabelas, números e figuras da execução de Santa Catarina (caderno 10), com
+  o IAF de 2024 e 2025 corrigido (cadernos 17 e 19). Os resultados com o IAF do MODIS sem correção estão em
   `results/v10_modis_lai_2024_2025/`.
 * **Dados** (`data/`): limites do IBGE, tabelas do MEGAN e ecótipo ficam no git. Cinco arquivos zip chegam com
   `tools/data_release.py` (ver `DATA_AVAILABILITY.md`): as saídas do modelo (2003-2025), os anos de 2024 e 2025
@@ -69,9 +94,9 @@ Os catorze cadernos Jupyter (*notebooks*) de `notebooks/` são executados no Goo
 
 ## Citação e licenças
 
-Os metadados de citação estão em `CITATION.cff`, que vão receber o DOI depois do depósito. O código está sob a licença
+Os metadados de citação estão em `CITATION.cff`, que vai receber o DOI depois do depósito. O código está sob a licença
 MIT; documentos, tabelas e figuras, sob CC-BY-4.0; os dados de terceiros mantêm as próprias licenças
 (`LICENSE-docs-data.md`). O código MEGANv3.21 (Guenther, 2024b; Zenodo, DOI 10.5281/zenodo.10526206) fica fora deste
 repositório. As tabelas de fatores de emissão e de especiação usadas pelo motor (`data/megan_inputs/`, sem alteração) e o
-mapa de ecotipos recortado para Santa Catarina (`data/sc_ecotype.nc`) vêm dos arquivos de entrada do MEGAN 3.2
+mapa de ecótipos recortado para Santa Catarina (`data/sc_ecotype.nc`) vêm dos arquivos de entrada do MEGAN 3.2
 (Guenther, 2024a; Zenodo, DOI 10.5281/zenodo.10939297; licença CC BY 4.0). Cite também esses dois registros.

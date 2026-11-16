@@ -37,10 +37,11 @@
 
 # %%
 # 1 · Settings -------------------------------------------------------------------------------------------------------------
+__FILE:notebooks/src/_setup_repo.py__
 %pip -q install earthengine-api numpy scipy xarray netCDF4 matplotlib pyyaml pandas rasterio geopandas
 from google.colab import drive; drive.mount('/content/drive')
-MEGAN_DIR = '/content/drive/MyDrive/megan-sc'                      # <-- engine repo in Drive (as notebooks 10 and 17)
-REPO_DIR  = '/content/drive/MyDrive/MEGAN_SC'                      # <-- this repository (MapBiomas 2019 at 120 m, boundaries)
+MEGAN_DIR = REPO_DIR                      # the repository folder (found by the setup block)
+# REPO_DIR: this repository, found by the setup block above
 ROOT_V10  = '/content/drive/MyDrive/megan_sc_outputs_v10'          # <-- production run (2019 inputs and outputs)
 OUT_ROOT  = ROOT_V10 + '/analysis_v10/sensitivity_2019'            # outputs of this notebook (read by notebook 23)
 N21_JSON  = ROOT_V10 + '/analysis_v10/era5land_vs_inmet/lapse_rate.json'   # notebook 21 (optional)

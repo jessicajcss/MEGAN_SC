@@ -25,6 +25,7 @@
 
 # %%
 # 1 · Paths ------------------------------------------------------------------------------------------------
+__FILE:notebooks/src/_setup_repo.py__
 import os, sys, glob, subprocess, shutil, hashlib, json
 try:
     from google.colab import drive
@@ -39,8 +40,9 @@ if IN_COLAB:
                            'mounted there. Use Runtime > Disconnect and delete runtime, then run the notebook again from cell 1.')
     drive.mount('/content/drive')
 MGN_TGZ   = '/content/drive/MyDrive/MEGANv3.21.tar.gz'        # <-- MEGANv3.21.tar.gz from Zenodo 10.5281/zenodo.10526206
-MEGAN_DIR = '/content/drive/MyDrive/megan-sc'                 # <-- MEGAN-SC repo (same folder as notebook 10)
-RAW       = '/content/drive/MyDrive/megan_sc_outputs'         # <-- run folder whose 2019 inputs build the SC test case
+MEGAN_DIR = REPO_DIR                      # the repository folder (found by the setup block)
+RAW       = '/content/drive/MyDrive/megan_sc_outputs_v10'     # <-- run folder whose 2019 inputs build the SC test case (the
+                                                             #     published benchmark used those of an earlier run of notebook 10)
 WORK      = '/content/bench'                                  # local scratch (needs ~1.5 GB)
 RESULTS_DIR = '/content/drive/MyDrive/megan_sc_benchmark_results'
 MGN = os.path.join(WORK, 'MEGANv3.21'); PY = os.path.join(WORK, 'py'); ENGINE_SRC = os.path.join(MEGAN_DIR, 'src')
