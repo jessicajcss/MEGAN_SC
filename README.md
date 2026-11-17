@@ -36,8 +36,8 @@ python reproduce.py all                            # every step; the last one co
 
 The address above is that of the GitHub release (tag v1.0.0) that holds the data archives; a local folder holding the
 zip files works the same way (DATA_AVAILABILITY.md). Everything is written under `reproduced/`; nothing in `data/` or
-`results/` changes. The last step prints the comparison with the published files. On 16 November 2026, on a Linux machine with the versions of `requirements-lock.txt`, the 16 steps took 3 min 34 s and
-every CSV file matched its published copy (54 of 59 byte for byte, 5 within a relative tolerance of 10⁻⁶); 34 of the
+`results/` changes. The last step prints the comparison with the published files. On 16 November 2026, on a Linux machine with the versions of `requirements-lock.txt`, the 16 steps took 3 min 37 s and
+every CSV file matched its published copy (56 of 61 byte for byte, 5 within a relative tolerance of 10⁻⁶); 34 of the
 46 PNG files were pixel-identical.
 `docs/tutorial/reproduction_log.txt` holds the full comparison, file by file. PNG files depend on fonts and library
 versions, so on another machine some figures may differ by a few pixels, or in the position of their panels, while every

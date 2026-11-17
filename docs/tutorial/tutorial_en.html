@@ -401,7 +401,7 @@ conda env create -f environment.yml &amp;&amp; conda activate megan-sc</pre>
   <p>The tests check the transcription of the Fortran, the procedures FIX-1 to FIX-8, the region wizard and a run of notebooks 10, 11 and 25 for a small region with Earth Engine replaced by synthetic fields. They do not compare the model with observations.</p></div></div>
   <div class="step"><div class="n">4</div><div><h4>Check the published results</h4>
 <pre>python tools/verify_manifest.py
-<span class="o">337 files listed: OK 337, CHANGED 0, MISSING 0, EXTRA 0</span></pre>
+<span class="o">339 files listed: OK 339, CHANGED 0, MISSING 0, EXTRA 0</span></pre>
   <p>The manifest <code>results/MANIFEST.sha256</code> lists the SHA-256 of every file of <code>results/</code>. It answers the question "are these the published files?".</p></div></div>
   <div class="step"><div class="n">5</div><div><h4>Download and check the data</h4>
 <pre>python tools/data_release.py fetch https://github.com/jessicajcss/MEGAN_SC/releases/download/v1.0.0
@@ -414,7 +414,7 @@ python reproduce.py all         <span class="c"># everything, then the compariso
 python reproduce.py nb13 maps   <span class="c"># or any subset, in the order given</span></pre></div></div>
 
   <div class="box check"><span class="t">✅ Checkpoint · what to expect</span>
-  <p>On 16 November 2026, on a Linux machine with the versions of <code>requirements-lock.txt</code>, the 16 steps took 3 min 34 s. Every CSV file matched its published copy (54 of 59 byte for byte, 5 within a relative tolerance of 10<sup>−6</sup>), and 34 of the 46 PNG files were pixel-identical. The other figures differ by a few pixels or in the position of their panels, which matplotlib sets from the size of the text.</p>
+  <p>On 16 November 2026, on a Linux machine with the versions of <code>requirements-lock.txt</code>, the 16 steps took 3 min 37 s. Every CSV file matched its published copy (56 of 61 byte for byte, 5 within a relative tolerance of 10<sup>−6</sup>), and 34 of the 46 PNG files were pixel-identical. The other figures differ by a few pixels or in the position of their panels, which matplotlib sets from the size of the text.</p>
   <p>The full record, file by file, is in <code>docs/tutorial/reproduction_log.txt</code>.</p></div>
 
   <h2>5.1 The steps</h2>

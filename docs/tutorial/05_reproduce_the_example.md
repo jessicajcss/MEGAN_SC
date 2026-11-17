@@ -16,7 +16,7 @@ python reproduce.py all
 
 On 16 November 2026 the 16 steps ran on a Linux virtual machine with Python 3.10.12 and the package versions of
 `requirements-lock.txt`, from a fresh copy of the repository with the release archives unpacked into `data/`, in
-3 min 34 s in total. All 59 CSV files matched their published copies, 54 byte for byte and 5 within the tolerance of
+3 min 37 s in total. All 61 CSV files matched their published copies, 56 byte for byte and 5 within the tolerance of
 section 5.3, and 34 of the 46 PNG files were pixel-identical. The other 12 figures differ in layout, by a few pixels
 or by their size, as section 5.3 explains.
 
@@ -99,10 +99,11 @@ of every year (`landcover_ef_potential_SC.csv`), the LAI gaps and largest LAI, a
 isoprene trend with the NOAA global annual means of `data/external/co2_annmean_gl.txt`
 (`final_review/final_review_numbers.csv`, `final_review.log`), then the robustness of the trends (`analysis/v10/review/trend_robustness.py`: 2003-2023, trend-free pre-whitening, Benjamini-Yekutieli and the eight groups without total BVOC; `final_review/trend_robustness.csv`).
 
-**`posthoc`** (4 s). Two diagnostics defined after the results were seen: the effect of giving the planted
+**`posthoc`** (6 s). Diagnostics defined after the results were seen: the effect of giving the planted
 forests (MapBiomas class 9) the emission factors of *Pinus* or *Eucalyptus* instead of those of the local ecotype, in
-2019, and the LAI of 2024 and 2025 by dominant growth form against 2003-2023; and the tree emission factors of each
-MEGAN ecotype of the state (`posthoc_review/`).
+2019, and the LAI of 2024 and 2025 by dominant growth form against 2003-2023; the tree emission factors of each
+MEGAN ecotype of the state; and the land use of each municipality and mesoregion, MapBiomas 2024 groups and growth
+forms of the run in 2003 and 2024 (`posthoc_review/`).
 
 **`laicorr`** (15 s). The VIIRS check of the 2024-2025 MODIS LAI from the cache of notebook 16: hindcast of the candidate corrections over 2013-2023 and the corrected LAI of 2024-2025 (`lai_viirs_check/`). It reads the MODIS-LAI record of every year through the view of `tools/lai_variant_view.py`.
 

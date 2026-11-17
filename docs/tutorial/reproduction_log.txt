@@ -196,3 +196,14 @@ Against the tables of notebook 13 in results/v10/notebook13_meso2024, largest re
   annual totals of the 11 groups, 23 years (annual_totals_by_group.csv vs table2_annual_totals_SC_groups.csv)  6.4e-10
   trends of the 9 series: Theil-Sen slope and interval, Mann-Kendall and Hamed-Rao (trends.csv vs trends.csv)  1.1e-07
   seasonal climatology, mean, minimum and maximum of BVOC, ISOP, MT, NO and CO by month                        5.9e-10
+
+
+Addendum, 16 November 2026 (evening): step posthoc extended with analysis/v10/review/landuse_context.py (land use of the
+municipalities and mesoregions; posthoc_review/landuse_context_municipality.csv and landuse_context_mesoregion.csv).
+Same machine and copy of the repository. posthoc ok in 6.2 s (3.5 s before), so the 16 steps take 3 min 37 s. The two new
+files were copied to results/v10/posthoc_review and the step compare was run again:
+
+CSV files: 61 compared, 56 identical, 5 equal within tolerance, 0 different, 0 without a published copy
+PNG files: 46 compared, 34 pixel-identical
+posthoc_review/landuse_context_mesoregion.csv           IDENTICAL        0.00e+00
+posthoc_review/landuse_context_municipality.csv         IDENTICAL        0.00e+00

@@ -47,8 +47,8 @@ python reproduce.py nb13 maps   # or any subset, in the order given
 | `laicorr` | VIIRS check of the 2024-2025 MODIS LAI (cache of notebook 16): hindcast of the candidate corrections and the corrected LAI of 2024-2025 read by notebook 17 |
 | `compare` | every reproduced file against its published copy |
 
-Outputs go to `reproduced/` (or `$MEGAN_SC_OUT`), logs to `reproduced/logs/<step>.log`. On 16 November 2026 the 16 steps took 3 min 34 s on a Linux
-machine with the versions of `requirements-lock.txt`: CSV files 59 compared, 54 identical, 5 equal within tolerance, 0
+Outputs go to `reproduced/` (or `$MEGAN_SC_OUT`), logs to `reproduced/logs/<step>.log`. On 16 November 2026 the 16 steps took 3 min 37 s on a Linux
+machine with the versions of `requirements-lock.txt`: CSV files 61 compared, 56 identical, 5 equal within tolerance, 0
 different; PNG files 46 compared, 34 pixel-identical (`docs/tutorial/reproduction_log.txt`). Fonts and library versions
 can change a few pixels of a figure, or the position of its panels, on another machine; numbers do not change.
 

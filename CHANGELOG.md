@@ -57,7 +57,9 @@ For a clone made before these changes:
   results folders; the LAI note of the MODIS-LAI case now says that its LAI is uncorrected), the sources of
   `report/report_numbers_v10.csv` read `key_numbers.csv`, the sources of `brain_comparison/parametrizations.csv` cite
   notebooks and Hoinaski et al. (2024), and `notebook22_printed_checks.txt` no longer cites an external document;
-  `results/MANIFEST.sha256` lists 337 files;
+  `results/MANIFEST.sha256` lists 339 files;
+* new post hoc diagnostic (step `posthoc`): `analysis/v10/review/landuse_context.py`, land use of each municipality and
+  mesoregion (MapBiomas 2024 groups and growth forms of the run in 2003 and 2024; `posthoc_review/landuse_context_*.csv`);
 * fixed: the scripts that run cells of notebooks 11 and 14 (`c3/diag_c3.py`, `c3/diag_c3_lai.py`, `nb14_diagnostics.py`,
   `fig9_tropomi.py`) read the notebook source through `_paths.notebook_source`, which replaces the block that finds the
   repository; the reproduction of 16 November 2026 is in `docs/tutorial/reproduction_log.txt`.

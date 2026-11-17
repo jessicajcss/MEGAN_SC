@@ -36,8 +36,8 @@ python reproduce.py all                            # todas as etapas; a última 
 
 O endereço acima é o da versão (*release*) v1.0.0 do GitHub, que guarda os arquivos de dados. Uma pasta local com os
 arquivos zip funciona do mesmo modo. Tudo é gravado em `reproduced/`, sem alterar `data/` nem `results/`, e a última
-etapa compara cada arquivo recalculado com a cópia publicada. Em 16 de novembro de 2026, numa máquina Linux com as versões de `requirements-lock.txt`, as 16 etapas levaram 3 min 34 s
-e todos os arquivos CSV coincidiram com a cópia publicada (54 de 59 byte a byte, 5 dentro de uma tolerância relativa de
+etapa compara cada arquivo recalculado com a cópia publicada. Em 16 de novembro de 2026, numa máquina Linux com as versões de `requirements-lock.txt`, as 16 etapas levaram 3 min 37 s
+e todos os arquivos CSV coincidiram com a cópia publicada (56 de 61 byte a byte, 5 dentro de uma tolerância relativa de
 10⁻⁶). Dos 46 arquivos PNG, 34 ficaram idênticos pixel a pixel. As figuras dependem das fontes e das versões das
 bibliotecas, e em outra máquina algumas podem mudar em poucos pixels ou na posição dos painéis, sem mudança nos números.
 O registro completo, arquivo por arquivo, está em `docs/tutorial/reproduction_log.txt`.

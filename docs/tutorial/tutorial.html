@@ -401,7 +401,7 @@ conda env create -f environment.yml &amp;&amp; conda activate megan-sc</pre>
   <p>Os testes conferem a transcrição do Fortran, os procedimentos FIX-1 a FIX-8, o assistente de região e uma execução dos cadernos 10, 11 e 25 para uma região pequena, com o Earth Engine trocado por campos sintéticos. Eles não comparam o modelo com observações.</p></div></div>
   <div class="step"><div class="n">4</div><div><h4>Conferir os resultados publicados</h4>
 <pre>python tools/verify_manifest.py
-<span class="o">337 files listed: OK 337, CHANGED 0, MISSING 0, EXTRA 0</span></pre>
+<span class="o">339 files listed: OK 339, CHANGED 0, MISSING 0, EXTRA 0</span></pre>
   <p>O manifesto <code>results/MANIFEST.sha256</code> lista o SHA-256 de cada arquivo de <code>results/</code> e responde à pergunta "estes são os arquivos publicados?".</p></div></div>
   <div class="step"><div class="n">5</div><div><h4>Baixar e conferir os dados</h4>
 <pre>python tools/data_release.py fetch https://github.com/jessicajcss/MEGAN_SC/releases/download/v1.0.0
@@ -414,7 +414,7 @@ python reproduce.py all         <span class="c"># tudo, e no fim a comparação 
 python reproduce.py nb13 maps   <span class="c"># ou qualquer subconjunto, na ordem dada</span></pre></div></div>
 
   <div class="box check"><span class="t">✅ Ponto de verificação · o que esperar</span>
-  <p>Em 16 de novembro de 2026, numa máquina Linux com as versões de <code>requirements-lock.txt</code>, as 16 etapas levaram 3 min 34 s. Todos os arquivos CSV coincidiram com a cópia publicada (54 de 59 byte a byte, 5 dentro de uma tolerância relativa de 10<sup>−6</sup>), e 34 dos 46 arquivos PNG ficaram idênticos pixel a pixel. As outras figuras mudam em poucos pixels ou na posição dos painéis, que o matplotlib define pelo tamanho do texto.</p>
+  <p>Em 16 de novembro de 2026, numa máquina Linux com as versões de <code>requirements-lock.txt</code>, as 16 etapas levaram 3 min 37 s. Todos os arquivos CSV coincidiram com a cópia publicada (56 de 61 byte a byte, 5 dentro de uma tolerância relativa de 10<sup>−6</sup>), e 34 dos 46 arquivos PNG ficaram idênticos pixel a pixel. As outras figuras mudam em poucos pixels ou na posição dos painéis, que o matplotlib define pelo tamanho do texto.</p>
   <p>O registro completo, arquivo por arquivo, está em <code>docs/tutorial/reproduction_log.txt</code>.</p></div>
 
   <h2>5.1 As etapas</h2>

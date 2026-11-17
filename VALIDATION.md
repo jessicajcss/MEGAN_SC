@@ -157,5 +157,5 @@ year).
 
 `python reproduce.py all` recomputes every table, number and figure in `results/v10/` from the shipped model output and
 compares each file with its published copy (`tools/compare_results.py`). The run of 16 November 2026 is kept in
-`docs/tutorial/reproduction_log.txt`: 59 CSV files compared, 54 identical and 5 equal within tolerance, none different;
+`docs/tutorial/reproduction_log.txt`: 61 CSV files compared, 56 identical and 5 equal within tolerance, none different;
 34 of 46 PNG files pixel-identical. Chapter 5 of the tutorial explains how to read it.

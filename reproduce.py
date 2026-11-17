@@ -92,7 +92,7 @@ STEPS = {
               'final_review/*', lambda: script('analysis/v10/review/final_review_diagnostics.py')),
     'extra': ('study-area map (MapBiomas 2024 and the model growth forms) and the verification flowchart',
               'figures/{pt,en}/fig_study_area.png, fig_verification.png, figures/study_area_shares.csv', None),
-    'posthoc': ('post hoc diagnostics (planted-forest emission factors, LAI of 2024-2025) and the ecotype emission factors of the state',
+    'posthoc': ('post hoc diagnostics (planted-forest emission factors, LAI of 2024-2025), the ecotype emission factors of the state and the land use of the municipalities',
                 'posthoc_review/*', None),
     'laicorr': ('VIIRS check of the 2024-2025 MODIS LAI (notebook 16 cache): hindcast of the candidate corrections, corrected LAI of 2024-2025 used by notebook 17; reads the MODIS-LAI record of every year (tools/lai_variant_view.py)',
                 'lai_viirs_check/lai_correction*, lai_viirs_corrected_2024_2025.npz',
@@ -105,7 +105,8 @@ MULTI = {
     'meso2024': ['analysis/v10/maps/landcover_mesoregion.py', 'analysis/v10/meso2024/make_sc_mesoregions_2024.py'],
     'maps': ['analysis/v10/maps/12_maps_wf_style.py', 'analysis/v10/fig9_tropomi.py'],
     'extra': ['analysis/v10/maps/study_area_map.py', 'analysis/v10/schematics/verification_flowchart.py'],
-    'posthoc': ['analysis/v10/review/posthoc_review_diagnostics.py', 'analysis/v10/review/ecotype_tree_ef.py'],
+    'posthoc': ['analysis/v10/review/posthoc_review_diagnostics.py', 'analysis/v10/review/ecotype_tree_ef.py',
+                'analysis/v10/review/landuse_context.py'],
     'final': ['analysis/v10/review/final_review_diagnostics.py', 'analysis/v10/review/trend_robustness.py',
               'analysis/v10/review/month_boundary.py'],
 }
